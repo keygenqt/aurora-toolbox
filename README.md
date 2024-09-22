@@ -8,7 +8,7 @@ We continue to develop Aurora CLI. In version 3.0, an API interface was added, i
 
 ### Subscribe and like!
 
-![preview](https://github.com/keygenqt/aurora-toolbox/blob/main/files/preview.png?raw=true)
+![preview](https://github.com/keygenqt/aurora-toolbox/blob/main/files/preview1.png?raw=true&v=1)
 
 
 ### License
