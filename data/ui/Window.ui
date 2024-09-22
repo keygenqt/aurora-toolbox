@@ -5,7 +5,7 @@
 			<object class="GtkHeaderBar">
 				<property name="title-widget">
 					<object class="GtkLabel">
-						<property name="label">Aurora Tools</property>
+						<property name="label">Aurora Toolbox</property>
 					</object>
 				</property>
 			</object>
