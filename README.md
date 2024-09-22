@@ -8,7 +8,7 @@ This application is not official, just like Aurora CLI.
 
 We continue to develop Aurora CLI. In version 3.0, an API interface was added, it was designed for interaction of third-party applications with all the functionality available in Aurora CLI. So, there is CLI, there is API, it's time for GUI. I have chosen [GJS](https://gjs.guide/) technology, because I want to master a new tool. I'll tell you a secret: this is often the main reason for the emergence of pet projects.
 
-![preview](https://github.com/keygenqt/aurora-cli/blob/main/files/preview.png?raw=true)
+![preview](https://github.com/keygenqt/aurora-toolbox/blob/main/files/preview.png?raw=true)
 
 
 ### License
