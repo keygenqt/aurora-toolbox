@@ -4,7 +4,7 @@
 
 The Aurora Toolbox application is in development, you can learn more about Aurora CLI on the [documentation](https://keygenqt.github.io/aurora-cli/) page.
 
-This application is not official, just like Aurora CLI.
+> This application **is not official**, just like Aurora CLI.
 
 We continue to develop Aurora CLI. In version 3.0, an API interface was added, it was designed for interaction of third-party applications with all the functionality available in Aurora CLI. So, there is CLI, there is API, it's time for GUI. I have chosen [GJS](https://gjs.guide/) technology, because I want to master a new tool. I'll tell you a secret: this is often the main reason for the emergence of pet projects.
 
