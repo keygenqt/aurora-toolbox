@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<template class="AtbWindow">
+		<property name="titlebar">
+			<object class="GtkHeaderBar">
+				<property name="title-widget">
+					<object class="GtkLabel">
+						<property name="label">Aurora Tools</property>
+					</object>
+				</property>
+			</object>
+		</property>
+		<property name="child">
+			<object class="AtbWelcomeWidget">
+				<property name="valign">center</property>
+			</object>
+		</property>
+	</template>
+</interface>

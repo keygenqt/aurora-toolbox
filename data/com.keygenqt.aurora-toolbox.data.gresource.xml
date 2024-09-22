@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+	<gresource prefix="/com/keygenqt/aurora-toolbox">
+		<file>css/style.css</file>
+		<file>ui/WelcomeWidget.ui</file>
+		<file>ui/Window.ui</file>
+	</gresource>
+	<gresource prefix="/com/keygenqt/aurora-toolbox/icons/scalable/actions">
+		<file alias="aurora-tools-ic_launcher.svg">icons/ic_launcher.svg</file>
+	</gresource>
+</gresources>

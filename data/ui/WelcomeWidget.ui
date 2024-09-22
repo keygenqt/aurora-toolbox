@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<template class="AtbWelcomeWidget">
+		<property name="layout-manager">
+			<object class="GtkBoxLayout">
+				<property name="orientation">vertical</property>
+			</object>
+		</property>
+		<child>
+			<object class="GtkFrame">
+				<style>
+					<class name="icon"/>
+				</style>
+			</object>
+		</child>
+		<child>
+			<object class="GtkLabel">
+				<property name="label">Welcome to GUI application for Aurora CLI!</property>
+				<property name="wrap">true</property>
+				<property name="justify">center</property>
+				<style>
+					<class name="text"/>
+				</style>
+			</object>
+		</child>
+	</template>
+</interface>

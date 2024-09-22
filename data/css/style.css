@@ -1,0 +1,19 @@
+AtbWelcomeWidget {
+	border-spacing: 18px;
+	margin: 36px;
+}
+
+AtbWelcomeWidget .icon {
+	border: none;
+	background-image: url('resource:///com/keygenqt/aurora-toolbox/icons/scalable/actions/aurora-tools-ic_launcher.svg');
+	background-size: 70px 70px;
+	background-repeat: no-repeat;
+	background-position: center;
+	min-height: 70px;
+}
+
+AtbWelcomeWidget .text {
+    margin-top: 40px;
+	font-size: 20px;
+	font-weight: bold;
+}
