@@ -10,6 +10,9 @@ We continue to develop Aurora CLI. In version 3.0, an API interface was added, i
 
 ![preview](https://github.com/keygenqt/aurora-toolbox/blob/main/files/preview1.png?raw=true&v=1)
 
+### Dependency
+
+- libadwaita-1-dev
 
 ### License
 

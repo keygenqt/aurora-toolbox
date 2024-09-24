@@ -1,3 +1,7 @@
-.flatpak-builder
-builddir
+# Build
 build-dir
+
+# Subprojects
+subprojects/*
+!subprojects/libadwaita.wrap
+!subprojects/gstreamer.wrap

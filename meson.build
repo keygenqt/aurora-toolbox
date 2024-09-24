@@ -11,6 +11,8 @@ APP_ID = 'com.keygenqt.aurora-toolbox'
 # Import the modules
 gnome = import('gnome')
 
+dependency('libadwaita-1', version : '>= 1.5')
+
 # Load instructions from subdirectories
 subdir('data')
 subdir('src')

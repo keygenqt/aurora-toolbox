@@ -2,13 +2,15 @@ import Gdk from 'gi://Gdk';
 import Gio from 'gi://Gio';
 import Gtk from 'gi://Gtk';
 import GObject from 'gi://GObject';
+import Adw from 'gi://Adw';
 
 import './WelcomeWidget.js';
 import { Window } from './Window.js';
 
 export const Application = GObject.registerClass({
 	GTypeName: 'AtbApplication'
-}, class extends Gtk.Application {
+}, class extends Adw.Application {
+	
 	vfunc_startup() {
 		super.vfunc_startup();
 		this.#loadStylesheet();

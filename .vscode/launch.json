@@ -1,0 +1,11 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run",
+            "request": "launch",
+            "type": "node-terminal",
+            "command": "${workspaceFolder}/scripts/run.sh"
+        },
+    ]
+}

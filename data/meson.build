@@ -1,3 +1,5 @@
+dependency('libadwaita-1', version : '>= 1.5')
+
 # Compile the resources
 gnome.compile_resources(
 	APP_ID + '.data',

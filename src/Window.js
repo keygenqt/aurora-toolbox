@@ -1,11 +1,12 @@
 import Gio from 'gi://Gio';
 import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
+import Adw from 'gi://Adw';
 
 export const Window = GObject.registerClass({
 	GTypeName: 'AtbWindow',
-	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/Window.ui',
-}, class extends Gtk.ApplicationWindow {
+	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/WindowAdw.ui',
+}, class extends Adw.Window {
 	constructor(params={}) {
 		super(params);
 		this.#bindSizeToSettings();
