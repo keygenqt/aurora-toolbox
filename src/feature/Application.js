@@ -8,9 +8,9 @@ import './WelcomeWidget.js';
 import { Window } from './Window.js';
 
 export const Application = GObject.registerClass({
-	GTypeName: 'AtbApplication'
+	GTypeName: 'AtbApplication',
 }, class extends Adw.Application {
-	
+
 	vfunc_startup() {
 		super.vfunc_startup();
 		this.#loadStylesheet();
@@ -36,7 +36,6 @@ export const Application = GObject.registerClass({
 	}
 
 	#loadSettings() {
-		// Load the settings
 		globalThis.settings = new Gio.Settings({ schemaId: this.applicationId });
 	}
 });

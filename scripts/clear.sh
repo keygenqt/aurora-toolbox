@@ -4,5 +4,7 @@
 ## Clear build application
 ##########################
 
-ninja -C build-dir uninstall
-rm -r build-dir
+FOLDER='build-dir'
+
+ninja -C $FOLDER uninstall
+rm -r $FOLDER

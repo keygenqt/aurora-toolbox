@@ -1,0 +1,6 @@
+data/ui/WelcomeWidget.ui
+data/ui/Window.ui
+
+src/feature/Application.js
+src/feature/WelcomeWidget.js
+src/feature/Window.js

@@ -10,6 +10,9 @@ imports.package.init({
 	libdir: '@LIBDIR@',
 });
 
+// Initialize the translations
+imports.package.initGettext();
+
 // Import the main module and run the main function
 const loop = new GLib.MainLoop(null, false);
 import('resource:///com/keygenqt/aurora-toolbox/js/main.js')

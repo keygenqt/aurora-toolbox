@@ -17,3 +17,11 @@ AtbWelcomeWidget .text {
 	font-size: 20px;
 	font-weight: bold;
 }
+
+.is-dark AtbWelcomeWidget .text {
+	color: red;
+}
+
+.is-light AtbWelcomeWidget .text {
+	color: blue;
+}

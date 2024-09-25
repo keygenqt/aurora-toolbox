@@ -1,0 +1,3 @@
+#: data/ui/WelcomeWidget.ui:18
+msgid "Welcome to GUI application for Aurora CLI!"
+msgstr "Добро пожаловать в приложение Aurora Toolbox!"

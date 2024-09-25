@@ -13,6 +13,8 @@ We continue to develop Aurora CLI. In version 3.0, an API interface was added, i
 ### Dependency
 
 - libadwaita-1-dev
+- gettext
+- language-pack-ru-base
 
 ### License
 

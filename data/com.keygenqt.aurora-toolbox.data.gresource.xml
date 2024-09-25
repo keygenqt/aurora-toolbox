@@ -4,7 +4,6 @@
 		<file>css/style.css</file>
 		<file>ui/WelcomeWidget.ui</file>
 		<file>ui/Window.ui</file>
-		<file>ui/WindowAdw.ui</file>
 	</gresource>
 	<gresource prefix="/com/keygenqt/aurora-toolbox/icons/scalable/actions">
 		<file alias="aurora-tools-ic_launcher.svg">icons/ic_launcher.svg</file>

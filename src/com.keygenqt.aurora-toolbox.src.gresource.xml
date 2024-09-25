@@ -2,8 +2,9 @@
 <gresources>
 	<gresource prefix="/com/keygenqt/aurora-toolbox/js">
 		<file>main.js</file>
-		<file>Application.js</file>
-		<file>WelcomeWidget.js</file>
-		<file>Window.js</file>
+		<file>feature/AppBusProxy.js</file>
+		<file>feature/Application.js</file>
+		<file>feature/WelcomeWidget.js</file>
+		<file>feature/Window.js</file>
 	</gresource>
 </gresources>
