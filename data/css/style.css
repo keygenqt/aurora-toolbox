@@ -19,9 +19,9 @@ AtbWelcomeWidget .text {
 }
 
 .is-dark AtbWelcomeWidget .text {
-	color: red;
+	color: #70b394;
 }
 
 .is-light AtbWelcomeWidget .text {
-	color: blue;
+	color: #274a3f;
 }

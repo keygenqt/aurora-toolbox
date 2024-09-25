@@ -7,7 +7,7 @@ import { AppBusProxy } from './AppBusProxy.js';
 export const Window = GObject.registerClass({
 	GTypeName: 'AtbWindow',
 	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/Window.ui',
-}, class extends Adw.Window {
+}, class extends Adw.ApplicationWindow {
 	#dbusProxy = new AppBusProxy();
 
 	constructor(params={}) {
