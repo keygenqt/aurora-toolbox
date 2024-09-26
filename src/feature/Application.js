@@ -5,21 +5,27 @@ import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 
 import './WelcomeWidget.js';
+
 import { Window } from './Window.js';
+import { AboutDialog } from './AboutDialog.js';
 
 export const Application = GObject.registerClass({
 	GTypeName: 'AtbApplication',
 }, class extends Adw.Application {
+	#window;
+	#aboutDialog;
 
 	vfunc_startup() {
 		super.vfunc_startup();
+
 		this.#loadStylesheet();
 		this.#loadSettings();
+		this.#setupActions();
 	}
 
 	vfunc_activate() {
-		const window = new Window({ application: this });
-		window.present();
+		this.#window = new Window({ application: this });
+		this.#window.present();
 	}
 
 	#loadStylesheet() {
@@ -37,5 +43,20 @@ export const Application = GObject.registerClass({
 
 	#loadSettings() {
 		globalThis.settings = new Gio.Settings({ schemaId: this.applicationId });
+	}
+
+	#setupActions() {
+		const about_action = new Gio.SimpleAction({name: 'about', state: null});
+        about_action.connect('activate', () => {
+			this.#showAboutDialog();
+		});
+
+		this.add_action(about_action);
+	}
+
+	#showAboutDialog() {
+		if (!this.#aboutDialog)
+			this.#aboutDialog = new AboutDialog();
+		this.#aboutDialog.present(this.#window);
 	}
 });

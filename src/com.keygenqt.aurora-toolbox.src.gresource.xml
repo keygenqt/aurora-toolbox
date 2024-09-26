@@ -6,5 +6,6 @@
 		<file>feature/Application.js</file>
 		<file>feature/WelcomeWidget.js</file>
 		<file>feature/Window.js</file>
+		<file>feature/AboutDialog.js</file>
 	</gresource>
 </gresources>

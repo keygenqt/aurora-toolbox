@@ -15,6 +15,7 @@
 			<attribute name="label" translatable="yes">Documentation</attribute>
 			</item>
 			<item>
+			<attribute name="action">app.about</attribute>
 			<attribute name="label" translatable="yes">About</attribute>
 			</item>
 		</section>
@@ -31,7 +32,7 @@
 								<child type="top">
 									<object class="AdwHeaderBar">
 										<child type="end">
-											<object class="GtkMenuButton">
+											<object class="GtkMenuButton" id="IdMenu">
 												<property name="icon-name">view-more-symbolic</property>
 												<property name="tooltip-text" translatable="yes">Menu</property>"
 												<property name="menu-model">menu</property>
