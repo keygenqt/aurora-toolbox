@@ -2,7 +2,10 @@ import Gio from 'gi://Gio';
 import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 
+import * as Utils from './Utils.js';
+
 import { AppBusProxy } from './AppBusProxy.js';
+import { AboutDialog } from './AboutDialog.js';
 
 export const Window = GObject.registerClass({
 	GTypeName: 'AtbWindow',
@@ -19,6 +22,10 @@ export const Window = GObject.registerClass({
 		this.#dbusProxy.connect('color-scheme', (_, value) => {
 			this.#changeAppearance(value);
 		});
+
+		this.insert_action_group('AtbWindow', Utils.addSimpleActions({
+            'about': () => new AboutDialog().present(this),
+        }))
 	}
 
 	vfunc_close_request() {

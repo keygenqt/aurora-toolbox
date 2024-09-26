@@ -15,7 +15,7 @@
 			<attribute name="label" translatable="yes">Documentation</attribute>
 			</item>
 			<item>
-			<attribute name="action">app.about</attribute>
+			<attribute name="action">AtbWindow.about</attribute>
 			<attribute name="label" translatable="yes">About</attribute>
 			</item>
 		</section>
