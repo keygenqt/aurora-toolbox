@@ -13,7 +13,6 @@ export const Application = GObject.registerClass({
 	GTypeName: 'AtbApplication',
 }, class extends Adw.Application {
 	#window;
-	#aboutDialog;
 
 	vfunc_startup() {
 		super.vfunc_startup();
@@ -55,8 +54,6 @@ export const Application = GObject.registerClass({
 	}
 
 	#showAboutDialog() {
-		if (!this.#aboutDialog)
-			this.#aboutDialog = new AboutDialog();
-		this.#aboutDialog.present(this.#window);
+		new AboutDialog().present(this.#window);
 	}
 });
