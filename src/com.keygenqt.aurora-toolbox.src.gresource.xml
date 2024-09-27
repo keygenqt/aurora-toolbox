@@ -7,6 +7,7 @@
 		<file>feature/WelcomeWidget.js</file>
 		<file>feature/Window.js</file>
 		<file>feature/AboutDialog.js</file>
+		<file>feature/SettingsDialog.js</file>
 		<file>feature/Utils.js</file>
 	</gresource>
 </gresources>

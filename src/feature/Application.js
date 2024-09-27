@@ -24,11 +24,8 @@ export const Application = GObject.registerClass({
 	}
 
 	#loadStylesheet() {
-		// Load the stylesheet in a CssProvider
 		const provider = new Gtk.CssProvider();
 		provider.load_from_resource('/com/keygenqt/aurora-toolbox/css/style.css');
-
-		// Add the provider to the StyleContext of the default display
 		Gtk.StyleContext.add_provider_for_display(
 			Gdk.Display.get_default(),
 			provider,

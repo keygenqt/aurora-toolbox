@@ -18,9 +18,7 @@
 				<property name="label" translatable="yes">Welcome to GUI application for Aurora CLI!</property>
 				<property name="wrap">true</property>
 				<property name="justify">center</property>
-				<style>
-					<class name="text"/>
-				</style>
+				<style> <class name="text"/></style>
 			</object>
 		</child>
 	</template>

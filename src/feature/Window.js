@@ -6,6 +6,7 @@ import * as Utils from './Utils.js';
 
 import { AppBusProxy } from './AppBusProxy.js';
 import { AboutDialog } from './AboutDialog.js';
+import { SettingsDialog } from './SettingsDialog.js';
 
 export const Window = GObject.registerClass({
 	GTypeName: 'AtbWindow',
@@ -16,16 +17,9 @@ export const Window = GObject.registerClass({
 	constructor(params={}) {
 		super(params);
 
-		this.#bindSizeToSettings();
-		this.#changeAppearance(this.#dbusProxy.colorScheme);
-
-		this.#dbusProxy.connect('color-scheme', (_, value) => {
-			this.#changeAppearance(value);
-		});
-
-		this.insert_action_group('AtbWindow', Utils.addSimpleActions({
-            'about': () => new AboutDialog().present(this),
-        }))
+		this.#dbusConnect();
+		this.#actionsConnect();
+		this.#bindSettings();
 	}
 
 	vfunc_close_request() {
@@ -33,12 +27,29 @@ export const Window = GObject.registerClass({
 		this.run_dispose();
 	}
 
-	#bindSizeToSettings() {
+	#bindSettings() {
+		// Set color theme
+		this.#changeAppearanceCss(this.#dbusProxy.colorScheme);
+		// Set size window
 		settings.bind('window-width', this, 'default-width', Gio.SettingsBindFlags.DEFAULT);
 		settings.bind('window-height', this, 'default-height', Gio.SettingsBindFlags.DEFAULT);
 	}
 
-	#changeAppearance(colorScheme = 0) {
+	#dbusConnect() {
+		this.#dbusProxy.connect('color-scheme', (_, value) => {
+			this.#changeAppearanceCss(value);
+		});
+	}
+
+	#actionsConnect() {
+		this.insert_action_group('AtbWindow', Utils.addSimpleActions({
+            'about': () => new AboutDialog().present(this),
+            'settings': () => new SettingsDialog().present(this),
+            'documentation': () => Utils.uriLaunch(this, 'https://keygenqt.github.io/aurora-cli/'),
+        }))
+	}
+
+	#changeAppearanceCss(colorScheme = 0) {
 		if (colorScheme === 1) {
 			this.add_css_class('is-dark');
 			this.remove_css_class('is-light');
