@@ -19,7 +19,7 @@
 			</item>
 			<item>
 			<attribute name="action">AtbWindow.about</attribute>
-			<attribute name="label" translatable="yes">About</attribute>
+			<attribute name="label" translatable="yes">About Toolbox</attribute>
 			</item>
 		</section>
 	</menu>
@@ -55,12 +55,12 @@
 										<property name="spacing">12</property>
 										<child>
 											<object class="GtkButton" >
-												<property name="label">Device</property>
+												<property name="label" translatable="yes">Device</property>
 											</object>
 										</child>
 										<child>
 											<object class="GtkButton" >
-												<property name="label">Emulator</property>
+												<property name="label" translatable="yes">Emulator</property>
 											</object>
 										</child>
 										<child>
@@ -70,12 +70,12 @@
 										</child>
 										<child>
 											<object class="GtkButton" >
-												<property name="label">Platform SDK</property>
+												<property name="label" translatable="yes">Platform SDK</property>
 											</object>
 										</child>
 										<child>
 											<object class="GtkButton" >
-												<property name="label">Aurora SDK</property>
+												<property name="label" translatable="yes">Aurora SDK</property>
 											</object>
 										</child>
 										<child>
@@ -91,7 +91,7 @@
 				</property>
 				<property name="content">
 					<object class="AdwNavigationPage">
-						<property name="title">Aurora Toolbox</property>
+						<property name="title" translatable="yes">Aurora Toolbox</property>
 						<property name="child">
 							<object class="AdwToolbarView">
 								<child type="top">

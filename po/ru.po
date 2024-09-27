@@ -1,3 +1,119 @@
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-27 21:13+0300\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: data/ui/AboutDialog.ui:5 data/ui/Window.ui:94
+msgid "Aurora Toolbox"
+msgstr "Аврора Toolbox"
+
+#: data/ui/AboutDialog.ui:9
+msgid "Vitaliy Zarubin"
+msgstr "Виталий Зарубин"
+
+#: data/ui/SettingsDialog.ui:5 data/ui/Window.ui:12
+msgid "Settings"
+msgstr "Настройки"
+
+#: data/ui/SettingsDialog.ui:23
+msgid "Language"
+msgstr "Язык"
+
+#: data/ui/SettingsDialog.ui:24
+msgid ""
+"The default language selection in the application is taken from the "
+"environment settings. This setting allows you to enable your preferred "
+"language regardless of the environment settings."
+msgstr ""
+"Выбор языка в приложении по умолчанию берется из данных настройки окружения. "
+"Эта настройка позволяет включить предпочитаемый язык, невзирая на настройки "
+"окружение."
+
+#: data/ui/SettingsDialog.ui:28
+msgid "Russian"
+msgstr "Русский"
+
+#: data/ui/SettingsDialog.ui:29
+msgid "English"
+msgstr "Английский"
+
+#: data/ui/SettingsDialog.ui:37
+msgid "Hint"
+msgstr "Подсказки"
+
+#: data/ui/SettingsDialog.ui:38
+msgid ""
+"The application has a command hint function. If you do not need them, you "
+"can turn them off to make the application output easier to read."
+msgstr ""
+"Приложение обладает функцией подсказок к командам. Если они вам не нужны, вы "
+"можете их отключить для облегчения чтения вывода приложения."
+
+#: data/ui/SettingsDialog.ui:44
+msgid "Select"
+msgstr "Выбор"
+
+#: data/ui/SettingsDialog.ui:45
+msgid ""
+"By default, the latest version of Platform SDK/Flutter SDK is selected, the "
+"first device from the configuration file. By activating this setting when "
+"calling the --select argument, the application will remember your choice and "
+"without it, information will be taken from the cache."
+msgstr ""
+"По умолчанию выбирается крайняя версия Platform SDK/Flutter SDK, первое "
+"устройство из конфигурационного файла. Активировав эту настройку при вызове "
+"аргумента --select, приложение запомнит ваш выбор и без него информация "
+"будет браться из кеша."
+
+#: data/ui/SettingsDialog.ui:51
+msgid "Verbose"
+msgstr "Подробно"
+
+#: data/ui/SettingsDialog.ui:52
+msgid ""
+"The --verbose flag enables verbose output after the command is executed. "
+"This setting enables verbose output by default."
+msgstr ""
+"Флаг --verbose позволяет осуществлять подробный вывод после выполнения "
+"команды. Эта настройка позволяет включить подробный вывод по умолчанию."
+
 #: data/ui/WelcomeWidget.ui:18
-msgid "Welcome to GUI application for Aurora CLI!"
-msgstr "Добро пожаловать в приложение Aurora Toolbox!"
+msgid "Welcome to application Aurora Toolbox!"
+msgstr "Добро пожаловать в приложение Аврора Toolbox!"
+
+#: data/ui/Window.ui:8
+msgid "Configuration"
+msgstr "Конфигурация"
+
+#: data/ui/Window.ui:18
+msgid "Documentation"
+msgstr "Документация"
+
+#: data/ui/Window.ui:22
+msgid "About Toolbox"
+msgstr "О Toolbox"
+
+#: data/ui/Window.ui:32
+msgid "Features"
+msgstr "Инструменты"
+
+#: data/ui/Window.ui:40
+msgid "Menu"
+msgstr "Меню"
+
+#: data/ui/Window.ui:58
+msgid "Device"
+msgstr "Устройства"
+
+#: data/ui/Window.ui:63
+msgid "Emulator"
+msgstr "Эмулятор"
+
+#: data/ui/Window.ui:73
+msgid "Platform SDK"
+msgstr "Платформ SDK"
+
+#: data/ui/Window.ui:78
+msgid "Aurora SDK"
+msgstr "Аврора SDK"

@@ -1,6 +1,13 @@
+data/ui/AboutDialog.ui
+data/ui/SettingsDialog.ui
 data/ui/WelcomeWidget.ui
 data/ui/Window.ui
 
+src/feature/AboutDialog.js
+src/feature/AppBusProxy.js
 src/feature/Application.js
+src/feature/SettingsDialog.js
+src/feature/AboutDialog.js
+src/feature/Utils.js
 src/feature/WelcomeWidget.js
 src/feature/Window.js

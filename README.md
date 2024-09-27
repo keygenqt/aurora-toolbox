@@ -14,6 +14,7 @@ We continue to develop Aurora CLI. In version 3.0, an API interface was added, i
 
 - libadwaita-1-dev
 - gettext
+- language-pack-gnome-ru
 - language-pack-ru-base
 
 ### License
