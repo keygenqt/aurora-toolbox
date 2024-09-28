@@ -1,18 +1,36 @@
+/**
+ * Copyright 2024 Vitaliy Zarubin
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import Gio from 'gi://Gio';
 import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 
-import * as Utils from './Utils.js';
+import { DBusProxy } from '../base/connectors/DBusProxy.js';
+import { Helper } from '../base/utils/Helper.js';
 
-import { AppBusProxy } from './AppBusProxy.js';
-import { AboutDialog } from './AboutDialog.js';
-import { SettingsDialog } from './SettingsDialog.js';
+import { AboutDialog } from './dialogs/AboutDialog.js';
+import { SettingsDialog } from './dialogs/SettingsDialog.js';
+
+// Import class for UI
+import './widgets/WelcomeWidget.js';
 
 export const Window = GObject.registerClass({
 	GTypeName: 'AtbWindow',
 	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/Window.ui',
 }, class extends Adw.ApplicationWindow {
-	#dbusProxy = new AppBusProxy();
+	#dbusProxy = new DBusProxy();
 
 	constructor(params={}) {
 		super(params);
@@ -28,25 +46,22 @@ export const Window = GObject.registerClass({
 	}
 
 	#bindSettings() {
-		// Set color theme
-		this.#changeAppearanceCss(this.#dbusProxy.colorScheme);
-		// Set size window
 		settings.bind('window-width', this, 'default-width', Gio.SettingsBindFlags.DEFAULT);
 		settings.bind('window-height', this, 'default-height', Gio.SettingsBindFlags.DEFAULT);
 	}
 
 	#dbusConnect() {
-		this.#dbusProxy.connect('color-scheme', (_, value) => {
+		this.#dbusProxy.connectWithEmit('colorScheme', (value) => {
 			this.#changeAppearanceCss(value);
 		});
 	}
 
 	#actionsConnect() {
-		this.insert_action_group('AtbWindow', Utils.addSimpleActions({
+		this.connectGroup('AtbWindow', {
             'about': () => new AboutDialog().present(this),
             'settings': () => new SettingsDialog().present(this),
-            'documentation': () => Utils.uriLaunch(this, 'https://keygenqt.github.io/aurora-cli/'),
-        }))
+            'documentation': () => Helper.uriLaunch(this, 'https://keygenqt.github.io/aurora-cli/'),
+        });
 	}
 
 	#changeAppearanceCss(colorScheme = 0) {

@@ -2,12 +2,25 @@
 <gresources>
 	<gresource prefix="/com/keygenqt/aurora-toolbox/js">
 		<file>main.js</file>
-		<file>feature/AppBusProxy.js</file>
 		<file>feature/Application.js</file>
-		<file>feature/WelcomeWidget.js</file>
 		<file>feature/Window.js</file>
-		<file>feature/AboutDialog.js</file>
-		<file>feature/SettingsDialog.js</file>
-		<file>feature/Utils.js</file>
+
+		<!-- feature/widgets -->
+		<file>feature/widgets/WelcomeWidget.js</file>
+
+		<!-- feature/dialogs -->
+		<file>feature/dialogs/AboutDialog.js</file>
+		<file>feature/dialogs/SettingsDialog.js</file>
+
+		<!-- base/connectors -->
+		<file>base/connectors/DBusProxy.js</file>
+
+		<!-- base/extensions -->
+		<file>base/extensions/DBusProxy.js</file>
+		<file>base/extensions/GtkWidget.js</file>
+
+		<!-- base/utils -->
+		<file>base/utils/Log.js</file>
+		<file>base/utils/Helper.js</file>
 	</gresource>
 </gresources>

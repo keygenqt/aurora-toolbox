@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
 	<object class="AdwDialog" id="IdSettingsDialog">
-
 		<property name="title" translatable="yes">Settings</property>
 		<child>
 			<object class="AdwToolbarView">

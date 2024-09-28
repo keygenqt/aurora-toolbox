@@ -2,10 +2,14 @@
 <gresources>
 	<gresource prefix="/com/keygenqt/aurora-toolbox">
 		<file>css/style.css</file>
-		<file>ui/WelcomeWidget.ui</file>
 		<file>ui/Window.ui</file>
-		<file>ui/AboutDialog.ui</file>
-		<file>ui/SettingsDialog.ui</file>
+
+		<!-- dialogs -->
+		<file>ui/dialogs/AboutDialog.ui</file>
+		<file>ui/dialogs/SettingsDialog.ui</file>
+
+		<!-- widgets -->
+		<file>ui/widgets/WelcomeWidget.ui</file>
 	</gresource>
 	<gresource prefix="/com/keygenqt/aurora-toolbox/icons/scalable/actions">
 		<file alias="aurora-tools-ic_launcher.svg">icons/ic_launcher.svg</file>
