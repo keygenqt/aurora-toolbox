@@ -5,22 +5,28 @@
 		<file>feature/Application.js</file>
 		<file>feature/Window.js</file>
 
-		<!-- feature/widgets -->
-		<file>feature/widgets/WelcomeWidget.js</file>
-
-		<!-- feature/dialogs -->
-		<file>feature/dialogs/AboutDialog.js</file>
-		<file>feature/dialogs/SettingsDialog.js</file>
-
 		<!-- base/connectors -->
 		<file>base/connectors/DBusProxy.js</file>
+
+		<!-- base/constants -->
+		<file>base/constants/AppConstants.js</file>
+		<file>base/constants/AuroraAPI.js</file>
 
 		<!-- base/extensions -->
 		<file>base/extensions/DBusProxy.js</file>
 		<file>base/extensions/GtkWidget.js</file>
+		<file>base/extensions/String.js</file>
+
+		<!-- feature/dialogs -->
+		<file>feature/dialogs/AboutDialog.js</file>
+		<file>feature/dialogs/LoadingDialog.js</file>
+		<file>feature/dialogs/SettingsDialog.js</file>
 
 		<!-- base/utils -->
 		<file>base/utils/Log.js</file>
 		<file>base/utils/Helper.js</file>
+
+		<!-- feature/widgets -->
+		<file>feature/widgets/WelcomeWidget.js</file>
 	</gresource>
 </gresources>

@@ -22,31 +22,31 @@
 												<property name="title" translatable="yes">Language</property>
 												<property name="subtitle" translatable="yes">The default language selection in the application is taken from the environment settings. This setting allows you to enable your preferred language regardless of the environment settings.</property>
 												<property name="model">
-												<object class="GtkStringList">
-													<items>
-														<item translatable="yes">Russian</item>
-														<item translatable="yes">English</item>
-													</items>
-												</object>
+													<object class="GtkStringList">
+														<items>
+															<item>RU</item>
+															<item>EN</item>
+														</items>
+													</object>
 												</property>
 											</object>
 										</child>
 										<child>
-											<object class="AdwSwitchRow">
+											<object class="AdwSwitchRow" id="IdSwitchHint">
 												<property name="title" translatable="yes">Hint</property>
 												<property name="subtitle" translatable="yes">The application has a command hint function. If you do not need them, you can turn them off to make the application output easier to read.</property>
 												<property name="action_name">AtbSettingsDialog.hint</property>
 											</object>
 										</child>
 										<child>
-											<object class="AdwSwitchRow">
+											<object class="AdwSwitchRow" id="IdSwitchSelect">
 												<property name="title" translatable="yes">Select</property>
 												<property name="subtitle" translatable="yes">By default, the latest version of Platform SDK/Flutter SDK is selected, the first device from the configuration file. By activating this setting when calling the --select argument, the application will remember your choice and without it, information will be taken from the cache.</property>
 												<property name="action_name">AtbSettingsDialog.select</property>
 											</object>
 										</child>
 										<child>
-											<object class="AdwSwitchRow">
+											<object class="AdwSwitchRow" id="IdSwitchVerbose">
 												<property name="title" translatable="yes">Verbose</property>
 												<property name="subtitle" translatable="yes">The --verbose flag enables verbose output after the command is executed. This setting enables verbose output by default.</property>
 												<property name="action_name">AtbSettingsDialog.verbose</property>

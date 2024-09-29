@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-/**
- * Just common log for application
- */
-export const Log = {
-    error: function(error) {
-        console.error(error);
-    },
-    warn: function(error) {
-        console.warn(error);
+export const AppConstants = {
+    AuroraCLI: [
+        'python3',
+        '/home/keygenqt/Documents/Home/Projects/aurora-cli/builds/aurora-cli-3.0.4.pyz'
+    ],
+    Language: {
+        'ru': 'ru_RU.utf-8',
+        'en': 'en_US.utf-8',
     }
-}
+};

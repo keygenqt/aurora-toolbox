@@ -3,7 +3,9 @@ project(
 	'aurora-toolbox',
 	version: '0.0.1',
 	license: ['Apache 2.0'],
-	meson_version: '>= 0.59.0'
+	meson_version: '>= 0.59.0',
+	default_options: ['cpp_std=c++17', 'cpp_rtti=false', 'cpp_eh=none',
+        'c_std=c99', 'warning_level=2', 'b_pch=true' ],
 )
 
 APP_ID = 'com.keygenqt.aurora-toolbox'

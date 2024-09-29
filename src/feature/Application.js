@@ -19,15 +19,20 @@ import Gtk from 'gi://Gtk';
 import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 
+import { Helper } from '../base/utils/Helper.js';
 import { Window } from './Window.js';
 
 export const Application = GObject.registerClass({
 	GTypeName: 'AtbApplication',
 }, class extends Adw.Application {
 
+	constructor(params) {
+        super(params);
+		Helper.setLanguage();
+	}
+
 	vfunc_startup() {
 		super.vfunc_startup();
-
 		this.#loadStylesheet();
 		this.#loadSettings();
 	}

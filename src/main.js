@@ -4,6 +4,7 @@ import 'gi://Adw?version=1';
 
 import './base/extensions/DBusProxy.js';
 import './base/extensions/GtkWidget.js';
+import './base/extensions/String.js';
 
 import { Application } from './feature/Application.js';
 

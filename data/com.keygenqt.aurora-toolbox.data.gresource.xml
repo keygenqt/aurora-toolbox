@@ -6,6 +6,7 @@
 
 		<!-- dialogs -->
 		<file>ui/dialogs/AboutDialog.ui</file>
+		<file>ui/dialogs/LoadingDialog.ui</file>
 		<file>ui/dialogs/SettingsDialog.ui</file>
 
 		<!-- widgets -->

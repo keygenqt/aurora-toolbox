@@ -13,15 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import GObject from 'gi://GObject';
+import Gtk from 'gi://Gtk';
 
-/**
- * Just common log for application
- */
-export const Log = {
-    error: function(error) {
-        console.error(error);
-    },
-    warn: function(error) {
-        console.warn(error);
-    }
-}
+export const LoadingDialog = GObject.registerClass({
+	GTypeName: 'AtbLoadingDialog',
+	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/dialogs/LoadingDialog.ui',
+	InternalChildren: ['IdLoadingDialog'],
+}, class extends Gtk.Widget {
+	present(window) {
+		this._IdLoadingDialog.present(window);
+		return this._IdLoadingDialog;
+	}
+});
