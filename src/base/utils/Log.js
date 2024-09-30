@@ -23,5 +23,8 @@ export const Log = {
     },
     warn: function(error) {
         console.warn(error);
+    },
+    debug: function(data) {
+        console.debug(data);
     }
 }

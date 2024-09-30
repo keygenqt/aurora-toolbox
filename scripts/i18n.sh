@@ -7,7 +7,9 @@
 FOLDER='build-dir'
 
 # Read files
-find data -type f -name "*.ui" && find src -type f -name "*.js" > po/POTFILES
+rm po/POTFILES
+find data -type f -name "*.ui" >> po/POTFILES
+find src -type f -name "*.js" >> po/POTFILES
 
 # Read languages
 cat po/LINGUAS | while read lang; do
@@ -20,10 +22,8 @@ CONTENT_TYPE
     fi
 done
 
-# Build app
 meson setup $FOLDER
-
-# Build po
+meson compile -C $FOLDER com.keygenqt.aurora-toolbox-pot
 meson compile -C $FOLDER com.keygenqt.aurora-toolbox-update-po
 
 # Clear

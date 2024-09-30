@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.keygenqt.aurora-toolbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-27 21:13+0300\n"
+"POT-Creation-Date: 2024-09-30 22:00+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,70 +17,61 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/ui/AboutDialog.ui:5 data/ui/Window.ui:94
-msgid "Aurora Toolbox"
-msgstr ""
-
-#: data/ui/AboutDialog.ui:9
-msgid "Vitaliy Zarubin"
-msgstr ""
-
-#: data/ui/SettingsDialog.ui:5 data/ui/Window.ui:12
+#: data/ui/dialogs/SettingsDialog.ui:7 data/ui/Window.ui:12
 msgid "Settings"
 msgstr ""
 
-#: data/ui/SettingsDialog.ui:23
+#: data/ui/dialogs/SettingsDialog.ui:18
+msgid "Language changed. Restart required."
+msgstr ""
+
+#: data/ui/dialogs/SettingsDialog.ui:19
+msgid "Restart"
+msgstr ""
+
+#: data/ui/dialogs/SettingsDialog.ui:36
 msgid "Language"
 msgstr ""
 
-#: data/ui/SettingsDialog.ui:24
-msgid ""
-"The default language selection in the application is taken from the "
-"environment settings. This setting allows you to enable your preferred "
-"language regardless of the environment settings."
+#: data/ui/dialogs/SettingsDialog.ui:37
+msgid "Set the applications language."
 msgstr ""
 
-#: data/ui/SettingsDialog.ui:28
-msgid "Russian"
-msgstr ""
-
-#: data/ui/SettingsDialog.ui:29
-msgid "English"
-msgstr ""
-
-#: data/ui/SettingsDialog.ui:37
+#: data/ui/dialogs/SettingsDialog.ui:50
 msgid "Hint"
 msgstr ""
 
-#: data/ui/SettingsDialog.ui:38
-msgid ""
-"The application has a command hint function. If you do not need them, you "
-"can turn them off to make the application output easier to read."
+#: data/ui/dialogs/SettingsDialog.ui:51
+msgid "Controlling the visibility of hints in Aurora CLI."
 msgstr ""
 
-#: data/ui/SettingsDialog.ui:44
+#: data/ui/dialogs/SettingsDialog.ui:56
 msgid "Select"
 msgstr ""
 
-#: data/ui/SettingsDialog.ui:45
+#: data/ui/dialogs/SettingsDialog.ui:57
 msgid ""
-"By default, the latest version of Platform SDK/Flutter SDK is selected, the "
-"first device from the configuration file. By activating this setting when "
-"calling the --select argument, the application will remember your choice and "
-"without it, information will be taken from the cache."
+"By enabling this setting when calling the --select argument, Aurora CLI will "
+"remember your choice."
 msgstr ""
 
-#: data/ui/SettingsDialog.ui:51
+#: data/ui/dialogs/SettingsDialog.ui:62
 msgid "Verbose"
 msgstr ""
 
-#: data/ui/SettingsDialog.ui:52
-msgid ""
-"The --verbose flag enables verbose output after the command is executed. "
-"This setting enables verbose output by default."
+#: data/ui/dialogs/SettingsDialog.ui:63
+msgid "This option enables verbose output by default."
 msgstr ""
 
-#: data/ui/WelcomeWidget.ui:18
+#: data/ui/dialogs/AboutDialog.ui:5 data/ui/Window.ui:94
+msgid "Aurora Toolbox"
+msgstr ""
+
+#: data/ui/dialogs/AboutDialog.ui:9
+msgid "Vitaliy Zarubin"
+msgstr ""
+
+#: data/ui/widgets/WelcomeWidget.ui:18
 msgid "Welcome to application Aurora Toolbox!"
 msgstr ""
 

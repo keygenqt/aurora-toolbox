@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
 	<object class="AdwDialog" id="IdSettingsDialog">
+		<property name="content-width">600</property>
+		<property name="content-height">400</property>
+		<property name="follows-content-size">true</property>
 		<property name="title" translatable="yes">Settings</property>
 		<child>
 			<object class="AdwToolbarView">
@@ -8,11 +11,22 @@
 					<object class="AdwHeaderBar"></object>
 				</child>
 				<property name="content">
-					<object class="AdwClamp">
-						<property name="maximum-size">800</property>
-						<property name="tightening-threshold">450</property>
+					<object class="GtkBox">
+						<property name="orientation">vertical</property>
 						<child>
-							<object class="AdwPreferencesPage">
+							<object class="AdwBanner" id="IdBannerRestart">
+								<property name="title" translatable="yes">Language changed. Restart required.</property>
+								<property name="button-label" translatable="yes">Restart</property>
+							</object>
+						</child>
+						<child>
+							<object class="GtkBox">
+								<property name="orientation">vertical</property>
+								<property name="spacing">18</property>
+								<property name="margin-top">24</property>
+								<property name="margin-bottom">24</property>
+								<property name="margin-start">12</property>
+								<property name="margin-end">12</property>
 								<child>
 									<object class="AdwPreferencesGroup">
 										<property name="margin-start">10</property>
@@ -20,7 +34,7 @@
 										<child>
 											<object class="AdwComboRow" id="IdSelectLanguage">
 												<property name="title" translatable="yes">Language</property>
-												<property name="subtitle" translatable="yes">The default language selection in the application is taken from the environment settings. This setting allows you to enable your preferred language regardless of the environment settings.</property>
+												<property name="subtitle" translatable="yes">Set the applications language.</property>
 												<property name="model">
 													<object class="GtkStringList">
 														<items>
@@ -34,22 +48,19 @@
 										<child>
 											<object class="AdwSwitchRow" id="IdSwitchHint">
 												<property name="title" translatable="yes">Hint</property>
-												<property name="subtitle" translatable="yes">The application has a command hint function. If you do not need them, you can turn them off to make the application output easier to read.</property>
-												<property name="action_name">AtbSettingsDialog.hint</property>
+												<property name="subtitle" translatable="yes">Controlling the visibility of hints in Aurora CLI.</property>
 											</object>
 										</child>
 										<child>
 											<object class="AdwSwitchRow" id="IdSwitchSelect">
 												<property name="title" translatable="yes">Select</property>
-												<property name="subtitle" translatable="yes">By default, the latest version of Platform SDK/Flutter SDK is selected, the first device from the configuration file. By activating this setting when calling the --select argument, the application will remember your choice and without it, information will be taken from the cache.</property>
-												<property name="action_name">AtbSettingsDialog.select</property>
+												<property name="subtitle" translatable="yes">By enabling this setting when calling the --select argument, Aurora CLI will remember your choice.</property>
 											</object>
 										</child>
 										<child>
 											<object class="AdwSwitchRow" id="IdSwitchVerbose">
 												<property name="title" translatable="yes">Verbose</property>
-												<property name="subtitle" translatable="yes">The --verbose flag enables verbose output after the command is executed. This setting enables verbose output by default.</property>
-												<property name="action_name">AtbSettingsDialog.verbose</property>
+												<property name="subtitle" translatable="yes">This option enables verbose output by default.</property>
 											</object>
 										</child>
 									</object>

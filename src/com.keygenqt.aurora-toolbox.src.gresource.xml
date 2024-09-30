@@ -6,11 +6,11 @@
 		<file>feature/Window.js</file>
 
 		<!-- base/connectors -->
+		<file>base/connectors/AuroraAPI.js</file>
 		<file>base/connectors/DBusProxy.js</file>
 
 		<!-- base/constants -->
 		<file>base/constants/AppConstants.js</file>
-		<file>base/constants/AuroraAPI.js</file>
 
 		<!-- base/extensions -->
 		<file>base/extensions/DBusProxy.js</file>

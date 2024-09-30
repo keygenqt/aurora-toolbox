@@ -16,9 +16,9 @@
 import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 
-import { AppConstants } from '../../base/constants/AppConstants.js';
+import { appRestart } from '../../main.js';
 import { Helper } from '../../base/utils/Helper.js';
-import { AuroraAPI } from '../../base/constants/AuroraAPI.js';
+import { AuroraAPI } from '../../base/connectors/AuroraAPI.js';
 import { LoadingDialog } from './LoadingDialog.js';
 
 export const SettingsDialog = GObject.registerClass({
@@ -30,45 +30,58 @@ export const SettingsDialog = GObject.registerClass({
 		'IdSwitchVerbose',
 		'IdSwitchSelect',
 		'IdSwitchHint',
+		'IdBannerRestart',
 	],
 }, class extends Gtk.Widget {
-	present(window) {
-		// this._IdSettingsDialog.present(window);
-		// this.#actionsConnect();
 
+	present(window) {
 		const loadingDialog = new LoadingDialog().present(window);
-		Helper.communicateAsync(AuroraAPI.settingsList())
+		AuroraAPI.communicateAsync(AuroraAPI.settingsList())
 			.then((response) => {
+
+				// @todo response code check
+
 				loadingDialog.close();
 				this._IdSettingsDialog.present(window);
-				this.#setData(response.value);
+				this.#setParams(response.value);
 				this.#actionsConnect();
+				this.#showInfoRestart();
 			})
 			.catch((e) => {
-				// @todo
+				// @todo error
 			})
 	}
 
-	#setData(value) {
-		const language = value?.language === 'ru' ? AppConstants.Language.ru : AppConstants.Language.en;
-		const verbose = value?.verbose === 'true';
-		const select = value?.select === 'true';
-		const hint = value?.hint === 'true' || value?.hint !== 'false' && value?.hint !== 'true';
-
-		this._IdSelectLanguage.selected = language === AppConstants.Language.ru ? 0 : 1;
-		this._IdSwitchVerbose.active = verbose;
-		this._IdSwitchSelect.active = select;
-		this._IdSwitchHint.active = hint;
+	#setParams(value) {
+		this._IdSelectLanguage.selected = value?.language === 'ru' ? 0 : 1;
+		this._IdSwitchVerbose.active = value?.verbose === 'true';
+		this._IdSwitchSelect.active = value?.select === 'true';
+		this._IdSwitchHint.active = value?.hint === 'true' || value?.hint !== 'false' && value?.hint !== 'true';
 	}
 
 	#actionsConnect() {
-		this._IdSettingsDialog.connectGroup('AtbSettingsDialog', {
-            'hint': () => console.log('hint'),
-            'select': () => console.log('select'),
-            'verbose': () => console.log('verbose'),
-        });
-		this._IdSelectLanguage.connect('notify::selected-item', (e) => {
-			console.log(e.get_selected())
+		this._IdSwitchVerbose.connect('notify::active', (e, v) => {
+			AuroraAPI.communicateAsync(AuroraAPI.settingsVerbose(e.active));
 		});
+		this._IdSwitchSelect.connect('notify::active', (e) => {
+			AuroraAPI.communicateAsync(AuroraAPI.settingsSelect(e.active));
+		});
+		this._IdSwitchHint.connect('notify::active', (e) => {
+			AuroraAPI.communicateAsync(AuroraAPI.settingsHint(e.active));
+		});
+		this._IdSelectLanguage.connect('notify::selected-item', (e) => {
+			AuroraAPI.communicateAsync(
+				AuroraAPI.settingsLocalization(e.get_selected() === 0 ? 'ru' : 'en'
+			));
+			this.#showInfoRestart();
+		});
+		this._IdBannerRestart.connect('button-clicked', () => {
+			appRestart();
+		});
+	}
+
+	#showInfoRestart() {
+		const index = Helper.getLanguageENV().includes('ru') ? 0 : 1;
+		this._IdBannerRestart.revealed = index != this._IdSelectLanguage.selected;
 	}
 });

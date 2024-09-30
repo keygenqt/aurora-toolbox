@@ -28,7 +28,7 @@ export const Application = GObject.registerClass({
 
 	constructor(params) {
         super(params);
-		Helper.setLanguage();
+		Helper.setLanguage(Helper.getLanguageAPI());
 	}
 
 	vfunc_startup() {
