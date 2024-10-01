@@ -36,24 +36,30 @@ String.prototype.argUri = function (arg = {}) {
 };
 
 String.prototype.parseMultipleJson = function () {
-    try {
-        return JSON.parse(this);
-    } catch(e) {
-        if (e.name == 'SyntaxError') {
-            try {
-                const values = [];
-                const elements = this
-                    .split(new RegExp('\n\{', 'g'))
-                    .map((e) => e.charAt(0) !== '{' ? `{${e}` : e)
-                    .map((e) => e.trim());
-                for (const element of elements) {
-                    values.push(JSON.parse(element));
+    if (this.charAt(0) == '[' || this.charAt(0) == '{') {
+        try {
+            return JSON.parse(this);
+        } catch(e) {
+            if (e.name == 'SyntaxError') {
+                try {
+                    const values = [];
+                    const elements = this
+                        .split(new RegExp('\n\{', 'g'))
+                        .map((e) => e.charAt(0) !== '{' ? `{${e}` : e)
+                        .map((e) => e.trim());
+                    for (const element of elements) {
+                        values.push(JSON.parse(element));
+                    }
+                    return values;
+                } catch(e) {
+                    return null;
                 }
-                return values;
-            } catch(e) {
-                return null;
             }
+            return null;
         }
-        return null;
+    } else {
+        return this.split('\n')
+            .map((line) => line.trim())
+            .filter((line) => line.length > 0);
     }
 };

@@ -1,11 +1,13 @@
 data/ui/dialogs/SettingsDialog.ui
 data/ui/dialogs/LoadingDialog.ui
+data/ui/dialogs/ErrorDialog.ui
 data/ui/dialogs/AboutDialog.ui
 data/ui/widgets/WelcomeWidget.ui
 data/ui/Window.ui
 src/feature/dialogs/SettingsDialog.js
 src/feature/dialogs/AboutDialog.js
 src/feature/dialogs/LoadingDialog.js
+src/feature/dialogs/ErrorDialog.js
 src/feature/widgets/WelcomeWidget.js
 src/feature/Window.js
 src/feature/Application.js

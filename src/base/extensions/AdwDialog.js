@@ -13,17 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Adw from 'gi://Adw';
 
-export const AppConstants = {
-    App: {
-        documentation: 'https://keygenqt.github.io/aurora-cli/',
-    },
-    AuroraCLI: [
-        'python3',
-        '/home/keygenqt/Documents/Home/Projects/aurora-cli/builds/aurora-cli-3.0.4.pyz'
-    ],
-    Language: {
-        'ru': 'ru_RU.utf-8',
-        'en': 'en_US.utf-8',
+/**
+ * Close dialog with delay
+ */
+Adw.Dialog.prototype.closeAsync = async function () {
+    const times = [0, 2, 5, 10, 50, 100];
+    for (const time of times) {
+        await new Promise(r => setTimeout(r, time));
+        this.close();
     }
 };

@@ -14,16 +14,29 @@
  * limitations under the License.
  */
 
-export const AppConstants = {
-    App: {
-        documentation: 'https://keygenqt.github.io/aurora-cli/',
+export const ShellAPI = {
+    /**
+     * Get version Gnome TextEditor
+     *
+     * @returns route
+     */
+    gnomeTextEditorVersion: function() {
+        return ['gnome-text-editor', '--version'];
     },
-    AuroraCLI: [
-        'python3',
-        '/home/keygenqt/Documents/Home/Projects/aurora-cli/builds/aurora-cli-3.0.4.pyz'
-    ],
-    Language: {
-        'ru': 'ru_RU.utf-8',
-        'en': 'en_US.utf-8',
-    }
+    /**
+     * Open file default editor
+     *
+     * @returns route
+     */
+    gnomeTextEditorOpen: function(path) {
+        return ['gnome-text-editor', path];
+    },
+    /**
+     * Open file default editor
+     *
+     * @returns route
+     */
+    xdgOpen: function(path) {
+        return ['xdg-open', path];
+    },
 };

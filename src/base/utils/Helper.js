@@ -18,6 +18,8 @@ import GLib from 'gi://GLib';
 
 import { Log } from './Log.js';
 import { AuroraAPI } from '../connectors/AuroraAPI.js';
+import { ShellAPI } from '../connectors/ShellAPI.js';
+import { ShellExec } from '../connectors/ShellExec.js';
 import { AppConstants } from '../constants/AppConstants.js';
 
 export const Helper = {
@@ -38,13 +40,28 @@ export const Helper = {
             }
         });
     },
+    /**
+     * Open edit file
+     *
+     * @param {Gtk.Window} window - Parent windows
+     * @param {String} path - String path to file
+     */
+    fileOpen: function (path) {
+        ShellExec.communicateAsync(ShellAPI.gnomeTextEditorVersion())
+            .then(() => {
+                ShellExec.communicateAsync(ShellAPI.gnomeTextEditorOpen(path));
+            })
+            .catch(() => {
+                ShellExec.communicateAsync(ShellAPI.xdgOpen(path));
+            })
+    },
 
     /**
      * Get settings language
      */
     getLanguageAPI: function() {
-        const settings = AuroraAPI.communicateSync(AuroraAPI.settingsList());
-        if (settings.value?.language === 'ru') {
+        const settings = ShellExec.communicateSync(AuroraAPI.settingsList());
+        if (settings && settings.value?.language === 'ru') {
             return AppConstants.Language.ru
         }
         return AppConstants.Language.en;

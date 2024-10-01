@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.keygenqt.aurora-toolbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-30 22:00+0300\n"
+"POT-Creation-Date: 2024-10-01 08:55+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,50 +17,54 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/ui/dialogs/SettingsDialog.ui:7 data/ui/Window.ui:12
+#: data/ui/dialogs/SettingsDialog.ui:5 data/ui/Window.ui:12
 msgid "Settings"
 msgstr ""
 
-#: data/ui/dialogs/SettingsDialog.ui:18
+#: data/ui/dialogs/SettingsDialog.ui:16
 msgid "Language changed. Restart required."
 msgstr ""
 
-#: data/ui/dialogs/SettingsDialog.ui:19
+#: data/ui/dialogs/SettingsDialog.ui:17
 msgid "Restart"
 msgstr ""
 
-#: data/ui/dialogs/SettingsDialog.ui:36
+#: data/ui/dialogs/SettingsDialog.ui:34
 msgid "Language"
 msgstr ""
 
-#: data/ui/dialogs/SettingsDialog.ui:37
+#: data/ui/dialogs/SettingsDialog.ui:35
 msgid "Set the applications language."
 msgstr ""
 
-#: data/ui/dialogs/SettingsDialog.ui:50
+#: data/ui/dialogs/SettingsDialog.ui:48
 msgid "Hint"
 msgstr ""
 
-#: data/ui/dialogs/SettingsDialog.ui:51
+#: data/ui/dialogs/SettingsDialog.ui:49
 msgid "Controlling the visibility of hints in Aurora CLI."
 msgstr ""
 
-#: data/ui/dialogs/SettingsDialog.ui:56
+#: data/ui/dialogs/SettingsDialog.ui:54
 msgid "Select"
 msgstr ""
 
-#: data/ui/dialogs/SettingsDialog.ui:57
+#: data/ui/dialogs/SettingsDialog.ui:55
 msgid ""
 "By enabling this setting when calling the --select argument, Aurora CLI will "
 "remember your choice."
 msgstr ""
 
-#: data/ui/dialogs/SettingsDialog.ui:62
+#: data/ui/dialogs/SettingsDialog.ui:60
 msgid "Verbose"
 msgstr ""
 
-#: data/ui/dialogs/SettingsDialog.ui:63
+#: data/ui/dialogs/SettingsDialog.ui:61
 msgid "This option enables verbose output by default."
+msgstr ""
+
+#: data/ui/dialogs/ErrorDialog.ui:5
+msgid "Error"
 msgstr ""
 
 #: data/ui/dialogs/AboutDialog.ui:5 data/ui/Window.ui:94
@@ -109,4 +113,8 @@ msgstr ""
 
 #: data/ui/Window.ui:78
 msgid "Aurora SDK"
+msgstr ""
+
+#: src/feature/dialogs/SettingsDialog.js:50
+msgid "Error load settings."
 msgstr ""

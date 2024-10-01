@@ -5,6 +5,7 @@ import 'gi://Adw?version=1';
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 
+import './base/extensions/AdwDialog.js';
 import './base/extensions/DBusProxy.js';
 import './base/extensions/GtkWidget.js';
 import './base/extensions/String.js';

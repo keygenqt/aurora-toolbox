@@ -1,42 +1,42 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-30 22:00+0300\n"
+"POT-Creation-Date: 2024-10-01 08:55+0300\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 
-#: data/ui/dialogs/SettingsDialog.ui:7 data/ui/Window.ui:12
+#: data/ui/dialogs/SettingsDialog.ui:5 data/ui/Window.ui:12
 msgid "Settings"
 msgstr "Настройки"
 
-#: data/ui/dialogs/SettingsDialog.ui:18
+#: data/ui/dialogs/SettingsDialog.ui:16
 msgid "Language changed. Restart required."
 msgstr "Язык изменен. Требуется перезагрузка."
 
-#: data/ui/dialogs/SettingsDialog.ui:19
+#: data/ui/dialogs/SettingsDialog.ui:17
 msgid "Restart"
 msgstr "Перезапуск"
 
-#: data/ui/dialogs/SettingsDialog.ui:36
+#: data/ui/dialogs/SettingsDialog.ui:34
 msgid "Language"
 msgstr "Язык"
 
-#: data/ui/dialogs/SettingsDialog.ui:37
+#: data/ui/dialogs/SettingsDialog.ui:35
 msgid "Set the applications language."
 msgstr "Установите язык приложения."
 
-#: data/ui/dialogs/SettingsDialog.ui:50
+#: data/ui/dialogs/SettingsDialog.ui:48
 msgid "Hint"
 msgstr "Подсказки"
 
-#: data/ui/dialogs/SettingsDialog.ui:51
+#: data/ui/dialogs/SettingsDialog.ui:49
 msgid "Controlling the visibility of hints in Aurora CLI."
 msgstr "Управление видимостью подсказок в Aurora CLI."
 
-#: data/ui/dialogs/SettingsDialog.ui:56
+#: data/ui/dialogs/SettingsDialog.ui:54
 msgid "Select"
 msgstr "Выбор"
 
-#: data/ui/dialogs/SettingsDialog.ui:57
+#: data/ui/dialogs/SettingsDialog.ui:55
 msgid ""
 "By enabling this setting when calling the --select argument, Aurora CLI will "
 "remember your choice."
@@ -44,13 +44,17 @@ msgstr ""
 "Включив этот параметр при вызове аргумента --select, Aurora CLI запомнит ваш "
 "выбор."
 
-#: data/ui/dialogs/SettingsDialog.ui:62
+#: data/ui/dialogs/SettingsDialog.ui:60
 msgid "Verbose"
 msgstr "Подробно"
 
-#: data/ui/dialogs/SettingsDialog.ui:63
+#: data/ui/dialogs/SettingsDialog.ui:61
 msgid "This option enables verbose output by default."
 msgstr "Этот параметр включает подробный вывод по умолчанию."
+
+#: data/ui/dialogs/ErrorDialog.ui:5
+msgid "Error"
+msgstr "Ошибка"
 
 #: data/ui/dialogs/AboutDialog.ui:5 data/ui/Window.ui:94
 msgid "Aurora Toolbox"
@@ -99,3 +103,7 @@ msgstr "Платформ SDK"
 #: data/ui/Window.ui:78
 msgid "Aurora SDK"
 msgstr "Аврора SDK"
+
+#: src/feature/dialogs/SettingsDialog.js:50
+msgid "Error load settings."
+msgstr "Ошибка чтения настроек."

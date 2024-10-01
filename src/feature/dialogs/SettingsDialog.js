@@ -18,7 +18,11 @@ import Gtk from 'gi://Gtk';
 
 import { appRestart } from '../../main.js';
 import { Helper } from '../../base/utils/Helper.js';
+
+import { ShellExec } from '../../base/connectors/ShellExec.js';
 import { AuroraAPI } from '../../base/connectors/AuroraAPI.js';
+
+import { ErrorDialog } from './ErrorDialog.js';
 import { LoadingDialog } from './LoadingDialog.js';
 
 export const SettingsDialog = GObject.registerClass({
@@ -36,19 +40,31 @@ export const SettingsDialog = GObject.registerClass({
 
 	present(window) {
 		const loadingDialog = new LoadingDialog().present(window);
-		AuroraAPI.communicateAsync(AuroraAPI.settingsList())
+		ShellExec.communicateAsync(AuroraAPI.settingsList())
 			.then((response) => {
-
-				// @todo response code check
-
-				loadingDialog.close();
-				this._IdSettingsDialog.present(window);
-				this.#setParams(response.value);
-				this.#actionsConnect();
-				this.#showInfoRestart();
+				// Close loading
+				loadingDialog.closeAsync();
+				// Check error
+				if (response.code === 500) {
+					new ErrorDialog().present(window, response.message);
+				}
+				// Error loading settings
+				else if (response.value === undefined) {
+					new ErrorDialog().present(window, _('Error load settings.'));
+				}
+				// Show dialog settings
+				else {
+					this._IdSettingsDialog.present(window);
+					this.#setParams(response.value);
+					this.#actionsConnect();
+					this.#showInfoRestart();
+				}
 			})
 			.catch((e) => {
-				// @todo error
+				// Close loading
+				loadingDialog.closeAsync();
+				// Show error
+				new ErrorDialog().present(window, _('Error load settings.'));
 			})
 	}
 
@@ -61,16 +77,16 @@ export const SettingsDialog = GObject.registerClass({
 
 	#actionsConnect() {
 		this._IdSwitchVerbose.connect('notify::active', (e, v) => {
-			AuroraAPI.communicateAsync(AuroraAPI.settingsVerbose(e.active));
+			ShellExec.communicateAsync(AuroraAPI.settingsVerbose(e.active));
 		});
 		this._IdSwitchSelect.connect('notify::active', (e) => {
-			AuroraAPI.communicateAsync(AuroraAPI.settingsSelect(e.active));
+			ShellExec.communicateAsync(AuroraAPI.settingsSelect(e.active));
 		});
 		this._IdSwitchHint.connect('notify::active', (e) => {
-			AuroraAPI.communicateAsync(AuroraAPI.settingsHint(e.active));
+			ShellExec.communicateAsync(AuroraAPI.settingsHint(e.active));
 		});
 		this._IdSelectLanguage.connect('notify::selected-item', (e) => {
-			AuroraAPI.communicateAsync(
+			ShellExec.communicateAsync(
 				AuroraAPI.settingsLocalization(e.get_selected() === 0 ? 'ru' : 'en'
 			));
 			this.#showInfoRestart();

@@ -13,17 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import GObject from 'gi://GObject';
+import Gtk from 'gi://Gtk';
 
-export const AppConstants = {
-    App: {
-        documentation: 'https://keygenqt.github.io/aurora-cli/',
-    },
-    AuroraCLI: [
-        'python3',
-        '/home/keygenqt/Documents/Home/Projects/aurora-cli/builds/aurora-cli-3.0.4.pyz'
-    ],
-    Language: {
-        'ru': 'ru_RU.utf-8',
-        'en': 'en_US.utf-8',
-    }
-};
+export const ErrorDialog = GObject.registerClass({
+	GTypeName: 'AtbErrorDialog',
+	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/dialogs/ErrorDialog.ui',
+	InternalChildren: [
+		'IdErrorDialog',
+		'IdMessage',
+	],
+}, class extends Gtk.Widget {
+	present(window, message) {
+		this._IdErrorDialog.present(window);
+		this._IdMessage.label = message;
+		return this._IdErrorDialog;
+	}
+});

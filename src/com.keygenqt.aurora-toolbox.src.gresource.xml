@@ -8,17 +8,21 @@
 		<!-- base/connectors -->
 		<file>base/connectors/AuroraAPI.js</file>
 		<file>base/connectors/DBusProxy.js</file>
+		<file>base/connectors/ShellAPI.js</file>
+		<file>base/connectors/ShellExec.js</file>
 
 		<!-- base/constants -->
 		<file>base/constants/AppConstants.js</file>
 
 		<!-- base/extensions -->
+		<file>base/extensions/AdwDialog.js</file>
 		<file>base/extensions/DBusProxy.js</file>
 		<file>base/extensions/GtkWidget.js</file>
 		<file>base/extensions/String.js</file>
 
 		<!-- feature/dialogs -->
 		<file>feature/dialogs/AboutDialog.js</file>
+		<file>feature/dialogs/ErrorDialog.js</file>
 		<file>feature/dialogs/LoadingDialog.js</file>
 		<file>feature/dialogs/SettingsDialog.js</file>
 
