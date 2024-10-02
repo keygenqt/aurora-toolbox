@@ -1,10 +1,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 08:55+0300\n"
+"POT-Creation-Date: 2024-10-02 21:12+0300\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 
-#: data/ui/dialogs/SettingsDialog.ui:5 data/ui/Window.ui:12
+#: data/ui/dialogs/SettingsDialog.ui:4 data/ui/widgets/SettingsMenuWidget.ui:11
+#: data/ui/Window.ui:11
 msgid "Settings"
 msgstr "Настройки"
 
@@ -21,16 +22,26 @@ msgid "Language"
 msgstr "Язык"
 
 #: data/ui/dialogs/SettingsDialog.ui:35
-msgid "Set the applications language."
-msgstr "Установите язык приложения."
+msgid ""
+"The default language selection in the application is taken from the "
+"environment settings. This setting allows you to enable your preferred "
+"language regardless of the environment settings."
+msgstr ""
+"Выбор языка по умолчанию в приложении берется из "
+"настроек среды. Эта настройка позволяет вам включить предпочитаемый вами "
+"язык независимо от настроек среды."
 
 #: data/ui/dialogs/SettingsDialog.ui:48
 msgid "Hint"
 msgstr "Подсказки"
 
 #: data/ui/dialogs/SettingsDialog.ui:49
-msgid "Controlling the visibility of hints in Aurora CLI."
-msgstr "Управление видимостью подсказок в Aurora CLI."
+msgid ""
+"The Aurora CLI application has a command hint feature. If you don't need it, "
+"you can turn it off to make the application output easier to read."
+msgstr ""
+"Приложение Aurora CLI имеет функцию подсказки команд. Если она вам не нужна, "
+"вы можете отключить ее, чтобы сделать вывод приложения более удобным для чтения."
 
 #: data/ui/dialogs/SettingsDialog.ui:54
 msgid "Select"
@@ -38,25 +49,33 @@ msgstr "Выбор"
 
 #: data/ui/dialogs/SettingsDialog.ui:55
 msgid ""
-"By enabling this setting when calling the --select argument, Aurora CLI will "
-"remember your choice."
+"By default, the latest version of Platform SDK/Flutter SDK is selected, the "
+"first device from the configuration file. By activating this setting when "
+"calling the --select argument, the application will remember your choice and "
+"without it, information will be taken from the cache."
 msgstr ""
-"Включив этот параметр при вызове аргумента --select, Aurora CLI запомнит ваш "
-"выбор."
+"По умолчанию выбирается последняя версия Platform SDK/Flutter SDK, "
+"первое устройство из файла конфигурации. Активируя этот параметр при "
+"вызове аргумента --select, приложение запомнит ваш выбор, а "
+"без него информация будет взята из кэша."
 
 #: data/ui/dialogs/SettingsDialog.ui:60
 msgid "Verbose"
 msgstr "Подробно"
 
 #: data/ui/dialogs/SettingsDialog.ui:61
-msgid "This option enables verbose output by default."
-msgstr "Этот параметр включает подробный вывод по умолчанию."
+msgid ""
+"The --verbose flag enables verbose output after the command is executed. "
+"This setting enables verbose output by default."
+msgstr ""
+"Флаг --verbose включает подробный вывод после выполнения команды. "
+"Эта настройка включает подробный вывод по умолчанию."
 
-#: data/ui/dialogs/ErrorDialog.ui:5
+#: data/ui/dialogs/ErrorDialog.ui:4
 msgid "Error"
 msgstr "Ошибка"
 
-#: data/ui/dialogs/AboutDialog.ui:5 data/ui/Window.ui:94
+#: data/ui/dialogs/AboutDialog.ui:5 data/ui/Window.ui:26
 msgid "Aurora Toolbox"
 msgstr "Аврора Toolbox"
 
@@ -64,46 +83,53 @@ msgstr "Аврора Toolbox"
 msgid "Vitaliy Zarubin"
 msgstr "Виталий Зарубин"
 
-#: data/ui/widgets/WelcomeWidget.ui:18
+#: data/ui/widgets/WelcomeWidget.ui:20
 msgid "Welcome to application Aurora Toolbox!"
 msgstr "Добро пожаловать в приложение Аврора Toolbox!"
 
-#: data/ui/Window.ui:8
-msgid "Configuration"
-msgstr "Конфигурация"
+#: data/ui/widgets/WelcomeWidget.ui:35
+msgid "Search Aurora CLI..."
+msgstr "Поиск Aurora CLI..."
 
-#: data/ui/Window.ui:18
+#: data/ui/widgets/WelcomeWidget.ui:61
+msgid "Aurora CLI not found."
+msgstr "Aurora CLI не найдено."
+
+#: data/ui/widgets/WelcomeWidget.ui:81
+msgid "Install"
+msgstr "Установка"
+
+#: data/ui/widgets/WelcomeWidget.ui:106
+msgid "Application installation is required."
+msgstr "Требуется установка приложения."
+
+#: data/ui/widgets/WelcomeWidget.ui:118
+#: data/ui/widgets/SettingsMenuWidget.ui:17 data/ui/Window.ui:17
 msgid "Documentation"
 msgstr "Документация"
 
-#: data/ui/Window.ui:22
+#: data/ui/widgets/WelcomeWidget.ui:136
+msgid "Connection successful!"
+msgstr "Подключение успешно установлено!"
+
+#: data/ui/widgets/WelcomeWidget.ui:171
+msgid "Tools"
+msgstr "Инструменты"
+
+#: data/ui/widgets/SettingsMenuWidget.ui:7 data/ui/Window.ui:7
+msgid "Configuration"
+msgstr "Конфигурация"
+
+#: data/ui/widgets/SettingsMenuWidget.ui:21 data/ui/Window.ui:21
 msgid "About Toolbox"
 msgstr "О Toolbox"
 
-#: data/ui/Window.ui:32
-msgid "Features"
-msgstr "Инструменты"
-
-#: data/ui/Window.ui:40
+#: data/ui/widgets/SettingsMenuWidget.ui:27
 msgid "Menu"
 msgstr "Меню"
 
-#: data/ui/Window.ui:58
-msgid "Device"
-msgstr "Устройства"
-
-#: data/ui/Window.ui:63
-msgid "Emulator"
-msgstr "Эмулятор"
-
-#: data/ui/Window.ui:73
-msgid "Platform SDK"
-msgstr "Платформ SDK"
-
-#: data/ui/Window.ui:78
-msgid "Aurora SDK"
-msgstr "Аврора SDK"
-
-#: src/feature/dialogs/SettingsDialog.js:50
+#. Show error
+#: src/feature/dialogs/SettingsDialog.js:53
+#: src/feature/dialogs/SettingsDialog.js:67
 msgid "Error load settings."
-msgstr "Ошибка чтения настроек."
+msgstr "Ошибка загрузки настроек."

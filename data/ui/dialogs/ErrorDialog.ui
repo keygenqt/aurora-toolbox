@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
 	<object class="AdwDialog" id="IdErrorDialog">
-		<property name="follows-content-size">true</property>
 		<property name="title" translatable="yes">Error</property>
+		<property name="follows-content-size">true</property>
+		<property name="presentation-mode">floating</property>
 		<child>
 			<object class="AdwToolbarView">
 				<child type="top">

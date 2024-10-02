@@ -17,18 +17,11 @@ import Gio from 'gi://Gio';
 import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 
-import { AppConstants } from '../base/constants/AppConstants.js';
 import { DBusProxy } from '../base/connectors/DBusProxy.js';
-import { Log } from '../base/utils/Log.js';
-import { Helper } from '../base/utils/Helper.js';
-import { ShellExec } from '../base/connectors/ShellExec.js';
-import { AuroraAPI } from '../base/connectors/AuroraAPI.js';
-
-import { AboutDialog } from './dialogs/AboutDialog.js';
-import { SettingsDialog } from './dialogs/SettingsDialog.js';
 
 // Import class for UI
 import './widgets/WelcomeWidget.js';
+import './widgets/SettingsMenuWidget.js';
 
 export const Window = GObject.registerClass({
 	GTypeName: 'AtbWindow',
@@ -36,11 +29,10 @@ export const Window = GObject.registerClass({
 }, class extends Adw.ApplicationWindow {
 	#dbusProxy = new DBusProxy();
 
-	constructor(params={}) {
+	constructor(params) {
 		super(params);
 
 		this.#dbusConnect();
-		this.#actionsConnect();
 		this.#bindSettings();
 	}
 
@@ -58,36 +50,6 @@ export const Window = GObject.registerClass({
 		this.#dbusProxy.connectWithEmit('colorScheme', (value) => {
 			this.#changeAppearanceCss(value);
 		});
-	}
-
-	#actionsConnect() {
-		this.connectGroup('AtbWindow', {
-            'about': () => {
-				// Run about dialog
-				new AboutDialog().present(this);
-			},
-            'settings': () => {
-				// Run settings dialog
-				new SettingsDialog().present(this);
-			},
-            'documentation': () => {
-				// Open url with documentation
-				Helper.uriLaunch(this, AppConstants.App.documentation);
-			},
-            'configuration': () => {
-				// Get path from Aurora CLI
-				ShellExec.communicateAsync(AuroraAPI.configurationPath())
-					.catch((e) => Log.error(e))
-					.then((response) => {
-						// Open path in editor
-						if (response && response.code === 200) {
-							Helper.fileOpen(response.value);
-						} else {
-							Log.error('Error get path to configuration file.');
-						}
-					});
-			},
-        });
 	}
 
 	#changeAppearanceCss(colorScheme = 0) {

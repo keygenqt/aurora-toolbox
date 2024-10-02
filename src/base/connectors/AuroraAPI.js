@@ -94,15 +94,25 @@ export const AuroraAPI = {
         ]
     },
     //////////////////////////////////////////
-    // Configuration
+    // Info
     /**
      * Get path to configuration
      *
      * @returns route
      */
-    configurationPath: function() {
+    infoPathConfiguration: function() {
         return [
-            ...AppConstants.AuroraCLI, 'api', "--route", '/configuration/path'
+            ...AppConstants.AuroraCLI, 'api', "--route", '/info/path/configuration'
+        ]
+    },
+    /**
+     * Get version application
+     *
+     * @returns route
+     */
+    infoVersion: function() {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route", '/info/version'
         ]
     },
     //////////////////////////////////////////

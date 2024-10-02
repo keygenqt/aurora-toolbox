@@ -23,85 +23,21 @@
 		</section>
 	</menu>
 	<template class="AtbWindow">
+		<property name="title" translatable="yes">Aurora Toolbox</property>
+		<property name="width-request">400</property>
+		<property name="height-request">750</property>
 		<property name="content">
-			<object class="AdwNavigationSplitView">
-				<property name="sidebar">
-					<object class="AdwNavigationPage">
-						<property name="title" translatable="yes">Features</property>
-						<property name="child">
-							<object class="AdwToolbarView">
-								<child type="top">
-									<object class="AdwHeaderBar">
-										<child type="end">
-											<object class="GtkMenuButton" id="IdMenu">
-												<property name="icon-name">view-more-symbolic</property>
-												<property name="tooltip-text" translatable="yes">Menu</property>"
-												<property name="menu-model">menu</property>
-												<property name="valign">center</property>
-												<style><class name="flat"/><class name="circular"/></style>
-											</object>
-										</child>
-									</object>
-								</child>
-								<property name="content">
-									<object class="GtkBox">
-										<property name="orientation">vertical</property>
-										<property name="margin-top">12</property>
-										<property name="margin-start">12</property>
-										<property name="margin-end">12</property>
-										<property name="margin-bottom">12</property>
-										<property name="spacing">12</property>
-										<child>
-											<object class="GtkButton" >
-												<property name="label" translatable="yes">Device</property>
-											</object>
-										</child>
-										<child>
-											<object class="GtkButton" >
-												<property name="label" translatable="yes">Emulator</property>
-											</object>
-										</child>
-										<child>
-											<object class="GtkButton" >
-												<property name="label">Flutter</property>
-											</object>
-										</child>
-										<child>
-											<object class="GtkButton" >
-												<property name="label" translatable="yes">Platform SDK</property>
-											</object>
-										</child>
-										<child>
-											<object class="GtkButton" >
-												<property name="label" translatable="yes">Aurora SDK</property>
-											</object>
-										</child>
-										<child>
-											<object class="GtkButton" >
-												<property name="label">Visual Studio Code</property>
-											</object>
-										</child>
-									</object>
-								</property>
-							</object>
-						</property>
+			<object class="AdwToolbarView">
+				<child type="top">
+					<object class="AdwHeaderBar">
+						<child type="start">
+							<object class="AtbSettingsMenuWidget"/>
+						</child>
 					</object>
-				</property>
+				</child>
 				<property name="content">
-					<object class="AdwNavigationPage">
-						<property name="title" translatable="yes">Aurora Toolbox</property>
-						<property name="child">
-							<object class="AdwToolbarView">
-								<child type="top">
-									<object class="AdwHeaderBar"/>
-								</child>
-								<property name="content">
-									<object class="AtbWelcomeWidget">
-										<property name="valign">center</property>
-									</object>
-								</property>
-							</object>
-						</property>
+					<object class="AtbWelcomeWidget">
+						<property name="valign">center</property>
 					</object>
 				</property>
 			</object>

@@ -31,6 +31,7 @@
 		<file>base/utils/Helper.js</file>
 
 		<!-- feature/widgets -->
+		<file>feature/widgets/SettingsMenuWidget.js</file>
 		<file>feature/widgets/WelcomeWidget.js</file>
 	</gresource>
 </gresources>

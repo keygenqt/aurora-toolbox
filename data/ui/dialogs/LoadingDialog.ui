@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
 	<object class="AdwDialog" id="IdLoadingDialog">
-		<property name="content-width">300</property>
+		<property name="content-width">200</property>
 		<property name="content-height">100</property>
+		<property name="presentation-mode">floating</property>
 		<property name="child">
 			<object class="GtkSpinner">
 				<property name="spinning">True</property>
