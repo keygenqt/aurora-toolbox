@@ -16,7 +16,7 @@
 import { DBusProxy } from '../connectors/DBusProxy.js';
 
 /**
- * Connect to dbus with emit value after connect
+ * Connect with emit value
  *
  * @param {String} action - signal name
  * @param {Function} callback - callback value

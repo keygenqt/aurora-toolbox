@@ -6,7 +6,7 @@
 		<property name="presentation-mode">floating</property>
 		<property name="child">
 			<object class="GtkSpinner">
-				<property name="spinning">True</property>
+				<property name="spinning">true</property>
 				<property name="halign">center</property>
 				<property name="valign">center</property>
 				<property name="width-request">40</property>

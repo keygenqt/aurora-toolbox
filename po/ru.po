@@ -109,8 +109,8 @@ msgid "Documentation"
 msgstr "Документация"
 
 #: data/ui/widgets/WelcomeWidget.ui:136
-msgid "Connection successful!"
-msgstr "Подключение успешно установлено!"
+msgid "Connection successful."
+msgstr "Подключение успешно установлено."
 
 #: data/ui/widgets/WelcomeWidget.ui:171
 msgid "Tools"

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
 	<object class="AdwAboutDialog" id="IdAboutDialog">
+		<property name="presentation-mode">floating</property>
 		<property name="application-icon">aurora-tools-ic_launcher</property>
 		<property name="application-name" translatable="yes">Aurora Toolbox</property>
 		<property name="version">1.0.0</property>

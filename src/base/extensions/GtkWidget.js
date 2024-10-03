@@ -31,3 +31,18 @@ Gtk.Widget.prototype.connectGroup = function (group, actions = {}) {
     }
     this.insert_action_group(group, simpleActionGroup);
 };
+
+/**
+ * Connect with emit value
+ *
+ * @param {String} action - signal name
+ * @param {Function} callback - callback value
+ */
+Gtk.Widget.prototype.connectWithEmit = function (action, callback = function(value) {}) {
+    this.connect(action, (_, value) => {
+        callback(value)
+    });
+    if (this[action] !== undefined) {
+        this.emit(action, this[action]);
+    }
+};

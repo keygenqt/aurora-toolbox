@@ -35,14 +35,29 @@ export const WelcomeWidget = GObject.registerClass({
 		'IdAuroraCLIVersion',
 		'IdToolsBtn',
 	],
+	Signals: {
+		'connectAuroraCLI': {
+			param_types: [GObject.TYPE_BOOLEAN]
+		},
+	},
 }, class extends Gtk.Widget {
+	connectAuroraCLI;
 
 	constructor(params) {
 		super(params);
 		this.#showGroupSearch();
+		// Delay for animation
+		setTimeout(() => this.#execSearchAuroraCLI(), 500);
+	}
+
+	#execSearchAuroraCLI() {
 		ShellExec.communicateAsync(AuroraAPI.infoVersion())
 			.catch((e) => Log.error(e))
 			.then((response) => {
+				// Emit signal
+				this.connectAuroraCLI = response && response.code === 200;
+				this.emit('connectAuroraCLI', this.connectAuroraCLI);
+				// Show state
 				if (response && response.code === 200) {
 					this.#showGroupAuroraCLI(response.value);
 				} else {

@@ -11,6 +11,7 @@
 		<file>ui/dialogs/SettingsDialog.ui</file>
 
 		<!-- widgets -->
+		<file>ui/widgets/MenuToolsWidget.ui</file>
 		<file>ui/widgets/SettingsMenuWidget.ui</file>
 		<file>ui/widgets/WelcomeWidget.ui</file>
 	</gresource>
