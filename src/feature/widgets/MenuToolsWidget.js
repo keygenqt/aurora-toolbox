@@ -15,8 +15,6 @@
  */
 import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
-import Gio from 'gi://Gio';
-import GLib from 'gi://GLib';
 
 
 export const MenuToolsWidget = GObject.registerClass({
@@ -37,14 +35,5 @@ export const MenuToolsWidget = GObject.registerClass({
 				console.log('yes')
 			},
         });
-	}
-
-	#addSimpleActions = (actions, group = new Gio.SimpleActionGroup()) => {
-		for (const [name, func] of Object.entries(actions)) {
-			const action = new Gio.SimpleAction({ name })
-			action.connect('activate', func)
-			group.add_action(action)
-		}
-		return group
 	}
 });
