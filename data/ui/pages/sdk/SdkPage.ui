@@ -2,7 +2,6 @@
 <interface>
 	<template class="AtbSdkPage" parent="AdwNavigationPage">
 		<property name="title" translatable="yes">Aurora SDK</property>
-		<property name="tag">page-sdk</property>
 		<property name="can-pop">true</property>
 		<property name="child">
 			<object class="AdwToolbarView">

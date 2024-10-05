@@ -16,6 +16,8 @@
 import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 
+import { AppConstants } from '../../../base/constants/AppConstants.js';
+
 import './elements/DevicesGroups.js';
 
 export const DevicesPage = GObject.registerClass({
@@ -27,5 +29,6 @@ export const DevicesPage = GObject.registerClass({
 }, class extends Adw.NavigationPage {
 	constructor(params) {
 		super(params);
+		this.tag = AppConstants.Pages.DevicesPage;
 	}
 });

@@ -16,6 +16,8 @@
 import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 
+import { AppConstants } from '../../../base/constants/AppConstants.js';
+
 export const FlutterPage = GObject.registerClass({
 	GTypeName: 'AtbFlutterPage',
 	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/pages/flutter/FlutterPage.ui',
@@ -23,5 +25,6 @@ export const FlutterPage = GObject.registerClass({
 }, class extends Adw.NavigationPage {
 	constructor(params) {
 		super(params);
+		this.tag = AppConstants.Pages.FlutterPage;
 	}
 });

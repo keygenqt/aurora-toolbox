@@ -19,6 +19,8 @@ import Adw from 'gi://Adw';
 import { ShellExec } from '../../../base/connectors/ShellExec.js';
 import { AuroraAPI } from '../../../base/connectors/AuroraAPI.js';
 
+import { AppConstants } from '../../../base/constants/AppConstants.js';
+
 import './elements/WelcomeConnect.js';
 import './elements/WelcomeLoading.js';
 import './elements/WelcomeNotFound.js';
@@ -42,6 +44,7 @@ export const WelcomePage = GObject.registerClass({
 
 	constructor(params) {
 		super(params);
+		this.tag = AppConstants.Pages.WelcomePage;
 	}
 
 	vfunc_realize() {
@@ -57,7 +60,7 @@ export const WelcomePage = GObject.registerClass({
 			.then((response) => {
 				if (response && response.code === 200) {
 					if (settings.get_boolean('first-open')) {
-						this.#window.navigation().push('page-tools');
+						this.#window.navigation().push(AppConstants.Pages.ToolsPage);
 					} else {
 						this.#statePage(WelcomePageStates.CONNECT);
 					}

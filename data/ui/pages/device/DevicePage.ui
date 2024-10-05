@@ -2,7 +2,6 @@
 <interface>
 	<template class="AtbDevicePage" parent="AdwNavigationPage">
 		<property name="title" translatable="yes">Device</property>
-		<property name="tag">page-device</property>
 		<property name="can-pop">true</property>
 		<property name="child">
 			<object class="AdwToolbarView">

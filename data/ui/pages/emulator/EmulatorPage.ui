@@ -2,7 +2,6 @@
 <interface>
 	<template class="AtbEmulatorPage" parent="AdwNavigationPage">
 		<property name="title" translatable="yes">Emulator</property>
-		<property name="tag">page-emulator</property>
 		<property name="can-pop">true</property>
 		<property name="child">
 			<object class="AdwToolbarView">

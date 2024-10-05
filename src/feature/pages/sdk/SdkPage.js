@@ -16,6 +16,8 @@
 import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 
+import { AppConstants } from '../../../base/constants/AppConstants.js';
+
 export const SdkPage = GObject.registerClass({
 	GTypeName: 'AtbSdkPage',
 	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/pages/sdk/SdkPage.ui',
@@ -23,5 +25,6 @@ export const SdkPage = GObject.registerClass({
 }, class extends Adw.NavigationPage {
 	constructor(params) {
 		super(params);
+		this.tag = AppConstants.Pages.SdkPage;
 	}
 });

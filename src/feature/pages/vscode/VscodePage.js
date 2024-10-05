@@ -16,6 +16,8 @@
 import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 
+import { AppConstants } from '../../../base/constants/AppConstants.js';
+
 export const VscodePage = GObject.registerClass({
 	GTypeName: 'AtbVscodePage',
 	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/pages/vscode/VscodePage.ui',
@@ -23,5 +25,6 @@ export const VscodePage = GObject.registerClass({
 }, class extends Adw.NavigationPage {
 	constructor(params) {
 		super(params);
+		this.tag = AppConstants.Pages.VscodePage;
 	}
 });

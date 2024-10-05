@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-export const AppConstants = {
+export const AppConstants = Object.freeze({
     App: {
         documentation: 'https://keygenqt.github.io/aurora-cli/',
         documentationInstall: 'https://keygenqt.github.io/aurora-cli/install/',
@@ -26,5 +26,16 @@ export const AppConstants = {
     Language: {
         'ru': 'ru_RU.utf-8',
         'en': 'en_US.utf-8',
+    },
+    Pages: {
+        DevicePage:     'tag-DevicePage',
+        DevicesPage:    'tag-DevicesPage',
+        EmulatorPage:   'tag-EmulatorPage',
+        FlutterPage:    'tag-FlutterPage',
+        PsdkPage:       'tag-PsdkPage',
+        SdkPage:        'tag-SdkPage',
+        ToolsPage:      'tag-ToolsPage',
+        VscodePage:     'tag-VscodePage',
+        WelcomePage:    'tag-WelcomePage',
     }
-};
+});

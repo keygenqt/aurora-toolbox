@@ -17,6 +17,8 @@ import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 import Adw from 'gi://Adw';
 
+import { AppConstants } from '../../../../base/constants/AppConstants.js';
+
 export const DevicesGroups = GObject.registerClass({
 	GTypeName: 'AtbDevicesGroups',
 	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/pages/devices/elements/DevicesGroups.ui',
@@ -67,7 +69,7 @@ export const DevicesGroups = GObject.registerClass({
 			this._IdDevicesActiveGroup.add(device);
 			// Add callback
 			actions[action] = () => {
-				this.#window.navigation().push('page-device', {
+				this.#window.navigation().push(AppConstants.Pages.DevicePage, {
 					title: `Device: 192.168.1.45:${id}`
 				});
 			}

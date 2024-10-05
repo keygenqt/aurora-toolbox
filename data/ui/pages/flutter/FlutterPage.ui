@@ -2,7 +2,6 @@
 <interface>
 	<template class="AtbFlutterPage" parent="AdwNavigationPage">
 		<property name="title" translatable="yes">Flutter</property>
-		<property name="tag">page-flutter</property>
 		<property name="can-pop">true</property>
 		<property name="child">
 			<object class="AdwToolbarView">

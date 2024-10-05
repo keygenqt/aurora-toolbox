@@ -8,7 +8,6 @@
 			</object>
 		</property>
 		<property name="title" translatable="yes">Aurora Toolbox</property>
-		<property name="tag">page-tools</property>
 		<property name="can-pop">false</property>
 		<property name="child">
 			<object class="AdwToolbarView">

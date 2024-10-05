@@ -14,7 +14,7 @@
 								<property name="title" translatable="true">Device</property>
 								<property name="icon-name">aurora-toolbox-device</property>
 								<property name="action-name">navigation.push</property>
-								<property name="action-target">'page-devices'</property>
+								<property name="action-target">'tag-DevicesPage'</property>
 								<child>
 									<object class="GtkImage">
 										<property name="icon-name">go-next</property>
@@ -28,7 +28,7 @@
 								<property name="title" translatable="true">Emulator</property>
 								<property name="icon-name">aurora-toolbox-multiple-devices</property>
 								<property name="action-name">navigation.push</property>
-								<property name="action-target">'page-emulator'</property>
+								<property name="action-target">'tag-EmulatorPage'</property>
 								<child>
 									<object class="GtkImage">
 										<property name="icon-name">go-next</property>
@@ -48,7 +48,7 @@
 								<property name="title" translatable="true">Aurora SDK</property>
 								<property name="icon-name">aurora-toolbox-sdk</property>
 								<property name="action-name">navigation.push</property>
-								<property name="action-target">'page-sdk'</property>
+								<property name="action-target">'tag-SdkPage'</property>
 								<child>
 									<object class="GtkImage">
 										<property name="icon-name">go-next</property>
@@ -62,7 +62,7 @@
 								<property name="title" translatable="true">Platform SDK</property>
 								<property name="icon-name">aurora-toolbox-psdk</property>
 								<property name="action-name">navigation.push</property>
-								<property name="action-target">'page-psdk'</property>
+								<property name="action-target">'tag-PsdkPage'</property>
 								<child>
 									<object class="GtkImage">
 										<property name="icon-name">go-next</property>
@@ -76,7 +76,7 @@
 								<property name="title" translatable="true">Flutter</property>
 								<property name="icon-name">aurora-toolbox-flutter</property>
 								<property name="action-name">navigation.push</property>
-								<property name="action-target">'page-flutter'</property>
+								<property name="action-target">'tag-FlutterPage'</property>
 								<child>
 									<object class="GtkImage">
 										<property name="icon-name">go-next</property>
@@ -90,7 +90,7 @@
 								<property name="title" translatable="true">Visual Studio Code</property>
 								<property name="icon-name">aurora-toolbox-vscode</property>
 								<property name="action-name">navigation.push</property>
-								<property name="action-target">'page-vscode'</property>
+								<property name="action-target">'tag-VscodePage'</property>
 								<child>
 									<object class="GtkImage">
 										<property name="icon-name">go-next</property>

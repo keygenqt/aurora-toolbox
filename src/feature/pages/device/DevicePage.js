@@ -16,6 +16,8 @@
 import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 
+import { AppConstants } from '../../../base/constants/AppConstants.js';
+
 export const DevicePage = GObject.registerClass({
 	GTypeName: 'AtbDevicePage',
 	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/pages/device/DevicePage.ui',
@@ -30,6 +32,7 @@ export const DevicePage = GObject.registerClass({
 	// Start
 	constructor(params) {
 		super(params);
+		this.tag = AppConstants.Pages.DevicePage;
 	}
 
 	// Create
@@ -41,7 +44,7 @@ export const DevicePage = GObject.registerClass({
 	// Open
 	vfunc_map() {
 		super.vfunc_map();
-		this.#params = this.#window.navigation().params('page-device');
+		this.#params = this.#window.navigation().params(AppConstants.Pages.DevicePage);
 		this.#initState();
 	}
 

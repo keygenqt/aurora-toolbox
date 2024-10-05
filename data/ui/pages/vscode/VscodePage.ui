@@ -2,7 +2,6 @@
 <interface>
 	<template class="AtbVscodePage" parent="AdwNavigationPage">
 		<property name="title" translatable="yes">VS Code</property>
-		<property name="tag">page-vscode</property>
 		<property name="can-pop">true</property>
 		<property name="child">
 			<object class="AdwToolbarView">

@@ -21,6 +21,8 @@ import { Helper } from '../../../base/utils/Helper.js';
 import { ShellExec } from '../../../base/connectors/ShellExec.js';
 import { AuroraAPI } from '../../../base/connectors/AuroraAPI.js';
 
+import { AppConstants } from '../../../base/constants/AppConstants.js';
+
 import './elements/ToolsGroups.js';
 import './elements/ToolsMenu.js';
 
@@ -31,6 +33,8 @@ export const ToolsPage = GObject.registerClass({
 }, class extends Adw.NavigationPage {
 	constructor(params) {
 		super(params);
+		// Set tag page
+		this.tag = AppConstants.Pages.ToolsPage;
 		// Init first open
 		settings.set_boolean('first-open', true);
 		// Init connections

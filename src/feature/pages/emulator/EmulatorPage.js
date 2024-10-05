@@ -16,6 +16,8 @@
 import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 
+import { AppConstants } from '../../../base/constants/AppConstants.js';
+
 export const EmulatorPage = GObject.registerClass({
 	GTypeName: 'AtbEmulatorPage',
 	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/pages/emulator/EmulatorPage.ui',
@@ -23,5 +25,6 @@ export const EmulatorPage = GObject.registerClass({
 }, class extends Adw.NavigationPage {
 	constructor(params) {
 		super(params);
+		this.tag = AppConstants.Pages.EmulatorPage;
 	}
 });
