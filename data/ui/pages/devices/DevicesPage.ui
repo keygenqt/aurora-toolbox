@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<template class="AtbDevicesPage" parent="AdwNavigationPage">
+		<property name="title" translatable="yes">Devices</property>
+		<property name="tag">page-devices</property>
+		<property name="can-pop">true</property>
+		<property name="child">
+			<object class="AdwToolbarView">
+				<child type="top">
+					<object class="AdwHeaderBar"/>
+				</child>
+				<property name="content">
+					<object class="AtbBoxWidget">
+						<child>
+							<object class="AtbDevicesGroups" id="IdDevicesGroups"/>
+						</child>
+					</object>
+				</property>
+			</object>
+		</property>
+	</template>
+</interface>

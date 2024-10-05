@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.keygenqt.aurora-toolbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-02 21:12+0300\n"
+"POT-Creation-Date: 2024-10-05 09:38+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,8 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/ui/dialogs/SettingsDialog.ui:4 data/ui/widgets/SettingsMenuWidget.ui:11
-#: data/ui/Window.ui:11
+#: data/ui/dialogs/SettingsDialog.ui:4 data/ui/widgets/SettingsMenuWidget.ui:7
 msgid "Settings"
 msgstr ""
 
@@ -77,12 +76,82 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: data/ui/dialogs/AboutDialog.ui:5 data/ui/Window.ui:26
+#: data/ui/dialogs/AboutDialog.ui:6 data/ui/widgets/NavigationToolsWidget.ui:17
+#: data/ui/Window.ui:4
 msgid "Aurora Toolbox"
 msgstr ""
 
-#: data/ui/dialogs/AboutDialog.ui:9
+#: data/ui/dialogs/AboutDialog.ui:10
 msgid "Vitaliy Zarubin"
+msgstr ""
+
+#: data/ui/widgets/DevicesWidget.ui:11
+msgid "Open Page 2"
+msgstr ""
+
+#: data/ui/widgets/NavigationToolsWidget.ui:35
+msgid "Device Management"
+msgstr ""
+
+#: data/ui/widgets/NavigationToolsWidget.ui:36
+msgid ""
+"In this section you can find devices added to your configuration file or "
+"their emulation in VirtualBox."
+msgstr ""
+
+#: data/ui/widgets/NavigationToolsWidget.ui:39
+msgid "Device"
+msgstr ""
+
+#: data/ui/widgets/NavigationToolsWidget.ui:54
+msgid "Emulator"
+msgstr ""
+
+#: data/ui/widgets/NavigationToolsWidget.ui:69
+msgid "Development tools"
+msgstr ""
+
+#: data/ui/widgets/NavigationToolsWidget.ui:70
+msgid ""
+"In this section you can manage available development tools for Aurora OS."
+msgstr ""
+
+#: data/ui/widgets/NavigationToolsWidget.ui:73
+msgid "Aurora SDK"
+msgstr ""
+
+#: data/ui/widgets/NavigationToolsWidget.ui:86
+msgid "Platform SDK"
+msgstr ""
+
+#: data/ui/widgets/NavigationToolsWidget.ui:99
+msgid "Flutter"
+msgstr ""
+
+#: data/ui/widgets/NavigationToolsWidget.ui:112
+msgid "Visual Studio Code"
+msgstr ""
+
+#: data/ui/widgets/NavigationToolsWidget.ui:127
+msgid "Aurora CLI"
+msgstr ""
+
+#: data/ui/widgets/NavigationToolsWidget.ui:128
+msgid ""
+"Connections are managed through the base CLI application configuration file. "
+"Configure it to use devices and other functionality."
+msgstr ""
+
+#: data/ui/widgets/NavigationToolsWidget.ui:131
+msgid "Configuration"
+msgstr ""
+
+#: data/ui/widgets/NavigationToolsWidget.ui:158
+msgid "Devices"
+msgstr ""
+
+#: data/ui/widgets/NavigationToolsWidget.ui:174
+msgid "Devices 2"
 msgstr ""
 
 #: data/ui/widgets/WelcomeWidget.ui:20
@@ -101,32 +170,28 @@ msgstr ""
 msgid "Install"
 msgstr ""
 
-#: data/ui/widgets/WelcomeWidget.ui:106
+#: data/ui/widgets/WelcomeWidget.ui:109
 msgid "Application installation is required."
 msgstr ""
 
-#: data/ui/widgets/WelcomeWidget.ui:118
-#: data/ui/widgets/SettingsMenuWidget.ui:17 data/ui/Window.ui:17
+#: data/ui/widgets/WelcomeWidget.ui:121
+#: data/ui/widgets/SettingsMenuWidget.ui:13
 msgid "Documentation"
 msgstr ""
 
-#: data/ui/widgets/WelcomeWidget.ui:136
-msgid "Connection successful!"
+#: data/ui/widgets/WelcomeWidget.ui:142
+msgid "Connection successful."
 msgstr ""
 
-#: data/ui/widgets/WelcomeWidget.ui:171
+#: data/ui/widgets/WelcomeWidget.ui:177
 msgid "Tools"
 msgstr ""
 
-#: data/ui/widgets/SettingsMenuWidget.ui:7 data/ui/Window.ui:7
-msgid "Configuration"
-msgstr ""
-
-#: data/ui/widgets/SettingsMenuWidget.ui:21 data/ui/Window.ui:21
+#: data/ui/widgets/SettingsMenuWidget.ui:17
 msgid "About Toolbox"
 msgstr ""
 
-#: data/ui/widgets/SettingsMenuWidget.ui:27
+#: data/ui/widgets/SettingsMenuWidget.ui:23
 msgid "Menu"
 msgstr ""
 

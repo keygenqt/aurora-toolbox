@@ -1,35 +1,25 @@
-AppTitle {
-	padding-left: 10px;
-	padding-right: 10px;
-}
-
-AtbWelcomeWidget {
-	border-spacing: 18px;
-	margin: 36px;
-}
-
-AtbWelcomeWidget .CssAppIcon {
+.AtbWelcomePage .CssAppIcon {
 	border: none;
-	background-image: url('resource:///com/keygenqt/aurora-toolbox/icons/scalable/actions/aurora-tools-ic_launcher.svg');
+	background-image: url('resource:///com/keygenqt/aurora-toolbox/icons/scalable/actions/aurora-toolbox-ic_launcher.svg');
 	background-size: 130px 130px;
 	background-repeat: no-repeat;
 	background-position: center;
 	min-height: 130px;
 }
 
-AtbWelcomeWidget .CssInfoText {
+.AtbWelcomePage .CssInfoText {
 	font-weight: bold;
 }
 
-AtbWelcomeWidget .CssWelcomeText {
+.AtbWelcomePage .CssWelcomeText {
 	font-size: 20px;
 	font-weight: bold;
 }
 
-.is-dark AtbWelcomeWidget .CssWelcomeText {
+.is-dark .AtbWelcomePage .CssWelcomeText {
 	color: #70b394;
 }
 
-.is-light AtbWelcomeWidget .CssWelcomeText {
+.is-light .AtbWelcomePage .CssWelcomeText {
 	color: #274a3f;
 }

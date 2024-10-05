@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<template class="AtbWelcomeNotFound" parent="GtkBox">
+		<property name="visible">false</property>
+		<property name="orientation">vertical</property>
+		<property name="spacing">24</property>
+		<child>
+			<object class="GtkLabel">
+				<property name="label" translatable="yes">Aurora CLI not found.</property>
+				<property name="wrap">true</property>
+				<property name="justify">center</property>
+				<style> <class name="CssInfoText"/></style>
+			</object>
+		</child>
+		<child>
+			<object class="GtkBox" id="IdUbuntuGroup">
+				<property name="visible">false</property>
+				<property name="halign">center</property>
+				<property name="valign">center</property>
+				<property name="orientation">vertical</property>
+				<property name="spacing">24</property>
+				<child>
+					<object class="GtkLabel" id="IdUbuntuLabel">
+						<property name="label" translatable="yes">You can install the application.</property>
+						<property name="wrap">true</property>
+						<property name="justify">center</property>
+					</object>
+				</child>
+				<child>
+					<object class="GtkButton" id="IdUbuntuBtn">
+						<property name="halign">center</property>
+						<property name="valign">center</property>
+						<property name="child">
+							<object class="AdwButtonContent">
+							<property name="icon-name">document-save-symbolic</property>
+							<property name="label" translatable="yes">Install</property>
+							</object>
+						</property>
+						<style>
+							<class name="pill"/>
+						</style>
+					</object>
+				</child>
+				<child>
+					<object class="GtkSpinner" id="IdUbuntuLoading">
+						<property name="margin-top">23</property>
+						<property name="margin-bottom">23</property>
+						<property name="visible">false</property>
+						<property name="spinning">true</property>
+						<property name="halign">center</property>
+						<property name="valign">center</property>
+						<property name="width-request">40</property>
+						<property name="height-request">40</property>
+					</object>
+				</child>
+			</object>
+		</child>
+		<child>
+			<object class="GtkBox" id="IdLinuxGroup">
+				<property name="halign">center</property>
+				<property name="valign">center</property>
+				<property name="orientation">vertical</property>
+				<property name="spacing">24</property>
+				<child>
+					<object class="GtkLabel">
+						<property name="label" translatable="yes">Application installation is required.</property>
+						<property name="wrap">true</property>
+						<property name="justify">center</property>
+					</object>
+				</child>
+				<child>
+					<object class="GtkButton" id="IdLinuxBtn">
+						<property name="halign">center</property>
+						<property name="valign">center</property>
+						<property name="child">
+							<object class="AdwButtonContent">
+							<property name="icon-name">view-dual-symbolic</property>
+							<property name="label" translatable="yes">Documentation</property>
+							</object>
+						</property>
+						<style>
+							<class name="pill"/>
+						</style>
+					</object>
+				</child>
+			</object>
+		</child>
+	</template>
+</interface>

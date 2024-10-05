@@ -17,6 +17,8 @@ We continue to develop Aurora CLI. In version 3.0, an API interface was added, i
 - language-pack-gnome-ru
 - language-pack-ru-base
 
+> Icons: https://iconduck.com
+
 ### License
 
 ```

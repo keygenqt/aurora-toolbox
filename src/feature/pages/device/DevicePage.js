@@ -13,18 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import GObject from 'gi://GObject';
+import Adw from 'gi://Adw';
 
-export const AppConstants = {
-    App: {
-        documentation: 'https://keygenqt.github.io/aurora-cli/',
-        documentationInstall: 'https://keygenqt.github.io/aurora-cli/install/',
-    },
-    AuroraCLI: [
-        'python3',
-        '/home/keygenqt/Documents/Home/Projects/aurora-cli/builds/aurora-cli-3.0.4.pyz'
-    ],
-    Language: {
-        'ru': 'ru_RU.utf-8',
-        'en': 'en_US.utf-8',
-    }
-};
+export const DevicePage = GObject.registerClass({
+	GTypeName: 'AtbDevicePage',
+	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/pages/device/DevicePage.ui',
+	InternalChildren: [],
+}, class extends Adw.NavigationPage {
+	constructor(params) {
+		super(params);
+	}
+});

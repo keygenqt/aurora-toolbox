@@ -14,26 +14,30 @@
  * limitations under the License.
  */
 import GObject from 'gi://GObject';
-import Gtk from 'gi://Gtk';
+import Adw from 'gi://Adw';
 
+import './elements/DevicesGroups.js';
 
-export const MenuToolsWidget = GObject.registerClass({
-	GTypeName: 'AtbMenuToolsWidget',
-	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/widgets/MenuToolsWidget.ui',
+export const DevicesPage = GObject.registerClass({
+	GTypeName: 'AtbDevicesPage',
+	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/pages/devices/DevicesPage.ui',
 	InternalChildren: [
-		'IdTest',
+		'IdDevicesGroups',
 	],
-}, class extends Gtk.Widget {
+	Signals: {
+		'navigation-push': {
+			param_types: [GObject.TYPE_STRING]
+		},
+	},
+}, class extends Adw.NavigationPage {
 	constructor(params) {
 		super(params);
-		this.#actionsConnect();
+		this.#initConnect();
 	}
 
-	#actionsConnect() {
-		this.connectGroup('MenuTools', {
-            'test': () => {
-				console.log('yes')
-			},
-        });
+	#initConnect() {
+		this._IdDevicesGroups.connect('navigation-push', (_, value) => {
+			this.emit('navigation-push', value);
+		});
 	}
 });

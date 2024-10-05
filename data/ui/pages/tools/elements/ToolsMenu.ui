@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<menu id="IdSettingsMenu">
+		<section>
+			<item>
+				<attribute name="action">SettingsMenu.settings</attribute>
+				<attribute name="label" translatable="yes">Settings</attribute>
+			</item>
+		</section>
+		<section>
+			<item>
+				<attribute name="action">SettingsMenu.documentation</attribute>
+				<attribute name="label" translatable="yes">Documentation</attribute>
+			</item>
+			<item>
+				<attribute name="action">SettingsMenu.about</attribute>
+				<attribute name="label" translatable="yes">About Toolbox</attribute>
+			</item>
+		</section>
+	</menu>
+	<template class="AtbToolsMenu">
+		<property name="icon-name">view-more-symbolic</property>
+		<property name="tooltip-text" translatable="yes">Menu</property>
+		<property name="menu-model">IdSettingsMenu</property>
+		<property name="valign">center</property>
+	</template>
+</interface>

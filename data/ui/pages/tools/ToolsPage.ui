@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<template class="AtbToolsPage" parent="AdwNavigationPage">
+		<property name="layout-manager">
+			<object class="GtkBoxLayout">
+				<property name="spacing">70</property>
+				<property name="orientation">vertical</property>
+			</object>
+		</property>
+		<property name="title" translatable="yes">Aurora Toolbox</property>
+		<property name="tag">page-tools</property>
+		<property name="can-pop">false</property>
+		<property name="child">
+			<object class="AdwToolbarView">
+				<child type="top">
+					<object class="AdwHeaderBar">
+						<child type="start">
+							<object class="AtbToolsMenu"/>
+						</child>
+					</object>
+				</child>
+				<property name="content">
+					<object class="AtbBoxWidget">
+						<child>
+							<object class="AtbToolsGroups"/>
+						</child>
+					</object>
+				</property>
+			</object>
+		</property>
+	</template>
+</interface>

@@ -1,11 +1,10 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-02 21:12+0300\n"
+"POT-Creation-Date: 2024-10-05 09:38+0300\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 
-#: data/ui/dialogs/SettingsDialog.ui:4 data/ui/widgets/SettingsMenuWidget.ui:11
-#: data/ui/Window.ui:11
+#: data/ui/dialogs/SettingsDialog.ui:4 data/ui/widgets/SettingsMenuWidget.ui:7
 msgid "Settings"
 msgstr "Настройки"
 
@@ -27,9 +26,9 @@ msgid ""
 "environment settings. This setting allows you to enable your preferred "
 "language regardless of the environment settings."
 msgstr ""
-"Выбор языка по умолчанию в приложении берется из "
-"настроек среды. Эта настройка позволяет вам включить предпочитаемый вами "
-"язык независимо от настроек среды."
+"Выбор языка по умолчанию в приложении берется из настроек среды. Эта "
+"настройка позволяет вам включить предпочитаемый вами язык независимо от "
+"настроек среды."
 
 #: data/ui/dialogs/SettingsDialog.ui:48
 msgid "Hint"
@@ -41,7 +40,8 @@ msgid ""
 "you can turn it off to make the application output easier to read."
 msgstr ""
 "Приложение Aurora CLI имеет функцию подсказки команд. Если она вам не нужна, "
-"вы можете отключить ее, чтобы сделать вывод приложения более удобным для чтения."
+"вы можете отключить ее, чтобы сделать вывод приложения более удобным для "
+"чтения."
 
 #: data/ui/dialogs/SettingsDialog.ui:54
 msgid "Select"
@@ -54,10 +54,10 @@ msgid ""
 "calling the --select argument, the application will remember your choice and "
 "without it, information will be taken from the cache."
 msgstr ""
-"По умолчанию выбирается последняя версия Platform SDK/Flutter SDK, "
-"первое устройство из файла конфигурации. Активируя этот параметр при "
-"вызове аргумента --select, приложение запомнит ваш выбор, а "
-"без него информация будет взята из кэша."
+"По умолчанию выбирается последняя версия Platform SDK/Flutter SDK, первое "
+"устройство из файла конфигурации. Активируя этот параметр при вызове "
+"аргумента --select, приложение запомнит ваш выбор, а без него информация "
+"будет взята из кэша."
 
 #: data/ui/dialogs/SettingsDialog.ui:60
 msgid "Verbose"
@@ -68,20 +68,97 @@ msgid ""
 "The --verbose flag enables verbose output after the command is executed. "
 "This setting enables verbose output by default."
 msgstr ""
-"Флаг --verbose включает подробный вывод после выполнения команды. "
-"Эта настройка включает подробный вывод по умолчанию."
+"Флаг --verbose включает подробный вывод после выполнения команды. Эта "
+"настройка включает подробный вывод по умолчанию."
 
 #: data/ui/dialogs/ErrorDialog.ui:4
 msgid "Error"
 msgstr "Ошибка"
 
-#: data/ui/dialogs/AboutDialog.ui:5 data/ui/Window.ui:26
+#: data/ui/dialogs/AboutDialog.ui:6 data/ui/widgets/NavigationToolsWidget.ui:17
+#: data/ui/Window.ui:4
 msgid "Aurora Toolbox"
 msgstr "Аврора Toolbox"
 
-#: data/ui/dialogs/AboutDialog.ui:9
+#: data/ui/dialogs/AboutDialog.ui:10
 msgid "Vitaliy Zarubin"
 msgstr "Виталий Зарубин"
+
+#: data/ui/widgets/DevicesWidget.ui:11
+msgid "Open Page 2"
+msgstr ""
+
+#: data/ui/widgets/NavigationToolsWidget.ui:35
+msgid "Device Management"
+msgstr "Управление устройствами"
+
+#: data/ui/widgets/NavigationToolsWidget.ui:36
+msgid ""
+"In this section you can find devices added to your configuration file or "
+"their emulation in VirtualBox."
+msgstr ""
+"В этом разделе вы можете найти устройства или их эмуляцию в VirtualBox."
+
+#: data/ui/widgets/NavigationToolsWidget.ui:39
+msgid "Device"
+msgstr "Устройство"
+
+#: data/ui/widgets/NavigationToolsWidget.ui:54
+msgid "Emulator"
+msgstr "Эмулятор"
+
+#: data/ui/widgets/NavigationToolsWidget.ui:69
+msgid "Development tools"
+msgstr "Инструменты разработки"
+
+#: data/ui/widgets/NavigationToolsWidget.ui:70
+msgid ""
+"In this section you can manage available development tools for Aurora OS."
+msgstr ""
+"В этом разделе вы можете управлять доступными инструментами разработки для "
+"ОС Aurora."
+
+#: data/ui/widgets/NavigationToolsWidget.ui:73
+msgid "Aurora SDK"
+msgstr "Аврора SDK"
+
+#: data/ui/widgets/NavigationToolsWidget.ui:86
+msgid "Platform SDK"
+msgstr "Платформ SDK"
+
+#: data/ui/widgets/NavigationToolsWidget.ui:99
+msgid "Flutter"
+msgstr "Flutter"
+
+#: data/ui/widgets/NavigationToolsWidget.ui:112
+msgid "Visual Studio Code"
+msgstr "Visual Studio Code"
+
+#: data/ui/widgets/NavigationToolsWidget.ui:127
+msgid "Aurora CLI"
+msgstr "Aurora CLI"
+
+#: data/ui/widgets/NavigationToolsWidget.ui:128
+msgid ""
+"Connections are managed through the base CLI application configuration file. "
+"Configure it to use devices and other functionality."
+msgstr ""
+"Управление соединениями осуществляется через базовый файл конфигурации "
+"приложения CLI. Настройте его для использования устройств."
+
+#: data/ui/widgets/NavigationToolsWidget.ui:131
+msgid "Configuration"
+msgstr "Конфигурация"
+
+#: data/ui/widgets/NavigationToolsWidget.ui:158
+#, fuzzy
+msgid "Devices"
+msgstr "Устройства"
+
+#: data/ui/widgets/NavigationToolsWidget.ui:174
+#, fuzzy
+msgid "Devices 2"
+msgstr "Устройства"
 
 #: data/ui/widgets/WelcomeWidget.ui:20
 msgid "Welcome to application Aurora Toolbox!"
@@ -99,32 +176,28 @@ msgstr "Aurora CLI не найдено."
 msgid "Install"
 msgstr "Установка"
 
-#: data/ui/widgets/WelcomeWidget.ui:106
+#: data/ui/widgets/WelcomeWidget.ui:109
 msgid "Application installation is required."
 msgstr "Требуется установка приложения."
 
-#: data/ui/widgets/WelcomeWidget.ui:118
-#: data/ui/widgets/SettingsMenuWidget.ui:17 data/ui/Window.ui:17
+#: data/ui/widgets/WelcomeWidget.ui:121
+#: data/ui/widgets/SettingsMenuWidget.ui:13
 msgid "Documentation"
 msgstr "Документация"
 
-#: data/ui/widgets/WelcomeWidget.ui:136
+#: data/ui/widgets/WelcomeWidget.ui:142
 msgid "Connection successful."
 msgstr "Подключение успешно установлено."
 
-#: data/ui/widgets/WelcomeWidget.ui:171
+#: data/ui/widgets/WelcomeWidget.ui:177
 msgid "Tools"
 msgstr "Инструменты"
 
-#: data/ui/widgets/SettingsMenuWidget.ui:7 data/ui/Window.ui:7
-msgid "Configuration"
-msgstr "Конфигурация"
-
-#: data/ui/widgets/SettingsMenuWidget.ui:21 data/ui/Window.ui:21
+#: data/ui/widgets/SettingsMenuWidget.ui:17
 msgid "About Toolbox"
 msgstr "О Toolbox"
 
-#: data/ui/widgets/SettingsMenuWidget.ui:27
+#: data/ui/widgets/SettingsMenuWidget.ui:23
 msgid "Menu"
 msgstr "Меню"
 

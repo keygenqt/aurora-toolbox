@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<template class="AtbEmulatorPage" parent="AdwNavigationPage">
+		<property name="title" translatable="yes">Emulator</property>
+		<property name="tag">page-emulator</property>
+		<property name="can-pop">true</property>
+		<property name="child">
+			<object class="AdwToolbarView">
+			<child type="top">
+				<object class="AdwHeaderBar"/>
+			</child>
+			<property name="content">
+				<object class="GtkLabel">
+					<property name="label" translatable="yes">Emulator</property>
+					<property name="wrap">true</property>
+					<property name="justify">center</property>
+				</object>
+			</property>
+			</object>
+		</property>
+	</template>
+</interface>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<template class="AtbDevicesGroups" parent="GtkBox">
+		<property name="orientation">vertical</property>
+		<child>
+			<object class="AdwPreferencesPage">
+				<child>
+					<object class="AdwPreferencesGroup" id="IdDevicesActiveGroup">
+						<property name="title" translatable="true">Active</property>
+						<property name="description" translatable="yes">Devices that are connected.</property>
+					</object>
+				</child>
+				<child>
+					<object class="AdwPreferencesGroup" id="IdDevicesNonActiveGroup">
+						<property name="title" translatable="true">Non active</property>
+						<property name="description" translatable="yes">Devices not connected.</property>
+					</object>
+				</child>
+			</object>
+		</child>
+	</template>
+</interface>

@@ -5,34 +5,56 @@
 		<file>feature/Application.js</file>
 		<file>feature/Window.js</file>
 
-		<!-- base/connectors -->
-		<file>base/connectors/AuroraAPI.js</file>
-		<file>base/connectors/DBusProxy.js</file>
-		<file>base/connectors/ShellAPI.js</file>
-		<file>base/connectors/ShellExec.js</file>
+		<!-- pages -->
+		<file>feature/pages/device/DevicePage.js</file>
 
-		<!-- base/constants -->
-		<file>base/constants/AppConstants.js</file>
+		<file>feature/pages/devices/DevicesPage.js</file>
+		<file>feature/pages/devices/elements/DevicesGroups.js</file>
 
-		<!-- base/extensions -->
-		<file>base/extensions/AdwDialog.js</file>
-		<file>base/extensions/DBusProxy.js</file>
-		<file>base/extensions/GtkWidget.js</file>
-		<file>base/extensions/String.js</file>
+		<file>feature/pages/emulator/EmulatorPage.js</file>
 
-		<!-- feature/dialogs -->
+		<file>feature/pages/flutter/FlutterPage.js</file>
+
+		<file>feature/pages/psdk/PsdkPage.js</file>
+
+		<file>feature/pages/sdk/SdkPage.js</file>
+
+		<file>feature/pages/tools/ToolsPage.js</file>
+		<file>feature/pages/tools/elements/ToolsGroups.js</file>
+		<file>feature/pages/tools/elements/ToolsMenu.js</file>
+
+		<file>feature/pages/vscode/VscodePage.js</file>
+
+		<file>feature/pages/welcome/WelcomePage.js</file>
+		<file>feature/pages/welcome/elements/WelcomeConnect.js</file>
+		<file>feature/pages/welcome/elements/WelcomeLoading.js</file>
+		<file>feature/pages/welcome/elements/WelcomeNotFound.js</file>
+
+		<!-- dialogs -->
 		<file>feature/dialogs/AboutDialog.js</file>
 		<file>feature/dialogs/ErrorDialog.js</file>
 		<file>feature/dialogs/LoadingDialog.js</file>
 		<file>feature/dialogs/SettingsDialog.js</file>
 
-		<!-- base/utils -->
+		<!-- widgets -->
+		<file>feature/widgets/BoxWidget.js</file>
+		<file>feature/widgets/NavigationWidget.js</file>
+
+		<!-- base -->
+		<file>base/connectors/AuroraAPI.js</file>
+		<file>base/connectors/DBusProxy.js</file>
+		<file>base/connectors/ShellAPI.js</file>
+		<file>base/connectors/ShellExec.js</file>
+
+		<file>base/constants/AppConstants.js</file>
+
+		<file>base/extensions/AdwDialog.js</file>
+		<file>base/extensions/DBusProxy.js</file>
+		<file>base/extensions/GioSettings.js</file>
+		<file>base/extensions/GtkWidget.js</file>
+		<file>base/extensions/String.js</file>
+
 		<file>base/utils/Log.js</file>
 		<file>base/utils/Helper.js</file>
-
-		<!-- feature/widgets -->
-		<file>feature/widgets/MenuToolsWidget.js</file>
-		<file>feature/widgets/SettingsMenuWidget.js</file>
-		<file>feature/widgets/WelcomeWidget.js</file>
 	</gresource>
 </gresources>

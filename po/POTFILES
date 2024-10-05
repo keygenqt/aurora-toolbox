@@ -2,6 +2,8 @@ data/ui/dialogs/SettingsDialog.ui
 data/ui/dialogs/LoadingDialog.ui
 data/ui/dialogs/ErrorDialog.ui
 data/ui/dialogs/AboutDialog.ui
+data/ui/widgets/DevicesWidget.ui
+data/ui/widgets/NavigationToolsWidget.ui
 data/ui/widgets/WelcomeWidget.ui
 data/ui/widgets/SettingsMenuWidget.ui
 data/ui/Window.ui
@@ -9,7 +11,9 @@ src/feature/dialogs/SettingsDialog.js
 src/feature/dialogs/AboutDialog.js
 src/feature/dialogs/LoadingDialog.js
 src/feature/dialogs/ErrorDialog.js
+src/feature/widgets/DevicesWidget.js
 src/feature/widgets/WelcomeWidget.js
+src/feature/widgets/NavigationToolsWidget.js
 src/feature/widgets/SettingsMenuWidget.js
 src/feature/Window.js
 src/feature/Application.js

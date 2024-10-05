@@ -13,18 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Gio from 'gi://Gio';
 
-export const AppConstants = {
-    App: {
-        documentation: 'https://keygenqt.github.io/aurora-cli/',
-        documentationInstall: 'https://keygenqt.github.io/aurora-cli/install/',
-    },
-    AuroraCLI: [
-        'python3',
-        '/home/keygenqt/Documents/Home/Projects/aurora-cli/builds/aurora-cli-3.0.4.pyz'
-    ],
-    Language: {
-        'ru': 'ru_RU.utf-8',
-        'en': 'en_US.utf-8',
+/**
+ * Clear settings app state
+ */
+Gio.Settings.prototype.clear = function () {
+    for (const key of this.list_keys()) {
+        this.reset(key);
     }
 };

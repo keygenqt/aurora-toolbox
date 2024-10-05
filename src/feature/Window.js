@@ -19,26 +19,18 @@ import Adw from 'gi://Adw';
 
 import { DBusProxy } from '../base/connectors/DBusProxy.js';
 
-// Import class for UI
-import './widgets/WelcomeWidget.js';
-import './widgets/MenuToolsWidget.js';
-import './widgets/SettingsMenuWidget.js';
+import './widgets/NavigationWidget.js';
+import './widgets/BoxWidget.js';
 
 export const Window = GObject.registerClass({
 	GTypeName: 'AtbWindow',
 	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/Window.ui',
-	InternalChildren: [
-		'IdGroupPage',
-		'IdWelcomeWidget',
-		'IdMenuToolsWidget',
-	],
+	InternalChildren: [],
 }, class extends Adw.ApplicationWindow {
 	#dbusProxy = new DBusProxy();
 
 	constructor(params) {
 		super(params);
-
-		// this.#resetSettings();
 		this.#initConnects();
 		this.#bindSettings();
 	}
@@ -46,12 +38,6 @@ export const Window = GObject.registerClass({
 	vfunc_close_request() {
 		super.vfunc_close_request();
 		this.run_dispose();
-	}
-
-	#resetSettings() {
-		for (const key of settings.list_keys()) {
-			settings.reset(key);
-		}
 	}
 
 	#bindSettings() {
@@ -62,18 +48,6 @@ export const Window = GObject.registerClass({
 	#initConnects() {
 		this.#dbusProxy.connectWithEmit('colorScheme', (value) => {
 			this.#changeAppearanceCss(value);
-		});
-		this._IdWelcomeWidget.connectWithEmit('connectAuroraCLI', (value) => {
-			if (value && settings.get_boolean('first-open') !== true) {
-				this._IdGroupPage.valign = 'fill';
-				this._IdGroupPage.halign = 'fill';
-				this._IdMenuToolsWidget.visible = true;
-				this._IdWelcomeWidget.visible = false;
-			} else {
-				this._IdMenuToolsWidget.visible = false;
-				this._IdWelcomeWidget.visible = true;
-				settings.set_boolean('first-open', false);
-			}
 		});
 	}
 

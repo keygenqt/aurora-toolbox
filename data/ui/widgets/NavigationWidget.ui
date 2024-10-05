@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<template class="AtbNavigationWidget" parent="GtkBox">
+		<child>
+			<object class="AdwNavigationView"  id="IdNavigation">
+				<child>
+					<!-- First page for stack -->
+					<object class="AtbWelcomePage" id="IdAtbWelcome"/>
+				</child>
+				<child>
+					<object class="AtbDevicePage" id="IdAtbDevice"/>
+				</child>
+				<child>
+					<object class="AtbDevicesPage" id="IdAtbDevices"/>
+				</child>
+				<child>
+					<object class="AtbEmulatorPage" id="IdAtbEmulator"/>
+				</child>
+				<child>
+					<object class="AtbFlutterPage" id="IdAtbFlutter"/>
+				</child>
+				<child>
+					<object class="AtbPsdkPage" id="IdAtbPsdk"/>
+				</child>
+				<child>
+					<object class="AtbSdkPage" id="IdAtbSdk"/>
+				</child>
+				<child>
+					<object class="AtbToolsPage" id="IdAtbTools"/>
+				</child>
+				<child>
+					<object class="AtbVscodePage" id="IdAtbVscode"/>
+				</child>
+			</object>
+		</child>
+	</template>
+</interface>

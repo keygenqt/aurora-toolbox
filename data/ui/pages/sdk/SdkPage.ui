@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<template class="AtbSdkPage" parent="AdwNavigationPage">
+		<property name="title" translatable="yes">Aurora SDK</property>
+		<property name="tag">page-sdk</property>
+		<property name="can-pop">true</property>
+		<property name="child">
+			<object class="AdwToolbarView">
+			<child type="top">
+				<object class="AdwHeaderBar"/>
+			</child>
+			<property name="content">
+				<object class="GtkLabel">
+					<property name="label" translatable="yes">SDK</property>
+					<property name="wrap">true</property>
+					<property name="justify">center</property>
+				</object>
+			</property>
+			</object>
+		</property>
+	</template>
+</interface>

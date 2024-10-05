@@ -68,6 +68,13 @@ export const Helper = {
     },
 
     /**
+     * Check system is Ubuntu
+     */
+    isUbuntuSystem: function() {
+        return GLib.getenv('DESKTOP_SESSION') === 'ubuntu'
+    },
+
+    /**
      * Get environment language
      */
     getLanguageENV: function() {

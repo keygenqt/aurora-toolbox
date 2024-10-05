@@ -1,56 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-	<menu id="menu">
-		<section>
-			<item>
-			<attribute name="action">AtbWindow.configuration</attribute>
-			<attribute name="label" translatable="yes">Configuration</attribute>
-			</item>
-			<item>
-			<attribute name="action">AtbWindow.settings</attribute>
-			<attribute name="label" translatable="yes">Settings</attribute>
-			</item>
-		</section>
-		<section>
-			<item>
-			<attribute name="action">AtbWindow.documentation</attribute>
-			<attribute name="label" translatable="yes">Documentation</attribute>
-			</item>
-			<item>
-			<attribute name="action">AtbWindow.about</attribute>
-			<attribute name="label" translatable="yes">About Toolbox</attribute>
-			</item>
-		</section>
-	</menu>
 	<template class="AtbWindow">
-		<property name="title" translatable="yes">Aurora Toolbox</property>
 		<property name="width-request">400</property>
-		<property name="height-request">750</property>
+		<property name="height-request">760</property>
 		<property name="content">
-			<object class="AdwToolbarView">
-				<child type="top">
-					<object class="AdwHeaderBar">
-						<child type="start">
-							<object class="AtbSettingsMenuWidget"/>
-						</child>
-					</object>
-				</child>
-				<property name="content">
-					<object class="GtkBox" id="IdGroupPage">
-						<property name="orientation">vertical</property>
-						<property name="valign">center</property>
-						<property name="halign">center</property>
-						<child>
-							<object class="AtbWelcomeWidget" id="IdWelcomeWidget"/>
-						</child>
-						<child>
-							<object class="AtbMenuToolsWidget" id="IdMenuToolsWidget">
-								<property name="visible">false</property>
-							</object>
-						</child>
-					</object>
-				</property>
-			</object>
+			<object class="AtbNavigationWidget"/>
 		</property>
 	</template>
 </interface>

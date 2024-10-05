@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<template class="AtbToolsGroups" parent="GtkBox">
+		<property name="orientation">vertical</property>
+		<child>
+			<object class="AdwPreferencesPage">
+				<child>
+					<object class="AdwPreferencesGroup">
+						<property name="title" translatable="true">Device Management</property>
+						<property name="description" translatable="yes">In this section you can find devices added to your configuration file or their emulation in VirtualBox.</property>
+						<child>
+							<object class="AdwActionRow" id="IdGroupDevices">
+								<property name="activatable-widget">IdGroupDevices</property>
+								<property name="title" translatable="true">Device</property>
+								<property name="icon-name">aurora-toolbox-device</property>
+								<property name="action-name">navigation.push</property>
+								<property name="action-target">'page-devices'</property>
+								<child>
+									<object class="GtkImage">
+										<property name="icon-name">go-next</property>
+									</object>
+								</child>
+							</object>
+						</child>
+						<child>
+							<object class="AdwActionRow" id="IdGroupEmulator">
+								<property name="activatable-widget">IdGroupEmulator</property>
+								<property name="title" translatable="true">Emulator</property>
+								<property name="icon-name">aurora-toolbox-multiple-devices</property>
+								<property name="action-name">navigation.push</property>
+								<property name="action-target">'page-emulator'</property>
+								<child>
+									<object class="GtkImage">
+										<property name="icon-name">go-next</property>
+									</object>
+								</child>
+							</object>
+						</child>
+					</object>
+				</child>
+				<child>
+					<object class="AdwPreferencesGroup">
+						<property name="title" translatable="true">Development tools</property>
+						<property name="description" translatable="yes">In this section you can manage available development tools for Aurora OS.</property>
+						<child>
+							<object class="AdwActionRow" id="IdGroupSDK">
+								<property name="activatable-widget">IdGroupSDK</property>
+								<property name="title" translatable="true">Aurora SDK</property>
+								<property name="icon-name">aurora-toolbox-sdk</property>
+								<property name="action-name">navigation.push</property>
+								<property name="action-target">'page-sdk'</property>
+								<child>
+									<object class="GtkImage">
+										<property name="icon-name">go-next</property>
+									</object>
+								</child>
+							</object>
+						</child>
+						<child>
+							<object class="AdwActionRow" id="IdGroupPSDK">
+								<property name="activatable-widget">IdGroupPSDK</property>
+								<property name="title" translatable="true">Platform SDK</property>
+								<property name="icon-name">aurora-toolbox-psdk</property>
+								<property name="action-name">navigation.push</property>
+								<property name="action-target">'page-psdk'</property>
+								<child>
+									<object class="GtkImage">
+										<property name="icon-name">go-next</property>
+									</object>
+								</child>
+							</object>
+						</child>
+						<child>
+							<object class="AdwActionRow" id="IdGroupFlutter">
+								<property name="activatable-widget">IdGroupFlutter</property>
+								<property name="title" translatable="true">Flutter</property>
+								<property name="icon-name">aurora-toolbox-flutter</property>
+								<property name="action-name">navigation.push</property>
+								<property name="action-target">'page-flutter'</property>
+								<child>
+									<object class="GtkImage">
+										<property name="icon-name">go-next</property>
+									</object>
+								</child>
+							</object>
+						</child>
+						<child>
+							<object class="AdwActionRow" id="IdGroupVscode">
+								<property name="activatable-widget">IdGroupVscode</property>
+								<property name="title" translatable="true">Visual Studio Code</property>
+								<property name="icon-name">aurora-toolbox-vscode</property>
+								<property name="action-name">navigation.push</property>
+								<property name="action-target">'page-vscode'</property>
+								<child>
+									<object class="GtkImage">
+										<property name="icon-name">go-next</property>
+									</object>
+								</child>
+							</object>
+						</child>
+					</object>
+				</child>
+				<child>
+					<object class="AdwPreferencesGroup">
+						<property name="title" translatable="true">Aurora CLI</property>
+						<property name="description" translatable="yes">Connections are managed through the base CLI application configuration file. Configure it to use devices and other functionality.</property>
+						<child>
+							<object class="AdwActionRow" id="IdGroupAuroraCLI">
+								<property name="activatable-widget">IdGroupAuroraCLI</property>
+								<property name="action-name">AuroraCLI.configuration</property>
+								<property name="title" translatable="true">Configuration</property>
+								<property name="icon-name">aurora-toolbox-ic_launcher</property>
+								<child>
+									<object class="GtkImage">
+										<property name="icon-name">document-open-symbolic</property>
+									</object>
+								</child>
+							</object>
+						</child>
+					</object>
+				</child>
+			</object>
+		</child>
+	</template>
+</interface>
