@@ -39,7 +39,7 @@
 		<child>
 			<object class="GtkButton" id="IdToolsBtn">
 				<property name="action-name">navigation.push</property>
-              	<property name="action-target">'page-ToolsPage'</property>
+              	<property name="action-target">'tag-ToolsPage'</property>
 				<property name="halign">center</property>
 				<property name="valign">center</property>
 				<property name="child">

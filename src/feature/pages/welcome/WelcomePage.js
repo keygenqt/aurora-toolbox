@@ -59,11 +59,11 @@ export const WelcomePage = GObject.registerClass({
 			.catch((e) => Log.error(e))
 			.then((response) => {
 				if (response && response.code === 200) {
-					if (settings.get_boolean('first-open')) {
-						this.#window.navigation().push(AppConstants.Pages.ToolsPage);
-					} else {
+					// if (settings.get_boolean('first-open')) {
+					// 	this.#window.navigation().push(AppConstants.Pages.ToolsPage);
+					// } else {
 						this.#statePage(WelcomePageStates.CONNECT);
-					}
+					// }
 				} else {
 					this.#statePage(WelcomePageStates.NOT_FOUND);
 				}
