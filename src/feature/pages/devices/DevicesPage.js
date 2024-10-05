@@ -24,20 +24,8 @@ export const DevicesPage = GObject.registerClass({
 	InternalChildren: [
 		'IdDevicesGroups',
 	],
-	Signals: {
-		'navigation-push': {
-			param_types: [GObject.TYPE_STRING]
-		},
-	},
 }, class extends Adw.NavigationPage {
 	constructor(params) {
 		super(params);
-		this.#initConnect();
-	}
-
-	#initConnect() {
-		this._IdDevicesGroups.connect('navigation-push', (_, value) => {
-			this.emit('navigation-push', value);
-		});
 	}
 });

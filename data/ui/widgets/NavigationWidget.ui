@@ -5,31 +5,31 @@
 			<object class="AdwNavigationView"  id="IdNavigation">
 				<child>
 					<!-- First page for stack -->
-					<object class="AtbWelcomePage" id="IdAtbWelcome"/>
+					<object class="AtbWelcomePage"/>
 				</child>
 				<child>
-					<object class="AtbDevicePage" id="IdAtbDevice"/>
+					<object class="AtbDevicePage"/>
 				</child>
 				<child>
-					<object class="AtbDevicesPage" id="IdAtbDevices"/>
+					<object class="AtbDevicesPage"/>
 				</child>
 				<child>
-					<object class="AtbEmulatorPage" id="IdAtbEmulator"/>
+					<object class="AtbEmulatorPage"/>
 				</child>
 				<child>
-					<object class="AtbFlutterPage" id="IdAtbFlutter"/>
+					<object class="AtbFlutterPage"/>
 				</child>
 				<child>
-					<object class="AtbPsdkPage" id="IdAtbPsdk"/>
+					<object class="AtbPsdkPage"/>
 				</child>
 				<child>
-					<object class="AtbSdkPage" id="IdAtbSdk"/>
+					<object class="AtbSdkPage"/>
 				</child>
 				<child>
-					<object class="AtbToolsPage" id="IdAtbTools"/>
+					<object class="AtbToolsPage"/>
 				</child>
 				<child>
-					<object class="AtbVscodePage" id="IdAtbVscode"/>
+					<object class="AtbVscodePage"/>
 				</child>
 			</object>
 		</child>

@@ -19,9 +19,33 @@ import Adw from 'gi://Adw';
 export const DevicePage = GObject.registerClass({
 	GTypeName: 'AtbDevicePage',
 	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/pages/device/DevicePage.ui',
-	InternalChildren: [],
+	InternalChildren: [
+		'IdPageLabel',
+	],
 }, class extends Adw.NavigationPage {
+	#window
+	#params
+
+	// @todo livecycle
+	// Start
 	constructor(params) {
 		super(params);
+	}
+
+	// Create
+	vfunc_realize() {
+		super.vfunc_realize();
+		this.#window = this.get_native();
+	}
+
+	// Open
+	vfunc_map() {
+		super.vfunc_map();
+		this.#params = this.#window.navigation().params('page-device');
+		this.#initState();
+	}
+
+	#initState() {
+		this._IdPageLabel.label = this.#params.title;
 	}
 });

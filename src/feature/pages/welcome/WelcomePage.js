@@ -37,14 +37,16 @@ export const WelcomePage = GObject.registerClass({
 		'IdNotFound',
 		'IdConnect',
 	],
-	Signals: {
-		'navigation-push': {
-			param_types: [GObject.TYPE_STRING]
-		},
-	},
 }, class extends Adw.NavigationPage {
+	#window
+
 	constructor(params) {
 		super(params);
+	}
+
+	vfunc_realize() {
+		super.vfunc_realize();
+		this.#window = this.get_native();
 		this.#loadingConnect();
 	}
 
@@ -55,7 +57,7 @@ export const WelcomePage = GObject.registerClass({
 			.then((response) => {
 				if (response && response.code === 200) {
 					if (settings.get_boolean('first-open')) {
-						this.emit('navigation-push', 'page-tools');
+						this.#window.navigation().push('page-tools');
 					} else {
 						this.#statePage(WelcomePageStates.CONNECT);
 					}

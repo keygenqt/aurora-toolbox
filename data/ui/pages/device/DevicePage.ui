@@ -10,8 +10,8 @@
 				<object class="AdwHeaderBar"/>
 			</child>
 			<property name="content">
-				<object class="GtkLabel">
-					<property name="label" translatable="yes">Device 1</property>
+				<object class="GtkLabel" id="IdPageLabel">
+					<property name="label"></property>
 					<property name="wrap">true</property>
 					<property name="justify">center</property>
 				</object>

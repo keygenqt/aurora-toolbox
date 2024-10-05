@@ -24,15 +24,17 @@ export const DevicesGroups = GObject.registerClass({
 		'IdDevicesActiveGroup',
 		'IdDevicesNonActiveGroup',
 	],
-	Signals: {
-		'navigation-push': {
-			param_types: [GObject.TYPE_STRING]
-		},
-	},
 }, class extends Gtk.Box {
+	#window
+
 	constructor(params) {
 		super(params);
 		this.#initDevices();
+	}
+
+	vfunc_realize() {
+		super.vfunc_realize();
+		this.#window = this.get_native();
 	}
 
 	#initDevices() {
@@ -53,7 +55,7 @@ export const DevicesGroups = GObject.registerClass({
 			// Init widget
 			var device = new Adw.ActionRow({
 				// id: 'test',
-				title: 'Device: 192.168.1.45',
+				title: `Device: 192.168.1.45:${id}`,
 				subtitle: `Id: ${id}`,
 				'action-name': `Devices.${action}`
 			});
@@ -65,7 +67,9 @@ export const DevicesGroups = GObject.registerClass({
 			this._IdDevicesActiveGroup.add(device);
 			// Add callback
 			actions[action] = () => {
-				this.emit('navigation-push', 'page-device');
+				this.#window.navigation().push('page-device', {
+					title: `Device: 192.168.1.45:${id}`
+				});
 			}
 		});
 		// Init actions

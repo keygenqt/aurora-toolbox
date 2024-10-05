@@ -26,47 +26,30 @@ import '../pages/tools/ToolsPage.js';
 import '../pages/vscode/VscodePage.js';
 import '../pages/welcome/WelcomePage.js';
 
-const NavigationPages = Object.freeze({
-	AtbDevicePage:		'IdAtbDevice',
-	AtbDevicesPage:		'IdAtbDevices',
-	AtbEmulatorPage:	'IdAtbEmulator',
-	AtbFlutterPage:		'IdAtbFlutter',
-	AtbPsdkPage:		'IdAtbPsdk',
-	AtbSdkPage:			'IdAtbSdk',
-	AtbToolsPage:		'IdAtbTools',
-	AtbVscodePage:		'IdAtbVscode',
-	AtbWelcomePage:		'IdAtbWelcome',
-
-});
-
 export const NavigationWidget = GObject.registerClass({
 	GTypeName: 'AtbNavigationWidget',
 	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/widgets/NavigationWidget.ui',
 	InternalChildren: [
 		'IdNavigation',
-		...Object.keys(NavigationPages).map((k) => NavigationPages[k])
 	],
 }, class extends Gtk.Box {
+	#data = {}
 
 	constructor(params) {
 		super(params);
-		this.#connectNavigationPages();
 	}
 
-	#connectNavigationPages() {
-		Object.keys(NavigationPages).forEach((key) => {
-			// Init signal from page back navigation
-			try {
-				this[`_${NavigationPages[key]}`].connect('navigation-back', () => {
-					this._IdNavigation.pop()
-				});
-			} catch (e) {}
-			// Init signal from page open tag navigation
-			try {
-				this[`_${NavigationPages[key]}`].connect('navigation-push', (_, value) => {
-					this._IdNavigation.push_by_tag(value)
-				});
-			} catch (e) {}
-		})
+	params(key) {
+		return this.#data[key];
+	}
+
+	push(key, params = {}) {
+		this.#data[key] = params;
+		this._IdNavigation.push_by_tag(key);
+	}
+
+	pop() {
+		this.#data[key] = {};
+		this._IdNavigation.pop();
 	}
 });

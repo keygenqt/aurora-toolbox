@@ -4,7 +4,7 @@
 		<property name="width-request">400</property>
 		<property name="height-request">760</property>
 		<property name="content">
-			<object class="AtbNavigationWidget"/>
+			<object class="AtbNavigationWidget" id="IdAtbNavigation"/>
 		</property>
 	</template>
 </interface>

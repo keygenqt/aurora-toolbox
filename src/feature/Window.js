@@ -25,7 +25,9 @@ import './widgets/BoxWidget.js';
 export const Window = GObject.registerClass({
 	GTypeName: 'AtbWindow',
 	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/Window.ui',
-	InternalChildren: [],
+	InternalChildren: [
+		'IdAtbNavigation'
+	],
 }, class extends Adw.ApplicationWindow {
 	#dbusProxy = new DBusProxy();
 
@@ -59,5 +61,9 @@ export const Window = GObject.registerClass({
 			this.add_css_class('is-light');
 			this.remove_css_class('is-dark');
 		}
+	}
+
+	navigation() {
+		return this._IdAtbNavigation;
 	}
 });
