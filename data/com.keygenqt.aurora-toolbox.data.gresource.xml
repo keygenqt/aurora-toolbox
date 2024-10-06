@@ -37,6 +37,7 @@
 
 		<!-- widgets -->
 		<file>ui/widgets/BoxWidget.ui</file>
+		<file>ui/widgets/InfoBoxWidget.ui</file>
 		<file>ui/widgets/NavigationWidget.ui</file>
 	</gresource>
 	<gresource prefix="/com/keygenqt/aurora-toolbox/icons/scalable/actions">

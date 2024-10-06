@@ -59,6 +59,7 @@ export const WelcomePage = GObject.registerClass({
 			.catch((e) => Log.error(e))
 			.then((response) => {
 				if (response && response.code === 200) {
+					// @todo
 					// if (settings.get_boolean('first-open')) {
 					// 	this.#window.navigation().push(AppConstants.Pages.ToolsPage);
 					// } else {

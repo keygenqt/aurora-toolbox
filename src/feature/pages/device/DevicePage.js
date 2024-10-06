@@ -49,6 +49,6 @@ export const DevicePage = GObject.registerClass({
 	}
 
 	#initState() {
-		this._IdPageLabel.label = this.#params.title;
+		this._IdPageLabel.label = this.#params.host;
 	}
 });

@@ -38,6 +38,7 @@
 
 		<!-- widgets -->
 		<file>feature/widgets/BoxWidget.js</file>
+		<file>feature/widgets/InfoBoxWidget.js</file>
 		<file>feature/widgets/NavigationWidget.js</file>
 
 		<!-- base -->

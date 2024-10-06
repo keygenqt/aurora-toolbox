@@ -18,6 +18,15 @@ import Gtk from 'gi://Gtk';
 import Adw from 'gi://Adw';
 
 import { AppConstants } from '../../../../base/constants/AppConstants.js';
+import { ShellExec } from '../../../../base/connectors/ShellExec.js';
+import { AuroraAPI } from '../../../../base/connectors/AuroraAPI.js';
+import { Log } from '../../../../base/utils/Log.js';
+
+const DevicesGroupsStates = Object.freeze({
+	LOADING:	1,
+	EMPTY:		2,
+	DONE:		3,
+});
 
 export const DevicesGroups = GObject.registerClass({
 	GTypeName: 'AtbDevicesGroups',
@@ -25,13 +34,19 @@ export const DevicesGroups = GObject.registerClass({
 	InternalChildren: [
 		'IdDevicesActiveGroup',
 		'IdDevicesNonActiveGroup',
+		'IdDevicesLoading',
+		'IdPreferencesPage',
+		'IdDevicesEmpty',
 	],
 }, class extends Gtk.Box {
 	#window
+	#devices = []
+	#widgets = []
 
 	constructor(params) {
 		super(params);
 		this.#initDevices();
+
 	}
 
 	vfunc_realize() {
@@ -39,42 +54,88 @@ export const DevicesGroups = GObject.registerClass({
 		this.#window = this.get_native();
 	}
 
+	#statePage(state) {
+		if (state == DevicesGroupsStates.LOADING) {
+			this.valign = Gtk.Align.CENTER;
+			this._IdPreferencesPage.visible = false;
+			this._IdDevicesLoading.visible = true;
+			this._IdDevicesEmpty.visible = false;
+			return
+		}
+		if (state == DevicesGroupsStates.EMPTY) {
+			this.valign = Gtk.Align.CENTER;
+			this._IdPreferencesPage.visible = false;
+			this._IdDevicesLoading.visible = false;
+			this._IdDevicesEmpty.visible = true;
+			return
+		}
+		if (state == DevicesGroupsStates.DONE) {
+			this.valign = Gtk.Align.TOP;
+			this._IdPreferencesPage.visible = true;
+			this._IdDevicesLoading.visible = false;
+			this._IdDevicesEmpty.visible = false;
+			this._IdDevicesActiveGroup.visible = this.#devices.filter((d) => d.active).length != 0;
+			this._IdDevicesNonActiveGroup.visible = this.#devices.filter((d) => !d.active).length != 0;
+			return
+		}
+	}
+
 	#initDevices() {
-		// @todo
-		// Not sate non active
-		this._IdDevicesNonActiveGroup.visible = false;
-
-		// @todo
-		// Demo ids devices
-		const idsDevices = [22, 23, 24, 25];
-		const actions = {};
-
-		// @todo
-		// Set demo active
-		idsDevices.forEach((id) => {
-			// Create action
-			const action = `action-${id}`;
-			// Init widget
-			var device = new Adw.ActionRow({
-				// id: 'test',
-				title: `Device: 192.168.1.45:${id}`,
-				subtitle: `Id: ${id}`,
-				'action-name': `Devices.${action}`
+		this.#statePage(DevicesGroupsStates.LOADING);
+		ShellExec.communicateAsync(AuroraAPI.deviceList())
+			.catch((e) => Log.error(e))
+			.then(async (response) => {
+				if (response && response.code === 200) {
+					this.#getListDevices(response.value);
+				} else {
+					this.#statePage(DevicesGroupsStates.EMPTY);
+					Log.error(response)
+				}
 			});
-			device.add_suffix(new Gtk.Image({
+	}
+
+	#getListDevices(config) {
+		for (const index in config) {
+			ShellExec.communicateAsync(AuroraAPI.deviceCommand(config[index]['host'], 'ls'))
+				.catch((e) => Log.error(e))
+				.then(async (response) => {
+					config[index]['active'] = !Array.isArray(response) && response.code === 200;
+					this.#addDeviceGroup(config[index]);
+					this.#devices.push(config[index]);
+					this.#statePage(DevicesGroupsStates.DONE);
+				});
+		}
+	}
+
+	#addDeviceGroup(device) {
+		// Create action
+		const actions = {};
+		const group = `group-${device.host.replaceAll('.', '_')}`;
+		const action = `action-${device.host.replaceAll('.', '_')}`;
+		// Create widget
+		const actionRow = new Adw.ActionRow({
+			'title': `${device.host}:${device.port}`,
+			'subtitle': device.auth.includes('.ssh') ? _('Auth: SSH key') : _('Auth: Password'),
+			'action-name': `${group}.${action}`
+		});
+		if (device.active) {
+			// If action add icon
+			actionRow.add_suffix(new Gtk.Image({
 				'icon-name': 'go-next',
 			}));
-			device.set_activatable_widget(device);
-			// Add to list
-			this._IdDevicesActiveGroup.add(device);
-			// Add callback
+			// Activatable on yourself
+			actionRow.set_activatable_widget(actionRow);
+			// Add object action
 			actions[action] = () => {
-				this.#window.navigation().push(AppConstants.Pages.DevicePage, {
-					title: `Device: 192.168.1.45:${id}`
-				});
+				this.#window.navigation().push(AppConstants.Pages.DevicePage, device);
 			}
-		});
-		// Init actions
-		this.connectGroup('Devices', actions);
+			// Activate action
+			actionRow.connectGroup(group, actions);
+			// Add to active group
+			this._IdDevicesActiveGroup.add(actionRow);
+		} else {
+			// Add to non active group
+			this._IdDevicesNonActiveGroup.add(actionRow);
+		}
 	}
 });

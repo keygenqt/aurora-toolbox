@@ -26,11 +26,7 @@ String.prototype.argUri = function (arg = {}) {
         return this;
     } else {
         return this + '?' + Object.keys(arg).map((key) => {
-            if ((typeof arg[key]) === 'number' || (typeof arg[key]) === 'boolean') {
-                return `${key}=${arg[key]}`
-            } else {
-                return `${key}="${arg[key]}"`
-            }
+            return `${key}=${arg[key]}`;
         }).join('&');
     }
 };

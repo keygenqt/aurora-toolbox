@@ -20,7 +20,7 @@
 						<child>
 							<object class="GtkImage">
 								<property name="icon-name">network-error-symbolic</property>
-								<property name="icon-size">large</property>
+								<property name="pixel-size">64x64</property>
 							</object>
 						</child>
 						<child>

@@ -13,12 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Gio from 'gi://Gio';
-
-import { Log } from '../utils/Log.js';
 import { AppConstants } from '../constants/AppConstants.js';
 
 export const AuroraAPI = {
+    //////////////////////////////////////////
+    // Device
+    /**
+     * Get list devices
+     *
+     * @returns route
+     */
+    deviceList: function() {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route", '/device/list'
+        ]
+    },
+    /**
+     * Execute command
+     *
+     * @returns route
+     */
+    deviceCommand: function(host, execute) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/device/command'.argUri({
+                host: host,
+                execute: execute,
+            })
+        ]
+    },
     //////////////////////////////////////////
     // Settings
     /**

@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 import GLib from 'gi://GLib';
 
@@ -87,4 +88,28 @@ export const Helper = {
     setLanguage: function(language) {
         GLib.setenv('LANG', language, true);
     },
+
+    /**
+     * Create params widget
+     */
+    makeParams: function(data) {
+        return Object.fromEntries(Object.entries(data).map(([key, type]) => {
+            var flags = GObject.ParamFlags.READWRITE | GObject.ParamFlags.CONSTRUCT;
+            if (type == 'string') {
+                return [key, GObject.ParamSpec.string(key, key, key, flags, '')];
+            } else if (type == 'boolean') {
+                return [key, GObject.ParamSpec.boolean(key, key, key, flags, false)];
+            } else if (type == 'double') {
+                return [key, GObject.ParamSpec.double(key, key, key, flags, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER, 0)];
+            } else if (type == 'int') {
+                return [key, GObject.ParamSpec.int(key, key, key, flags, GLib.MININT32, GLib.MAXINT32, 0)];
+            } else if (type == 'uint') {
+                return [key, GObject.ParamSpec.uint(key, key, key, flags, 0, GLib.MAXUINT32, 0)];
+            } else if (type == 'object') {
+                return [key, GObject.ParamSpec.object(key, key, key, flags, GObject.Object.$gtype, null)];
+            } else {
+                return [key, null];
+            }
+        }).filter((p) => p[1] !== null));
+    }
 }
