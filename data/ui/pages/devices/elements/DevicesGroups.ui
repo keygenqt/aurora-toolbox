@@ -9,12 +9,16 @@
 				<property name="visible">false</property>
 				<child>
 					<object class="AdwPreferencesGroup" id="IdDevicesActiveGroup">
+						<property name="margin-start">10</property>
+						<property name="margin-end">10</property>
 						<property name="title" translatable="true">Active</property>
 						<property name="description" translatable="yes">Devices that are connected.</property>
 					</object>
 				</child>
 				<child>
 					<object class="AdwPreferencesGroup" id="IdDevicesNonActiveGroup">
+						<property name="margin-start">10</property>
+						<property name="margin-end">10</property>
 						<property name="title" translatable="true">Non active</property>
 						<property name="description" translatable="yes">Devices not connected.</property>
 					</object>

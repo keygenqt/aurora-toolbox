@@ -116,7 +116,7 @@ export const DevicesGroups = GObject.registerClass({
 		const actionRow = new Adw.ActionRow({
 			'title': `${device.host}:${device.port}`,
 			'subtitle': device.auth.includes('.ssh') ? _('Auth: SSH key') : _('Auth: Password'),
-			'action-name': `${group}.${action}`
+			'action-name': `${group}.${action}`,
 		});
 		if (device.active) {
 			// If action add icon

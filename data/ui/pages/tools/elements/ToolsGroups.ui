@@ -6,6 +6,8 @@
 			<object class="AdwPreferencesPage">
 				<child>
 					<object class="AdwPreferencesGroup">
+						<property name="margin-start">10</property>
+						<property name="margin-end">10</property>
 						<property name="title" translatable="true">Device Management</property>
 						<property name="description" translatable="yes">In this section you can find devices added to your configuration file or their emulation in VirtualBox.</property>
 						<child>
@@ -40,6 +42,8 @@
 				</child>
 				<child>
 					<object class="AdwPreferencesGroup">
+						<property name="margin-start">10</property>
+						<property name="margin-end">10</property>
 						<property name="title" translatable="true">Development tools</property>
 						<property name="description" translatable="yes">In this section you can manage available development tools for Aurora OS.</property>
 						<child>
@@ -102,6 +106,8 @@
 				</child>
 				<child>
 					<object class="AdwPreferencesGroup">
+						<property name="margin-start">10</property>
+						<property name="margin-end">10</property>
 						<property name="title" translatable="true">Aurora CLI</property>
 						<property name="description" translatable="yes">Connections are managed through the base CLI application configuration file. Configure it to use devices and other functionality.</property>
 						<child>

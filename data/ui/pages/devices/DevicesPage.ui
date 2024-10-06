@@ -9,11 +9,7 @@
 					<object class="AdwHeaderBar"/>
 				</child>
 				<property name="content">
-					<object class="AtbBoxWidget">
-						<child>
-							<object class="AtbDevicesGroups" id="IdDevicesGroups"/>
-						</child>
-					</object>
+					<object class="AtbDevicesGroups" id="IdDevicesGroups"/>
 				</property>
 			</object>
 		</property>

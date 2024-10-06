@@ -19,11 +19,7 @@
 					</object>
 				</child>
 				<property name="content">
-					<object class="AtbBoxWidget">
-						<child>
-							<object class="AtbToolsGroups"/>
-						</child>
-					</object>
+					<object class="AtbToolsGroups"/>
 				</property>
 			</object>
 		</property>
