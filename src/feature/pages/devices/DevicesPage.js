@@ -25,10 +25,22 @@ export const DevicesPage = GObject.registerClass({
 	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/pages/devices/DevicesPage.ui',
 	InternalChildren: [
 		'IdDevicesGroups',
+		'IdPageRefresh',
 	],
 }, class extends Adw.NavigationPage {
 	constructor(params) {
 		super(params);
 		this.tag = AppConstants.Pages.DevicesPage;
+		this.#initActions();
+	}
+
+	#initActions() {
+		this._IdDevicesGroups.connectWithEmit('pageReady', () => {
+			this._IdPageRefresh.visible = true;
+		});
+		this._IdPageRefresh.connect('clicked', () => {
+			this._IdPageRefresh.visible = false;
+			this._IdDevicesGroups.refresh();
+		});
 	}
 });

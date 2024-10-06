@@ -38,20 +38,40 @@ export const DevicesGroups = GObject.registerClass({
 		'IdPreferencesPage',
 		'IdDevicesEmpty',
 	],
+	Signals: {
+		'pageReady': {},
+	},
 }, class extends Gtk.Box {
 	#window
+	#length
 	#devices = []
-	#widgets = []
+	#actionWidgets = []
+	#nonActionWidgets = []
 
 	constructor(params) {
 		super(params);
 		this.#initDevices();
-
 	}
 
 	vfunc_realize() {
 		super.vfunc_realize();
 		this.#window = this.get_native();
+	}
+
+	refresh() {
+		this.#initDevices();
+	}
+
+	#clear() {
+		for (let step = 0; step < this.#actionWidgets.length; step++) {
+			this._IdDevicesActiveGroup.remove(this.#actionWidgets[step]);
+		}
+		for (let step = 0; step < this.#nonActionWidgets.length; step++) {
+			this._IdDevicesNonActiveGroup.remove(this.#nonActionWidgets[step]);
+		}
+		this.#actionWidgets = [];
+		this.#nonActionWidgets = [];
+		this.#length = undefined;
 	}
 
 	#statePage(state) {
@@ -81,11 +101,13 @@ export const DevicesGroups = GObject.registerClass({
 	}
 
 	#initDevices() {
+		this.#clear();
 		this.#statePage(DevicesGroupsStates.LOADING);
 		ShellExec.communicateAsync(AuroraAPI.deviceList())
 			.catch((e) => Log.error(e))
 			.then(async (response) => {
 				if (response && response.code === 200) {
+					this.#length = response.value.length;
 					this.#getListDevices(response.value);
 				} else {
 					this.#statePage(DevicesGroupsStates.EMPTY);
@@ -102,7 +124,6 @@ export const DevicesGroups = GObject.registerClass({
 					config[index]['active'] = !Array.isArray(response) && response.code === 200;
 					this.#addDeviceGroup(config[index]);
 					this.#devices.push(config[index]);
-					this.#statePage(DevicesGroupsStates.DONE);
 				});
 		}
 	}
@@ -133,9 +154,18 @@ export const DevicesGroups = GObject.registerClass({
 			actionRow.connectGroup(group, actions);
 			// Add to active group
 			this._IdDevicesActiveGroup.add(actionRow);
+			// Save widget
+			this.#actionWidgets.push(actionRow);
 		} else {
 			// Add to non active group
 			this._IdDevicesNonActiveGroup.add(actionRow);
+			// Save widget
+			this.#nonActionWidgets.push(actionRow);
+		}
+		// Emit done
+		if (this.#length === (this.#actionWidgets.length + this.#nonActionWidgets.length)) {
+			this.emit('pageReady');
+			this.#statePage(DevicesGroupsStates.DONE);
 		}
 	}
 });
