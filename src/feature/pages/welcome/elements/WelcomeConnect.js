@@ -16,8 +16,28 @@
 import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 
+import { Helper } from '../../../../base/utils/Helper.js';
+
 export const WelcomeConnect = GObject.registerClass({
 	GTypeName: 'AtbWelcomeConnect',
 	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/pages/welcome/elements/WelcomeConnect.ui',
-	InternalChildren: [],
-}, class extends Gtk.Box {});
+	Properties: Helper.makeParams({
+        'version': 'string',
+    }),
+	InternalChildren: [
+		'IdAuroraCLIVersion'
+	],
+}, class extends Gtk.Box {
+	constructor(params) {
+		super(params);
+		this.#initProperties();
+	}
+
+	#initProperties() {
+		// version
+		this._IdAuroraCLIVersion.label = this['version'];
+		this.connect('notify::version', () => {
+			this._IdAuroraCLIVersion.label = this['version'];
+		})
+	}
+});

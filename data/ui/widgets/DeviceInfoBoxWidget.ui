@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<template class="AtbDeviceInfoBoxWidget" parent="GtkBox">
+		<style>
+			<class name="card"/>
+		</style>
+		<property name="orientation">vertical</property>
+		<child>
+			<object class="GtkBox">
+				<style>
+					<class name="AtbDeviceInfoBoxWidget"/>
+				</style>
+				<property name="orientation">vertical</property>
+				<property name="spacing">10</property>
+				<property name="margin-top">18</property>
+				<property name="margin-bottom">18</property>
+				<property name="margin-start">18</property>
+				<property name="margin-end">18</property>
+				<child>
+					<object class="GtkImage" id="IdDeviceInfoBoxIcon">
+						<property name="pixel-size">64x64</property>
+					</object>
+				</child>
+				<child>
+					<object class="GtkLabel" id="IdDeviceInfoBoxName">
+						<property name="wrap">true</property>
+						<property name="justify">center</property>
+						<style>
+							<class name="name"/>
+						</style>
+					</object>
+				</child>
+				<child>
+					<object class="GtkLabel" id="IdDeviceInfoBoxArch">
+						<property name="wrap">true</property>
+						<property name="justify">center</property>
+						<style>
+							<class name="arch"/>
+						</style>
+					</object>
+				</child>
+			</object>
+		</child>
+	</template>
+</interface>

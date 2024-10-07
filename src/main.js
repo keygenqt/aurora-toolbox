@@ -2,6 +2,7 @@ import 'gi://Gdk?version=4.0';
 import 'gi://Gtk?version=4.0';
 import 'gi://Adw?version=1';
 
+import Gtk from 'gi://Gtk';
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 
@@ -13,12 +14,21 @@ import './base/extensions/String.js';
 
 import { Application } from './feature/Application.js';
 
+pkg.localeName = _('Aurora Toolbox')
+
+// @todo Set name but shouldn't with locale name
+GLib.set_prgname(pkg.localeName);
+// @todo Not set locale name
+GLib.set_application_name(pkg.localeName);
+// @todo Not show icon
+Gtk.Window.set_default_icon_name(pkg.name);
+
 let _argv;
 let _app;
 
 export function main(argv) {
 	_argv = argv;
-	_app = new Application({ 'application-id': pkg.name })
+	_app = new Application({ 'application-id': pkg.name });
 	return _app.run(_argv);
 }
 

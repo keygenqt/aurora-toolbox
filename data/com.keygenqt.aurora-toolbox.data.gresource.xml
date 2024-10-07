@@ -37,11 +37,12 @@
 
 		<!-- widgets -->
 		<file>ui/widgets/BoxWidget.ui</file>
+		<file>ui/widgets/DeviceInfoBoxWidget.ui</file>
 		<file>ui/widgets/InfoBoxWidget.ui</file>
 		<file>ui/widgets/NavigationWidget.ui</file>
 	</gresource>
 	<gresource prefix="/com/keygenqt/aurora-toolbox/icons/scalable/actions">
-		<file alias="aurora-toolbox-ic_launcher.svg">icons/ic_launcher.svg</file>
+		<file alias="com.keygenqt.aurora-toolbox.svg">icons/com.keygenqt.aurora-toolbox.svg</file>
 		<file alias="aurora-toolbox-device.svg">icons/device.svg</file>
 		<file alias="aurora-toolbox-flutter.svg">icons/flutter.svg</file>
 		<file alias="aurora-toolbox-multiple-devices.svg">icons/multiple-devices.svg</file>

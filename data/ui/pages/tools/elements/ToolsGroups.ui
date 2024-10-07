@@ -115,7 +115,7 @@
 								<property name="activatable-widget">IdGroupAuroraCLI</property>
 								<property name="action-name">AuroraCLI.configuration</property>
 								<property name="title" translatable="true">Configuration</property>
-								<property name="icon-name">aurora-toolbox-ic_launcher</property>
+								<property name="icon-name">com.keygenqt.aurora-toolbox</property>
 								<child>
 									<object class="GtkImage">
 										<property name="icon-name">document-open-symbolic</property>

@@ -6,13 +6,84 @@
 		<property name="child">
 			<object class="AdwToolbarView">
 			<child type="top">
-				<object class="AdwHeaderBar"/>
+				<object class="AdwHeaderBar">
+					<child type="start">
+						<object class="GtkButton" id="IdPageRefresh">
+							<property name="visible">false</property>
+							<property name="icon-name">view-refresh-symbolic</property>
+						</object>
+					</child>
+				</object>
 			</child>
 			<property name="content">
-				<object class="GtkLabel" id="IdPageLabel">
-					<property name="label"></property>
-					<property name="wrap">true</property>
-					<property name="justify">center</property>
+				<object class="GtkBox" id="IdDeviceBoxPage">
+					<property name="orientation">vertical</property>
+					<property name="hexpand">true</property>
+					<property name="valign">center</property>
+					<child>
+						<object class="AdwPreferencesPage" id="IdPreferencesPage">
+							<property name="visible">false</property>
+							<child>
+								<object class="AdwPreferencesGroup" id="IdDeviceInfoGroup">
+									<property name="margin-start">10</property>
+									<property name="margin-end">10</property>
+									<property name="title" translatable="true">Info</property>
+									<property name="description" translatable="yes">Information about the device.</property>
+									<child>
+										<object class="AtbDeviceInfoBoxWidget" id="IdDeviceInfo"/>
+									</child>
+								</object>
+							</child>
+							<child>
+								<object class="AdwPreferencesGroup">
+									<property name="margin-start">10</property>
+									<property name="margin-end">10</property>
+									<property name="title" translatable="true">Tools</property>
+									<property name="description" translatable="yes">Interact with the device.</property>
+									<child>
+										<object class="AdwActionRow" id="IdGroupInstallRPM">
+											<property name="activatable-widget">IdGroupInstallRPM</property>
+											<property name="action-name">DeviceTool.install</property>
+											<property name="title" translatable="true">Install package</property>
+											<property name="icon-name">system-software-install-symbolic</property>
+											<child>
+												<object class="GtkImage">
+													<property name="icon-name">folder-open-symbolic</property>
+												</object>
+											</child>
+										</object>
+									</child>
+									<child>
+										<object class="AdwActionRow" id="IdGroupUploadFile">
+											<property name="activatable-widget">IdGroupUploadFile</property>
+											<property name="action-name">DeviceTool.upload</property>
+											<property name="title" translatable="true">Upload file</property>
+											<property name="icon-name">document-save-symbolic</property>
+											<child>
+												<object class="GtkImage">
+													<property name="icon-name">folder-open-symbolic</property>
+												</object>
+											</child>
+										</object>
+									</child>
+								</object>
+							</child>
+						</object>
+					</child>
+					<child>
+						<object class="GtkSpinner" id="IdDeviceLoading">
+							<property name="halign">center</property>
+							<property name="spinning">true</property>
+							<property name="width-request">40</property>
+							<property name="height-request">40</property>
+						</object>
+					</child>
+					<child>
+						<object class="AtbInfoBoxWidget" id="IdDeviceEmpty">
+							<property name="icon-name">face-uncertain-symbolic</property>
+							<property name="message" translatable="yes">Failed to connect to the device</property>
+						</object>
+					</child>
 				</object>
 			</property>
 			</object>

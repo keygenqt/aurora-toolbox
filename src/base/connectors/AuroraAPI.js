@@ -29,6 +29,19 @@ export const AuroraAPI = {
         ]
     },
     /**
+     * Get info device
+     *
+     * @returns route
+     */
+    deviceInfo: function(host) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/device/info'.argUri({
+                host: host,
+            })
+        ]
+    },
+    /**
      * Execute command
      *
      * @returns route

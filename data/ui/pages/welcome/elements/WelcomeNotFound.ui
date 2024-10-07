@@ -32,7 +32,7 @@
 						<property name="valign">center</property>
 						<property name="child">
 							<object class="AdwButtonContent">
-							<property name="icon-name">document-save-symbolic</property>
+							<property name="icon-name">system-software-install-symbolic</property>
 							<property name="label" translatable="yes">Install</property>
 							</object>
 						</property>
