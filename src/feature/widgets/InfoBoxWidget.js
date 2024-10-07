@@ -24,15 +24,24 @@ export const InfoBoxWidget = GObject.registerClass({
 	Properties: Helper.makeParams({
         'icon-name': 'string',
         'message': 'string',
+        'button-icon': 'string',
+        'button-text': 'string',
     }),
 	InternalChildren: [
 		'IdInfoBoxIcon',
 		'IdInfoBoxMessage',
+		'IdInfoBoxButton',
+		'IdInfoBoxButtonContent',
 	],
+	Signals: {
+		'button-clicked': {},
+	},
 }, class extends Gtk.Box {
 	constructor(params) {
 		super(params);
 		this.#initProperties();
+		this.#actionsConnect();
+		this.#updateButton();
 	}
 
 	#initProperties() {
@@ -40,11 +49,37 @@ export const InfoBoxWidget = GObject.registerClass({
 		this._IdInfoBoxIcon.set_from_icon_name(this['icon-name']);
 		this.connect('notify::icon-name', () => {
 			this._IdInfoBoxIcon.set_from_icon_name(this['icon-name']);
-		})
+		});
 		// message
 		this._IdInfoBoxMessage.label = this['message'];
 		this.connect('notify::message', () => {
 			this._IdInfoBoxMessage.label = this['message'];
-		})
+		});
+		// button-text
+		this.connect('notify::button-icon', () => this.#updateButton());
+		// button-icon
+		this.connect('notify::button-text', () => this.#updateButton());
+	}
+
+	#updateButton() {
+		if (Boolean(this['button-text'])) {
+			this._IdInfoBoxButton.visible = true;
+			if (Boolean(this['button-icon'])) {
+				this._IdInfoBoxButtonContent.visible = true;
+				this._IdInfoBoxButtonContent.set_icon_name(this['button-icon']);
+				this._IdInfoBoxButtonContent.label = this['button-text'];
+			} else {
+				this._IdInfoBoxButtonContent.visible = false;
+				this._IdInfoBoxButton.label = this['button-text'];
+			}
+		} else {
+			this._IdInfoBoxButton.visible = false;
+		}
+	}
+
+	#actionsConnect() {
+		this._IdInfoBoxButton.connect('clicked', () => {
+			this.emit('button-clicked');
+		});
 	}
 });

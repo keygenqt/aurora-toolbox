@@ -21,5 +21,17 @@
 				</style>
 			</object>
 		</child>
+		<child>
+			<object class="GtkButton" id="IdInfoBoxButton">
+				<property name="halign">center</property>
+				<property name="valign">center</property>
+				<property name="child">
+					<object class="AdwButtonContent" id="IdInfoBoxButtonContent"/>
+				</property>
+				<style>
+					<class name="pill"/>
+				</style>
+			</object>
+		</child>
 	</template>
 </interface>

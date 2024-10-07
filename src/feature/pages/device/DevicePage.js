@@ -34,7 +34,6 @@ export const DevicePage = GObject.registerClass({
 	InternalChildren: [
 		'IdDeviceBoxPage',
 		'IdPreferencesPage',
-		'IdPreferencesPage',
 		'IdDeviceInfoGroup',
 		'IdDeviceInfo',
 		'IdDeviceLoading',
@@ -50,7 +49,7 @@ export const DevicePage = GObject.registerClass({
 	constructor(params) {
 		super(params);
 		this.tag = AppConstants.Pages.DevicePage;
-		this.#actionsConnect()
+		this.#actionsConnect();
 	}
 
 	// Create

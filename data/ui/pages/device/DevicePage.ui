@@ -81,7 +81,7 @@
 					<child>
 						<object class="AtbInfoBoxWidget" id="IdDeviceEmpty">
 							<property name="icon-name">face-uncertain-symbolic</property>
-							<property name="message" translatable="yes">Failed to connect to the device</property>
+							<property name="message" translatable="yes">Failed to connect to the device.</property>
 						</object>
 					</child>
 				</object>

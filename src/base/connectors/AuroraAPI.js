@@ -17,6 +17,28 @@ import { AppConstants } from '../constants/AppConstants.js';
 
 export const AuroraAPI = {
     //////////////////////////////////////////
+    // Emulator
+    /**
+     * Start emulator
+     *
+     * @returns route
+     */
+    emulatorStart: function() {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route", '/emulator/start'
+        ]
+    },
+    /**
+     * Get info emulator
+     *
+     * @returns route
+     */
+    emulatorInfo: function() {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route", '/emulator/info'
+        ]
+    },
+    //////////////////////////////////////////
     // Device
     /**
      * Get list devices
