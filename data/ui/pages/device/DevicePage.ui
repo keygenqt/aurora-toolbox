@@ -30,7 +30,7 @@
 									<property name="title" translatable="true">Info</property>
 									<property name="description" translatable="yes">Information about the device.</property>
 									<child>
-										<object class="AtbDeviceInfoBoxWidget" id="IdDeviceInfo"/>
+										<object class="AtbIconInfoBoxWidget" id="IdDeviceInfo"/>
 									</child>
 								</object>
 							</child>

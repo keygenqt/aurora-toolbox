@@ -55,11 +55,16 @@ export const WelcomePage = GObject.registerClass({
 
 	#loadingConnect() {
 		this.#statePage(WelcomePageStates.LOADING);
-		ShellExec.communicateAsync(AuroraAPI.infoVersion())
+		ShellExec.communicateAsync(AuroraAPI.appVersions())
 			.catch((e) => Log.error(e))
 			.then((response) => {
 				if (response && response.code === 200) {
-					this._IdConnect.version = `v${response.value}`;
+					if (response.value.INSTALLED !== response.value.LATEST) {
+						const latest = _('latest')
+						this._IdConnect.version = `${response.value.INSTALLED} (${latest}: ${response.value.LATEST})`;
+					} else {
+						this._IdConnect.version = `${response.value.INSTALLED}`;
+					}
 					// @todo
 					// if (settings.get_boolean('first-open')) {
 					// 	this.#window.navigation().push(AppConstants.Pages.ToolsPage);

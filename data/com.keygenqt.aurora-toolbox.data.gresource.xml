@@ -6,6 +6,7 @@
 
 		<!-- dialogs -->
 		<file>ui/dialogs/AboutDialog.ui</file>
+		<file>ui/dialogs/AlertDialog.ui</file>
 		<file>ui/dialogs/ErrorDialog.ui</file>
 		<file>ui/dialogs/LoadingDialog.ui</file>
 		<file>ui/dialogs/SettingsDialog.ui</file>
@@ -14,7 +15,6 @@
 		<file>ui/pages/device/DevicePage.ui</file>
 
 		<file>ui/pages/devices/DevicesPage.ui</file>
-		<file>ui/pages/devices/elements/DevicesGroups.ui</file>
 
 		<file>ui/pages/emulator/EmulatorPage.ui</file>
 
@@ -37,7 +37,7 @@
 
 		<!-- widgets -->
 		<file>ui/widgets/BoxWidget.ui</file>
-		<file>ui/widgets/DeviceInfoBoxWidget.ui</file>
+		<file>ui/widgets/IconInfoBoxWidget.ui</file>
 		<file>ui/widgets/InfoBoxWidget.ui</file>
 		<file>ui/widgets/NavigationWidget.ui</file>
 	</gresource>

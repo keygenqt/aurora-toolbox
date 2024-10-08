@@ -45,12 +45,12 @@ export const ToolsPage = GObject.registerClass({
 		this.connectGroup('AuroraCLI', {
             'configuration': () => {
 				// Get path from Aurora CLI
-				ShellExec.communicateAsync(AuroraAPI.infoPathConfiguration())
+				ShellExec.communicateAsync(AuroraAPI.appInfo())
 					.catch((e) => Log.error(e))
 					.then((response) => {
 						// Open path in editor
 						if (response && response.code === 200) {
-							Helper.fileOpen(response.value);
+							Helper.fileOpen(response.value.PATH_CONFIG);
 						} else {
 							Log.error('Error get path to configuration file.');
 						}

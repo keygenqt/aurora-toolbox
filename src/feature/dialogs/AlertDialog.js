@@ -13,21 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import GObject from 'gi://GObject';
+import Adw from 'gi://Adw';
 
-/**
- * Just common log for application
- */
-export const Log = {
-    error: function(error) {
-        console.error(error);
-    },
-    warn: function(error) {
-        console.warn(error);
-    },
-    debug: function(data) {
-        console.debug(data);
-    },
-    log: function(data) {
-        console.log(data);
-    },
-}
+export const AlertDialog = GObject.registerClass({
+	GTypeName: 'AtbAlertDialog',
+	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/dialogs/AlertDialog.ui',
+	InternalChildren: [],
+}, class extends Adw.AlertDialog {
+	#callback
+
+	present(window, title, text, callback) {
+		this.heading = title;
+		this.body = text;
+		this.#callback = callback;
+		super.present(window);
+	}
+
+	yes(_, response) {
+		if (this.#callback && response === 'yes') {
+			this.#callback();
+		}
+	}
+});

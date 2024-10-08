@@ -9,7 +9,6 @@
 		<file>feature/pages/device/DevicePage.js</file>
 
 		<file>feature/pages/devices/DevicesPage.js</file>
-		<file>feature/pages/devices/elements/DevicesGroups.js</file>
 
 		<file>feature/pages/emulator/EmulatorPage.js</file>
 
@@ -32,13 +31,14 @@
 
 		<!-- dialogs -->
 		<file>feature/dialogs/AboutDialog.js</file>
+		<file>feature/dialogs/AlertDialog.js</file>
 		<file>feature/dialogs/ErrorDialog.js</file>
 		<file>feature/dialogs/LoadingDialog.js</file>
 		<file>feature/dialogs/SettingsDialog.js</file>
 
 		<!-- widgets -->
 		<file>feature/widgets/BoxWidget.js</file>
-		<file>feature/widgets/DeviceInfoBoxWidget.js</file>
+		<file>feature/widgets/IconInfoBoxWidget.js</file>
 		<file>feature/widgets/InfoBoxWidget.js</file>
 		<file>feature/widgets/NavigationWidget.js</file>
 

@@ -6,13 +6,71 @@
 		<property name="child">
 			<object class="AdwToolbarView">
 			<child type="top">
-				<object class="AdwHeaderBar"/>
+				<object class="AdwHeaderBar">
+					<child type="start">
+						<object class="GtkButton" id="IdPageRefresh">
+							<property name="visible">false</property>
+							<property name="icon-name">view-refresh-symbolic</property>
+						</object>
+					</child>
+				</object>
 			</child>
 			<property name="content">
-				<object class="GtkLabel">
-					<property name="label" translatable="yes">SDK</property>
-					<property name="wrap">true</property>
-					<property name="justify">center</property>
+				<object class="GtkBox" id="IdSdkBoxPage">
+					<property name="orientation">vertical</property>
+					<property name="hexpand">true</property>
+					<property name="valign">center</property>
+					<child>
+						<object class="AdwPreferencesPage" id="IdPreferencesPage">
+							<property name="visible">false</property>
+							<child>
+								<object class="AdwPreferencesGroup" id="IdSdkInfoGroup">
+									<property name="margin-start">10</property>
+									<property name="margin-end">10</property>
+									<property name="title" translatable="true">Info</property>
+									<property name="description" translatable="yes">Information about the Aurora SDK.</property>
+									<child>
+										<object class="AtbIconInfoBoxWidget" id="IdSdkInfo"/>
+									</child>
+								</object>
+							</child>
+							<child>
+								<object class="AdwPreferencesGroup">
+									<property name="margin-start">10</property>
+									<property name="margin-end">10</property>
+									<property name="title" translatable="true">Tools</property>
+									<property name="description" translatable="yes">Interact with the Aurora SDK.</property>
+									<child>
+										<object class="AdwActionRow" id="IdGroupOpenTool">
+											<property name="activatable-widget">IdGroupOpenTool</property>
+											<property name="action-name">SdkTool.maintenance</property>
+											<property name="title" translatable="true">Maintenance Tool</property>
+											<property name="icon-name">emblem-system-symbolic</property>
+											<child>
+												<object class="GtkImage">
+													<property name="icon-name">media-playback-start-symbolic</property>
+												</object>
+											</child>
+										</object>
+									</child>
+								</object>
+							</child>
+						</object>
+					</child>
+					<child>
+						<object class="GtkSpinner" id="IdSdkLoading">
+							<property name="halign">center</property>
+							<property name="spinning">true</property>
+							<property name="width-request">40</property>
+							<property name="height-request">40</property>
+						</object>
+					</child>
+					<child>
+						<object class="AtbInfoBoxWidget" id="IdSdkEmpty">
+							<property name="icon-name">face-uncertain-symbolic</property>
+							<property name="message" translatable="yes">Not found installed the Aurora Sdk.</property>
+						</object>
+					</child>
 				</object>
 			</property>
 			</object>

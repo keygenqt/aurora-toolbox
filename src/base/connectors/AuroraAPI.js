@@ -17,6 +17,74 @@ import { AppConstants } from '../constants/AppConstants.js';
 
 export const AuroraAPI = {
     //////////////////////////////////////////
+    // PSDK
+    /**
+     * Get installed PSDK
+     *
+     * @returns route
+     */
+    psdkInstalled: function() {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route", '/psdk/installed'
+        ]
+    },
+    /**
+     * Get available PSDK
+     *
+     * @returns route
+     */
+    psdkAvailable: function() {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route", '/psdk/available'
+        ]
+    },
+    //////////////////////////////////////////
+    // Flutter
+    /**
+     * Get installed Flutter SDK
+     *
+     * @returns route
+     */
+    flutterInstalled: function() {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route", '/flutter/installed'
+        ]
+    },
+    /**
+     * Get available Flutter SDK
+     *
+     * @returns route
+     */
+    flutterAvailable: function() {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route", '/flutter/available'
+        ]
+    },
+    //////////////////////////////////////////
+    // Vscode
+    /**
+     * Get info about vscode
+     *
+     * @returns route
+     */
+    vscodeInfo: function() {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route", '/vscode/info'
+        ]
+    },
+    //////////////////////////////////////////
+    // SDK
+    /**
+     * Get installed Aurora SDK
+     *
+     * @returns route
+     */
+    sdkInstalled: function() {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route", '/sdk/installed'
+        ]
+    },
+    //////////////////////////////////////////
     // Emulator
     /**
      * Start emulator
@@ -60,20 +128,6 @@ export const AuroraAPI = {
             ...AppConstants.AuroraCLI, 'api', "--route",
             '/device/info'.argUri({
                 host: host,
-            })
-        ]
-    },
-    /**
-     * Execute command
-     *
-     * @returns route
-     */
-    deviceCommand: function(host, execute) {
-        return [
-            ...AppConstants.AuroraCLI, 'api', "--route",
-            '/device/command'.argUri({
-                host: host,
-                execute: execute,
             })
         ]
     },
@@ -152,25 +206,25 @@ export const AuroraAPI = {
         ]
     },
     //////////////////////////////////////////
-    // Info
+    // App
     /**
-     * Get path to configuration
+     * Get information about the application.
      *
      * @returns route
      */
-    infoPathConfiguration: function() {
+    appInfo: function() {
         return [
-            ...AppConstants.AuroraCLI, 'api', "--route", '/info/path/configuration'
+            ...AppConstants.AuroraCLI, 'api', "--route", '/app/info'
         ]
     },
     /**
-     * Get version application
+     * Get information about versions the application.
      *
      * @returns route
      */
-    infoVersion: function() {
+    appVersions: function() {
         return [
-            ...AppConstants.AuroraCLI, 'api', "--route", '/info/version'
+            ...AppConstants.AuroraCLI, 'api', "--route", '/app/versions'
         ]
     },
     //////////////////////////////////////////

@@ -16,7 +16,46 @@
 					</object>
 				</child>
 				<property name="content">
-					<object class="AtbDevicesGroups" id="IdDevicesGroups"/>
+					<object class="GtkBox" id="IdPageContent">
+						<property name="orientation">vertical</property>
+						<property name="hexpand">true</property>
+						<property name="valign">center</property>
+						<child>
+							<object class="AdwPreferencesPage" id="IdPreferencesPage">
+								<property name="visible">false</property>
+								<child>
+									<object class="AdwPreferencesGroup" id="IdDevicesActiveGroup">
+										<property name="margin-start">10</property>
+										<property name="margin-end">10</property>
+										<property name="title" translatable="true">Active</property>
+										<property name="description" translatable="yes">Devices that are connected.</property>
+									</object>
+								</child>
+								<child>
+									<object class="AdwPreferencesGroup" id="IdDevicesNonActiveGroup">
+										<property name="margin-start">10</property>
+										<property name="margin-end">10</property>
+										<property name="title" translatable="true">Non active</property>
+										<property name="description" translatable="yes">Devices not connected.</property>
+									</object>
+								</child>
+							</object>
+						</child>
+						<child>
+							<object class="GtkSpinner" id="IdDevicesLoading">
+								<property name="halign">center</property>
+								<property name="spinning">true</property>
+								<property name="width-request">40</property>
+								<property name="height-request">40</property>
+							</object>
+						</child>
+						<child>
+							<object class="AtbInfoBoxWidget" id="IdDevicesEmpty">
+								<property name="icon-name">face-uncertain-symbolic</property>
+								<property name="message" translatable="yes">No devices found in configuration file.</property>
+							</object>
+						</child>
+					</object>
 				</property>
 			</object>
 		</property>

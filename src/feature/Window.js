@@ -20,7 +20,7 @@ import Adw from 'gi://Adw';
 import { DBusProxy } from '../base/connectors/DBusProxy.js';
 
 import './widgets/BoxWidget.js';
-import './widgets/DeviceInfoBoxWidget.js';
+import './widgets/IconInfoBoxWidget.js';
 import './widgets/InfoBoxWidget.js';
 import './widgets/NavigationWidget.js';
 

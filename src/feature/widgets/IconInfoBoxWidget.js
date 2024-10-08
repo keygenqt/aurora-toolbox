@@ -18,9 +18,9 @@ import Gtk from 'gi://Gtk';
 
 import { Helper } from '../../base/utils/Helper.js';
 
-export const DeviceInfoBoxWidget = GObject.registerClass({
-	GTypeName: 'AtbDeviceInfoBoxWidget',
-	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/widgets/DeviceInfoBoxWidget.ui',
+export const IconInfoBoxWidget = GObject.registerClass({
+	GTypeName: 'AtbIconInfoBoxWidget',
+	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/widgets/IconInfoBoxWidget.ui',
 	Properties: Helper.makeParams({
         'icon': 'string',
         'name': 'string',

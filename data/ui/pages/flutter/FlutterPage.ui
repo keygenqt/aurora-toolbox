@@ -5,16 +5,58 @@
 		<property name="can-pop">true</property>
 		<property name="child">
 			<object class="AdwToolbarView">
-			<child type="top">
-				<object class="AdwHeaderBar"/>
-			</child>
-			<property name="content">
-				<object class="GtkLabel">
-					<property name="label" translatable="yes">Flutter</property>
-					<property name="wrap">true</property>
-					<property name="justify">center</property>
-				</object>
-			</property>
+				<child type="top">
+					<object class="AdwHeaderBar">
+						<child type="start">
+							<object class="GtkButton" id="IdPageRefresh">
+								<property name="visible">false</property>
+								<property name="icon-name">view-refresh-symbolic</property>
+							</object>
+						</child>
+					</object>
+				</child>
+				<property name="content">
+					<object class="GtkBox" id="IdPageContent">
+						<property name="orientation">vertical</property>
+						<property name="hexpand">true</property>
+						<property name="valign">center</property>
+						<child>
+							<object class="AdwPreferencesPage" id="IdPreferencesPage">
+								<property name="visible">false</property>
+								<child>
+									<object class="AdwPreferencesGroup" id="IdInstalledGroup">
+										<property name="margin-start">10</property>
+										<property name="margin-end">10</property>
+										<property name="title" translatable="true">Installed</property>
+										<property name="description" translatable="yes">Flutter versions that are already installed.</property>
+									</object>
+								</child>
+								<child>
+									<object class="AdwPreferencesGroup" id="IdAvailableGroup">
+										<property name="margin-start">10</property>
+										<property name="margin-end">10</property>
+										<property name="title" translatable="true">Available</property>
+										<property name="description" translatable="yes">Flutter versions that can be installed.</property>
+									</object>
+								</child>
+							</object>
+						</child>
+						<child>
+							<object class="GtkSpinner" id="IdLoading">
+								<property name="halign">center</property>
+								<property name="spinning">true</property>
+								<property name="width-request">40</property>
+								<property name="height-request">40</property>
+							</object>
+						</child>
+						<child>
+							<object class="AtbInfoBoxWidget" id="IdError">
+								<property name="icon-name">face-surprise-symbolic</property>
+								<property name="message" translatable="yes">Failed to get versions.</property>
+							</object>
+						</child>
+					</object>
+				</property>
 			</object>
 		</property>
 	</template>
