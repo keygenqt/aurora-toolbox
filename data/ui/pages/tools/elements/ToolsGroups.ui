@@ -66,7 +66,7 @@
 								<property name="title" translatable="true">Platform SDK</property>
 								<property name="icon-name">aurora-toolbox-psdk</property>
 								<property name="action-name">navigation.push</property>
-								<property name="action-target">'tag-PsdkPage'</property>
+								<property name="action-target">'tag-PsdksPage'</property>
 								<child>
 									<object class="GtkImage">
 										<property name="icon-name">go-next</property>

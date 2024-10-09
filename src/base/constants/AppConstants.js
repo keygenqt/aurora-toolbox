@@ -33,6 +33,7 @@ export const AppConstants = Object.freeze({
         EmulatorPage:   'tag-EmulatorPage',
         FlutterPage:    'tag-FlutterPage',
         PsdkPage:       'tag-PsdkPage',
+        PsdksPage:      'tag-PsdksPage',
         SdkPage:        'tag-SdkPage',
         ToolsPage:      'tag-ToolsPage',
         VscodePage:     'tag-VscodePage',

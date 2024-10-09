@@ -32,3 +32,11 @@
 .is-light .AtbWelcomePage .CssWelcomeText {
 	color: #274a3f;
 }
+
+.is-dark .InputError {
+	background-color: #463d3b;
+}
+
+.is-light .InputError {
+	background-color: #f6e9eb;
+}

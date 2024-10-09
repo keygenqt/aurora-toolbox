@@ -9,6 +9,7 @@
 		<file>ui/dialogs/AlertDialog.ui</file>
 		<file>ui/dialogs/ErrorDialog.ui</file>
 		<file>ui/dialogs/LoadingDialog.ui</file>
+		<file>ui/dialogs/PasswordDialog.ui</file>
 		<file>ui/dialogs/SettingsDialog.ui</file>
 
 		<!-- pages -->
@@ -21,6 +22,8 @@
 		<file>ui/pages/flutter/FlutterPage.ui</file>
 
 		<file>ui/pages/psdk/PsdkPage.ui</file>
+
+		<file>ui/pages/psdks/PsdksPage.ui</file>
 
 		<file>ui/pages/sdk/SdkPage.ui</file>
 

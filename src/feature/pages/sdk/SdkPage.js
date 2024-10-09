@@ -84,18 +84,18 @@ export const SdkPage = GObject.registerClass({
 
 	#initData() {
 		this.#statePage(SdkPageStates.LOADING);
-		ShellExec.communicateCallback(AuroraAPI.sdkInstalled(),
-			(response) => {
-				if (response && response.code === 200) {
-					this.#initPage(response.value);
+		ShellExec.communicateAsync(AuroraAPI.sdkInstalled())
+			.catch((e) => Log.error(e))
+			.then(async (response) => {
+				const responseData = Array.isArray(response) ? response.slice(-1)[0] : response;
+				if (responseData && responseData.code === 200) {
+					this.#initPage(responseData.value);
 					this.#statePage(SdkPageStates.DONE);
+				} else {
+					this.#statePage(DevicesPageStates.EMPTY);
+					Log.error(responseData)
 				}
-			},
-			(error) => {
-				this.#statePage(SdkPageStates.EMPTY);
-				Log.error(error)
-			}
-		);
+			});
 	}
 
 	#initPage(info) {

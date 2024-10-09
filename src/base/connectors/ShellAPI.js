@@ -32,6 +32,22 @@ export const ShellAPI = {
         return ['gnome-text-editor', path];
     },
     /**
+     * Get version Gnome Terminal
+     *
+     * @returns route
+     */
+    gnomeTerminalVersion: function() {
+        return ['gnome-terminal', '--version'];
+    },
+    /**
+     * Open file default editor
+     *
+     * @returns route
+     */
+    gnomeTerminalOpen: function(command) {
+        return ['gnome-terminal', '-x', 'bash', '-c', `"${command}"`];
+    },
+    /**
      * Open file default editor
      *
      * @returns route

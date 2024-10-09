@@ -38,6 +38,58 @@ export const AuroraAPI = {
             ...AppConstants.AuroraCLI, 'api', "--route", '/psdk/available'
         ]
     },
+    /**
+     * Get info about PSDK
+     *
+     * @returns route
+     */
+    psdkInfo: function(version) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/psdk/info'.argUri({
+                version: version,
+            })
+        ]
+    },
+    /**
+     * Get info about PSDK
+     *
+     * @returns route
+     */
+    psdkTargets: function(version) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/psdk/targets'.argUri({
+                version: version,
+            })
+        ]
+    },
+    /**
+     * Add user sudoers for PSDK
+     *
+     * @returns route
+     */
+    psdkSudoersAdd: function(version) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/psdk/sudoers/add'.argUri({
+                version: version,
+            })
+        ]
+    },
+    /**
+     * Del user sudoers for PSDK
+     *
+     * @returns route
+     */
+    psdkSudoersDel: function(version) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/psdk/sudoers/remove'.argUri({
+                version: version,
+            })
+        ]
+    },
     //////////////////////////////////////////
     // Flutter
     /**
@@ -225,6 +277,30 @@ export const AuroraAPI = {
     appVersions: function() {
         return [
             ...AppConstants.AuroraCLI, 'api', "--route", '/app/versions'
+        ]
+    },
+    /**
+     * Check auth to app
+     *
+     * @returns route
+     */
+    appAuthCheck: function(version = undefined) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            version ? '/app/auth/check'.argUri({version: version}) : '/app/auth/check'
+        ]
+    },
+    /**
+     * Auth to root shell
+     *
+     * @returns route
+     */
+    appAuthRoot: function(password) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/app/auth/root'.argUri({
+                password: password,
+            })
         ]
     },
     //////////////////////////////////////////

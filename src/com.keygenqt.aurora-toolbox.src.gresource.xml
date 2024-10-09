@@ -16,6 +16,8 @@
 
 		<file>feature/pages/psdk/PsdkPage.js</file>
 
+		<file>feature/pages/psdks/PsdksPage.js</file>
+
 		<file>feature/pages/sdk/SdkPage.js</file>
 
 		<file>feature/pages/tools/ToolsPage.js</file>
@@ -34,6 +36,7 @@
 		<file>feature/dialogs/AlertDialog.js</file>
 		<file>feature/dialogs/ErrorDialog.js</file>
 		<file>feature/dialogs/LoadingDialog.js</file>
+		<file>feature/dialogs/PasswordDialog.js</file>
 		<file>feature/dialogs/SettingsDialog.js</file>
 
 		<!-- widgets -->
