@@ -79,7 +79,7 @@ export const PasswordDialog = GObject.registerClass({
 	/**
      *  Auth to sudo
      */
-	authRoot(window, callbackAuth, callbackCancel) {
+	authRoot(window, callbackAuth, callbackCancel = undefined) {
 		ShellExec.communicateAsync(AuroraAPI.appAuthCheck())
 			.catch((e) => Log.error(e))
 			.then((response) => {

@@ -103,7 +103,7 @@ export const PsdkPage = GObject.registerClass({
 				this.#stateSudoersPage(false);
 			}),
 			'terminal': () => {
-				ShellExec.communicateAsync(ShellAPI.gnomeTerminalOpen(this.#tool));
+				ShellExec.communicateAsync(ShellAPI.gnomeTerminalOpen(this.#tool)).catch(() => {});
 			},
 			'remove': () => {
 				new AlertDialog().present(
@@ -181,7 +181,6 @@ export const PsdkPage = GObject.registerClass({
 						'isSudoers': response11 && response11.code === 200 ? response11.value.SUDOERS : false
 					});
 				} catch (e) {
-					console.log(e)
 					reject(e)
 				}
 			})
