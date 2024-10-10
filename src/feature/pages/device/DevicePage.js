@@ -113,8 +113,8 @@ export const DevicePage = GObject.registerClass({
 
 	#initPage(info) {
 		this._IdDeviceInfo.icon = 'aurora-toolbox-device';
-		this._IdDeviceInfo.name = info.PRETTY_NAME;
-		this._IdDeviceInfo.arch = info.ARCH;
+		this._IdDeviceInfo.title = info.PRETTY_NAME;
+		this._IdDeviceInfo.subtitle = info.ARCH;
 	}
 
 	#actionsConnect() {

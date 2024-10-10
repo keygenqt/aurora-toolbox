@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<template class="AtbPsdkTargetPage" parent="AdwNavigationPage">
+		<property name="title" translatable="yes">Target</property>
+		<property name="can-pop">true</property>
+		<property name="child">
+			<object class="AdwToolbarView">
+				<child type="top">
+					<object class="AdwHeaderBar"/>
+				</child>
+				<property name="content">
+					<object class="GtkBox" id="IdPsdkTargetBoxPage">
+						<property name="orientation">vertical</property>
+						<property name="hexpand">true</property>
+						<child>
+							<object class="AdwPreferencesPage" id="IdPreferencesPage">
+								<child>
+									<object class="AdwPreferencesGroup" id="IdPsdkTargetInfoGroup">
+										<property name="margin-start">10</property>
+										<property name="margin-end">10</property>
+										<property name="title" translatable="true">Info</property>
+										<property name="description" translatable="yes">Information about Target Platform SDK.</property>
+										<child>
+											<object class="AtbIconInfoBoxWidget" id="IdPsdkTargetInfo"/>
+										</child>
+									</object>
+								</child>
+								<child>
+									<object class="AdwPreferencesGroup">
+										<property name="margin-start">10</property>
+										<property name="margin-end">10</property>
+										<property name="title" translatable="true">Tools</property>
+										<property name="description" translatable="yes">Interact with the Target.</property>
+										<child>
+											<object class="AdwActionRow" id="IdGroupToolInstall">
+												<property name="activatable-widget">IdGroupToolInstall</property>
+												<property name="action-name">PsdkTargetTool.install</property>
+												<property name="title" translatable="true">Install package</property>
+												<property name="icon-name">system-software-install-symbolic</property>
+												<child>
+													<object class="GtkImage">
+														<property name="icon-name">folder-open-symbolic</property>
+													</object>
+												</child>
+											</object>
+										</child>
+										<child>
+											<object class="AdwActionRow" id="IdGroupToolRemove">
+												<property name="activatable-widget">IdGroupToolRemove</property>
+												<property name="action-name">PsdkTargetTool.remove</property>
+												<property name="title" translatable="true">Remove package</property>
+												<property name="icon-name">list-remove-all-symbolic</property>
+												<child>
+													<object class="GtkImage">
+														<property name="icon-name">edit-delete-symbolic</property>
+													</object>
+												</child>
+											</object>
+										</child>
+										<child>
+											<object class="AdwActionRow" id="IdGroupToolSign">
+												<property name="activatable-widget">IdGroupToolSign</property>
+												<property name="action-name">PsdkTargetTool.sign</property>
+												<property name="title" translatable="true">Sign package</property>
+												<property name="icon-name">changes-prevent-symbolic</property>
+												<child>
+													<object class="GtkImage">
+														<property name="icon-name">folder-open-symbolic</property>
+													</object>
+												</child>
+											</object>
+										</child>
+									</object>
+								</child>
+							</object>
+						</child>
+					</object>
+				</property>
+			</object>
+		</property>
+	</template>
+</interface>

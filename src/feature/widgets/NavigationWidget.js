@@ -22,6 +22,7 @@ import '../pages/emulator/EmulatorPage.js';
 import '../pages/flutter/FlutterPage.js';
 import '../pages/psdk/PsdkPage.js';
 import '../pages/psdks/PsdksPage.js';
+import '../pages/psdkTarget/PsdkTargetPage.js';
 import '../pages/sdk/SdkPage.js';
 import '../pages/tools/ToolsPage.js';
 import '../pages/vscode/VscodePage.js';

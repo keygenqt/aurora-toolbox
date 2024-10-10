@@ -101,8 +101,8 @@ export const SdkPage = GObject.registerClass({
 	#initPage(info) {
 		this.#tools = info.tools[0];
 		this._IdSdkInfo.icon = 'aurora-toolbox-sdk';
-		this._IdSdkInfo.name = _('Aurora SDK');
-		this._IdSdkInfo.arch = info.versions[0];
+		this._IdSdkInfo.title = _('Aurora SDK');
+		this._IdSdkInfo.subtitle = info.versions[0];
 	}
 
 	#actionsConnect() {

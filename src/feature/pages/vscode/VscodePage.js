@@ -97,8 +97,8 @@ export const VscodePage = GObject.registerClass({
 
 	#initPage(info) {
 		this._IdVscodeInfo.icon = 'aurora-toolbox-vscode';
-		this._IdVscodeInfo.name = _('Visual Studio Code');
-		this._IdVscodeInfo.arch = info.VERSION;
+		this._IdVscodeInfo.title = _('Visual Studio Code');
+		this._IdVscodeInfo.subtitle = info.VERSION;
 	}
 
 	#actionsConnect() {

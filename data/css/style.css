@@ -1,9 +1,9 @@
-.AtbIconInfoBoxWidget .name {
+.AtbIconInfoBoxWidget .title {
 	font-size: 16px;
 	font-weight: bold;
 }
 
-.AtbIconInfoBoxWidget .arch {
+.AtbIconInfoBoxWidget .subtitle {
 	color: #9c9c9c;
 }
 

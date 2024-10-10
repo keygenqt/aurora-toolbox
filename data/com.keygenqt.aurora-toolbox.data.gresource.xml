@@ -25,6 +25,8 @@
 
 		<file>ui/pages/psdks/PsdksPage.ui</file>
 
+		<file>ui/pages/psdkTarget/PsdkTargetPage.ui</file>
+
 		<file>ui/pages/sdk/SdkPage.ui</file>
 
 		<file>ui/pages/tools/ToolsPage.ui</file>
@@ -52,5 +54,6 @@
 		<file alias="aurora-toolbox-psdk.svg">icons/psdk.svg</file>
 		<file alias="aurora-toolbox-sdk.svg">icons/sdk.svg</file>
 		<file alias="aurora-toolbox-vscode.svg">icons/vscode.svg</file>
+		<file alias="aurora-toolbox-target.svg">icons/target.svg</file>
 	</gresource>
 </gresources>

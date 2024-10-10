@@ -23,8 +23,8 @@ export const IconInfoBoxWidget = GObject.registerClass({
 	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/widgets/IconInfoBoxWidget.ui',
 	Properties: Helper.makeParams({
         'icon': 'string',
-        'name': 'string',
-        'arch': 'string',
+        'title': 'string',
+        'subtitle': 'string',
     }),
 	InternalChildren: [
 		'IdDeviceInfoBoxIcon',
@@ -43,15 +43,15 @@ export const IconInfoBoxWidget = GObject.registerClass({
 		this.connect('notify::icon', () => {
 			this._IdDeviceInfoBoxIcon.set_from_icon_name(this['icon']);
 		})
-		// name
-		this._IdDeviceInfoBoxName.label = this['name'];
-		this.connect('notify::name', () => {
-			this._IdDeviceInfoBoxName.label = this['name'];
+		// title
+		this._IdDeviceInfoBoxName.label = this['title'];
+		this.connect('notify::title', () => {
+			this._IdDeviceInfoBoxName.label = this['title'];
 		})
-		// arch
-		this._IdDeviceInfoBoxArch.label = this['arch'];
-		this.connect('notify::arch', () => {
-			this._IdDeviceInfoBoxArch.label = this['arch'];
+		// subtitle
+		this._IdDeviceInfoBoxArch.label = this['subtitle'];
+		this.connect('notify::subtitle', () => {
+			this._IdDeviceInfoBoxArch.label = this['subtitle'];
 		})
 	}
 });

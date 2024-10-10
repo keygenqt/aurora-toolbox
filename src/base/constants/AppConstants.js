@@ -34,6 +34,7 @@ export const AppConstants = Object.freeze({
         FlutterPage:    'tag-FlutterPage',
         PsdkPage:       'tag-PsdkPage',
         PsdksPage:      'tag-PsdksPage',
+        PsdkTargetPage: 'tag-PsdkTargetPage',
         SdkPage:        'tag-SdkPage',
         ToolsPage:      'tag-ToolsPage',
         VscodePage:     'tag-VscodePage',

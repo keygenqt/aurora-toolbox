@@ -26,6 +26,9 @@
 					<object class="AtbPsdksPage"/>
 				</child>
 				<child>
+					<object class="AtbPsdkTargetPage"/>
+				</child>
+				<child>
 					<object class="AtbSdkPage"/>
 				</child>
 				<child>

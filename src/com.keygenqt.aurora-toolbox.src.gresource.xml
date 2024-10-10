@@ -18,6 +18,8 @@
 
 		<file>feature/pages/psdks/PsdksPage.js</file>
 
+		<file>feature/pages/psdkTarget/PsdkTargetPage.js</file>
+
 		<file>feature/pages/sdk/SdkPage.js</file>
 
 		<file>feature/pages/tools/ToolsPage.js</file>

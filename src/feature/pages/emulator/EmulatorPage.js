@@ -117,8 +117,8 @@ export const EmulatorPage = GObject.registerClass({
 
 	#initPage(info) {
 		this._IdEmulatorInfo.icon = 'aurora-toolbox-multiple-devices';
-		this._IdEmulatorInfo.name = info.PRETTY_NAME;
-		this._IdEmulatorInfo.arch = info.ARCH;
+		this._IdEmulatorInfo.title = info.PRETTY_NAME;
+		this._IdEmulatorInfo.subtitle = info.ARCH;
 	}
 
 	#actionsConnect() {

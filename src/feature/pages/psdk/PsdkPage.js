@@ -206,8 +206,8 @@ export const PsdkPage = GObject.registerClass({
 
 	#initPage(isTerminal) {
 		this._IdInfo.icon = 'aurora-toolbox-psdk';
-		this._IdInfo.name = _('Platform SDK');
-		this._IdInfo.arch = this.#params.version;
+		this._IdInfo.title = _('Platform SDK');
+		this._IdInfo.subtitle = this.#params.version;
 		this._IdButtonTerminal.visible = isTerminal;
 	}
 
@@ -239,8 +239,10 @@ export const PsdkPage = GObject.registerClass({
 		actionRow.set_activatable_widget(actionRow);
 		// Add object action
 		actions[action] = () => {
-			// @todo page target
-			this.#window.navigation().push(AppConstants.Pages.DevicePage, target);
+			this.#window.navigation().push(AppConstants.Pages.PsdkTargetPage, {
+				target: target,
+				psdkVersion: this.#params.version,
+			});
 		}
 		// Activate action
 		actionRow.connectGroup(group, actions);
