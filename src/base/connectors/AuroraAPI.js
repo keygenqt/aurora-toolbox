@@ -124,6 +124,16 @@ export const AuroraAPI = {
             ...AppConstants.AuroraCLI, 'api', "--route", '/vscode/info'
         ]
     },
+    /**
+     * Get info about vscode
+     *
+     * @returns route
+     */
+    vscodeExtensionsList: function() {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route", '/vscode/extensions/list'
+        ]
+    },
     //////////////////////////////////////////
     // SDK
     /**

@@ -53,11 +53,167 @@
 								</object>
 							</child>
 							<child>
-								<object class="AdwPreferencesGroup" id="IdGroupExtensions">
+								<object class="AdwPreferencesGroup">
 									<property name="margin-start">10</property>
 									<property name="margin-end">10</property>
-									<property name="title" translatable="true">Extensions</property>
-									<property name="description" translatable="yes">Great VS Code extensions that can be useful for working with Aurora OS</property>
+									<property name="title" translatable="true">Flutter</property>
+									<property name="description" translatable="yes">Extensions for working with Flutter</property>
+									<child>
+										<object class="AdwActionRow" id="IdButtonExtensionsDart">
+											<property name="activatable-widget">IdButtonExtensionsDart</property>
+											<property name="action-name">VscodeTool.extensionsDart</property>
+											<property name="title" translatable="true">dart-code.dart-code</property>
+											<property name="subtitle" translatable="true">Dart Code extends VS Code with support for the Dart programming language, and provides tools for effectively editing, refactoring, running, and reloading Flutter mobile apps.</property>
+											<child type="prefix">
+												<object class="GtkBox">
+													<property name="orientation">vertical</property>
+													<child>
+														<object class="GtkImage">
+															<property name="margin-top">9</property>
+															<property name="icon-name">aurora-toolbox-dart</property>
+															<property name="pixel-size">20x20</property>
+														</object>
+													</child>
+												</object>
+											</child>
+										</object>
+									</child>
+									<child>
+										<object class="AdwActionRow" id="IdButtonExtensionsFlutter">
+											<property name="activatable-widget">IdButtonExtensionsFlutter</property>
+											<property name="action-name">VscodeTool.extensionsFlutter</property>
+											<property name="title" translatable="true">dart-code.flutter</property>
+											<property name="subtitle" translatable="true">This VS Code extension adds support for effectively editing, refactoring, running, and reloading Flutter mobile apps. It depends on (and will automatically install) the Dart extension for support for the Dart programming language.</property>
+											<child type="prefix">
+												<object class="GtkBox">
+													<property name="orientation">vertical</property>
+													<child>
+														<object class="GtkImage">
+															<property name="margin-top">10</property>
+															<property name="icon-name">aurora-toolbox-flutter</property>
+															<property name="pixel-size">20x20</property>
+														</object>
+													</child>
+												</object>
+											</child>
+										</object>
+									</child>
+								</object>
+							</child>
+							<child>
+								<object class="AdwPreferencesGroup">
+									<property name="margin-start">10</property>
+									<property name="margin-end">10</property>
+									<property name="title" translatable="true">C++</property>
+									<property name="description" translatable="yes">Extensions for working with C++</property>
+									<child>
+										<object class="AdwActionRow" id="IdButtonExtensionsCpptools">
+											<property name="activatable-widget">IdButtonExtensionsCpptools</property>
+											<property name="action-name">VscodeTool.extensionsCpptools</property>
+											<property name="title" translatable="true">ms-vscode.cpptools, ms-vscode.cpptools-themes, ms-vscode.cpptools-extension-pack</property>
+											<property name="subtitle" translatable="true">The C/C++ extension adds language support for C/C++ to Visual Studio Code, including editing (IntelliSense) and debugging features.</property>
+											<child type="prefix">
+												<object class="GtkBox">
+													<property name="orientation">vertical</property>
+													<child>
+														<object class="GtkImage">
+															<property name="margin-top">9</property>
+															<property name="icon-name">aurora-toolbox-cpptools</property>
+															<property name="pixel-size">20x20</property>
+														</object>
+													</child>
+												</object>
+											</child>
+										</object>
+									</child>
+									<child>
+										<object class="AdwActionRow" id="IdButtonExtensionsCmake">
+											<property name="activatable-widget">IdButtonExtensionsCmake</property>
+											<property name="action-name">VscodeTool.extensionsCmake</property>
+											<property name="title" translatable="true">ms-vscode.cmake-tools, twxs.cmake</property>
+											<property name="subtitle" translatable="true">This extension provides support for CMake in Visual Studio Code.</property>
+											<child type="prefix">
+												<object class="GtkBox">
+													<property name="orientation">vertical</property>
+													<child>
+														<object class="GtkImage">
+															<property name="margin-top">10</property>
+															<property name="icon-name">aurora-toolbox-cmake</property>
+															<property name="pixel-size">20x20</property>
+														</object>
+													</child>
+												</object>
+											</child>
+										</object>
+									</child>
+									<child>
+										<object class="AdwActionRow" id="IdButtonExtensionsMeson">
+											<property name="activatable-widget">IdButtonExtensionsMeson</property>
+											<property name="action-name">VscodeTool.extensionsMeson</property>
+											<property name="title" translatable="true">mesonbuild.mesonbuild</property>
+											<property name="subtitle" translatable="true">This extension provides support for Meson in Visual Studio Code.</property>
+											<child type="prefix">
+												<object class="GtkBox">
+													<property name="orientation">vertical</property>
+													<child>
+														<object class="GtkImage">
+															<property name="margin-top">10</property>
+															<property name="icon-name">aurora-toolbox-mesonbuild</property>
+															<property name="pixel-size">20x20</property>
+														</object>
+													</child>
+												</object>
+											</child>
+										</object>
+									</child>
+								</object>
+							</child>
+							<child>
+								<object class="AdwPreferencesGroup">
+									<property name="margin-start">10</property>
+									<property name="margin-end">10</property>
+									<property name="title" translatable="true">Other</property>
+									<property name="description" translatable="yes">Other extensions that might be useful</property>
+									<child>
+										<object class="AdwActionRow" id="IdButtonExtensionsChecker">
+											<property name="activatable-widget">IdButtonExtensionsChecker</property>
+											<property name="action-name">VscodeTool.extensionsChecker</property>
+											<property name="title" translatable="true">streetsidesoftware.code-spell-checker, streetsidesoftware.code-spell-checker-russian</property>
+											<property name="subtitle" translatable="true">A basic spell checker that works well with code and documents.</property>
+											<child type="prefix">
+												<object class="GtkBox">
+													<property name="orientation">vertical</property>
+													<child>
+														<object class="GtkImage">
+															<property name="margin-top">9</property>
+															<property name="icon-name">aurora-toolbox-checker</property>
+															<property name="pixel-size">20x20</property>
+														</object>
+													</child>
+												</object>
+											</child>
+										</object>
+									</child>
+									<child>
+										<object class="AdwActionRow" id="IdButtonExtensionsHighlight">
+											<property name="activatable-widget">IdButtonExtensionsHighlight</property>
+											<property name="action-name">VscodeTool.extensionsHighlight</property>
+											<property name="title" translatable="true">ybaumes.highlight-trailing-white-spaces</property>
+											<property name="subtitle" translatable="true">This extension highlight in red color trailing white spaces.</property>
+											<child type="prefix">
+												<object class="GtkBox">
+													<property name="orientation">vertical</property>
+													<child>
+														<object class="GtkImage">
+															<property name="margin-top">10</property>
+															<property name="icon-name">aurora-toolbox-highlight</property>
+															<property name="pixel-size">20x20</property>
+														</object>
+													</child>
+												</object>
+											</child>
+										</object>
+									</child>
 								</object>
 							</child>
 							<child>
@@ -70,9 +226,16 @@
 											<property name="action-name">VscodeTool.updateSettings</property>
 											<property name="title" translatable="true">Update settings</property>
 											<property name="subtitle" translatable="true">Updating the configuration file for work. There are things that are not installed by default, this button will correct the situation: add a final line when saving files, enable Russian language if there is an extension.</property>
-											<child>
-												<object class="GtkImage">
-													<property name="icon-name">system-reboot-symbolic</property>
+											<child type="prefix">
+												<object class="GtkBox">
+													<property name="orientation">vertical</property>
+													<child>
+														<object class="GtkImage">
+															<property name="margin-top">10</property>
+															<property name="icon-name">system-reboot-symbolic</property>
+															<property name="pixel-size">20x20</property>
+														</object>
+													</child>
 												</object>
 											</child>
 										</object>

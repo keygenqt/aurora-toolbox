@@ -55,5 +55,12 @@
 		<file alias="aurora-toolbox-sdk.svg">icons/sdk.svg</file>
 		<file alias="aurora-toolbox-vscode.svg">icons/vscode.svg</file>
 		<file alias="aurora-toolbox-target.svg">icons/target.svg</file>
+		<file alias="aurora-toolbox-dart.png">icons/dart-code.dart-code.png</file>
+		<file alias="aurora-toolbox-mesonbuild.png">icons/mesonbuild.mesonbuild.png</file>
+		<file alias="aurora-toolbox-cmake.png">icons/twxs.cmake.png</file>
+		<file alias="aurora-toolbox-cpptools.png">icons/ms-vscode.cpptools.png</file>
+		<file alias="aurora-toolbox-checker.png">icons/streetsidesoftware.code-spell-checker.png</file>
+		<file alias="aurora-toolbox-webfreak.png">icons/webfreak.debug.png</file>
+		<file alias="aurora-toolbox-highlight.png">icons/ybaumes.highlight-trailing-white-spaces.svg</file>
 	</gresource>
 </gresources>

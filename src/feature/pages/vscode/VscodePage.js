@@ -34,7 +34,6 @@ export const VscodePage = GObject.registerClass({
 		'IdVscodeLoading',
 		'IdVscodeEmpty',
 		'IdPageRefresh',
-		'IdGroupExtensions',
 	],
 }, class extends Adw.NavigationPage {
 	// Start
@@ -73,10 +72,14 @@ export const VscodePage = GObject.registerClass({
 	#initData() {
 		this.#statePage(VscodePageStates.LOADING);
 		this.utils.helper.getPromisePage(async () => {
-			return this.utils.helper.getLastObject(
+			const info = this.utils.helper.getLastObject(
 				await this.connectors.exec.communicateAsync(this.connectors.aurora.vscodeInfo())
 			);
-			// @todo Next step - get list extensions
+			const extensions = this.utils.helper.getLastObject(
+				await this.connectors.exec.communicateAsync(this.connectors.aurora.vscodeExtensionsList())
+			);
+			return info;
+
 		}).then((response) => {
 			try {
 				if (response && response.code === 200) {
@@ -106,7 +109,14 @@ export const VscodePage = GObject.registerClass({
 		});
 		this.connectGroup('VscodeTool', {
 			'run': () => this.connectors.exec.communicateAsync(['code']),
-			'updateSettings': () => console.log('updateSettings')
+			'updateSettings': () => console.log('updateSettings'),
+			'extensionsDart': () => console.log('extensionsDart'),
+			'extensionsFlutter': () => console.log('extensionsFlutter'),
+			'extensionsCpptools': () => console.log('extensionsCpptools'),
+			'extensionsCmake': () => console.log('extensionsCmake'),
+			'extensionsMeson': () => console.log('extensionsMeson'),
+			'extensionsChecker': () => console.log('extensionsChecker'),
+			'extensionsHighlight': () => console.log('extensionsHighlight'),
 		});
 	}
 });
