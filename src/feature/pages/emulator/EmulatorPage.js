@@ -36,7 +36,6 @@ export const EmulatorPage = GObject.registerClass({
 		'IdEmulatorEmpty',
 		'IdEmulatorStart',
 		'IdPageRefresh',
-		'IdGroupInstallRPM',
 	],
 }, class extends Adw.NavigationPage {
 	#state
@@ -111,23 +110,18 @@ export const EmulatorPage = GObject.registerClass({
 	}
 
 	#actionsConnect() {
-		this._IdPageRefresh.connect('clicked', () => {
-			this._IdPageRefresh.visible = false;
-			this.#refresh();
-		});
+		// @todo
+		this.connectGroup('EmulatorTool', {
+            'install': () => console.log('install'),
+            'remove': () => console.log('remove'),
+            'run': () => console.log('run'),
+            'upload': () => console.log('upload'),
+        });
+		this._IdPageRefresh.connect('clicked', () => this.#refresh());
 		this._IdEmulatorStart.connect('button-clicked', () => {
 			this.connectors.exec.communicateAsync(this.connectors.aurora.emulatorStart());
 			this.#loadEmulatorStart();
 		});
-		// @todo
-		this.connectGroup('EmulatorTool', {
-            'install': () => {
-				console.log('Install')
-			},
-			'upload': () => {
-				console.log('Upload')
-			}
-        });
 	}
 
 	#loadEmulatorStart() {

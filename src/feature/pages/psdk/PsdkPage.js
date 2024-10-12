@@ -89,7 +89,9 @@ export const PsdkPage = GObject.registerClass({
 		this._IdError.connect('button-clicked', () => {
 			this.#refresh();
 		});
+		// @todo
 		this.connectGroup('PsdkTool', {
+			'sign': () => console.log('sign'),
 			'sudoersAdd': () => this.utils.creator.authRootDialog(this.#window, () => {
 				this.connectors.exec.communicateAsync(this.connectors.aurora.psdkSudoersAdd(this.#params.version));
 				this.#stateSudoersPage(true);
@@ -106,7 +108,6 @@ export const PsdkPage = GObject.registerClass({
 				_('Remove'),
 				_(`Do you want remove "${this.#params.version}" PSDK?`),
 				() => {
-					// @todo
 					console.log(`Remove dialog: ${this.#params.version}`);
 				}
 			),

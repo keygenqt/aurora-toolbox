@@ -38,17 +38,41 @@
 								<object class="AdwPreferencesGroup">
 									<property name="margin-start">10</property>
 									<property name="margin-end">10</property>
-									<property name="title" translatable="true">Tools</property>
-									<property name="description" translatable="yes">Interact with the Visual Studio Code.</property>
 									<child>
 										<object class="AdwActionRow" id="IdGroupOpenTool">
 											<property name="activatable-widget">IdGroupOpenTool</property>
 											<property name="action-name">VscodeTool.run</property>
 											<property name="title" translatable="true">Visual Studio Code</property>
-											<property name="icon-name">emblem-system-symbolic</property>
 											<child>
 												<object class="GtkImage">
 													<property name="icon-name">media-playback-start-symbolic</property>
+												</object>
+											</child>
+										</object>
+									</child>
+								</object>
+							</child>
+							<child>
+								<object class="AdwPreferencesGroup" id="IdGroupExtensions">
+									<property name="margin-start">10</property>
+									<property name="margin-end">10</property>
+									<property name="title" translatable="true">Extensions</property>
+									<property name="description" translatable="yes">Great VS Code extensions that can be useful for working with Aurora OS</property>
+								</object>
+							</child>
+							<child>
+								<object class="AdwPreferencesGroup">
+									<property name="margin-start">10</property>
+									<property name="margin-end">10</property>
+									<child>
+										<object class="AdwActionRow" id="IdButtonUpdateSettings">
+											<property name="activatable-widget">IdButtonUpdateSettings</property>
+											<property name="action-name">VscodeTool.updateSettings</property>
+											<property name="title" translatable="true">Update settings</property>
+											<property name="subtitle" translatable="true">Updating the configuration file for work. There are things that are not installed by default, this button will correct the situation: add a final line when saving files, enable Russian language if there is an extension.</property>
+											<child>
+												<object class="GtkImage">
+													<property name="icon-name">system-reboot-symbolic</property>
 												</object>
 											</child>
 										</object>

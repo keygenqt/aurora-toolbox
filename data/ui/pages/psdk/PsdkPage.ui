@@ -49,6 +49,18 @@
 									<property name="title" translatable="true">Tools</property>
 									<property name="description" translatable="yes">Interact with the Platform SDK.</property>
 									<child>
+										<object class="AdwActionRow" id="IdButtonSign">
+											<property name="activatable-widget">IdButtonSign</property>
+											<property name="action-name">PsdkTool.sign</property>
+											<property name="title" translatable="true">Re-sign the package</property>
+											<child>
+												<object class="GtkImage">
+													<property name="icon-name">folder-open-symbolic</property>
+												</object>
+											</child>
+										</object>
+									</child>
+									<child>
 										<object class="AdwActionRow" id="IdButtonTerminal">
 											<property name="activatable-widget">IdButtonTerminal</property>
 											<property name="action-name">PsdkTool.terminal</property>

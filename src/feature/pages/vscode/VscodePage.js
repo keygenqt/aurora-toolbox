@@ -34,6 +34,7 @@ export const VscodePage = GObject.registerClass({
 		'IdVscodeLoading',
 		'IdVscodeEmpty',
 		'IdPageRefresh',
+		'IdGroupExtensions',
 	],
 }, class extends Adw.NavigationPage {
 	// Start
@@ -75,6 +76,7 @@ export const VscodePage = GObject.registerClass({
 			return this.utils.helper.getLastObject(
 				await this.connectors.exec.communicateAsync(this.connectors.aurora.vscodeInfo())
 			);
+			// @todo Next step - get list extensions
 		}).then((response) => {
 			try {
 				if (response && response.code === 200) {
@@ -104,6 +106,7 @@ export const VscodePage = GObject.registerClass({
 		});
 		this.connectGroup('VscodeTool', {
 			'run': () => this.connectors.exec.communicateAsync(['code']),
+			'updateSettings': () => console.log('updateSettings')
 		});
 	}
 });

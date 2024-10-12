@@ -34,26 +34,22 @@ export const DevicePage = GObject.registerClass({
 		'IdDeviceLoading',
 		'IdDeviceEmpty',
 		'IdPageRefresh',
-		'IdGroupInstallRPM',
 	],
 }, class extends Adw.NavigationPage {
 	#window
 	#params
 
-	// Start
 	constructor(params) {
 		super(params);
 		this.tag = this.utils.constants.Pages.DevicePage;
 		this.#actionsConnect();
 	}
 
-	// Create
 	vfunc_realize() {
 		super.vfunc_realize();
 		this.#window = this.get_native();
 	}
 
-	// Open
 	vfunc_map() {
 		super.vfunc_map();
 		this.#params = this.#window.navigation().params(this.utils.constants.Pages.DevicePage);
@@ -116,16 +112,11 @@ export const DevicePage = GObject.registerClass({
 	#actionsConnect() {
 		// @todo
 		this.connectGroup('DeviceTool', {
-            'install': () => {
-				console.log('Install')
-			},
-			'upload': () => {
-				console.log('Upload')
-			}
+            'install': () => console.log('install'),
+            'remove': () => console.log('remove'),
+            'run': () => console.log('run'),
+            'upload': () => console.log('upload'),
         });
-		this._IdPageRefresh.connect('clicked', () => {
-			this._IdPageRefresh.visible = false;
-			this.#refresh();
-		});
+		this._IdPageRefresh.connect('clicked', () => this.#refresh());
 	}
 });

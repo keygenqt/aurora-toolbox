@@ -60,7 +60,7 @@ export const PsdkTargetPage = GObject.registerClass({
 		this.connectGroup('PsdkTargetTool', {
 			'install': () => console.log('install'),
 			'remove': () => console.log('remove'),
-			'sign': () => console.log('sign'),
+			'clearSnapshot': () => console.log('clearSnapshot'),
 		});
 	}
 });
