@@ -17,11 +17,6 @@ import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 import Gtk from 'gi://Gtk';
 
-import { AppConstants } from '../../../base/constants/AppConstants.js';
-import { ShellExec } from '../../../base/connectors/ShellExec.js';
-import { AuroraAPI } from '../../../base/connectors/AuroraAPI.js';
-import { Log } from '../../../base/utils/Log.js';
-
 const EmulatorPageStates = Object.freeze({
 	LOADING:	1,
 	EMPTY:		2,
@@ -49,7 +44,7 @@ export const EmulatorPage = GObject.registerClass({
 	// Start
 	constructor(params) {
 		super(params);
-		this.tag = AppConstants.Pages.EmulatorPage;
+		this.tag = this.utils.constants.Pages.EmulatorPage;
 		this.#actionsConnect();
 		this.#initData();
 	}
@@ -60,49 +55,39 @@ export const EmulatorPage = GObject.registerClass({
 
 	#statePage(state) {
 		this.#state = state
+		this.childrenHide(
+			'IdPreferencesPage',
+			'IdEmulatorLoading',
+			'IdEmulatorEmpty',
+			'IdEmulatorStart',
+			'IdPageRefresh',
+		);
 		if (state == EmulatorPageStates.LOADING) {
 			this._IdEmulatorBoxPage.valign = Gtk.Align.CENTER;
-			this._IdPreferencesPage.visible = false;
-			this._IdEmulatorLoading.visible = true;
-			this._IdEmulatorEmpty.visible = false;
-			this._IdEmulatorStart.visible = false;
-			this._IdPageRefresh.visible = false;
-			return
+			return this.childrenShow('IdEmulatorLoading');
 		}
 		if (state == EmulatorPageStates.EMPTY) {
 			this._IdEmulatorBoxPage.valign = Gtk.Align.CENTER;
-			this._IdPreferencesPage.visible = false;
-			this._IdEmulatorLoading.visible = false;
-			this._IdEmulatorEmpty.visible = true;
-			this._IdEmulatorStart.visible = false;
-			this._IdPageRefresh.visible = true;
-			return
+			return this.childrenShow('IdEmulatorEmpty', 'IdPageRefresh');
 		}
 		if (state == EmulatorPageStates.DONE) {
 			this._IdEmulatorBoxPage.valign = Gtk.Align.TOP;
-			this._IdPreferencesPage.visible = true;
-			this._IdEmulatorLoading.visible = false;
-			this._IdEmulatorEmpty.visible = false;
-			this._IdEmulatorStart.visible = false;
-			this._IdPageRefresh.visible = true;
-			return
+			return this.childrenShow('IdPreferencesPage', 'IdPageRefresh');
 		}
 		if (state == EmulatorPageStates.START) {
 			this._IdEmulatorBoxPage.valign = Gtk.Align.CENTER;
-			this._IdPreferencesPage.visible = false;
-			this._IdEmulatorLoading.visible = false;
-			this._IdEmulatorEmpty.visible = false;
-			this._IdEmulatorStart.visible = true;
-			this._IdPageRefresh.visible = false;
-			return
+			return this.childrenShow('IdEmulatorStart');
 		}
 	}
 
 	#initData() {
 		this.#statePage(EmulatorPageStates.LOADING);
-		ShellExec.communicateAsync(AuroraAPI.emulatorInfo())
-			.catch((e) => Log.error(e))
-			.then(async (response) => {
+		this.utils.helper.getPromisePage(async () => {
+			return this.utils.helper.getLastObject(
+				await this.connectors.exec.communicateAsync(this.connectors.aurora.emulatorInfo())
+			);
+		}).then((response) => {
+			try {
 				if (response && response.code === 200) {
 					this.#initPage(response.value);
 					this.#statePage(EmulatorPageStates.DONE);
@@ -110,9 +95,13 @@ export const EmulatorPage = GObject.registerClass({
 					this.#statePage(EmulatorPageStates.START);
 				} else {
 					this.#statePage(EmulatorPageStates.EMPTY);
-					Log.error(response)
+					this.utils.log.error(response)
 				}
-			});
+			} catch(e) {
+				this.#statePage(EmulatorPageStates.EMPTY);
+				this.utils.log.error(response)
+			}
+		});
 	}
 
 	#initPage(info) {
@@ -127,7 +116,7 @@ export const EmulatorPage = GObject.registerClass({
 			this.#refresh();
 		});
 		this._IdEmulatorStart.connect('button-clicked', () => {
-			ShellExec.communicateAsync(AuroraAPI.emulatorStart());
+			this.connectors.exec.communicateAsync(this.connectors.aurora.emulatorStart());
 			this.#loadEmulatorStart();
 		});
 		// @todo
@@ -146,7 +135,7 @@ export const EmulatorPage = GObject.registerClass({
         new Promise(async (resolve) => {
 			try {
 				await new Promise(r => setTimeout(r, 500));
-				const response = await ShellExec.communicateAsync(AuroraAPI.emulatorInfo());
+				const response = await this.connectors.exec.communicateAsync(this.connectors.aurora.emulatorInfo());
 				if (response && response.code === 200) {
 					this.#initPage(response.value);
 					this.#statePage(EmulatorPageStates.DONE);

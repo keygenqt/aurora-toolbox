@@ -17,11 +17,6 @@ import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 import Gtk from 'gi://Gtk';
 
-import { AppConstants } from '../../../base/constants/AppConstants.js';
-import { ShellExec } from '../../../base/connectors/ShellExec.js';
-import { AuroraAPI } from '../../../base/connectors/AuroraAPI.js';
-import { Log } from '../../../base/utils/Log.js';
-
 import { AlertDialog } from '../../dialogs/AlertDialog.js';
 
 const PsdksPageStates = Object.freeze({
@@ -51,7 +46,7 @@ export const PsdksPage = GObject.registerClass({
 
 	constructor(params) {
 		super(params);
-		this.tag = AppConstants.Pages.PsdksPage;
+		this.tag = this.utils.constants.Pages.PsdksPage;
 		this.#initData();
 		this.#initActions();
 	}
@@ -79,28 +74,23 @@ export const PsdksPage = GObject.registerClass({
 	}
 
 	#statePage(state) {
+		this.childrenHide(
+			'IdPreferencesPage',
+			'IdLoading',
+			'IdError',
+			'IdPageRefresh',
+		);
 		if (state == PsdksPageStates.LOADING) {
 			this._IdPageContent.valign = Gtk.Align.CENTER;
-			this._IdPreferencesPage.visible = false;
-			this._IdLoading.visible = true;
-			this._IdError.visible = false;
-			this._IdPageRefresh.visible = false;
-			return
+			return this.childrenShow('IdLoading');
 		}
 		if (state == PsdksPageStates.ERROR) {
 			this._IdPageContent.valign = Gtk.Align.CENTER;
-			this._IdPreferencesPage.visible = false;
-			this._IdLoading.visible = false;
-			this._IdError.visible = true;
-			this._IdPageRefresh.visible = true;
-			return
+			return this.childrenShow('IdError', 'IdPageRefresh');
 		}
 		if (state == PsdksPageStates.DONE) {
 			this._IdPageContent.valign = Gtk.Align.TOP;
-			this._IdPreferencesPage.visible = true;
-			this._IdLoading.visible = false;
-			this._IdError.visible = false;
-			this._IdPageRefresh.visible = true;
+			this.childrenShow('IdPreferencesPage', 'IdPageRefresh');
 			// Show groups
 			this._IdInstalledGroup.visible = this.#installed.length != 0;
 			this._IdAvailableGroup.visible = this.#available.length != 0;
@@ -117,25 +107,20 @@ export const PsdksPage = GObject.registerClass({
 	#initData() {
 		this.#clear();
 		this.#statePage(PsdksPageStates.LOADING);
-        new Promise(async (resolve, reject) => {
-            try {
-                const response0 = await ShellExec.communicateAsync(AuroraAPI.psdkInstalled());
-				const response1 = Array.isArray(response0) ? response0.slice(-1)[0] : response0;
-                const installed = response1 && response1.code === 200 ? response1.value.versions : [];
-                const iVersions = installed.map((v) => v.split('.').slice(0, -1).join('.'));
-
-                const response2 = await ShellExec.communicateAsync(AuroraAPI.psdkAvailable());
-                const available = response2 && response2.code === 200 ? response2.value : [];
-				resolve({
-					'installed': installed,
-					'available': available.filter((v) => !iVersions.includes(v)),
-				});
-            } catch (e) {
-                reject(e)
-            }
-        })
-			.catch((e) => Log.error(e))
-			.then(async (response) => {
+		this.utils.helper.getPromisePage(async () => {
+			const installed = this.utils.helper.getValueResponse(this.utils.helper.getLastObject(
+				await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkInstalled())
+			), 'versions', []);
+			const available = this.utils.helper.getValueResponse(this.utils.helper.getLastObject(
+				await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkAvailable())
+			), 'value', []);
+			const majorVersions = installed.map((v) => v.split('.').slice(0, -1).join('.'));
+			return {
+				'installed': installed,
+				'available': available.filter((v) => !majorVersions.includes(v)),
+			}
+		}).then((response) => {
+			try {
 				if (response.available.length !== 0) {
 					this.#installed = response.installed;
 					this.#available = response.available;
@@ -144,15 +129,19 @@ export const PsdksPage = GObject.registerClass({
 					this.#statePage(PsdksPageStates.DONE);
 				} else {
 					this.#statePage(PsdksPageStates.ERROR);
-					Log.error(response)
+					this.utils.log.error(response);
 				}
-			});
+			} catch(e) {
+				this.#statePage(PsdksPageStates.ERROR);
+				this.utils.log.error(response);
+			}
+		});
 	}
 
 	#initInstalledGroup() {
 		this.#installed.forEach((version) => {
 			const widget = this.#createItem(version, 'go-next', () => {
-				this.#window.navigation().push(AppConstants.Pages.PsdkPage, {
+				this.#window.navigation().push(this.utils.constants.Pages.PsdkPage, {
 					version: version
 				});
 			});

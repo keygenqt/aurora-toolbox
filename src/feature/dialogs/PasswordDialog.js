@@ -52,15 +52,12 @@ export const PasswordDialog = GObject.registerClass({
 	}
 
 	#statePage(state) {
+		this.childrenHide('IdPasswordEntry', 'IdPasswordLoading');
 		if (state == PasswordDialogStates.LOADING) {
-			this._IdPasswordEntry.visible = false;
-			this._IdPasswordLoading.visible = true;
-			return
+			return this.childrenShow('IdPasswordLoading');
 		}
 		if (state == PasswordDialogStates.INPUT) {
-			this._IdPasswordEntry.visible = true;
-			this._IdPasswordLoading.visible = false;
-			return
+			return this.childrenShow('IdPasswordEntry');
 		}
 	}
 

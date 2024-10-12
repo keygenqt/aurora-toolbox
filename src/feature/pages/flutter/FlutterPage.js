@@ -51,7 +51,7 @@ export const FlutterPage = GObject.registerClass({
 
 	constructor(params) {
 		super(params);
-		this.tag = AppConstants.Pages.FlutterPage;
+		this.tag = this.utils.constants.Pages.FlutterPage;
 		this.#initData();
 		this.#initActions();
 	}
@@ -79,28 +79,23 @@ export const FlutterPage = GObject.registerClass({
 	}
 
 	#statePage(state) {
+		this.childrenHide(
+			'IdPreferencesPage',
+			'IdLoading',
+			'IdError',
+			'IdPageRefresh',
+		);
 		if (state == FlutterPageStates.LOADING) {
 			this._IdPageContent.valign = Gtk.Align.CENTER;
-			this._IdPreferencesPage.visible = false;
-			this._IdLoading.visible = true;
-			this._IdError.visible = false;
-			this._IdPageRefresh.visible = false;
-			return
+			return this.childrenShow('IdLoading');
 		}
 		if (state == FlutterPageStates.ERROR) {
 			this._IdPageContent.valign = Gtk.Align.CENTER;
-			this._IdPreferencesPage.visible = false;
-			this._IdLoading.visible = false;
-			this._IdError.visible = true;
-			this._IdPageRefresh.visible = true;
-			return
+			return this.childrenShow('IdError', 'IdPageRefresh');
 		}
 		if (state == FlutterPageStates.DONE) {
 			this._IdPageContent.valign = Gtk.Align.TOP;
-			this._IdPreferencesPage.visible = true;
-			this._IdLoading.visible = false;
-			this._IdError.visible = false;
-			this._IdPageRefresh.visible = true;
+			this.childrenShow('IdPreferencesPage', 'IdPageRefresh');
 			// Show groups
 			this._IdInstalledGroup.visible = this.#installed.length != 0;
 			this._IdAvailableGroup.visible = this.#available.length != 0;
@@ -117,22 +112,19 @@ export const FlutterPage = GObject.registerClass({
 	#initData() {
 		this.#clear();
 		this.#statePage(FlutterPageStates.LOADING);
-        new Promise(async (resolve, reject) => {
-            try {
-                const response1 = await ShellExec.communicateAsync(AuroraAPI.flutterInstalled());
-                const response2 = await ShellExec.communicateAsync(AuroraAPI.flutterAvailable());
-                const installed = response1 && response1.code === 200 ? response1.value.versions : [];
-                const available = response2 && response2.code === 200 ? response2.value : [];
-				resolve({
-					'installed': installed && installed,
-					'available': available.filter((v) => !installed.includes(v)),
-				});
-            } catch (e) {
-                reject(e)
-            }
-        })
-			.catch((e) => Log.error(e))
-			.then(async (response) => {
+		this.utils.helper.getPromisePage(async () => {
+			const installed = this.utils.helper.getValueResponse(this.utils.helper.getLastObject(
+				await this.connectors.exec.communicateAsync(this.connectors.aurora.flutterInstalled())
+			), 'versions', []);
+			const available = this.utils.helper.getValueResponse(this.utils.helper.getLastObject(
+				await this.connectors.exec.communicateAsync(this.connectors.aurora.flutterAvailable())
+			), 'value', []);
+			return {
+				'installed': installed,
+				'available': available.filter((v) => !installed.includes(v)),
+			}
+		}).then((response) => {
+			try {
 				if (response.available.length !== 0) {
 					this.#installed = response.installed;
 					this.#available = response.available;
@@ -141,9 +133,13 @@ export const FlutterPage = GObject.registerClass({
 					this.#statePage(FlutterPageStates.DONE);
 				} else {
 					this.#statePage(FlutterPageStates.ERROR);
-					Log.error(response)
+					this.utils.log.error(response);
 				}
-			});
+			} catch(e) {
+				this.#statePage(FlutterPageStates.ERROR);
+				this.utils.log.error(response);
+			}
+		});
 	}
 
 	#initInstalledGroup() {

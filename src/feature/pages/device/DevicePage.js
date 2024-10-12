@@ -17,11 +17,6 @@ import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 import Gtk from 'gi://Gtk';
 
-import { AppConstants } from '../../../base/constants/AppConstants.js';
-import { ShellExec } from '../../../base/connectors/ShellExec.js';
-import { AuroraAPI } from '../../../base/connectors/AuroraAPI.js';
-import { Log } from '../../../base/utils/Log.js';
-
 const DevicePageStates = Object.freeze({
 	LOADING:	1,
 	EMPTY:		2,
@@ -48,7 +43,7 @@ export const DevicePage = GObject.registerClass({
 	// Start
 	constructor(params) {
 		super(params);
-		this.tag = AppConstants.Pages.DevicePage;
+		this.tag = this.utils.constants.Pages.DevicePage;
 		this.#actionsConnect();
 	}
 
@@ -61,7 +56,7 @@ export const DevicePage = GObject.registerClass({
 	// Open
 	vfunc_map() {
 		super.vfunc_map();
-		this.#params = this.#window.navigation().params(AppConstants.Pages.DevicePage);
+		this.#params = this.#window.navigation().params(this.utils.constants.Pages.DevicePage);
 		this.#initData();
 	}
 
@@ -70,45 +65,46 @@ export const DevicePage = GObject.registerClass({
 	}
 
 	#statePage(state) {
+		this.childrenHide(
+			'IdPreferencesPage',
+			'IdDeviceLoading',
+			'IdDeviceEmpty',
+			'IdPageRefresh',
+		);
 		if (state == DevicePageStates.LOADING) {
 			this._IdDeviceBoxPage.valign = Gtk.Align.CENTER;
-			this._IdPreferencesPage.visible = false;
-			this._IdDeviceLoading.visible = true;
-			this._IdDeviceEmpty.visible = false;
-			this._IdPageRefresh.visible = false;
-			return
+			return this.childrenShow('IdDeviceLoading');
 		}
 		if (state == DevicePageStates.EMPTY) {
 			this._IdDeviceBoxPage.valign = Gtk.Align.CENTER;
-			this._IdPreferencesPage.visible = false;
-			this._IdDeviceLoading.visible = false;
-			this._IdDeviceEmpty.visible = true;
-			this._IdPageRefresh.visible = false;
-			return
+			return this.childrenShow('IdDeviceEmpty');
 		}
 		if (state == DevicePageStates.DONE) {
 			this._IdDeviceBoxPage.valign = Gtk.Align.TOP;
-			this._IdPreferencesPage.visible = true;
-			this._IdDeviceLoading.visible = false;
-			this._IdDeviceEmpty.visible = false;
-			this._IdPageRefresh.visible = true;
-			return
+			return this.childrenShow('IdPreferencesPage', 'IdPageRefresh');
 		}
 	}
 
 	#initData() {
 		this.#statePage(DevicePageStates.LOADING);
-		ShellExec.communicateAsync(AuroraAPI.deviceInfo(this.#params.host))
-			.catch((e) => Log.error(e))
-			.then(async (response) => {
+		this.utils.helper.getPromisePage(async () => {
+			return this.utils.helper.getLastObject(
+				await this.connectors.exec.communicateAsync(this.connectors.aurora.deviceInfo(this.#params.host))
+			);
+		}).then((response) => {
+			try {
 				if (response && response.code === 200) {
 					this.#initPage(response.value);
 					this.#statePage(DevicePageStates.DONE);
 				} else {
 					this.#statePage(DevicePageStates.EMPTY);
-					Log.error(response)
+					this.utils.log.error(response)
 				}
-			});
+			} catch(e) {
+				this.#statePage(DevicePageStates.EMPTY);
+				this.utils.log.error(response)
+			}
+		});
 	}
 
 	#initPage(info) {

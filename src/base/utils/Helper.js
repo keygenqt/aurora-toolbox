@@ -56,7 +56,6 @@ export const Helper = {
                 ShellExec.communicateAsync(ShellAPI.xdgOpen(path));
             })
     },
-
     /**
      * Get settings language
      */
@@ -67,28 +66,24 @@ export const Helper = {
         }
         return AppConstants.Language.en;
     },
-
     /**
      * Check system is Ubuntu
      */
     isUbuntuSystem: function() {
         return GLib.getenv('DESKTOP_SESSION') === 'ubuntu'
     },
-
     /**
      * Get environment language
      */
     getLanguageENV: function() {
         return GLib.getenv('LANG') ?? AppConstants.Language.en;
     },
-
     /**
      * Set language
      */
     setLanguage: function(language) {
         GLib.setenv('LANG', language, true);
     },
-
     /**
      * Create params widget
      */
@@ -112,4 +107,32 @@ export const Helper = {
             }
         }).filter((p) => p[1] !== null));
     },
+    /**
+     * Get latest object from array or get just object
+     */
+    getLastObject: function (response) {
+        return Array.isArray(response) ? response.slice(-1)[0] : response;
+    },
+    /**
+     * Get value is success response or default
+     */
+    getValueResponse: function (response, key, value = undefined) {
+        if (key == 'value') {
+            return response && response.code === 200 ? response.value : value;
+        } else {
+            return response && response.code === 200 ? response.value[key] : value;
+        }
+    },
+    /**
+     * Create Promise for page queries
+     */
+    getPromisePage: function(body) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                resolve(await body());
+            } catch (e) {
+                reject(e);
+            }
+        });
+    }
 }

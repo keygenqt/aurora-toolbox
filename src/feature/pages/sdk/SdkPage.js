@@ -17,11 +17,6 @@ import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 import Gtk from 'gi://Gtk';
 
-import { AppConstants } from '../../../base/constants/AppConstants.js';
-import { ShellExec } from '../../../base/connectors/ShellExec.js';
-import { AuroraAPI } from '../../../base/connectors/AuroraAPI.js';
-import { Log } from '../../../base/utils/Log.js';
-
 const SdkPageStates = Object.freeze({
 	LOADING:	1,
 	EMPTY:		2,
@@ -46,7 +41,7 @@ export const SdkPage = GObject.registerClass({
 	// Start
 	constructor(params) {
 		super(params);
-		this.tag = AppConstants.Pages.SdkPage;
+		this.tag = this.utils.constants.Pages.SdkPage;
 		this.#actionsConnect();
 		this.#initData();
 	}
@@ -56,46 +51,46 @@ export const SdkPage = GObject.registerClass({
 	}
 
 	#statePage(state) {
+		this.childrenHide(
+			'IdPreferencesPage',
+			'IdSdkLoading',
+			'IdSdkEmpty',
+			'IdPageRefresh',
+		);
 		if (state == SdkPageStates.LOADING) {
 			this._IdSdkBoxPage.valign = Gtk.Align.CENTER;
-			this._IdPreferencesPage.visible = false;
-			this._IdSdkLoading.visible = true;
-			this._IdSdkEmpty.visible = false;
-			this._IdPageRefresh.visible = false;
-			return
+			return this.childrenShow('IdSdkLoading');
 		}
 		if (state == SdkPageStates.EMPTY) {
 			this._IdSdkBoxPage.valign = Gtk.Align.CENTER;
-			this._IdPreferencesPage.visible = false;
-			this._IdSdkLoading.visible = false;
-			this._IdSdkEmpty.visible = true;
-			this._IdPageRefresh.visible = true;
-			return
+			return this.childrenShow('IdSdkEmpty', 'IdPageRefresh');
 		}
 		if (state == SdkPageStates.DONE) {
 			this._IdSdkBoxPage.valign = Gtk.Align.TOP;
-			this._IdPreferencesPage.visible = true;
-			this._IdSdkLoading.visible = false;
-			this._IdSdkEmpty.visible = false;
-			this._IdPageRefresh.visible = true;
-			return
+			return this.childrenShow('IdPreferencesPage', 'IdPageRefresh');
 		}
 	}
 
 	#initData() {
 		this.#statePage(SdkPageStates.LOADING);
-		ShellExec.communicateAsync(AuroraAPI.sdkInstalled())
-			.catch((e) => Log.error(e))
-			.then(async (response) => {
-				const responseData = Array.isArray(response) ? response.slice(-1)[0] : response;
-				if (responseData && responseData.code === 200) {
-					this.#initPage(responseData.value);
+		this.utils.helper.getPromisePage(async () => {
+			return this.utils.helper.getLastObject(
+				await this.connectors.exec.communicateAsync(this.connectors.aurora.sdkInstalled())
+			);
+		}).then((response) => {
+			try {
+				if (response && response.code === 200) {
+					this.#initPage(response.value);
 					this.#statePage(SdkPageStates.DONE);
 				} else {
 					this.#statePage(DevicesPageStates.EMPTY);
-					Log.error(responseData)
+					this.utils.log.error(response);
 				}
-			});
+			} catch(e) {
+				this.#statePage(DevicesPageStates.EMPTY);
+				this.utils.log.error(response);
+			}
+		});
 	}
 
 	#initPage(info) {
@@ -111,7 +106,7 @@ export const SdkPage = GObject.registerClass({
 			this.#refresh();
 		});
 		this.connectGroup('SdkTool', {
-			'maintenance': () => ShellExec.communicateAsync([this.#tools]),
+			'maintenance': () => this.connectors.exec.communicateAsync([this.#tools]),
 		});
 	}
 });

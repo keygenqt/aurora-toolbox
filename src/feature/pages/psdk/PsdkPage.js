@@ -17,15 +17,6 @@ import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 import Gtk from 'gi://Gtk';
 
-import { AppConstants } from '../../../base/constants/AppConstants.js';
-import { ShellExec } from '../../../base/connectors/ShellExec.js';
-import { AuroraAPI } from '../../../base/connectors/AuroraAPI.js';
-import { ShellAPI } from '../../../base/connectors/ShellAPI.js';
-import { Log } from '../../../base/utils/Log.js';
-
-import { AlertDialog } from '../../dialogs/AlertDialog.js';
-import { PasswordDialog } from '../../dialogs/PasswordDialog.js';
-
 const PsdkPageStates = Object.freeze({
 	LOADING:	1,
 	EMPTY:		2,
@@ -33,6 +24,7 @@ const PsdkPageStates = Object.freeze({
 	ERROR:		4,
 });
 
+// @todo refactoring done, need refactoring other pages
 export const PsdkPage = GObject.registerClass({
 	GTypeName: 'AtbPsdkPage',
 	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/pages/psdk/PsdkPage.ui',
@@ -44,6 +36,7 @@ export const PsdkPage = GObject.registerClass({
 		'IdInfo',
 		'IdLoading',
 		'IdEmpty',
+		'IdError',
 		'IdPageRefresh',
 		'IdButtonTerminal',
 		'IdButtonSudoersAdd',
@@ -58,7 +51,7 @@ export const PsdkPage = GObject.registerClass({
 
 	constructor(params) {
 		super(params);
-		this.tag = AppConstants.Pages.PsdkPage;
+		this.tag = this.utils.constants.Pages.PsdkPage;
 		this.#actionsConnect();
 	}
 
@@ -69,7 +62,7 @@ export const PsdkPage = GObject.registerClass({
 
 	vfunc_map() {
 		super.vfunc_map();
-		const params = this.#window.navigation().params(AppConstants.Pages.PsdkPage);
+		const params = this.#window.navigation().params(this.utils.constants.Pages.PsdkPage);
 		if (this.#params?.version !== params.version) {
 			this.#params = params;
 			this.#initData();
@@ -93,29 +86,30 @@ export const PsdkPage = GObject.registerClass({
 			this._IdPageRefresh.visible = false;
 			this.#refresh();
 		});
+		this._IdError.connect('button-clicked', () => {
+			this.#refresh();
+		});
 		this.connectGroup('PsdkTool', {
-			'sudoersAdd': () => new PasswordDialog().authRoot(this.#window, () => {
-				ShellExec.communicateAsync(AuroraAPI.psdkSudoersAdd(this.#params.version));
+			'sudoersAdd': () => this.utils.creator.authRootDialog(this.#window, () => {
+				this.connectors.exec.communicateAsync(this.connectors.aurora.psdkSudoersAdd(this.#params.version));
 				this.#stateSudoersPage(true);
 			}),
-			'sudoersDel': () => new PasswordDialog().authRoot(this.#window, () => {
-				ShellExec.communicateAsync(AuroraAPI.psdkSudoersDel(this.#params.version));
+			'sudoersDel': () => this.utils.creator.authRootDialog(this.#window, () => {
+				this.connectors.exec.communicateAsync(this.connectors.aurora.psdkSudoersDel(this.#params.version));
 				this.#stateSudoersPage(false);
 			}),
 			'terminal': () => {
-				ShellExec.communicateAsync(ShellAPI.gnomeTerminalOpen(this.#tool)).catch(() => {});
+				this.connectors.exec.communicateAsync(this.connectors.shell.gnomeTerminalOpen(this.#tool)).catch(() => {});
 			},
-			'remove': () => {
-				new AlertDialog().present(
-					this.#window,
-					_('Remove'),
-					_(`Do you want remove "${this.#params.version}" PSDK?`),
-					() => {
-						// @todo
-						console.log(`Remove dialog: ${this.#params.version}`);
-					}
-				);
-			},
+			'remove': () => this.utils.creator.alertDialog(
+				this.#window,
+				_('Remove'),
+				_(`Do you want remove "${this.#params.version}" PSDK?`),
+				() => {
+					// @todo
+					console.log(`Remove dialog: ${this.#params.version}`);
+				}
+			),
 		});
 	}
 
@@ -125,67 +119,53 @@ export const PsdkPage = GObject.registerClass({
 	}
 
 	#statePage(state) {
+		this.childrenHide(
+			'IdPreferencesPage',
+			'IdLoading',
+			'IdEmpty',
+			'IdError',
+			'IdPageRefresh',
+		);
 		if (state == PsdkPageStates.LOADING) {
 			this._IdBoxPage.valign = Gtk.Align.CENTER;
-			this._IdPreferencesPage.visible = false;
-			this._IdLoading.visible = true;
-			this._IdEmpty.visible = false;
-			this._IdPageRefresh.visible = false;
-			return
+			return this.childrenShow('IdLoading');
 		}
 		if (state == PsdkPageStates.EMPTY) {
 			this._IdBoxPage.valign = Gtk.Align.CENTER;
-			this._IdPreferencesPage.visible = false;
-			this._IdLoading.visible = false;
-			this._IdEmpty.visible = true;
-			this._IdPageRefresh.visible = true;
-			return
+			return this.childrenShow('IdEmpty', 'IdPageRefresh');
 		}
 		if (state == PsdkPageStates.DONE) {
 			this._IdBoxPage.valign = Gtk.Align.TOP;
-			this._IdPreferencesPage.visible = true;
-			this._IdLoading.visible = false;
-			this._IdEmpty.visible = false;
-			this._IdPageRefresh.visible = true;
-			return
+			return this.childrenShow('IdPreferencesPage', 'IdPageRefresh');
 		}
 		if (state == PsdkPageStates.ERROR) {
 			this._IdBoxPage.valign = Gtk.Align.CENTER;
-			this._IdPreferencesPage.visible = false;
-			this._IdLoading.visible = false;
-			this._IdEmpty.visible = true;
-			this._IdPageRefresh.visible = false;
-			return
+			return this.childrenShow('IdError');
 		}
 	}
 
 	#initData() {
 		this.#clear();
 		this.#statePage(PsdkPageStates.LOADING);
-		new PasswordDialog().authRootPsdk(this.#window, this.#params.version, () => {
-			new Promise(async (resolve, reject) => {
-				try {
-					// Get info
-					const response10 = await ShellExec.communicateAsync(AuroraAPI.psdkInfo(this.#params.version));
-					const response11 = Array.isArray(response10) ? response10.slice(-1)[0] : response10;
-					// Get targets
-					const response20 = await ShellExec.communicateAsync(AuroraAPI.psdkTargets(this.#params.version));
-					const response21 = Array.isArray(response20) ? response20.slice(-1)[0] : response20;
-					// Get state terminal
-					const isTerminal = await this.#isExistGnomeTerminal();
-					// Response
-					resolve({
-						'tool': response11 && response11.code === 200 ? response11.value.TOOL : undefined,
-						'targets': response21 && response21.code === 200 ? response21.value : [],
-						'isTerminal': isTerminal,
-						'isSudoers': response11 && response11.code === 200 ? response11.value.SUDOERS : false
-					});
-				} catch (e) {
-					reject(e)
+		this.utils.creator.authPsdkDialog(
+			this.#window,
+			this.#params.version,
+			// Success
+			() => this.utils.helper.getPromisePage(async () => {
+				const info = this.utils.helper.getLastObject(
+					await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkInfo(this.#params.version))
+				);
+				const targets = this.utils.helper.getLastObject(
+					await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkTargets(this.#params.version))
+				);
+				return {
+					'tool': this.utils.helper.getValueResponse(info, 'TOOL'),
+					'isSudoers': this.utils.helper.getValueResponse(info, 'SUDOERS', false),
+					'targets': this.utils.helper.getValueResponse(targets, 'value', []),
+					'isTerminal': await this.#isExistGnomeTerminal(),
 				}
-			})
-				.catch((e) => Log.error(e))
-				.then((response) => {
+			}).then((response) => {
+				try {
 					if (response.tool !== undefined) {
 						this.#tool = response.tool;
 						this.#targets = response.targets;
@@ -195,13 +175,16 @@ export const PsdkPage = GObject.registerClass({
 						this.#statePage(PsdkPageStates.DONE);
 					} else {
 						this.#statePage(PsdkPageStates.EMPTY);
-						Log.error(response)
+						this.utils.log.error(response);
 					}
-				});
-		}, () => {
-			this.#statePage(PsdkPageStates.ERROR);
-			this.#params = undefined;
-		});
+				} catch(e) {
+					this.#statePage(PsdkPageStates.ERROR);
+					this.utils.log.error(response);
+				}
+			}),
+			// Cancel
+			() => this.#statePage(PsdkPageStates.ERROR)
+		);
 	}
 
 	#initPage(isTerminal) {
@@ -213,7 +196,12 @@ export const PsdkPage = GObject.registerClass({
 
 	#initTargetsGroup() {
 		this.#targets.forEach((target) => {
-			const widget = this.#createItem(target);
+			const widget = this.utils.creator.actionRow(target, () => {
+				this.#window.navigation().push(this.utils.constants.Pages.PsdkTargetPage, {
+					target: target,
+					psdkVersion: this.#params.version,
+				});
+			});
 			// Add to active group
 			this._IdTargetsGroup.add(widget);
 			// Save widget
@@ -221,38 +209,9 @@ export const PsdkPage = GObject.registerClass({
 		});
 	}
 
-	#createItem(target) {
-		// Create action
-		const actions = {};
-		const group = `group-${target.replaceAll('.', '_')}`;
-		const action = `action-${target.replaceAll('.', '_')}`;
-		// Create widget
-		const actionRow = new Adw.ActionRow({
-			'title': target,
-			'action-name': `${group}.${action}`,
-		});
-		// Action add icon
-		actionRow.add_suffix(new Gtk.Image({
-			'icon-name': 'go-next',
-		}));
-		// Activatable on yourself
-		actionRow.set_activatable_widget(actionRow);
-		// Add object action
-		actions[action] = () => {
-			this.#window.navigation().push(AppConstants.Pages.PsdkTargetPage, {
-				target: target,
-				psdkVersion: this.#params.version,
-			});
-		}
-		// Activate action
-		actionRow.connectGroup(group, actions);
-
-		return actionRow;
-	}
-
 	async #isExistGnomeTerminal() {
 		try {
-			const output = await ShellExec.communicateAsync(ShellAPI.gnomeTerminalVersion());
+			const output = await this.connectors.exec.communicateAsync(this.connectors.shell.gnomeTerminalVersion());
 			return output.filter((line) => line.includes('GNOME Terminal')).length === 1;
 		} catch (e) {
 			return false;

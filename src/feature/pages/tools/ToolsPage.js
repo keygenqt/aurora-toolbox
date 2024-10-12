@@ -16,13 +16,6 @@
 import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 
-import { Log } from '../../../base/utils/Log.js';
-import { Helper } from '../../../base/utils/Helper.js';
-import { ShellExec } from '../../../base/connectors/ShellExec.js';
-import { AuroraAPI } from '../../../base/connectors/AuroraAPI.js';
-
-import { AppConstants } from '../../../base/constants/AppConstants.js';
-
 import './elements/ToolsGroups.js';
 import './elements/ToolsMenu.js';
 
@@ -34,25 +27,28 @@ export const ToolsPage = GObject.registerClass({
 	constructor(params) {
 		super(params);
 		// Set tag page
-		this.tag = AppConstants.Pages.ToolsPage;
-		// Init first open
-		settings.set_boolean('first-open', true);
+		this.tag = this.utils.constants.Pages.ToolsPage;
 		// Init connections
 		this.#actionsConnect();
+	}
+
+	vfunc_map() {
+		super.vfunc_map();
+		settings.set_boolean('first-open', false);
 	}
 
 	#actionsConnect() {
 		this.connectGroup('AuroraCLI', {
             'configuration': () => {
 				// Get path from Aurora CLI
-				ShellExec.communicateAsync(AuroraAPI.appInfo())
-					.catch((e) => Log.error(e))
+				this.connectors.exec.communicateAsync(this.connectors.aurora.appInfo())
+					.catch((e) => this.utils.log.error(e))
 					.then((response) => {
 						// Open path in editor
 						if (response && response.code === 200) {
-							Helper.fileOpen(response.value.PATH_CONFIG);
+							this.utils.helper.fileOpen(response.value.PATH_CONFIG);
 						} else {
-							Log.error('Error get path to configuration file.');
+							this.utils.log.error('Error get path to configuration file.');
 						}
 					});
 			},

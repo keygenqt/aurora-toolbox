@@ -115,6 +115,14 @@
 							<property name="message" translatable="yes">Not found installed the Platfom SDK.</property>
 						</object>
 					</child>
+					<child>
+						<object class="AtbInfoBoxWidget" id="IdError">
+							<property name="icon-name">face-crying-symbolic</property>
+							<property name="message" translatable="yes">Failed to retrieve data the Platfom SDK.</property>
+							<property name="button-icon">view-refresh-symbolic</property>
+							<property name="button-text" translatable="yes">Retry</property>
+						</object>
+					</child>
 				</object>
 			</property>
 			</object>

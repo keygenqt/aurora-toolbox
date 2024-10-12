@@ -52,16 +52,16 @@
 		<file>base/connectors/DBusProxy.js</file>
 		<file>base/connectors/ShellAPI.js</file>
 		<file>base/connectors/ShellExec.js</file>
-
 		<file>base/constants/AppConstants.js</file>
+		<file>base/utils/Log.js</file>
+		<file>base/utils/Helper.js</file>
+		<file>base/utils/Creator.js</file>
 
+		<!-- base/extensions -->
 		<file>base/extensions/AdwDialog.js</file>
 		<file>base/extensions/DBusProxy.js</file>
 		<file>base/extensions/GioSettings.js</file>
 		<file>base/extensions/GtkWidget.js</file>
 		<file>base/extensions/String.js</file>
-
-		<file>base/utils/Log.js</file>
-		<file>base/utils/Helper.js</file>
 	</gresource>
 </gresources>

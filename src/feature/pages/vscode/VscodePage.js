@@ -17,11 +17,6 @@ import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 import Gtk from 'gi://Gtk';
 
-import { AppConstants } from '../../../base/constants/AppConstants.js';
-import { ShellExec } from '../../../base/connectors/ShellExec.js';
-import { AuroraAPI } from '../../../base/connectors/AuroraAPI.js';
-import { Log } from '../../../base/utils/Log.js';
-
 const VscodePageStates = Object.freeze({
 	LOADING:	1,
 	EMPTY:		2,
@@ -44,7 +39,7 @@ export const VscodePage = GObject.registerClass({
 	// Start
 	constructor(params) {
 		super(params);
-		this.tag = AppConstants.Pages.VscodePage;
+		this.tag = this.utils.constants.Pages.VscodePage;
 		this.#actionsConnect();
 		this.#initData();
 	}
@@ -54,45 +49,46 @@ export const VscodePage = GObject.registerClass({
 	}
 
 	#statePage(state) {
+		this.childrenHide(
+			'IdPreferencesPage',
+			'IdVscodeLoading',
+			'IdVscodeEmpty',
+			'IdPageRefresh',
+		);
 		if (state == VscodePageStates.LOADING) {
 			this._IdVscodeBoxPage.valign = Gtk.Align.CENTER;
-			this._IdPreferencesPage.visible = false;
-			this._IdVscodeLoading.visible = true;
-			this._IdVscodeEmpty.visible = false;
-			this._IdPageRefresh.visible = false;
-			return
+			return this.childrenShow('IdVscodeLoading');
 		}
 		if (state == VscodePageStates.EMPTY) {
 			this._IdVscodeBoxPage.valign = Gtk.Align.CENTER;
-			this._IdPreferencesPage.visible = false;
-			this._IdVscodeLoading.visible = false;
-			this._IdVscodeEmpty.visible = true;
-			this._IdPageRefresh.visible = true;
-			return
+			return this.childrenShow('IdVscodeEmpty', 'IdPageRefresh');
 		}
 		if (state == VscodePageStates.DONE) {
 			this._IdVscodeBoxPage.valign = Gtk.Align.TOP;
-			this._IdPreferencesPage.visible = true;
-			this._IdVscodeLoading.visible = false;
-			this._IdVscodeEmpty.visible = false;
-			this._IdPageRefresh.visible = true;
-			return
+			return this.childrenShow('IdPreferencesPage', 'IdPageRefresh');
 		}
 	}
 
 	#initData() {
 		this.#statePage(VscodePageStates.LOADING);
-		ShellExec.communicateAsync(AuroraAPI.vscodeInfo())
-			.catch((e) => Log.error(e))
-			.then(async (response) => {
+		this.utils.helper.getPromisePage(async () => {
+			return this.utils.helper.getLastObject(
+				await this.connectors.exec.communicateAsync(this.connectors.aurora.vscodeInfo())
+			);
+		}).then((response) => {
+			try {
 				if (response && response.code === 200) {
 					this.#initPage(response.value);
 					this.#statePage(VscodePageStates.DONE);
 				} else {
 					this.#statePage(VscodePageStates.EMPTY);
-					Log.error(response)
+					this.utils.log.error(response);
 				}
-			});
+			} catch(e) {
+				this.#statePage(VscodePageStates.EMPTY);
+				this.utils.log.error(response);
+			}
+		});
 	}
 
 	#initPage(info) {
@@ -107,7 +103,7 @@ export const VscodePage = GObject.registerClass({
 			this.#refresh();
 		});
 		this.connectGroup('VscodeTool', {
-			'run': () => ShellExec.communicateAsync(['code']),
+			'run': () => this.connectors.exec.communicateAsync(['code']),
 		});
 	}
 });

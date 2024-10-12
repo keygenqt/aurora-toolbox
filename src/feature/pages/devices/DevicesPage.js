@@ -17,11 +17,6 @@ import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 import Adw from 'gi://Adw';
 
-import { AppConstants } from '../../../base/constants/AppConstants.js';
-import { ShellExec } from '../../../base/connectors/ShellExec.js';
-import { AuroraAPI } from '../../../base/connectors/AuroraAPI.js';
-import { Log } from '../../../base/utils/Log.js';
-
 const DevicesPageStates = Object.freeze({
 	LOADING:	1,
 	EMPTY:		2,
@@ -49,7 +44,7 @@ export const DevicesPage = GObject.registerClass({
 
 	constructor(params) {
 		super(params);
-		this.tag = AppConstants.Pages.DevicesPage;
+		this.tag = this.utils.constants.Pages.DevicesPage;
 		this.#initData();
 		this.#initActions();
 	}
@@ -77,28 +72,23 @@ export const DevicesPage = GObject.registerClass({
 	}
 
 	#statePage(state) {
+		this.childrenHide(
+			'IdPreferencesPage',
+			'IdDevicesLoading',
+			'IdDevicesEmpty',
+			'IdPageRefresh',
+		);
 		if (state == DevicesPageStates.LOADING) {
 			this._IdPageContent.valign = Gtk.Align.CENTER;
-			this._IdPreferencesPage.visible = false;
-			this._IdDevicesLoading.visible = true;
-			this._IdDevicesEmpty.visible = false;
-			this._IdPageRefresh.visible = false;
-			return
+			return this.childrenShow('IdDevicesLoading');
 		}
 		if (state == DevicesPageStates.EMPTY) {
 			this._IdPageContent.valign = Gtk.Align.CENTER;
-			this._IdPreferencesPage.visible = false;
-			this._IdDevicesLoading.visible = false;
-			this._IdDevicesEmpty.visible = true;
-			this._IdPageRefresh.visible = true;
-			return
+			return this.childrenShow('IdDevicesEmpty', 'IdPageRefresh');
 		}
 		if (state == DevicesPageStates.DONE) {
 			this._IdPageContent.valign = Gtk.Align.TOP;
-			this._IdPreferencesPage.visible = true;
-			this._IdDevicesLoading.visible = false;
-			this._IdDevicesEmpty.visible = false;
-			this._IdPageRefresh.visible = true;
+			this.childrenShow('IdPreferencesPage', 'IdPageRefresh');
 			// Show groups
 			this._IdDevicesActiveGroup.visible = this.#devices.filter((d) => d.active).length != 0;
 			this._IdDevicesNonActiveGroup.visible = this.#devices.filter((d) => !d.active).length != 0;
@@ -115,23 +105,30 @@ export const DevicesPage = GObject.registerClass({
 	#initData() {
 		this.#clear();
 		this.#statePage(DevicesPageStates.LOADING);
-		ShellExec.communicateAsync(AuroraAPI.deviceList())
-			.catch((e) => Log.error(e))
-			.then(async (response) => {
+		this.utils.helper.getPromisePage(async () => {
+			return this.utils.helper.getLastObject(
+				await this.connectors.exec.communicateAsync(this.connectors.aurora.deviceList())
+			);
+		}).then((response) => {
+			try {
 				if (response && response.code === 200) {
 					this.#length = response.value.length;
 					this.#getListDevices(response.value);
 				} else {
 					this.#statePage(DevicesPageStates.EMPTY);
-					Log.error(response)
+					this.utils.log.error(response)
 				}
-			});
+			} catch(e) {
+				this.#statePage(DevicesPageStates.EMPTY);
+				this.utils.log.error(response)
+			}
+		});
 	}
 
 	#getListDevices(config) {
 		for (const index in config) {
-			ShellExec.communicateAsync(AuroraAPI.deviceInfo(config[index]['host']))
-				.catch((e) => Log.error(e))
+			this.connectors.exec.communicateAsync(this.connectors.aurora.deviceInfo(config[index]['host']))
+				.catch((e) => this.utils.log.error(e))
 				.then(async (response) => {
 					config[index]['active'] = !Array.isArray(response) && response.code === 200;
 					this.#addDeviceGroup(config[index]);
@@ -160,7 +157,7 @@ export const DevicesPage = GObject.registerClass({
 			actionRow.set_activatable_widget(actionRow);
 			// Add object action
 			actions[action] = () => {
-				this.#window.navigation().push(AppConstants.Pages.DevicePage, device);
+				this.#window.navigation().push(this.utils.constants.Pages.DevicePage, device);
 			}
 			// Activate action
 			actionRow.connectGroup(group, actions);

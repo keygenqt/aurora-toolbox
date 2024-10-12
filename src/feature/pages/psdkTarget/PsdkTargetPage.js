@@ -16,8 +16,6 @@
 import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 
-import { AppConstants } from '../../../base/constants/AppConstants.js';
-
 export const PsdkTargetPage = GObject.registerClass({
 	GTypeName: 'AtbPsdkTargetPage',
 	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/pages/psdkTarget/PsdkTargetPage.ui',
@@ -34,7 +32,7 @@ export const PsdkTargetPage = GObject.registerClass({
 	// Start
 	constructor(params) {
 		super(params);
-		this.tag = AppConstants.Pages.PsdkTargetPage;
+		this.tag = this.utils.constants.Pages.PsdkTargetPage;
 		this.#actionsConnect();
 	}
 
@@ -47,7 +45,7 @@ export const PsdkTargetPage = GObject.registerClass({
 	// Open
 	vfunc_map() {
 		super.vfunc_map();
-		this.#params = this.#window.navigation().params(AppConstants.Pages.PsdkTargetPage);
+		this.#params = this.#window.navigation().params(this.utils.constants.Pages.PsdkTargetPage);
 		this.#initPage();
 	}
 

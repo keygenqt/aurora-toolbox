@@ -16,11 +16,6 @@
 import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 
-import { ShellExec } from '../../../base/connectors/ShellExec.js';
-import { AuroraAPI } from '../../../base/connectors/AuroraAPI.js';
-
-import { AppConstants } from '../../../base/constants/AppConstants.js';
-
 import './elements/WelcomeConnect.js';
 import './elements/WelcomeLoading.js';
 import './elements/WelcomeNotFound.js';
@@ -44,7 +39,7 @@ export const WelcomePage = GObject.registerClass({
 
 	constructor(params) {
 		super(params);
-		this.tag = AppConstants.Pages.WelcomePage;
+		this.tag = this.utils.constants.Pages.WelcomePage;
 	}
 
 	vfunc_realize() {
@@ -55,9 +50,12 @@ export const WelcomePage = GObject.registerClass({
 
 	#loadingConnect() {
 		this.#statePage(WelcomePageStates.LOADING);
-		ShellExec.communicateAsync(AuroraAPI.appVersions())
-			.catch((e) => Log.error(e))
-			.then((response) => {
+		this.utils.helper.getPromisePage(async () => {
+			return this.utils.helper.getLastObject(
+				await this.connectors.exec.communicateAsync(this.connectors.aurora.appVersions())
+			);
+		}).then((response) => {
+			try {
 				if (response && response.code === 200) {
 					if (response.value.INSTALLED !== response.value.LATEST) {
 						const latest = _('latest')
@@ -65,36 +63,36 @@ export const WelcomePage = GObject.registerClass({
 					} else {
 						this._IdConnect.version = `${response.value.INSTALLED}`;
 					}
-					// @todo
-					// if (settings.get_boolean('first-open')) {
-					// 	this.#window.navigation().push(AppConstants.Pages.ToolsPage);
-					// } else {
+					if (!settings.get_boolean('first-open')) {
+						this.#window.navigation().push(this.utils.constants.Pages.ToolsPage);
+					} else {
 						this.#statePage(WelcomePageStates.CONNECT);
-					// }
+					}
 				} else {
 					this.#statePage(WelcomePageStates.NOT_FOUND);
 				}
-			});
+			} catch(e) {
+				this.#statePage(WelcomePageStates.NOT_FOUND);
+				this.utils.log.error(e);
+				this.utils.log.error(response);
+			}
+		});
 	}
 
 	#statePage(state) {
+		this.childrenHide(
+			'IdLoading',
+			'IdNotFound',
+			'IdConnect',
+		);
 		if (state == WelcomePageStates.LOADING) {
-			this._IdLoading.visible = true;
-			this._IdNotFound.visible = false;
-			this._IdConnect.visible = false;
-			return
+			return this.childrenShow('IdLoading');
 		}
 		if (state == WelcomePageStates.NOT_FOUND) {
-			this._IdLoading.visible = false;
-			this._IdNotFound.visible = true;
-			this._IdConnect.visible = false;
-			return
+			return this.childrenShow('IdNotFound');
 		}
 		if (state == WelcomePageStates.CONNECT) {
-			this._IdLoading.visible = false;
-			this._IdNotFound.visible = false;
-			this._IdConnect.visible = true;
-			return
+			return this.childrenShow('IdConnect');
 		}
 	}
 });

@@ -16,6 +16,28 @@
 import Gtk from 'gi://Gtk';
 import Gio from 'gi://Gio';
 
+import { AppConstants } from '../constants/AppConstants.js';
+import { Creator } from '../utils/Creator.js';
+import { Helper } from '../utils/Helper.js';
+import { Log } from '../utils/Log.js';
+
+import { ShellExec } from '../connectors/ShellExec.js';
+import { AuroraAPI } from '../connectors/AuroraAPI.js';
+import { ShellAPI } from '../connectors/ShellAPI.js';
+
+Gtk.Widget.prototype.utils = {
+    constants: AppConstants,
+    creator: Creator,
+    helper: Helper,
+    log: Log,
+};
+
+Gtk.Widget.prototype.connectors = {
+    aurora: AuroraAPI,
+    shell: ShellAPI,
+    exec: ShellExec,
+};
+
 /**
  * Simple way connect to actions
  *
@@ -45,4 +67,26 @@ Gtk.Widget.prototype.connectWithEmit = function (action, callback = function(val
     if (this[action] !== undefined) {
         this.emit(action, this[action]);
     }
+};
+
+/**
+ * Hide list children
+ *
+ * @param {Array} children - keys children
+ */
+Gtk.Widget.prototype.childrenHide = function (...children) {
+    children.forEach((key) => {
+        this[`_${key}`].visible = false;
+    })
+};
+
+/**
+ * Show list children
+ *
+ * @param {Array} children - keys children
+ */
+Gtk.Widget.prototype.childrenShow = function (...children) {
+    children.forEach((key) => {
+        this[`_${key}`].visible = true;
+    })
 };

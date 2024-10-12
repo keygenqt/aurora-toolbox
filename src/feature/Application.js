@@ -53,5 +53,7 @@ export const Application = GObject.registerClass({
 
 	#loadSettings() {
 		globalThis.settings = new Gio.Settings({ schemaId: this.applicationId });
+		// Clear settings
+		// globalThis.settings.clear();
 	}
 });
