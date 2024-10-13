@@ -38,7 +38,7 @@ export const PsdkPage = GObject.registerClass({
 		'IdEmpty',
 		'IdError',
 		'IdPageRefresh',
-		'IdButtonTerminal',
+		'IdButtonOpenTerminal',
 		'IdButtonSudoersAdd',
 		'IdButtonSudoersDel',
 	],
@@ -91,6 +91,12 @@ export const PsdkPage = GObject.registerClass({
 		});
 		// @todo
 		this.connectGroup('PsdkTool', {
+			'terminal': () => {
+				this.connectors.exec
+					.communicateAsync(this.connectors.shell.gnomeTerminalOpen(this.#tool))
+					.catch(() => {});
+			},
+			'about': () => console.log('about'),
 			'sign': () => console.log('sign'),
 			'sudoersAdd': () => this.utils.creator.authRootDialog(this.#window, () => {
 				this.connectors.exec.communicateAsync(this.connectors.aurora.psdkSudoersAdd(this.#params.version));
@@ -100,9 +106,6 @@ export const PsdkPage = GObject.registerClass({
 				this.connectors.exec.communicateAsync(this.connectors.aurora.psdkSudoersDel(this.#params.version));
 				this.#stateSudoersPage(false);
 			}),
-			'terminal': () => {
-				this.connectors.exec.communicateAsync(this.connectors.shell.gnomeTerminalOpen(this.#tool)).catch(() => {});
-			},
 			'remove': () => this.utils.creator.alertDialog(
 				this.#window,
 				_('Remove'),
@@ -192,7 +195,7 @@ export const PsdkPage = GObject.registerClass({
 		this._IdInfo.icon = 'aurora-toolbox-psdk';
 		this._IdInfo.title = _('Platform SDK');
 		this._IdInfo.subtitle = this.#params.version;
-		this._IdButtonTerminal.visible = isTerminal;
+		this._IdButtonOpenTerminal.visible = isTerminal;
 	}
 
 	#initTargetsGroup() {

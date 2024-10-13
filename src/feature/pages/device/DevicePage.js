@@ -112,6 +112,7 @@ export const DevicePage = GObject.registerClass({
 	#actionsConnect() {
 		// @todo
 		this.connectGroup('DeviceTool', {
+            'terminal': () => console.log('terminal'),
             'install': () => console.log('install'),
             'remove': () => console.log('remove'),
             'run': () => console.log('run'),

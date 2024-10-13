@@ -18,8 +18,6 @@
 									<object class="AdwPreferencesGroup" id="IdPsdkTargetInfoGroup">
 										<property name="margin-start">10</property>
 										<property name="margin-end">10</property>
-										<property name="title" translatable="true">Info</property>
-										<property name="description" translatable="yes">Information about Target Platform SDK.</property>
 										<child>
 											<object class="AtbIconInfoBoxWidget" id="IdPsdkTargetInfo"/>
 										</child>

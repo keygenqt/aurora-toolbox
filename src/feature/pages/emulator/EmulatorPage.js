@@ -112,6 +112,7 @@ export const EmulatorPage = GObject.registerClass({
 	#actionsConnect() {
 		// @todo
 		this.connectGroup('EmulatorTool', {
+			'terminal': () => console.log('terminal'),
             'install': () => console.log('install'),
             'remove': () => console.log('remove'),
             'run': () => console.log('run'),

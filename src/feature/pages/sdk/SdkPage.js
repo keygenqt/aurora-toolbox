@@ -106,6 +106,8 @@ export const SdkPage = GObject.registerClass({
 			this.#refresh();
 		});
 		this.connectGroup('SdkTool', {
+			'run': () => console.log('run'),
+			'about': () => console.log('about'),
 			'maintenance': () => this.connectors.exec.communicateAsync([this.#tools]),
 		});
 	}

@@ -27,10 +27,38 @@
 								<object class="AdwPreferencesGroup" id="IdInfoGroup">
 									<property name="margin-start">10</property>
 									<property name="margin-end">10</property>
-									<property name="title" translatable="true">Info</property>
-									<property name="description" translatable="yes">Information about the Platform SDK.</property>
 									<child>
 										<object class="AtbIconInfoBoxWidget" id="IdInfo"/>
+									</child>
+								</object>
+							</child>
+							<child>
+								<object class="AdwPreferencesGroup">
+									<property name="margin-start">10</property>
+									<property name="margin-end">10</property>
+									<child>
+										<object class="AdwActionRow" id="IdButtonOpenTerminal">
+											<property name="activatable-widget">IdButtonOpenTerminal</property>
+											<property name="action-name">PsdkTool.terminal</property>
+											<property name="title" translatable="true">Open terminal</property>
+											<child>
+												<object class="GtkImage">
+													<property name="icon-name">utilities-terminal-symbolic</property>
+												</object>
+											</child>
+										</object>
+									</child>
+									<child>
+										<object class="AdwActionRow" id="IdButtonOpenAbout">
+											<property name="activatable-widget">IdButtonOpenAbout</property>
+											<property name="action-name">PsdkTool.about</property>
+											<property name="title" translatable="true">About Platform SDK</property>
+											<child>
+												<object class="GtkImage">
+													<property name="icon-name">adw-external-link-symbolic</property>
+												</object>
+											</child>
+										</object>
 									</child>
 								</object>
 							</child>
@@ -56,18 +84,6 @@
 											<child>
 												<object class="GtkImage">
 													<property name="icon-name">folder-open-symbolic</property>
-												</object>
-											</child>
-										</object>
-									</child>
-									<child>
-										<object class="AdwActionRow" id="IdButtonTerminal">
-											<property name="activatable-widget">IdButtonTerminal</property>
-											<property name="action-name">PsdkTool.terminal</property>
-											<property name="title" translatable="true">Open terminal tool</property>
-											<child>
-												<object class="GtkImage">
-													<property name="icon-name">utilities-terminal-symbolic</property>
 												</object>
 											</child>
 										</object>

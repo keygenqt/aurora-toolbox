@@ -27,8 +27,6 @@
 								<object class="AdwPreferencesGroup" id="IdVscodeInfoGroup">
 									<property name="margin-start">10</property>
 									<property name="margin-end">10</property>
-									<property name="title" translatable="true">Info</property>
-									<property name="description" translatable="yes">Information about the Visual Studio Code.</property>
 									<child>
 										<object class="AtbIconInfoBoxWidget" id="IdVscodeInfo"/>
 									</child>
@@ -39,13 +37,25 @@
 									<property name="margin-start">10</property>
 									<property name="margin-end">10</property>
 									<child>
-										<object class="AdwActionRow" id="IdGroupOpenTool">
-											<property name="activatable-widget">IdGroupOpenTool</property>
+										<object class="AdwActionRow" id="IdButtonOpenTool">
+											<property name="activatable-widget">IdButtonOpenTool</property>
 											<property name="action-name">VscodeTool.run</property>
-											<property name="title" translatable="true">Visual Studio Code</property>
+											<property name="title" translatable="true">Run VS Code</property>
 											<child>
 												<object class="GtkImage">
 													<property name="icon-name">media-playback-start-symbolic</property>
+												</object>
+											</child>
+										</object>
+									</child>
+									<child>
+										<object class="AdwActionRow" id="IdButtonOpenAbout">
+											<property name="activatable-widget">IdButtonOpenAbout</property>
+											<property name="action-name">VscodeTool.about</property>
+											<property name="title" translatable="true">About VS Code</property>
+											<child>
+												<object class="GtkImage">
+													<property name="icon-name">adw-external-link-symbolic</property>
 												</object>
 											</child>
 										</object>

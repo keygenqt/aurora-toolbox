@@ -109,6 +109,7 @@ export const VscodePage = GObject.registerClass({
 		});
 		this.connectGroup('VscodeTool', {
 			'run': () => this.connectors.exec.communicateAsync(['code']),
+			'about': () => console.log('about'),
 			'updateSettings': () => console.log('updateSettings'),
 			'extensionsDart': () => console.log('extensionsDart'),
 			'extensionsFlutter': () => console.log('extensionsFlutter'),
