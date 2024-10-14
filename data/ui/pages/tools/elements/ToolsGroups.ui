@@ -8,42 +8,6 @@
 					<object class="AdwPreferencesGroup">
 						<property name="margin-start">10</property>
 						<property name="margin-end">10</property>
-						<property name="title" translatable="true">Device Management</property>
-						<property name="description" translatable="yes">In this section you can find devices added to your configuration file or their emulation in VirtualBox.</property>
-						<child>
-							<object class="AdwActionRow" id="IdGroupDevices">
-								<property name="activatable-widget">IdGroupDevices</property>
-								<property name="title" translatable="true">Device</property>
-								<property name="icon-name">aurora-toolbox-device</property>
-								<property name="action-name">navigation.push</property>
-								<property name="action-target">'tag-DevicesPage'</property>
-								<child>
-									<object class="GtkImage">
-										<property name="icon-name">go-next</property>
-									</object>
-								</child>
-							</object>
-						</child>
-						<child>
-							<object class="AdwActionRow" id="IdGroupEmulator">
-								<property name="activatable-widget">IdGroupEmulator</property>
-								<property name="title" translatable="true">Emulator</property>
-								<property name="icon-name">aurora-toolbox-multiple-devices</property>
-								<property name="action-name">navigation.push</property>
-								<property name="action-target">'tag-EmulatorPage'</property>
-								<child>
-									<object class="GtkImage">
-										<property name="icon-name">go-next</property>
-									</object>
-								</child>
-							</object>
-						</child>
-					</object>
-				</child>
-				<child>
-					<object class="AdwPreferencesGroup">
-						<property name="margin-start">10</property>
-						<property name="margin-end">10</property>
 						<property name="title" translatable="true">Development tools</property>
 						<property name="description" translatable="yes">In this section you can manage available development tools for Aurora OS.</property>
 						<child>
@@ -95,6 +59,42 @@
 								<property name="icon-name">aurora-toolbox-vscode</property>
 								<property name="action-name">navigation.push</property>
 								<property name="action-target">'tag-VscodePage'</property>
+								<child>
+									<object class="GtkImage">
+										<property name="icon-name">go-next</property>
+									</object>
+								</child>
+							</object>
+						</child>
+					</object>
+				</child>
+				<child>
+					<object class="AdwPreferencesGroup">
+						<property name="margin-start">10</property>
+						<property name="margin-end">10</property>
+						<property name="title" translatable="true">Device Management</property>
+						<property name="description" translatable="yes">In this section you can find devices added to your configuration file or their emulation in VirtualBox.</property>
+						<child>
+							<object class="AdwActionRow" id="IdGroupDevices">
+								<property name="activatable-widget">IdGroupDevices</property>
+								<property name="title" translatable="true">Device</property>
+								<property name="icon-name">aurora-toolbox-device</property>
+								<property name="action-name">navigation.push</property>
+								<property name="action-target">'tag-DevicesPage'</property>
+								<child>
+									<object class="GtkImage">
+										<property name="icon-name">go-next</property>
+									</object>
+								</child>
+							</object>
+						</child>
+						<child>
+							<object class="AdwActionRow" id="IdGroupEmulator">
+								<property name="activatable-widget">IdGroupEmulator</property>
+								<property name="title" translatable="true">Emulator</property>
+								<property name="icon-name">aurora-toolbox-multiple-devices</property>
+								<property name="action-name">navigation.push</property>
+								<property name="action-target">'tag-EmulatorPage'</property>
 								<child>
 									<object class="GtkImage">
 										<property name="icon-name">go-next</property>

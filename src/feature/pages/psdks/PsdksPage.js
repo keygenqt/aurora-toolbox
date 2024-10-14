@@ -35,6 +35,7 @@ export const PsdksPage = GObject.registerClass({
 		'IdPreferencesPage',
 		'IdLoading',
 		'IdError',
+		'IdPageAbout',
 		'IdPageRefresh',
 	],
 }, class extends Adw.NavigationPage {
@@ -99,6 +100,9 @@ export const PsdksPage = GObject.registerClass({
 	}
 
 	#initActions() {
+		this._IdPageAbout.connect('clicked', () => {
+			this.utils.helper.uriLaunch(this.#window, this.utils.constants.Docs.psdk);
+		});
 		this._IdPageRefresh.connect('clicked', () => {
 			this.#refresh();
 		});

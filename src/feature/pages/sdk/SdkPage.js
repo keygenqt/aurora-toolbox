@@ -33,17 +33,24 @@ export const SdkPage = GObject.registerClass({
 		'IdSdkInfo',
 		'IdSdkLoading',
 		'IdSdkEmpty',
+		'IdPageAbout',
 		'IdPageRefresh',
 	],
 }, class extends Adw.NavigationPage {
-	#tools
+	#window
+	#tool
+	#run
 
-	// Start
 	constructor(params) {
 		super(params);
 		this.tag = this.utils.constants.Pages.SdkPage;
 		this.#actionsConnect();
 		this.#initData();
+	}
+
+	vfunc_realize() {
+		super.vfunc_realize();
+		this.#window = this.get_native();
 	}
 
 	#refresh() {
@@ -94,21 +101,24 @@ export const SdkPage = GObject.registerClass({
 	}
 
 	#initPage(info) {
-		this.#tools = info.tools[0];
+		this.#tool = info.tools[0];
+		this.#run = info.runs[0];
 		this._IdSdkInfo.icon = 'aurora-toolbox-sdk';
 		this._IdSdkInfo.title = _('Aurora SDK');
 		this._IdSdkInfo.subtitle = info.versions[0];
 	}
 
 	#actionsConnect() {
+		this._IdPageAbout.connect('clicked', () => {
+			this.utils.helper.uriLaunch(this.#window, this.utils.constants.Docs.sdk);
+		});
 		this._IdPageRefresh.connect('clicked', () => {
 			this._IdPageRefresh.visible = false;
 			this.#refresh();
 		});
 		this.connectGroup('SdkTool', {
-			'run': () => console.log('run'),
-			'about': () => console.log('about'),
-			'maintenance': () => this.connectors.exec.communicateAsync([this.#tools]),
+			'run': () => this.connectors.exec.communicateAsync([this.#run]),
+			'maintenance': () => this.connectors.exec.communicateAsync([this.#tool]),
 		});
 	}
 });

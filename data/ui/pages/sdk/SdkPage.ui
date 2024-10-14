@@ -8,6 +8,11 @@
 			<child type="top">
 				<object class="AdwHeaderBar">
 					<child type="start">
+						<object class="GtkButton" id="IdPageAbout">
+							<property name="icon-name">adw-external-link-symbolic</property>
+						</object>
+					</child>
+					<child type="start">
 						<object class="GtkButton" id="IdPageRefresh">
 							<property name="visible">false</property>
 							<property name="icon-name">view-refresh-symbolic</property>
@@ -44,18 +49,6 @@
 											<child>
 												<object class="GtkImage">
 													<property name="icon-name">media-playback-start-symbolic</property>
-												</object>
-											</child>
-										</object>
-									</child>
-									<child>
-										<object class="AdwActionRow" id="IdButtonOpenAbout">
-											<property name="activatable-widget">IdButtonOpenAbout</property>
-											<property name="action-name">SdkTool.about</property>
-											<property name="title" translatable="true">About Aurora SDK</property>
-											<child>
-												<object class="GtkImage">
-													<property name="icon-name">adw-external-link-symbolic</property>
 												</object>
 											</child>
 										</object>

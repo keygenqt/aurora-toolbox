@@ -110,9 +110,15 @@ export const DevicePage = GObject.registerClass({
 	}
 
 	#actionsConnect() {
-		// @todo
 		this.connectGroup('DeviceTool', {
-            'terminal': () => console.log('terminal'),
+            'terminal': () => {
+				this.connectors.exec
+					.communicateAsync(this.connectors.shell.gnomeTerminalOpen(
+						`ssh ${this.#params.user}@${this.#params.host} -p ${this.#params.port}`
+					))
+					.catch((e) => console.log(e));
+			},
+			// @todo
             'install': () => console.log('install'),
             'remove': () => console.log('remove'),
             'run': () => console.log('run'),

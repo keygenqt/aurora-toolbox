@@ -8,6 +8,11 @@
 				<child type="top">
 					<object class="AdwHeaderBar">
 						<child type="start">
+							<object class="GtkButton" id="IdPageAbout">
+								<property name="icon-name">adw-external-link-symbolic</property>
+							</object>
+						</child>
+						<child type="start">
 							<object class="GtkButton" id="IdPageRefresh">
 								<property name="visible">false</property>
 								<property name="icon-name">view-refresh-symbolic</property>

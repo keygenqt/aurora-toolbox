@@ -96,7 +96,6 @@ export const PsdkPage = GObject.registerClass({
 					.communicateAsync(this.connectors.shell.gnomeTerminalOpen(this.#tool))
 					.catch(() => {});
 			},
-			'about': () => console.log('about'),
 			'sign': () => console.log('sign'),
 			'sudoersAdd': () => this.utils.creator.authRootDialog(this.#window, () => {
 				this.connectors.exec.communicateAsync(this.connectors.aurora.psdkSudoersAdd(this.#params.version));

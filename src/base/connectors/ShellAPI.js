@@ -45,7 +45,7 @@ export const ShellAPI = {
      * @returns route
      */
     gnomeTerminalOpen: function(command) {
-        return ['gnome-terminal', '-x', 'bash', '-c', `"${command}"`];
+        return ['gnome-terminal', '--', 'bash', '-c', command];
     },
     /**
      * Open file default editor

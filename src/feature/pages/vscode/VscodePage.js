@@ -33,15 +33,22 @@ export const VscodePage = GObject.registerClass({
 		'IdVscodeInfo',
 		'IdVscodeLoading',
 		'IdVscodeEmpty',
+		'IdPageAbout',
 		'IdPageRefresh',
 	],
 }, class extends Adw.NavigationPage {
-	// Start
+	#window
+
 	constructor(params) {
 		super(params);
 		this.tag = this.utils.constants.Pages.VscodePage;
 		this.#actionsConnect();
 		this.#initData();
+	}
+
+	vfunc_realize() {
+		super.vfunc_realize();
+		this.#window = this.get_native();
 	}
 
 	#refresh() {
@@ -103,13 +110,15 @@ export const VscodePage = GObject.registerClass({
 	}
 
 	#actionsConnect() {
+		this._IdPageAbout.connect('clicked', () => {
+			this.utils.helper.uriLaunch(this.#window, this.utils.constants.Docs.vscode);
+		});
 		this._IdPageRefresh.connect('clicked', () => {
 			this._IdPageRefresh.visible = false;
 			this.#refresh();
 		});
 		this.connectGroup('VscodeTool', {
 			'run': () => this.connectors.exec.communicateAsync(['code']),
-			'about': () => console.log('about'),
 			'updateSettings': () => console.log('updateSettings'),
 			'extensionsDart': () => console.log('extensionsDart'),
 			'extensionsFlutter': () => console.log('extensionsFlutter'),

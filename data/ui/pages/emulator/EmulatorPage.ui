@@ -40,7 +40,7 @@
 										<object class="AdwActionRow" id="IdButtonOpenTerminal">
 											<property name="activatable-widget">IdButtonOpenTerminal</property>
 											<property name="action-name">EmulatorTool.terminal</property>
-											<property name="title" translatable="true">Open terminal</property>
+											<property name="title" translatable="true">Open in terminal</property>
 											<child>
 												<object class="GtkImage">
 													<property name="icon-name">utilities-terminal-symbolic</property>

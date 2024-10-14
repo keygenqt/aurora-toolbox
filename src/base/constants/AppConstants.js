@@ -19,6 +19,12 @@ export const AppConstants = Object.freeze({
         documentation: 'https://keygenqt.github.io/aurora-cli/',
         documentationInstall: 'https://keygenqt.github.io/aurora-cli/install/',
     },
+    Docs: {
+        sdk: 'https://developer.auroraos.ru/doc/sdk',
+        psdk: 'https://developer.auroraos.ru/doc/sdk/psdk',
+        flutter: 'https://omprussia.gitlab.io/flutter/flutter',
+        vscode: 'https://code.visualstudio.com/docs'
+    },
     AuroraCLI: [
         'python3',
         '/home/keygenqt/Documents/Home/Projects/aurora-cli/builds/aurora-cli-3.0.5.pyz'

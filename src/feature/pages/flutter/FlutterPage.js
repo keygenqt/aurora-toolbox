@@ -40,6 +40,7 @@ export const FlutterPage = GObject.registerClass({
 		'IdPreferencesPage',
 		'IdLoading',
 		'IdError',
+		'IdPageAbout',
 		'IdPageRefresh',
 	],
 }, class extends Adw.NavigationPage {
@@ -104,6 +105,9 @@ export const FlutterPage = GObject.registerClass({
 	}
 
 	#initActions() {
+		this._IdPageAbout.connect('clicked', () => {
+			this.utils.helper.uriLaunch(this.#window, this.utils.constants.Docs.flutter);
+		});
 		this._IdPageRefresh.connect('clicked', () => {
 			this.#refresh();
 		});
