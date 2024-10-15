@@ -36,9 +36,12 @@ export const EmulatorPage = GObject.registerClass({
 		'IdEmulatorEmpty',
 		'IdEmulatorStart',
 		'IdPageRefresh',
+		'IdButtonOpenTerminalUser',
+		'IdButtonOpenTerminalRoot',
 	],
 }, class extends Adw.NavigationPage {
-	#state
+	#window
+	#info
 
 	// Start
 	constructor(params) {
@@ -48,12 +51,16 @@ export const EmulatorPage = GObject.registerClass({
 		this.#initData();
 	}
 
+	vfunc_realize() {
+		super.vfunc_realize();
+		this.#window = this.get_native();
+	}
+
 	#refresh() {
 		this.#initData();
 	}
 
 	#statePage(state) {
-		this.#state = state
 		this.childrenHide(
 			'IdPreferencesPage',
 			'IdEmulatorLoading',
@@ -82,13 +89,18 @@ export const EmulatorPage = GObject.registerClass({
 	#initData() {
 		this.#statePage(EmulatorPageStates.LOADING);
 		this.utils.helper.getPromisePage(async () => {
-			return this.utils.helper.getLastObject(
+			const info = this.utils.helper.getLastObject(
 				await this.connectors.exec.communicateAsync(this.connectors.aurora.emulatorInfo())
 			);
+			return {
+				'code': info.code,
+				'info': this.utils.helper.getValueResponse(info, 'value'),
+				'isTerminal': await this.utils.helper.isExistGnomeTerminal(),
+			}
 		}).then((response) => {
 			try {
-				if (response && response.code === 200) {
-					this.#initPage(response.value);
+				if (response.info && response.code === 200) {
+					this.#initPage(response.info, response.isTerminal);
 					this.#statePage(EmulatorPageStates.DONE);
 				} else if (response && response.code === 100) {
 					this.#statePage(EmulatorPageStates.START);
@@ -103,20 +115,29 @@ export const EmulatorPage = GObject.registerClass({
 		});
 	}
 
-	#initPage(info) {
+	#initPage(info, isTerminal) {
+		this.#info = info;
 		this._IdEmulatorInfo.icon = 'aurora-toolbox-multiple-devices';
 		this._IdEmulatorInfo.title = info.PRETTY_NAME;
 		this._IdEmulatorInfo.subtitle = info.ARCH;
+		this._IdButtonOpenTerminalUser.visible = isTerminal;
+		this._IdButtonOpenTerminalRoot.visible = isTerminal;
 	}
 
 	#actionsConnect() {
-		// @todo
 		this.connectGroup('EmulatorTool', {
-			'terminal': () => console.log('terminal'),
-            'install': () => console.log('install'),
-            'remove': () => console.log('remove'),
-            'run': () => console.log('run'),
-            'upload': () => console.log('upload'),
+			'terminalUser': () => this.#openTerminalConnectSSH('defaultuser'),
+			'terminalRoot': () => this.#openTerminalConnectSSH('root'),
+            'install': () => {
+				// @todo
+				console.log('install')
+			},
+            'remove': () => this.#deletePackage(),
+            'run': () => this.#runPackage(),
+            'upload': () => {
+				// @todo
+				console.log('upload')
+			},
         });
 		this._IdPageRefresh.connect('clicked', () => this.#refresh());
 		this._IdEmulatorStart.connect('button-clicked', () => {
@@ -143,5 +164,78 @@ export const EmulatorPage = GObject.registerClass({
 				console.log(e)
 			}
         });
+	}
+
+	#openTerminalConnectSSH(user) {
+		this.connectors.exec
+			.communicateAsync(this.connectors.shell.gnomeTerminalOpen(
+				`ssh -o 'ConnectTimeout=2' -o 'StrictHostKeyChecking=no' ${user}@${this.#info.HOST} -p ${this.#info.PORT} -i ${this.#info.KEY}`
+			));
+	}
+
+	#deletePackage() {
+		var dialog = this.utils.creator.textDialog(
+			this.#window,
+			_('Delete package'),
+			_('Specify the name of the package you want to delete.'),
+			'com.package.name',
+			/* validate */ (text) => {
+				if (text.split('.').length !== 3) {
+					return false;
+				}
+				return true;
+			},
+			/* success */ (text) => {
+				dialog.loading();
+				this.utils.helper.getPromisePage(async () => {
+					await new Promise(r => setTimeout(r, 3000));
+					return {
+						code: 200
+					};
+				}).then((response) => {
+					if (dialog) {
+						if (response && response.code === 200) {
+							dialog.success(_('The package has been removed successfully!'));
+						} else {
+							dialog.error(_(`Failed to remove package, please provide a valid package name.`));
+						}
+					}
+				});
+			},
+			 /* cancel */ () => dialog = undefined
+		);
+	}
+
+	#runPackage() {
+		var dialog = this.utils.creator.textDialog(
+			this.#window,
+			_('Run package'),
+			_('Specify the name of the package you want to run.'),
+			'com.package.name',
+			/* validate */ (text) => {
+				if (text.split('.').length !== 3) {
+					return false;
+				}
+				return true;
+			},
+			/* success */ (text) => {
+				dialog.loading();
+				this.utils.helper.getPromisePage(async () => {
+					await new Promise(r => setTimeout(r, 3000));
+					return {
+						code: 500
+					};
+				}).then((response) => {
+					if (dialog) {
+						if (response && response.code === 200) {
+							dialog.close();
+						} else {
+							dialog.error(_(`Failed to run package, please provide a valid package name.`));
+						}
+					}
+				});
+			},
+			 /* cancel */ () => dialog = undefined
+		);
 	}
 });

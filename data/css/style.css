@@ -40,3 +40,19 @@
 .is-light .InputError {
 	background-color: #f6e9eb;
 }
+
+.is-dark .TextError {
+	color: #e95f47;
+}
+
+.is-light .TextError {
+	color: #a30f21;
+}
+
+.is-dark .TextSuccess {
+	color: #63ff85;
+}
+
+.is-light .TextSuccess {
+	color: #0ba820;
+}

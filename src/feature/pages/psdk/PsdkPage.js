@@ -24,7 +24,6 @@ const PsdkPageStates = Object.freeze({
 	ERROR:		4,
 });
 
-// @todo refactoring done, need refactoring other pages
 export const PsdkPage = GObject.registerClass({
 	GTypeName: 'AtbPsdkPage',
 	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/pages/psdk/PsdkPage.ui',
@@ -89,14 +88,15 @@ export const PsdkPage = GObject.registerClass({
 		this._IdError.connect('button-clicked', () => {
 			this.#refresh();
 		});
-		// @todo
 		this.connectGroup('PsdkTool', {
 			'terminal': () => {
 				this.connectors.exec
 					.communicateAsync(this.connectors.shell.gnomeTerminalOpen(this.#tool))
-					.catch(() => {});
 			},
-			'sign': () => console.log('sign'),
+			'sign': () => {
+				// @todo
+				console.log('sign')
+			},
 			'sudoersAdd': () => this.utils.creator.authRootDialog(this.#window, () => {
 				this.connectors.exec.communicateAsync(this.connectors.aurora.psdkSudoersAdd(this.#params.version));
 				this.#stateSudoersPage(true);
@@ -110,6 +110,7 @@ export const PsdkPage = GObject.registerClass({
 				_('Remove'),
 				_(`Do you want remove "${this.#params.version}" PSDK?`),
 				() => {
+					// @todo
 					console.log(`Remove dialog: ${this.#params.version}`);
 				}
 			),
@@ -165,7 +166,7 @@ export const PsdkPage = GObject.registerClass({
 					'tool': this.utils.helper.getValueResponse(info, 'TOOL'),
 					'isSudoers': this.utils.helper.getValueResponse(info, 'SUDOERS', false),
 					'targets': this.utils.helper.getValueResponse(targets, 'value', []),
-					'isTerminal': await this.#isExistGnomeTerminal(),
+					'isTerminal': await this.utils.helper.isExistGnomeTerminal(),
 				}
 			}).then((response) => {
 				try {
@@ -210,14 +211,5 @@ export const PsdkPage = GObject.registerClass({
 			// Save widget
 			this.#targetsWidgets.push(widget);
 		});
-	}
-
-	async #isExistGnomeTerminal() {
-		try {
-			const output = await this.connectors.exec.communicateAsync(this.connectors.shell.gnomeTerminalVersion());
-			return output.filter((line) => line.includes('GNOME Terminal')).length === 1;
-		} catch (e) {
-			return false;
-		}
 	}
 });

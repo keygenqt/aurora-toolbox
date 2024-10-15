@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <template class="AtbTextDialog" parent="AdwAlertDialog">
+        <property name="extra-child">
+            <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <child>
+                    <object class="GtkEntry" id="IdEntry">
+                        <property name="activates-default">true</property>
+                        <property name="margin-top">8</property>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkSpinner" id="IdLoading">
+                        <property name="visible">false</property>
+                        <property name="margin-top">8</property>
+                        <property name="spinning">true</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
+                        <property name="width-request">34</property>
+                        <property name="height-request">34</property>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkLabel" id="IdSuccess">
+                        <property name="wrap">true</property>
+                        <property name="justify">center</property>
+                        <property name="margin-bottom">8</property>
+                        <style><class name="TextSuccess"/></style>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkLabel" id="IdError">
+                        <property name="wrap">true</property>
+                        <property name="justify">center</property>
+                        <property name="margin-bottom">8</property>
+                        <style><class name="TextError"/></style>
+                    </object>
+                </child>
+            </object>
+        </property>
+        <signal name="response" handler="cancel"/>
+        <responses>
+            <response id="cancel" translatable="yes" appearance="destructive">Cancel</response>
+        </responses>
+    </template>
+</interface>

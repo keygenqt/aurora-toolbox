@@ -18,6 +18,7 @@ import Adw from 'gi://Adw';
 
 import { AlertDialog } from '../../feature/dialogs/AlertDialog.js';
 import { PasswordDialog } from '../../feature/dialogs/PasswordDialog.js';
+import { TextDialog } from '../../feature/dialogs/TextDialog.js';
 
 export const Creator = {
     /**
@@ -79,5 +80,40 @@ export const Creator = {
 		callbackCancel,
 	) {
 		new PasswordDialog().authRootPsdk(window, version, callback, callbackCancel);
+	},
+	/**
+	 * Create package dialog
+	 */
+	textDialog(
+		window,
+		title,
+		subtitle,
+		placeholder,
+		validate = function(text) { return true; },
+		submit = function(text) {},
+		cancel = function() {},
+	) {
+		const dialog = new TextDialog()
+		dialog.title = title;
+		dialog.subtitle = subtitle;
+		dialog.placeholder = placeholder;
+		dialog.present(window);
+		dialog.connect('validate', (_, text) => {
+			if (validate) {
+				return validate(text);
+			}
+			return true;
+		});
+		dialog.connect('submit', (_, text) => {
+			if (submit) {
+				submit(text);
+			}
+		});
+		dialog.connect('cancel', () => {
+			if (cancel) {
+				cancel();
+			}
+		});
+		return dialog;
 	}
 }

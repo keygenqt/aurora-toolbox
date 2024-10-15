@@ -34,10 +34,12 @@ export const DevicePage = GObject.registerClass({
 		'IdDeviceLoading',
 		'IdDeviceEmpty',
 		'IdPageRefresh',
+		'IdButtonOpenTerminal',
 	],
 }, class extends Adw.NavigationPage {
 	#window
 	#params
+	#info
 
 	constructor(params) {
 		super(params);
@@ -84,13 +86,17 @@ export const DevicePage = GObject.registerClass({
 	#initData() {
 		this.#statePage(DevicePageStates.LOADING);
 		this.utils.helper.getPromisePage(async () => {
-			return this.utils.helper.getLastObject(
+			const info = this.utils.helper.getLastObject(
 				await this.connectors.exec.communicateAsync(this.connectors.aurora.deviceInfo(this.#params.host))
 			);
+			return {
+				'info': this.utils.helper.getValueResponse(info, 'value'),
+				'isTerminal': await this.utils.helper.isExistGnomeTerminal(),
+			}
 		}).then((response) => {
 			try {
-				if (response && response.code === 200) {
-					this.#initPage(response.value);
+				if (response.info) {
+					this.#initPage(response.info, response.isTerminal);
 					this.#statePage(DevicePageStates.DONE);
 				} else {
 					this.#statePage(DevicePageStates.EMPTY);
@@ -103,26 +109,42 @@ export const DevicePage = GObject.registerClass({
 		});
 	}
 
-	#initPage(info) {
+	#initPage(info, isTerminal) {
+		this.#info = info;
 		this._IdDeviceInfo.icon = 'aurora-toolbox-device';
 		this._IdDeviceInfo.title = info.PRETTY_NAME;
 		this._IdDeviceInfo.subtitle = info.ARCH;
+		this._IdButtonOpenTerminal.visible = isTerminal;
 	}
 
 	#actionsConnect() {
 		this.connectGroup('DeviceTool', {
             'terminal': () => {
+				var keyPath = ''
+				if (this.#info.KEY) {
+					keyPath = `-i ${this.#info.KEY}`
+				}
 				this.connectors.exec
 					.communicateAsync(this.connectors.shell.gnomeTerminalOpen(
-						`ssh ${this.#params.user}@${this.#params.host} -p ${this.#params.port}`
+						`ssh -o 'ConnectTimeout=2' -o 'StrictHostKeyChecking=no' ${this.#params.user}@${this.#params.host} -p ${this.#params.port} ${keyPath}`
 					))
-					.catch((e) => console.log(e));
 			},
-			// @todo
-            'install': () => console.log('install'),
-            'remove': () => console.log('remove'),
-            'run': () => console.log('run'),
-            'upload': () => console.log('upload'),
+            'install': () => {
+				// @todo
+				console.log('install');
+			},
+            'remove': () => {
+				// @todo
+				console.log('remove')
+			},
+            'run': () => {
+				// @todo
+				console.log('run')
+			},
+            'upload': () => {
+				// @todo
+				console.log('upload')
+			},
         });
 		this._IdPageRefresh.connect('clicked', () => this.#refresh());
 	}

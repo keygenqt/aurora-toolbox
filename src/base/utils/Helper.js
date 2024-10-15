@@ -134,5 +134,16 @@ export const Helper = {
                 reject(e);
             }
         });
-    }
+    },
+    /**
+     * Check gnome terminal
+     */
+    isExistGnomeTerminal: async function() {
+		try {
+			const output = await ShellExec.communicateAsync(ShellAPI.gnomeTerminalVersion());
+			return output.filter((line) => line.includes('GNOME Terminal')).length === 1;
+		} catch (e) {
+			return false;
+		}
+	}
 }

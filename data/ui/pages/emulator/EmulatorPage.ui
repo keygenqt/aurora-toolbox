@@ -37,10 +37,22 @@
 									<property name="margin-start">10</property>
 									<property name="margin-end">10</property>
 									<child>
-										<object class="AdwActionRow" id="IdButtonOpenTerminal">
-											<property name="activatable-widget">IdButtonOpenTerminal</property>
-											<property name="action-name">EmulatorTool.terminal</property>
-											<property name="title" translatable="true">Open in terminal</property>
+										<object class="AdwActionRow" id="IdButtonOpenTerminalUser">
+											<property name="activatable-widget">IdButtonOpenTerminalUser</property>
+											<property name="action-name">EmulatorTool.terminalUser</property>
+											<property name="title" translatable="true">Open in terminal like User</property>
+											<child>
+												<object class="GtkImage">
+													<property name="icon-name">utilities-terminal-symbolic</property>
+												</object>
+											</child>
+										</object>
+									</child>
+									<child>
+										<object class="AdwActionRow" id="IdButtonOpenTerminalRoot">
+											<property name="activatable-widget">IdButtonOpenTerminalRoot</property>
+											<property name="action-name">EmulatorTool.terminalRoot</property>
+											<property name="title" translatable="true">Open in terminal like Root</property>
 											<child>
 												<object class="GtkImage">
 													<property name="icon-name">utilities-terminal-symbolic</property>

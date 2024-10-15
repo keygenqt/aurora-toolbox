@@ -11,6 +11,7 @@
 		<file>ui/dialogs/LoadingDialog.ui</file>
 		<file>ui/dialogs/PasswordDialog.ui</file>
 		<file>ui/dialogs/SettingsDialog.ui</file>
+		<file>ui/dialogs/TextDialog.ui</file>
 
 		<!-- pages -->
 		<file>ui/pages/device/DevicePage.ui</file>

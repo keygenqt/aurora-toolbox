@@ -53,10 +53,9 @@ export const WelcomeNotFound = GObject.registerClass({
 	}
 
 	#installOnUbuntuAuroraCLI() {
+		this.childrenHide('IdUbuntuBtn', 'IdUbuntuLabel');
+		this.childrenShow('IdUbuntuLoading');
 		// @todo
 		console.log('Install Aurora CLI');
-		this._IdUbuntuBtn.visible = false;
-		this._IdUbuntuLabel.visible = false;
-		this._IdUbuntuLoading.visible = true;
 	}
 });

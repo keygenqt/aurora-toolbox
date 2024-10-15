@@ -164,6 +164,7 @@ export const PsdksPage = GObject.registerClass({
 					_('Install'),
 					_(`Do you want install "${version}" PSDK?`),
 					() => {
+						// @todo
 						console.log(`Install dialog: ${version}`);
 					}
 				);
