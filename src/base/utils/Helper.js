@@ -114,6 +114,32 @@ export const Helper = {
         return Array.isArray(response) ? response.slice(-1)[0] : response;
     },
     /**
+     * Loading multiple query
+     */
+    getObjectAsync: async function (query, valid) {
+        var result1 = undefined;
+        var result2 = undefined;
+        async function loadResult() {
+            await new Promise(r => setTimeout(r, 100));
+            if (result1 !== undefined && result2 !== result1) {
+                result2 = result1;
+                if (valid(result2)) {
+                    return result2;
+                } else {
+                    return await loadResult();
+                }
+            } else {
+                return await loadResult();
+            }
+        }
+        ShellExec.communicateCallback(
+            query,
+            (object) => result1 = object,
+            () => result1 = {code: 500, message: 'Error get object.'}
+        );
+        return await loadResult();
+    },
+    /**
      * Get value is success response or default
      */
     getValueResponse: function (response, key, value = undefined) {

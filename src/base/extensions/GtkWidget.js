@@ -76,7 +76,9 @@ Gtk.Widget.prototype.connectWithEmit = function (action, callback = function(val
  */
 Gtk.Widget.prototype.childrenHide = function (...children) {
     children.forEach((key) => {
-        this[`_${key}`].visible = false;
+        if (this[`_${key}`]) {
+            this[`_${key}`].visible = false;
+        }
     })
 };
 
@@ -87,6 +89,8 @@ Gtk.Widget.prototype.childrenHide = function (...children) {
  */
 Gtk.Widget.prototype.childrenShow = function (...children) {
     children.forEach((key) => {
-        this[`_${key}`].visible = true;
+        if (this[`_${key}`]) {
+            this[`_${key}`].visible = true;
+        }
     })
 };

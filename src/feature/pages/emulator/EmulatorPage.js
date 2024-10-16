@@ -128,16 +128,10 @@ export const EmulatorPage = GObject.registerClass({
 		this.connectGroup('EmulatorTool', {
 			'terminalUser': () => this.#openTerminalConnectSSH('defaultuser'),
 			'terminalRoot': () => this.#openTerminalConnectSSH('root'),
-            'install': () => {
-				// @todo
-				console.log('install')
-			},
+            'install': () => this.#installPackage(),
             'remove': () => this.#deletePackage(),
             'run': () => this.#runPackage(),
-            'upload': () => {
-				// @todo
-				console.log('upload')
-			},
+            'upload': () => this.#uploadFile(),
         });
 		this._IdPageRefresh.connect('clicked', () => this.#refresh());
 		this._IdEmulatorStart.connect('button-clicked', () => {
@@ -188,21 +182,27 @@ export const EmulatorPage = GObject.registerClass({
 			/* success */ (text) => {
 				dialog.loading();
 				this.utils.helper.getPromisePage(async () => {
-					await new Promise(r => setTimeout(r, 3000));
-					return {
-						code: 200
-					};
+					const resultAPM = this.utils.helper.getLastObject(
+						await this.connectors.exec.communicateAsync(this.connectors.aurora.emulatorPackageRemove(text, true))
+					);
+					if (resultAPM.code == 200) {
+						return {code: 200};
+					}
+					const resultPkcon = this.utils.helper.getLastObject(
+						await this.connectors.exec.communicateAsync(this.connectors.aurora.emulatorPackageRemove(text, false))
+					);
+					if (resultPkcon.code == 200) {
+						return {code: 200};
+					}
+					return {code: 500};
 				}).then((response) => {
-					if (dialog) {
-						if (response && response.code === 200) {
-							dialog.success(_('The package has been removed successfully!'));
-						} else {
-							dialog.error(_(`Failed to remove package, please provide a valid package name.`));
-						}
+					if (response && response.code === 200) {
+						dialog.success(_('The package has been removed successfully!'));
+					} else {
+						dialog.error(_(`Failed to remove package, please provide a valid package name.`));
 					}
 				});
 			},
-			 /* cancel */ () => dialog = undefined
 		);
 	}
 
@@ -221,21 +221,92 @@ export const EmulatorPage = GObject.registerClass({
 			/* success */ (text) => {
 				dialog.loading();
 				this.utils.helper.getPromisePage(async () => {
-					await new Promise(r => setTimeout(r, 3000));
-					return {
-						code: 500
-					};
+					const resultRun = await this.utils.helper.getObjectAsync(
+						/* query */	 this.connectors.aurora.emulatorPackageRun(text),
+						/* valid */	 () => true,
+					);
+					return { code: resultRun && resultRun.code === 200 ? 200 : 500 };
 				}).then((response) => {
-					if (dialog) {
-						if (response && response.code === 200) {
-							dialog.close();
-						} else {
-							dialog.error(_(`Failed to run package, please provide a valid package name.`));
-						}
+					if (response && response.code === 200) {
+						dialog.close();
+					} else {
+						dialog.error(_(`Failed to run package, please provide a valid package name.`));
 					}
 				});
 			},
-			 /* cancel */ () => dialog = undefined
+		);
+	}
+
+	#installPackage() {
+		this.utils.creator.selectFileDialog(
+			this.#window,
+			new Gtk.FileFilter({
+				name: _('RPM package'),
+				mime_types: ['application/x-rpm'],
+			}),
+			/* success */ (uri) => {
+				const path = uri.replace('file://', '');
+				const dialog = this.utils.creator.loadingDialog(this.#window);
+				this.utils.helper.getPromisePage(async () => {
+					const isAPM = this.#info.VERSION_ID.includes('5.1.');
+					const resultRun = await this.utils.helper.getObjectAsync(
+						/* query */	 this.connectors.aurora.emulatorPackageInstall(path, isAPM),
+						/* valid */	 (object) => {
+							if (object && object.code === 100) {
+								if (object.value) {
+									dialog.state(_(`Loading... (${object.value}%)`));
+								}
+								return false;
+							} else {
+								return true;
+							}
+						},
+					);
+					return { code: resultRun && resultRun.code === 200 ? 200 : 500 };
+				}).then((response) => {
+					if (response && response.code === 200) {
+						dialog.success(_('The package was installed successfully!'));
+					} else {
+						dialog.error(_('Failed to install package. Please provide a valid package file.'));
+					}
+				});
+			},
+		);
+	}
+
+	#uploadFile() {
+		this.utils.creator.selectFileDialog(
+			this.#window,
+			new Gtk.FileFilter({
+				name: _('All Files'),
+				patterns: ['*'],
+			}),
+			/* success */ (uri) => {
+				const path = uri.replace('file://', '');
+				const dialog = this.utils.creator.loadingDialog(this.#window);
+				this.utils.helper.getPromisePage(async () => {
+					const resultRun = await this.utils.helper.getObjectAsync(
+						/* query */	 this.connectors.aurora.emulatorUpload(path),
+						/* valid */	 (object) => {
+							if (object && object.code === 100) {
+								if (object.value) {
+									dialog.state(_(`Loading... (${object.value}%)`));
+								}
+								return false;
+							} else {
+								return true;
+							}
+						},
+					);
+					return { code: resultRun && resultRun.code === 200 ? 200 : 500 };
+				}).then((response) => {
+					if (response && response.code === 200) {
+						dialog.success(_('The file has been successfully downloaded to the ~/Download directory!'));
+					} else {
+						dialog.error(_('Error loading file, something went wrong.'));
+					}
+				});
+			},
 		);
 	}
 });

@@ -4,7 +4,7 @@
         <property name="default-response">cancel</property>
         <signal name="response" handler="yes"/>
         <responses>
-            <response id="cancel" translatable="yes" appearance="destructive">Cancel</response>
+            <response id="cancel" translatable="yes">Cancel</response>
             <response id="yes" translatable="yes">Yes</response>
         </responses>
     </template>

@@ -13,12 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Gio from 'gi://Gio';
 import Gtk from 'gi://Gtk';
 import Adw from 'gi://Adw';
 
 import { AlertDialog } from '../../feature/dialogs/AlertDialog.js';
 import { PasswordDialog } from '../../feature/dialogs/PasswordDialog.js';
 import { TextDialog } from '../../feature/dialogs/TextDialog.js';
+import { LoadingDialog } from '../../feature/dialogs/LoadingDialog.js';
 
 export const Creator = {
     /**
@@ -115,5 +117,40 @@ export const Creator = {
 			}
 		});
 		return dialog;
-	}
+	},
+	/**
+	 * Select file
+	 */
+	selectFileDialog(
+		window,
+		filter = undefined,
+		submit = function(uri) {},
+		cancel = function() {},
+	) {
+		const dialog = new Gtk.FileDialog();
+		if (filter) {
+			dialog.filters = new Gio.ListStore()
+			dialog.filters.append(filter);
+			dialog.default_filter = filter;
+		}
+
+		dialog.open(window, null, (__, res) => {
+			try {
+				submit(dialog.open_finish(res).get_uri());
+			} catch (e) {
+				cancel();
+			}
+		});
+		return dialog;
+	},
+	/**
+	 * Simple loading dialog
+	 */
+	loadingDialog(
+		window,
+	) {
+		const dialog = new LoadingDialog();
+		dialog.present(window);
+		return dialog;
+	},
 }

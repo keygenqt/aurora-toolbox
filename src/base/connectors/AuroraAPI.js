@@ -168,6 +168,60 @@ export const AuroraAPI = {
             ...AppConstants.AuroraCLI, 'api', "--route", '/emulator/info'
         ]
     },
+    /**
+     * Remove package
+     *
+     * @returns route
+     */
+    emulatorPackageRemove: function(package_name, apm) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/emulator/package/remove'.argUri({
+                package: package_name,
+                apm: apm,
+            })
+        ]
+    },
+    /**
+     * Run package
+     *
+     * @returns route
+     */
+    emulatorPackageRun: function(package_name) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/emulator/package/run'.argUri({
+                package: package_name,
+            })
+        ]
+    },
+    /**
+     * Install package
+     *
+     * @returns route
+     */
+    emulatorPackageInstall: function(path, apm) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/emulator/package/install'.argUri({
+                path: path,
+                apm: apm,
+            })
+        ]
+    },
+    /**
+     * Upload file
+     *
+     * @returns route
+     */
+    emulatorUpload: function(path) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/emulator/upload'.argUri({
+                path: path,
+            })
+        ]
+    },
     //////////////////////////////////////////
     // Device
     /**

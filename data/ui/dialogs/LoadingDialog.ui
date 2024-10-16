@@ -1,17 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-	<object class="AdwDialog" id="IdLoadingDialog">
-		<property name="content-width">200</property>
-		<property name="content-height">100</property>
-		<property name="presentation-mode">floating</property>
-		<property name="child">
-			<object class="GtkSpinner">
-				<property name="spinning">true</property>
-				<property name="halign">center</property>
-				<property name="valign">center</property>
-				<property name="width-request">40</property>
-				<property name="height-request">40</property>
+    <template class="AtbLoadingDialog" parent="AdwAlertDialog">
+		<property name="extra-child">
+			<object class="GtkBox">
+                <property name="orientation">vertical</property>
+				<property name="spacing">12</property>
+                <child>
+					<object class="GtkSpinner" id="IdLoading">
+						<property name="spinning">true</property>
+						<property name="valign">center</property>
+						<property name="width-request">40</property>
+						<property name="height-request">40</property>
+					</object>
+                </child>
+                <child>
+					<object class="GtkLabel" id="IdLoadingText">
+						<property name="label" translatable="yes">Loading...</property>
+						<property name="wrap">true</property>
+						<property name="justify">center</property>
+					</object>
+                </child>
+                <child>
+                    <object class="GtkLabel" id="IdSuccess">
+						<property name="visible">false</property>
+                        <property name="wrap">true</property>
+                        <property name="justify">center</property>
+                        <style><class name="TextSuccess"/></style>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkLabel" id="IdError">
+						<property name="visible">false</property>
+                        <property name="wrap">true</property>
+                        <property name="justify">center</property>
+                        <style><class name="TextError"/></style>
+                    </object>
+                </child>
 			</object>
 		</property>
-	</object>
+	</template>
 </interface>

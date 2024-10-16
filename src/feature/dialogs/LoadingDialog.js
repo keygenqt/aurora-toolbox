@@ -14,15 +14,50 @@
  * limitations under the License.
  */
 import GObject from 'gi://GObject';
-import Gtk from 'gi://Gtk';
+import Adw from 'gi://Adw';
 
 export const LoadingDialog = GObject.registerClass({
 	GTypeName: 'AtbLoadingDialog',
 	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/dialogs/LoadingDialog.ui',
-	InternalChildren: ['IdLoadingDialog'],
-}, class extends Gtk.Widget {
-	present(window) {
-		this._IdLoadingDialog.present(window);
-		return this._IdLoadingDialog;
+	InternalChildren: [
+		'IdLoading',
+		'IdLoadingText',
+		'IdSuccess',
+		'IdError',
+	],
+}, class extends Adw.AlertDialog {
+	constructor(params) {
+		super(params);
+		this.#hideWidgets();
+		this.childrenShow('IdLoading', 'IdLoadingText');
+	}
+
+	state(message) {
+		this._IdLoadingText.label = message;
+		this.#hideWidgets();
+		this.childrenShow('IdLoading', 'IdLoadingText');
+	}
+
+	success(message) {
+		this._IdSuccess.label = message;
+		this.add_response('cancel', _('Close'));
+		this.#hideWidgets();
+		this.childrenShow('IdSuccess');
+	}
+
+	error(message) {
+		this._IdError.label = message;
+		this.add_response('cancel', _('Exit'));
+		this.#hideWidgets();
+		this.childrenShow('IdError');
+	}
+
+	#hideWidgets() {
+		this.childrenHide(
+			'IdLoading',
+			'IdLoadingText',
+			'IdSuccess',
+			'IdError',
+		);
 	}
 });
