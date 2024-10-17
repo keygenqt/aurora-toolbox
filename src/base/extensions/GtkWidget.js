@@ -47,11 +47,23 @@ Gtk.Widget.prototype.connectors = {
 Gtk.Widget.prototype.connectGroup = function (group, actions = {}) {
     const simpleActionGroup = new Gio.SimpleActionGroup();
     for (const [name, func] of Object.entries(actions)) {
-        const action = new Gio.SimpleAction({ name });
+        const action = new Gio.SimpleAction({ name: name });
         action.connect('activate', func);
-        simpleActionGroup.add_action(action);
+        simpleActionGroup.insert(action);
     }
     this.insert_action_group(group, simpleActionGroup);
+    return simpleActionGroup;
+};
+
+/**
+ * Simple way create action
+ *
+ * @param {String} action Name action
+ */
+Gtk.Widget.prototype.createAction = function (name, func) {
+    const action = new Gio.SimpleAction({ name: name });
+    action.connect('activate', func);
+    return action;
 };
 
 /**

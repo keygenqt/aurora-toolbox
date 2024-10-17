@@ -170,8 +170,8 @@ export const EmulatorPage = GObject.registerClass({
 	#deletePackage() {
 		var dialog = this.utils.creator.textDialog(
 			this.#window,
-			_('Delete package'),
-			_('Specify the name of the package you want to delete.'),
+			_('Uninstall'),
+			_('Specify the name of the package you want to uninstall.'),
 			'com.package.name',
 			/* validate */ (text) => {
 				if (text.split('.').length !== 3) {
@@ -197,9 +197,9 @@ export const EmulatorPage = GObject.registerClass({
 					return {code: 500};
 				}).then((response) => {
 					if (response && response.code === 200) {
-						dialog.success(_('The package has been removed successfully!'));
+						dialog.success(_('The package has been uninstall successfully!'));
 					} else {
-						dialog.error(_(`Failed to remove package, please provide a valid package name.`));
+						dialog.error(_(`Failed to uninstall package, please provide a valid package name.`));
 					}
 				});
 			},
@@ -244,17 +244,18 @@ export const EmulatorPage = GObject.registerClass({
 				name: _('RPM package'),
 				mime_types: ['application/x-rpm'],
 			}),
-			/* success */ (uri) => {
-				const path = uri.replace('file://', '');
+			/* success */ (path) => {
 				const dialog = this.utils.creator.loadingDialog(this.#window);
 				this.utils.helper.getPromisePage(async () => {
-					const isAPM = this.#info.VERSION_ID.includes('5.1.');
+					const isAPM = Boolean(this.#info.VERSION_ID.match(/^5.+/g));
 					const resultRun = await this.utils.helper.getObjectAsync(
 						/* query */	 this.connectors.aurora.emulatorPackageInstall(path, isAPM),
 						/* valid */	 (object) => {
 							if (object && object.code === 100) {
 								if (object.value) {
 									dialog.state(_(`Loading... (${object.value}%)`));
+								} else {
+									dialog.state(_(`Installing...`));
 								}
 								return false;
 							} else {
@@ -281,8 +282,7 @@ export const EmulatorPage = GObject.registerClass({
 				name: _('All Files'),
 				patterns: ['*'],
 			}),
-			/* success */ (uri) => {
-				const path = uri.replace('file://', '');
+			/* success */ (path) => {
 				const dialog = this.utils.creator.loadingDialog(this.#window);
 				this.utils.helper.getPromisePage(async () => {
 					const resultRun = await this.utils.helper.getObjectAsync(

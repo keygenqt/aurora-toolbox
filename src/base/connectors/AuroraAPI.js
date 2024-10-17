@@ -134,6 +134,29 @@ export const AuroraAPI = {
             ...AppConstants.AuroraCLI, 'api', "--route", '/vscode/extensions/list'
         ]
     },
+    /**
+     * Install extension
+     *
+     * @returns route
+     */
+    vscodeExtensionInstall: function(extension) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/vscode/extensions/install'.argUri({
+                extension: extension,
+            })
+        ]
+    },
+    /**
+     * Update settings
+     *
+     * @returns route
+     */
+    vscodeUpdateSettings: function() {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route", '/vscode/settings/update'
+        ]
+    },
     //////////////////////////////////////////
     // SDK
     /**
@@ -244,6 +267,64 @@ export const AuroraAPI = {
             ...AppConstants.AuroraCLI, 'api', "--route",
             '/device/info'.argUri({
                 host: host,
+            })
+        ]
+    },
+    /**
+     * Remove package
+     *
+     * @returns route
+     */
+    devicePackageRemove: function(host, package_name, apm) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/device/package/remove'.argUri({
+                host: host,
+                package: package_name,
+                apm: apm,
+            })
+        ]
+    },
+    /**
+     * Run package
+     *
+     * @returns route
+     */
+    devicePackageRun: function(host, package_name) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/device/package/run'.argUri({
+                host: host,
+                package: package_name,
+            })
+        ]
+    },
+    /**
+     * Install package
+     *
+     * @returns route
+     */
+    devicePackageInstall: function(host, path, apm) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/device/package/install'.argUri({
+                host: host,
+                path: path,
+                apm: apm,
+            })
+        ]
+    },
+    /**
+     * Upload file
+     *
+     * @returns route
+     */
+    deviceUpload: function(host, path) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/device/upload'.argUri({
+                host: host,
+                path: path,
             })
         ]
     },

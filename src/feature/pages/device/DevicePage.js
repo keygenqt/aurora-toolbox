@@ -129,23 +129,156 @@ export const DevicePage = GObject.registerClass({
 						`ssh -o 'ConnectTimeout=2' -o 'StrictHostKeyChecking=no' ${this.#params.user}@${this.#params.host} -p ${this.#params.port} ${keyPath}`
 					))
 			},
-            'install': () => {
-				// @todo
-				console.log('install');
-			},
-            'remove': () => {
-				// @todo
-				console.log('remove')
-			},
-            'run': () => {
-				// @todo
-				console.log('run')
-			},
-            'upload': () => {
-				// @todo
-				console.log('upload')
-			},
+            'install': () => this.#installPackage(),
+            'remove': () => this.#deletePackage(),
+            'run': () => this.#runPackage(),
+            'upload': () => this.#uploadFile(),
         });
 		this._IdPageRefresh.connect('clicked', () => this.#refresh());
+	}
+
+	#deletePackage() {
+		var dialog = this.utils.creator.textDialog(
+			this.#window,
+			_('Uninstall'),
+			_('Specify the name of the package you want to uninstall.'),
+			'com.package.name',
+			/* validate */ (text) => {
+				if (text.split('.').length !== 3) {
+					return false;
+				}
+				return true;
+			},
+			/* success */ (text) => {
+				dialog.loading();
+				this.utils.helper.getPromisePage(async () => {
+					const resultAPM = this.utils.helper.getLastObject(
+						await this.connectors.exec.communicateAsync(this.connectors.aurora.devicePackageRemove(this.#params.host, text, true))
+					);
+					if (resultAPM.code == 200) {
+						return {code: 200};
+					}
+					const resultPkcon = this.utils.helper.getLastObject(
+						await this.connectors.exec.communicateAsync(this.connectors.aurora.devicePackageRemove(this.#params.host, text, false))
+					);
+					if (resultPkcon.code == 200) {
+						return {code: 200};
+					}
+					return {code: 500};
+				}).then((response) => {
+					if (response && response.code === 200) {
+						dialog.success(_('The package has been uninstall successfully!'));
+					} else {
+						dialog.error(_(`Failed to uninstall package, please provide a valid package name.`));
+					}
+				});
+			},
+		);
+	}
+
+	#runPackage() {
+		var dialog = this.utils.creator.textDialog(
+			this.#window,
+			_('Run package'),
+			_('Specify the name of the package you want to run.'),
+			'com.package.name',
+			/* validate */ (text) => {
+				if (text.split('.').length !== 3) {
+					return false;
+				}
+				return true;
+			},
+			/* success */ (text) => {
+				dialog.loading();
+				this.utils.helper.getPromisePage(async () => {
+					const resultRun = await this.utils.helper.getObjectAsync(
+						/* query */	 this.connectors.aurora.devicePackageRun(this.#params.host, text),
+						/* valid */	 () => true,
+						/* c.log */	 true,
+					);
+					return { code: resultRun && resultRun.code === 200 ? 200 : 500 };
+				}).then((response) => {
+					if (response && response.code === 200) {
+						dialog.close();
+					} else {
+						dialog.error(_(`Failed to run package, please provide a valid package name.`));
+					}
+				});
+			},
+		);
+	}
+
+	#installPackage() {
+		this.utils.creator.selectFileDialog(
+			this.#window,
+			new Gtk.FileFilter({
+				name: _('RPM package'),
+				mime_types: ['application/x-rpm'],
+			}),
+			/* success */ (path) => {
+				const dialog = this.utils.creator.loadingDialog(this.#window);
+				this.utils.helper.getPromisePage(async () => {
+					const isAPM = Boolean(this.#info.VERSION_ID.match(/^5.+/g));
+					const resultRun = await this.utils.helper.getObjectAsync(
+						/* query */	 this.connectors.aurora.devicePackageInstall(this.#params.host, path, isAPM),
+						/* valid */	 (object) => {
+							if (object && object.code === 100) {
+								if (object.value) {
+									dialog.state(_(`Loading... (${object.value}%)`));
+								} else {
+									dialog.state(_(`Installing...`));
+								}
+								return false;
+							} else {
+								this.utils.log.log(object);
+								return true;
+							}
+						},
+					);
+					return { code: resultRun && resultRun.code === 200 ? 200 : 500 };
+				}).then((response) => {
+					if (response && response.code === 200) {
+						dialog.success(_('The package was installed successfully!'));
+					} else {
+						dialog.error(_('Failed to install package. Please provide a valid package file.'));
+					}
+				});
+			},
+		);
+	}
+
+	#uploadFile() {
+		this.utils.creator.selectFileDialog(
+			this.#window,
+			new Gtk.FileFilter({
+				name: _('All Files'),
+				patterns: ['*'],
+			}),
+			/* success */ (path) => {
+				const dialog = this.utils.creator.loadingDialog(this.#window);
+				this.utils.helper.getPromisePage(async () => {
+					const resultRun = await this.utils.helper.getObjectAsync(
+						/* query */	 this.connectors.aurora.deviceUpload(this.#params.host, path),
+						/* valid */	 (object) => {
+							if (object && object.code === 100) {
+								if (object.value) {
+									dialog.state(_(`Loading... (${object.value}%)`));
+								}
+								return false;
+							} else {
+								return true;
+							}
+						},
+					);
+					return { code: resultRun && resultRun.code === 200 ? 200 : 500 };
+				}).then((response) => {
+					if (response && response.code === 200) {
+						dialog.success(_('The file has been successfully downloaded to the ~/Download directory!'));
+					} else {
+						dialog.error(_('Error loading file, something went wrong.'));
+					}
+				});
+			},
+		);
 	}
 });

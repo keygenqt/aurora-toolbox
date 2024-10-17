@@ -62,38 +62,25 @@
 									<property name="title" translatable="true">Flutter</property>
 									<property name="description" translatable="yes">Extensions for working with Flutter</property>
 									<child>
-										<object class="AdwActionRow" id="IdButtonExtensionsDart">
-											<property name="activatable-widget">IdButtonExtensionsDart</property>
-											<property name="action-name">VscodeTool.extensionsDart</property>
-											<property name="title" translatable="true">dart-code.dart-code</property>
-											<property name="subtitle" translatable="true">Dart Code extends VS Code with support for the Dart programming language, and provides tools for effectively editing, refactoring, running, and reloading Flutter mobile apps.</property>
-											<child type="prefix">
-												<object class="GtkBox">
-													<property name="orientation">vertical</property>
-													<child>
-														<object class="GtkImage">
-															<property name="margin-top">9</property>
-															<property name="icon-name">aurora-toolbox-dart</property>
-															<property name="pixel-size">20x20</property>
-														</object>
-													</child>
-												</object>
-											</child>
-										</object>
-									</child>
-									<child>
 										<object class="AdwActionRow" id="IdButtonExtensionsFlutter">
 											<property name="activatable-widget">IdButtonExtensionsFlutter</property>
 											<property name="action-name">VscodeTool.extensionsFlutter</property>
-											<property name="title" translatable="true">dart-code.flutter</property>
+											<property name="title" translatable="true">dart-code.flutter, dart-code.dart-code</property>
 											<property name="subtitle" translatable="true">This VS Code extension adds support for effectively editing, refactoring, running, and reloading Flutter mobile apps. It depends on (and will automatically install) the Dart extension for support for the Dart programming language.</property>
 											<child type="prefix">
 												<object class="GtkBox">
 													<property name="orientation">vertical</property>
 													<child>
-														<object class="GtkImage">
+														<object class="GtkImage" id="IdButtonExtensionsFlutterIcon">
 															<property name="margin-top">10</property>
 															<property name="icon-name">aurora-toolbox-flutter</property>
+															<property name="pixel-size">20x20</property>
+														</object>
+													</child>
+													<child>
+														<object class="GtkImage" id="IdButtonExtensionsFlutterOk">
+															<property name="margin-top">10</property>
+															<property name="icon-name">emblem-ok-symbolic</property>
 															<property name="pixel-size">20x20</property>
 														</object>
 													</child>
@@ -119,9 +106,16 @@
 												<object class="GtkBox">
 													<property name="orientation">vertical</property>
 													<child>
-														<object class="GtkImage">
+														<object class="GtkImage" id="IdButtonExtensionsCpptoolsIcon">
 															<property name="margin-top">9</property>
 															<property name="icon-name">aurora-toolbox-cpptools</property>
+															<property name="pixel-size">20x20</property>
+														</object>
+													</child>
+													<child>
+														<object class="GtkImage" id="IdButtonExtensionsCpptoolsOk">
+															<property name="margin-top">8</property>
+															<property name="icon-name">emblem-ok-symbolic</property>
 															<property name="pixel-size">20x20</property>
 														</object>
 													</child>
@@ -139,9 +133,16 @@
 												<object class="GtkBox">
 													<property name="orientation">vertical</property>
 													<child>
-														<object class="GtkImage">
+														<object class="GtkImage" id="IdButtonExtensionsCmakeIcon">
 															<property name="margin-top">10</property>
 															<property name="icon-name">aurora-toolbox-cmake</property>
+															<property name="pixel-size">20x20</property>
+														</object>
+													</child>
+													<child>
+														<object class="GtkImage" id="IdButtonExtensionsCmakeOk">
+															<property name="margin-top">8</property>
+															<property name="icon-name">emblem-ok-symbolic</property>
 															<property name="pixel-size">20x20</property>
 														</object>
 													</child>
@@ -159,9 +160,16 @@
 												<object class="GtkBox">
 													<property name="orientation">vertical</property>
 													<child>
-														<object class="GtkImage">
+														<object class="GtkImage" id="IdButtonExtensionsMesonIcon">
 															<property name="margin-top">10</property>
 															<property name="icon-name">aurora-toolbox-mesonbuild</property>
+															<property name="pixel-size">20x20</property>
+														</object>
+													</child>
+													<child>
+														<object class="GtkImage" id="IdButtonExtensionsMesonOk">
+															<property name="margin-top">8</property>
+															<property name="icon-name">emblem-ok-symbolic</property>
 															<property name="pixel-size">20x20</property>
 														</object>
 													</child>
@@ -187,9 +195,16 @@
 												<object class="GtkBox">
 													<property name="orientation">vertical</property>
 													<child>
-														<object class="GtkImage">
+														<object class="GtkImage" id="IdButtonExtensionsCheckerIcon">
 															<property name="margin-top">9</property>
 															<property name="icon-name">aurora-toolbox-checker</property>
+															<property name="pixel-size">20x20</property>
+														</object>
+													</child>
+													<child>
+														<object class="GtkImage" id="IdButtonExtensionsCheckerOk">
+															<property name="margin-top">8</property>
+															<property name="icon-name">emblem-ok-symbolic</property>
 															<property name="pixel-size">20x20</property>
 														</object>
 													</child>
@@ -207,9 +222,16 @@
 												<object class="GtkBox">
 													<property name="orientation">vertical</property>
 													<child>
-														<object class="GtkImage">
+														<object class="GtkImage" id="IdButtonExtensionsHighlightIcon">
 															<property name="margin-top">10</property>
 															<property name="icon-name">aurora-toolbox-highlight</property>
+															<property name="pixel-size">20x20</property>
+														</object>
+													</child>
+													<child>
+														<object class="GtkImage" id="IdButtonExtensionsHighlightOk">
+															<property name="margin-top">8</property>
+															<property name="icon-name">emblem-ok-symbolic</property>
 															<property name="pixel-size">20x20</property>
 														</object>
 													</child>

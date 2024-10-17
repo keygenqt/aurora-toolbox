@@ -136,7 +136,7 @@ export const Creator = {
 
 		dialog.open(window, null, (__, res) => {
 			try {
-				submit(dialog.open_finish(res).get_uri());
+				submit(dialog.open_finish(res).get_path());
 			} catch (e) {
 				cancel();
 			}

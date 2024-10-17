@@ -73,7 +73,7 @@
 										<object class="AdwActionRow" id="IdButtonRemovePackage">
 											<property name="activatable-widget">IdButtonRemovePackage</property>
 											<property name="action-name">DeviceTool.remove</property>
-											<property name="title" translatable="true">Remove package</property>
+											<property name="title" translatable="true">Uninstall package</property>
 											<property name="icon-name">list-remove-all-symbolic</property>
 											<child>
 												<object class="GtkImage">

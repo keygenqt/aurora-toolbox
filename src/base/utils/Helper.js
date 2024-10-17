@@ -116,7 +116,7 @@ export const Helper = {
     /**
      * Loading multiple query
      */
-    getObjectAsync: async function (query, valid) {
+    getObjectAsync: async function (query, valid, logging = false) {
         var result1 = undefined;
         var result2 = undefined;
         async function loadResult() {
@@ -134,7 +134,12 @@ export const Helper = {
         }
         ShellExec.communicateCallback(
             query,
-            (object) => result1 = object,
+            (object) => {
+                result1 = object;
+                if (logging) {
+                    Log.log(object);
+                }
+            },
             () => result1 = {code: 500, message: 'Error get object.'}
         );
         return await loadResult();
