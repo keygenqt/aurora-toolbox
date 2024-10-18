@@ -204,43 +204,63 @@ export const PsdksPage = GObject.registerClass({
 			_('Install'),
 			_(`Do you want install "${version}" PSDK?`),
 			() => {
-
-				// @todo download & install
-				this.utils.creator.authRootDialog(this.#window, () => {
-					this.#statePage(PsdksPageStates.LOADING, _('Install...'));
-					this.utils.helper.getPromisePage(async () => {
-						// @todo
-						const resultRun = await this.utils.helper.getObjectAsync(
-							/* query */	 this.connectors.aurora.psdkInstall(version),
-							/* valid */	 (object) => {
-
-								console.log(object)
+				this.#statePage(PsdksPageStates.LOADING, _('Download...'));
+				// Download
+				this.utils.helper.getPromisePage(async () => {
+					var count = 0;
+					const resultRun = await this.utils.helper.getObjectAsync(
+						/* query */	 this.connectors.aurora.psdkDownload(version),
+						/* valid */	 (object) => {
+							if (object && object.value && !isNaN(parseInt(object.value))) {
+								this.#statePage(PsdksPageStates.LOADING, _(`Download... (${object.value}%)`));
 								return false;
-
-								if (object && object.code === 100 && parseInt(object.value != NaN)) {
-									this.#statePage(PsdksPageStates.LOADING, _(`Download... (${object.value}%)`));
-									return false;
+							}
+							if (object && object.value && object.value.includes('/home')) {
+								count = count + 1;
+								return count === (version.includes('5.') ? 5 : 4); // check by version
+							}
+							if (object && object.value && object.value.includes('http')) {
+								return false;
+							}
+							return object.code !== 100;
+						},
+					);
+					return resultRun.code !== 500;
+				}).then((response) => {
+					if (response) {
+						// Install
+						this.#statePage(PsdksPageStates.LOADING, _('Install...'));
+						this.utils.creator.authRootDialog(this.#window, () => {
+							this.utils.helper.getPromisePage(async () => {
+								const resultRun = await this.utils.helper.getObjectAsync(
+									/* query */	 this.connectors.aurora.psdkInstall(version),
+									/* valid */	 (object) => {
+										if (object && object.code === 100) {
+											if (object.value && !isNaN(parseInt(object.value))) {
+												this.#statePage(PsdksPageStates.LOADING, _(`${object.message}... (${object.value}%)`));
+											}
+											return false;
+										} else {
+											return true;
+										}
+									},
+								);
+								return resultRun;
+							}).then((response) => {
+								if (response.code === 200) {
+									this.utils.creator.infoDialog(
+										this.#window,
+										response.message.trim()
+									);
+									this.#refresh();
 								} else {
-									return true;
+									this.#statePage(PsdksPageStates.ERROR);
 								}
-							},
-						);
-						return {
-							code: resultRun.code,
-							message: resultRun.message,
-						};
-					}).then((response) => {
-						// @todo
-						// if (response.code === 200) {
-						// 	this.utils.creator.infoDialog(
-						// 		this.#window,
-						// 		response.message.trim()
-						// 	);
-						// 	this.#refresh();
-						// } else {
-						// 	this.#statePage(PsdksPageStates.ERROR);
-						// }
-					});
+							});
+						});
+					} else {
+						this.#statePage(PsdksPageStates.ERROR);
+					}
 				});
 			}
 		);

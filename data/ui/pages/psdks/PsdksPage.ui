@@ -52,7 +52,7 @@
 						<child>
 							<object class="AtbPageBoxWidget" id="IdError">
 								<property name="icon-name">face-surprise-symbolic</property>
-								<property name="message" translatable="yes">Failed to get versions.</property>
+								<property name="message" translatable="yes">Something went wrong.</property>
 							</object>
 						</child>
 					</object>

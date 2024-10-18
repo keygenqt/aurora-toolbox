@@ -39,6 +39,19 @@ export const AuroraAPI = {
         ]
     },
     /**
+     * Download PSDK
+     *
+     * @returns route
+     */
+    psdkDownload: function(version) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/psdk/download'.argUri({
+                version: version,
+            })
+        ]
+    },
+    /**
      * Install PSDK
      *
      * @returns route
