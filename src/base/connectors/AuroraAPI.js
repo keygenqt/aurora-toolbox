@@ -39,6 +39,19 @@ export const AuroraAPI = {
         ]
     },
     /**
+     * Install PSDK
+     *
+     * @returns route
+     */
+    psdkInstall: function(version) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/psdk/install'.argUri({
+                version: version,
+            })
+        ]
+    },
+    /**
      * Get info about PSDK
      *
      * @returns route
@@ -110,6 +123,32 @@ export const AuroraAPI = {
     flutterAvailable: function() {
         return [
             ...AppConstants.AuroraCLI, 'api', "--route", '/flutter/available'
+        ]
+    },
+    /**
+     * Install Flutter SDK
+     *
+     * @returns route
+     */
+    flutterInstall: function(version) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/flutter/install'.argUri({
+                version: version,
+            })
+        ]
+    },
+    /**
+     * Remove Flutter SDK
+     *
+     * @returns route
+     */
+    flutterRemove: function(version) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/flutter/remove'.argUri({
+                version: version,
+            })
         ]
     },
     //////////////////////////////////////////

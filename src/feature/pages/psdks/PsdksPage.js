@@ -17,8 +17,6 @@ import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 import Gtk from 'gi://Gtk';
 
-import { AlertDialog } from '../../dialogs/AlertDialog.js';
-
 const PsdksPageStates = Object.freeze({
 	LOADING:	1,
 	ERROR:		2,
@@ -74,7 +72,7 @@ export const PsdksPage = GObject.registerClass({
 		this.#availableWidgets = [];
 	}
 
-	#statePage(state) {
+	#statePage(state, message = undefined) {
 		this.childrenHide(
 			'IdPreferencesPage',
 			'IdLoading',
@@ -83,6 +81,7 @@ export const PsdksPage = GObject.registerClass({
 		);
 		if (state == PsdksPageStates.LOADING) {
 			this._IdPageContent.valign = Gtk.Align.CENTER;
+			this._IdLoading.showLoading(message);
 			return this.childrenShow('IdLoading');
 		}
 		if (state == PsdksPageStates.ERROR) {
@@ -109,8 +108,8 @@ export const PsdksPage = GObject.registerClass({
 	}
 
 	#initData() {
+		this.#statePage(PsdksPageStates.LOADING, _('Getting data...'));
 		this.#clear();
-		this.#statePage(PsdksPageStates.LOADING);
 		this.utils.helper.getPromisePage(async () => {
 			const installed = this.utils.helper.getValueResponse(this.utils.helper.getLastObject(
 				await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkInstalled())
@@ -158,17 +157,11 @@ export const PsdksPage = GObject.registerClass({
 
 	#initAvailableGroup() {
 		this.#available.forEach((version) => {
-			const widget = this.#createItem(version, 'system-software-install-symbolic', () => {
-				new AlertDialog().present(
-					this.#window,
-					_('Install'),
-					_(`Do you want install "${version}" PSDK?`),
-					() => {
-						// @todo
-						console.log(`Install dialog: ${version}`);
-					}
-				);
-			});
+			const widget = this.#createItem(
+				version,
+				'system-software-install-symbolic',
+				() => this.#installPSDK(version),
+			);
 			// Add to active group
 			this._IdAvailableGroup.add(widget);
 			// Save widget
@@ -203,5 +196,53 @@ export const PsdksPage = GObject.registerClass({
 			actionRow.connectGroup(group, actions);
 		}
 		return actionRow;
+	}
+
+	#installPSDK(version) {
+		this.utils.creator.alertDialog(
+			this.#window,
+			_('Install'),
+			_(`Do you want install "${version}" PSDK?`),
+			() => {
+
+				// @todo download & install
+				this.utils.creator.authRootDialog(this.#window, () => {
+					this.#statePage(PsdksPageStates.LOADING, _('Install...'));
+					this.utils.helper.getPromisePage(async () => {
+						// @todo
+						const resultRun = await this.utils.helper.getObjectAsync(
+							/* query */	 this.connectors.aurora.psdkInstall(version),
+							/* valid */	 (object) => {
+
+								console.log(object)
+								return false;
+
+								if (object && object.code === 100 && parseInt(object.value != NaN)) {
+									this.#statePage(PsdksPageStates.LOADING, _(`Download... (${object.value}%)`));
+									return false;
+								} else {
+									return true;
+								}
+							},
+						);
+						return {
+							code: resultRun.code,
+							message: resultRun.message,
+						};
+					}).then((response) => {
+						// @todo
+						// if (response.code === 200) {
+						// 	this.utils.creator.infoDialog(
+						// 		this.#window,
+						// 		response.message.trim()
+						// 	);
+						// 	this.#refresh();
+						// } else {
+						// 	this.#statePage(PsdksPageStates.ERROR);
+						// }
+					});
+				});
+			}
+		);
 	}
 });

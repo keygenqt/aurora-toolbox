@@ -37,16 +37,16 @@
 		<file>feature/dialogs/AboutDialog.js</file>
 		<file>feature/dialogs/AlertDialog.js</file>
 		<file>feature/dialogs/ErrorDialog.js</file>
+		<file>feature/dialogs/InfoDialog.js</file>
 		<file>feature/dialogs/LoadingDialog.js</file>
 		<file>feature/dialogs/PasswordDialog.js</file>
 		<file>feature/dialogs/SettingsDialog.js</file>
 		<file>feature/dialogs/TextDialog.js</file>
 
 		<!-- widgets -->
-		<file>feature/widgets/BoxWidget.js</file>
-		<file>feature/widgets/IconInfoBoxWidget.js</file>
-		<file>feature/widgets/InfoBoxWidget.js</file>
+		<file>feature/widgets/GroupBoxWidget.js</file>
 		<file>feature/widgets/NavigationWidget.js</file>
+		<file>feature/widgets/PageBoxWidget.js</file>
 
 		<!-- base -->
 		<file>base/connectors/AuroraAPI.js</file>

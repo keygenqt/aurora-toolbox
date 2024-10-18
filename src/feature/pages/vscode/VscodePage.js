@@ -75,7 +75,7 @@ export const VscodePage = GObject.registerClass({
 		this.#initData();
 	}
 
-	#statePage(state) {
+	#statePage(state, message = undefined) {
 		this.childrenHide(
 			'IdPreferencesPage',
 			'IdVscodeLoading',
@@ -84,6 +84,7 @@ export const VscodePage = GObject.registerClass({
 		);
 		if (state == VscodePageStates.LOADING) {
 			this._IdVscodeBoxPage.valign = Gtk.Align.CENTER;
+			this._IdVscodeLoading.showLoading(message);
 			return this.childrenShow('IdVscodeLoading');
 		}
 		if (state == VscodePageStates.EMPTY) {
@@ -97,7 +98,7 @@ export const VscodePage = GObject.registerClass({
 	}
 
 	#initData() {
-		this.#statePage(VscodePageStates.LOADING);
+		this.#statePage(VscodePageStates.LOADING, _('Getting data...'));
 		this.utils.helper.getPromisePage(async () => {
 			const info = this.utils.helper.getLastObject(
 				await this.connectors.exec.communicateAsync(this.connectors.aurora.vscodeInfo())
@@ -260,9 +261,10 @@ export const VscodePage = GObject.registerClass({
 	}
 
 	#installExtensions(extensions) {
-		this.#statePage(VscodePageStates.LOADING);
+		this.#statePage(VscodePageStates.LOADING, _('Preparation...'));
 		this.utils.helper.getPromisePage(async () => {
 			for (const extension of extensions) {
+				this.#statePage(VscodePageStates.LOADING, _(`Install ${extension}...`));
 				await this.connectors.exec.communicateAsync(
 					this.connectors.aurora.vscodeExtensionInstall(extension)
 				);
@@ -272,7 +274,7 @@ export const VscodePage = GObject.registerClass({
 	}
 
 	#updateSettings() {
-		this.#statePage(VscodePageStates.LOADING);
+		this.#statePage(VscodePageStates.LOADING, _('Update settings...'));
 		this.utils.helper.getPromisePage(async () => {
 			await this.connectors.exec.communicateAsync(
 				this.connectors.aurora.vscodeUpdateSettings()

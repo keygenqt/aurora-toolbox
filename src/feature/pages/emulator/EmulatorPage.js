@@ -60,7 +60,7 @@ export const EmulatorPage = GObject.registerClass({
 		this.#initData();
 	}
 
-	#statePage(state) {
+	#statePage(state, message = undefined) {
 		this.childrenHide(
 			'IdPreferencesPage',
 			'IdEmulatorLoading',
@@ -70,6 +70,7 @@ export const EmulatorPage = GObject.registerClass({
 		);
 		if (state == EmulatorPageStates.LOADING) {
 			this._IdEmulatorBoxPage.valign = Gtk.Align.CENTER;
+			this._IdEmulatorLoading.showLoading(message);
 			return this.childrenShow('IdEmulatorLoading');
 		}
 		if (state == EmulatorPageStates.EMPTY) {
@@ -87,7 +88,7 @@ export const EmulatorPage = GObject.registerClass({
 	}
 
 	#initData() {
-		this.#statePage(EmulatorPageStates.LOADING);
+		this.#statePage(EmulatorPageStates.LOADING, _('Getting data...'));
 		this.utils.helper.getPromisePage(async () => {
 			const info = this.utils.helper.getLastObject(
 				await this.connectors.exec.communicateAsync(this.connectors.aurora.emulatorInfo())
@@ -141,7 +142,7 @@ export const EmulatorPage = GObject.registerClass({
 	}
 
 	#loadEmulatorStart() {
-		this.#statePage(EmulatorPageStates.LOADING);
+		this.#statePage(EmulatorPageStates.LOADING, _('Launching the emulator..'));
         new Promise(async (resolve) => {
 			try {
 				await new Promise(r => setTimeout(r, 500));

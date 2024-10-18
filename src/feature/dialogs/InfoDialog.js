@@ -14,10 +14,33 @@
  * limitations under the License.
  */
 import GObject from 'gi://GObject';
-import Gtk from 'gi://Gtk';
+import Adw from 'gi://Adw';
 
-export const BoxWidget = GObject.registerClass({
-	GTypeName: 'AtbBoxWidget',
-	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/widgets/BoxWidget.ui',
-	InternalChildren: [],
-}, class extends Gtk.Box {});
+export const InfoDialog = GObject.registerClass({
+	GTypeName: 'AtbInfoDialog',
+	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/dialogs/InfoDialog.ui',
+	InternalChildren: [
+		'IdText',
+	],
+}, class extends Adw.AlertDialog {
+	constructor(params) {
+		super(params);
+		this.#hideWidgets();
+	}
+
+	present(window, message) {
+		this.#hideWidgets();
+		if (message) {
+			this._IdText.label = message;
+			this.childrenShow('IdText');
+		}
+		super.present(window);
+	}
+
+	#hideWidgets() {
+		this.childrenHide(
+			'IdIcon',
+			'IdText',
+		);
+	}
+});

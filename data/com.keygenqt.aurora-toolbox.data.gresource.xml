@@ -8,6 +8,7 @@
 		<file>ui/dialogs/AboutDialog.ui</file>
 		<file>ui/dialogs/AlertDialog.ui</file>
 		<file>ui/dialogs/ErrorDialog.ui</file>
+		<file>ui/dialogs/InfoDialog.ui</file>
 		<file>ui/dialogs/LoadingDialog.ui</file>
 		<file>ui/dialogs/PasswordDialog.ui</file>
 		<file>ui/dialogs/SettingsDialog.ui</file>
@@ -42,10 +43,9 @@
 		<file>ui/pages/welcome/elements/WelcomeNotFound.ui</file>
 
 		<!-- widgets -->
-		<file>ui/widgets/BoxWidget.ui</file>
-		<file>ui/widgets/IconInfoBoxWidget.ui</file>
-		<file>ui/widgets/InfoBoxWidget.ui</file>
+		<file>ui/widgets/GroupBoxWidget.ui</file>
 		<file>ui/widgets/NavigationWidget.ui</file>
+		<file>ui/widgets/PageBoxWidget.ui</file>
 	</gresource>
 	<gresource prefix="/com/keygenqt/aurora-toolbox/icons/scalable/actions">
 		<file alias="com.keygenqt.aurora-toolbox.svg">icons/com.keygenqt.aurora-toolbox.svg</file>

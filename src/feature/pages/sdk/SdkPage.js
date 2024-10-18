@@ -57,7 +57,7 @@ export const SdkPage = GObject.registerClass({
 		this.#initData();
 	}
 
-	#statePage(state) {
+	#statePage(state, message = undefined) {
 		this.childrenHide(
 			'IdPreferencesPage',
 			'IdSdkLoading',
@@ -66,6 +66,7 @@ export const SdkPage = GObject.registerClass({
 		);
 		if (state == SdkPageStates.LOADING) {
 			this._IdSdkBoxPage.valign = Gtk.Align.CENTER;
+			this._IdSdkLoading.showLoading(message);
 			return this.childrenShow('IdSdkLoading');
 		}
 		if (state == SdkPageStates.EMPTY) {
@@ -79,7 +80,7 @@ export const SdkPage = GObject.registerClass({
 	}
 
 	#initData() {
-		this.#statePage(SdkPageStates.LOADING);
+		this.#statePage(SdkPageStates.LOADING, _('Getting data...'));
 		this.utils.helper.getPromisePage(async () => {
 			return this.utils.helper.getLastObject(
 				await this.connectors.exec.communicateAsync(this.connectors.aurora.sdkInstalled())

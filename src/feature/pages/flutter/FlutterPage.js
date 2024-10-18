@@ -17,11 +17,7 @@ import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 import Gtk from 'gi://Gtk';
 
-import { AppConstants } from '../../../base/constants/AppConstants.js';
-import { ShellExec } from '../../../base/connectors/ShellExec.js';
-import { AuroraAPI } from '../../../base/connectors/AuroraAPI.js';
-import { Log } from '../../../base/utils/Log.js';
-
+// @todo
 import { AlertDialog } from '../../dialogs/AlertDialog.js';
 
 const FlutterPageStates = Object.freeze({
@@ -79,7 +75,7 @@ export const FlutterPage = GObject.registerClass({
 		this.#availableWidgets = [];
 	}
 
-	#statePage(state) {
+	#statePage(state, message = undefined) {
 		this.childrenHide(
 			'IdPreferencesPage',
 			'IdLoading',
@@ -88,6 +84,7 @@ export const FlutterPage = GObject.registerClass({
 		);
 		if (state == FlutterPageStates.LOADING) {
 			this._IdPageContent.valign = Gtk.Align.CENTER;
+			this._IdLoading.showLoading(message);
 			return this.childrenShow('IdLoading');
 		}
 		if (state == FlutterPageStates.ERROR) {
@@ -114,8 +111,8 @@ export const FlutterPage = GObject.registerClass({
 	}
 
 	#initData() {
+		this.#statePage(FlutterPageStates.LOADING, _('Getting data...'));
 		this.#clear();
-		this.#statePage(FlutterPageStates.LOADING);
 		this.utils.helper.getPromisePage(async () => {
 			const installed = this.utils.helper.getValueResponse(this.utils.helper.getLastObject(
 				await this.connectors.exec.communicateAsync(this.connectors.aurora.flutterInstalled())
@@ -148,16 +145,11 @@ export const FlutterPage = GObject.registerClass({
 
 	#initInstalledGroup() {
 		this.#installed.forEach((version) => {
-			const widget = this.#createItem(version, 'edit-delete-symbolic', () => {
-				new AlertDialog().present(
-					this.#window,
-					_('Remove'),
-					_(`Do you want remove "${version}" Flutter SDK?`),
-					() => {
-						console.log(`Remove dialog: ${version}`);
-					}
-				);
-			});
+			const widget = this.#createItem(
+				version,
+				'edit-delete-symbolic',
+				() => this.#removeFlutterSDK(version),
+			);
 			// Add to active group
 			this._IdInstalledGroup.add(widget);
 			// Save widget
@@ -167,16 +159,11 @@ export const FlutterPage = GObject.registerClass({
 
 	#initAvailableGroup() {
 		this.#available.forEach((version) => {
-			const widget = this.#createItem(version, 'system-software-install-symbolic', () => {
-				new AlertDialog().present(
-					this.#window,
-					_('Install'),
-					_(`Do you want install "${version}" Flutter SDK?`),
-					() => {
-						console.log(`Install dialog: ${version}`);
-					}
-				);
-			});
+			const widget = this.#createItem(
+				version,
+				'system-software-install-symbolic',
+				() => this.#installFlutterSDK(version),
+			);
 			// Add to active group
 			this._IdAvailableGroup.add(widget);
 			// Save widget
@@ -211,5 +198,72 @@ export const FlutterPage = GObject.registerClass({
 			actionRow.connectGroup(group, actions);
 		}
 		return actionRow;
+	}
+
+	#removeFlutterSDK(version) {
+		this.utils.creator.alertDialog(
+			this.#window,
+			_('Remove'),
+			_(`Do you want remove "${version}" Flutter SDK?`),
+			() => {
+				this.#statePage(FlutterPageStates.LOADING, _('Remove...'));
+				this.utils.helper.getPromisePage(async () => {
+					const resultRun = await this.connectors.exec.communicateAsync(
+						this.connectors.aurora.flutterRemove(version)
+					);
+					return {
+						code: resultRun.code,
+						message: resultRun.message,
+					};
+				}).then((response) => {
+					if (response.code === 200) {
+						this.#refresh();
+					} else {
+						this.#statePage(FlutterPageStates.ERROR);
+					}
+				});
+			}
+		);
+	}
+
+	#installFlutterSDK(version) {
+		this.utils.creator.alertDialog(
+			this.#window,
+			_('Install'),
+			_(`Do you want install "${version}" Flutter SDK?`),
+			() => {
+				this.#statePage(FlutterPageStates.LOADING, _('Install...'));
+				this.utils.helper.getPromisePage(async () => {
+					// @todo
+					const resultRun = await this.utils.helper.getObjectAsync(
+						/* query */	 this.connectors.aurora.flutterInstall(version),
+						/* valid */	 (object) => {
+							if (object && object.code === 100) {
+								if (object.value) {
+									this.#statePage(FlutterPageStates.LOADING, _(`${object.message}... (${object.value}%)`));
+								}
+								return false;
+							} else {
+								return true;
+							}
+						},
+					);
+					return {
+						code: resultRun.code,
+						message: resultRun.message,
+					};
+				}).then((response) => {
+					if (response.code === 200) {
+						this.utils.creator.infoDialog(
+							this.#window,
+							response.message.trim()
+						);
+						this.#refresh();
+					} else {
+						this.#statePage(FlutterPageStates.ERROR);
+					}
+				});
+			}
+		);
 	}
 });

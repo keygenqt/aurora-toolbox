@@ -47,15 +47,10 @@
 							</object>
 						</child>
 						<child>
-							<object class="GtkSpinner" id="IdLoading">
-								<property name="halign">center</property>
-								<property name="spinning">true</property>
-								<property name="width-request">40</property>
-								<property name="height-request">40</property>
-							</object>
+							<object class="AtbPageBoxWidget" id="IdLoading"/>
 						</child>
 						<child>
-							<object class="AtbInfoBoxWidget" id="IdError">
+							<object class="AtbPageBoxWidget" id="IdError">
 								<property name="icon-name">face-surprise-symbolic</property>
 								<property name="message" translatable="yes">Failed to get versions.</property>
 							</object>

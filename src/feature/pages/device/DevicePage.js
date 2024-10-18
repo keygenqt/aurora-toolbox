@@ -31,7 +31,7 @@ export const DevicePage = GObject.registerClass({
 		'IdPreferencesPage',
 		'IdDeviceInfoGroup',
 		'IdDeviceInfo',
-		'IdDeviceLoading',
+		'IdLoading',
 		'IdDeviceEmpty',
 		'IdPageRefresh',
 		'IdButtonOpenTerminal',
@@ -62,16 +62,17 @@ export const DevicePage = GObject.registerClass({
 		this.#initData();
 	}
 
-	#statePage(state) {
+	#statePage(state, message = undefined) {
 		this.childrenHide(
 			'IdPreferencesPage',
-			'IdDeviceLoading',
+			'IdLoading',
 			'IdDeviceEmpty',
 			'IdPageRefresh',
 		);
 		if (state == DevicePageStates.LOADING) {
 			this._IdDeviceBoxPage.valign = Gtk.Align.CENTER;
-			return this.childrenShow('IdDeviceLoading');
+			this._IdLoading.showLoading(message);
+			return this.childrenShow('IdLoading');
 		}
 		if (state == DevicePageStates.EMPTY) {
 			this._IdDeviceBoxPage.valign = Gtk.Align.CENTER;
@@ -84,7 +85,7 @@ export const DevicePage = GObject.registerClass({
 	}
 
 	#initData() {
-		this.#statePage(DevicePageStates.LOADING);
+		this.#statePage(DevicePageStates.LOADING, _('Getting data...'));
 		this.utils.helper.getPromisePage(async () => {
 			const info = this.utils.helper.getLastObject(
 				await this.connectors.exec.communicateAsync(this.connectors.aurora.deviceInfo(this.#params.host))

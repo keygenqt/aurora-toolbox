@@ -42,15 +42,10 @@
 							</object>
 						</child>
 						<child>
-							<object class="GtkSpinner" id="IdDevicesLoading">
-								<property name="halign">center</property>
-								<property name="spinning">true</property>
-								<property name="width-request">40</property>
-								<property name="height-request">40</property>
-							</object>
+							<object class="AtbPageBoxWidget" id="IdLoading"/>
 						</child>
 						<child>
-							<object class="AtbInfoBoxWidget" id="IdDevicesEmpty">
+							<object class="AtbPageBoxWidget" id="IdDevicesEmpty">
 								<property name="icon-name">face-uncertain-symbolic</property>
 								<property name="message" translatable="yes">No devices found in configuration file.</property>
 							</object>

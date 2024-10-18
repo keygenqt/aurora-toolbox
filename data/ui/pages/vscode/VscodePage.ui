@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
 	<template class="AtbVscodePage" parent="AdwNavigationPage">
-		<property name="title" translatable="yes">Visual Studio Code</property>
+		<property name="title" translatable="yes">VS Code</property>
 		<property name="can-pop">true</property>
 		<property name="child">
 			<object class="AdwToolbarView">
@@ -33,7 +33,7 @@
 									<property name="margin-start">10</property>
 									<property name="margin-end">10</property>
 									<child>
-										<object class="AtbIconInfoBoxWidget" id="IdVscodeInfo"/>
+										<object class="AtbGroupBoxWidget" id="IdVscodeInfo"/>
 									</child>
 								</object>
 							</child>
@@ -270,15 +270,10 @@
 						</object>
 					</child>
 					<child>
-						<object class="GtkSpinner" id="IdVscodeLoading">
-							<property name="halign">center</property>
-							<property name="spinning">true</property>
-							<property name="width-request">40</property>
-							<property name="height-request">40</property>
-						</object>
+						<object class="AtbPageBoxWidget" id="IdVscodeLoading"/>
 					</child>
 					<child>
-						<object class="AtbInfoBoxWidget" id="IdVscodeEmpty">
+						<object class="AtbPageBoxWidget" id="IdVscodeEmpty">
 							<property name="icon-name">face-uncertain-symbolic</property>
 							<property name="message" translatable="yes">Not found installed the Aurora Vscode.</property>
 						</object>

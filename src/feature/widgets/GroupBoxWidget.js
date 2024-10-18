@@ -18,18 +18,18 @@ import Gtk from 'gi://Gtk';
 
 import { Helper } from '../../base/utils/Helper.js';
 
-export const IconInfoBoxWidget = GObject.registerClass({
-	GTypeName: 'AtbIconInfoBoxWidget',
-	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/widgets/IconInfoBoxWidget.ui',
+export const GroupBoxWidget = GObject.registerClass({
+	GTypeName: 'AtbGroupBoxWidget',
+	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/widgets/GroupBoxWidget.ui',
 	Properties: Helper.makeParams({
         'icon': 'string',
         'title': 'string',
         'subtitle': 'string',
     }),
 	InternalChildren: [
-		'IdDeviceInfoBoxIcon',
-		'IdDeviceInfoBoxName',
-		'IdDeviceInfoBoxArch',
+		'IdInfoBoxIcon',
+		'IdInfoBoxName',
+		'IdInfoBoxArch',
 	],
 }, class extends Gtk.Box {
 	constructor(params) {
@@ -39,19 +39,19 @@ export const IconInfoBoxWidget = GObject.registerClass({
 
 	#initProperties() {
 		// icon
-		this._IdDeviceInfoBoxIcon.set_from_icon_name(this['icon']);
+		this._IdInfoBoxIcon.set_from_icon_name(this['icon']);
 		this.connect('notify::icon', () => {
-			this._IdDeviceInfoBoxIcon.set_from_icon_name(this['icon']);
+			this._IdInfoBoxIcon.set_from_icon_name(this['icon']);
 		})
 		// title
-		this._IdDeviceInfoBoxName.label = this['title'];
+		this._IdInfoBoxName.label = this['title'];
 		this.connect('notify::title', () => {
-			this._IdDeviceInfoBoxName.label = this['title'];
+			this._IdInfoBoxName.label = this['title'];
 		})
 		// subtitle
-		this._IdDeviceInfoBoxArch.label = this['subtitle'];
+		this._IdInfoBoxArch.label = this['subtitle'];
 		this.connect('notify::subtitle', () => {
-			this._IdDeviceInfoBoxArch.label = this['subtitle'];
+			this._IdInfoBoxArch.label = this['subtitle'];
 		})
 	}
 });

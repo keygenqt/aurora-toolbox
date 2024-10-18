@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <template class="AtbInfoDialog" parent="AdwAlertDialog">
+        <property name="follows-content-size">true</property>
+		<property name="extra-child">
+			<object class="GtkBox">
+                <property name="orientation">vertical</property>
+				<property name="spacing">18</property>
+                <child>
+                    <object class="GtkImage" id="IdIcon">
+						<property name="focusable">true</property>
+						<property name="icon-name">help-about-symbolic</property>
+                        <property name="pixel-size">40x40</property>
+                    </object>
+                </child>
+                <child>
+					<object class="GtkLabel" id="IdText">
+                        <property name="wrap">true</property>
+						<property name="justify">center</property>
+						<property name="selectable">true</property>
+					</object>
+                </child>
+			</object>
+		</property>
+        <responses>
+            <response id="cancel" translatable="yes">Close</response>
+        </responses>
+	</template>
+</interface>

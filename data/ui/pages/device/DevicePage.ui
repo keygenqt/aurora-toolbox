@@ -28,7 +28,7 @@
 									<property name="margin-start">10</property>
 									<property name="margin-end">10</property>
 									<child>
-										<object class="AtbIconInfoBoxWidget" id="IdDeviceInfo"/>
+										<object class="AtbGroupBoxWidget" id="IdDeviceInfo"/>
 									</child>
 								</object>
 							</child>
@@ -113,15 +113,10 @@
 						</object>
 					</child>
 					<child>
-						<object class="GtkSpinner" id="IdDeviceLoading">
-							<property name="halign">center</property>
-							<property name="spinning">true</property>
-							<property name="width-request">40</property>
-							<property name="height-request">40</property>
-						</object>
+						<object class="AtbPageBoxWidget" id="IdLoading"/>
 					</child>
 					<child>
-						<object class="AtbInfoBoxWidget" id="IdDeviceEmpty">
+						<object class="AtbPageBoxWidget" id="IdDeviceEmpty">
 							<property name="icon-name">face-uncertain-symbolic</property>
 							<property name="message" translatable="yes">Failed to connect to the device.</property>
 						</object>

@@ -13,7 +13,7 @@
 					</object>
 				</child>
 				<property name="content">
-					<object class="AtbBoxWidget">
+					<object class="GtkBox">
 						<property name="margin-start">20</property>
 						<property name="margin-end">20</property>
 						<property name="spacing">90</property>

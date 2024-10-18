@@ -37,13 +37,14 @@ export const SettingsDialog = GObject.registerClass({
 		'IdBannerRestart',
 	],
 }, class extends Gtk.Widget {
+	#loadingDialog = new LoadingDialog();
 
 	present(window) {
-		const loadingDialog = new LoadingDialog().present(window);
+		this.#loadingDialog.present(window);
 		ShellExec.communicateAsync(AuroraAPI.settingsList())
 			.then((response) => {
 				// Close loading
-				loadingDialog.closeAsync();
+				this.#loadingDialog.closeAsync();
 				// Check error
 				if (response.code === 500) {
 					new ErrorDialog().present(window, response.message);
@@ -62,7 +63,7 @@ export const SettingsDialog = GObject.registerClass({
 			})
 			.catch((e) => {
 				// Close loading
-				loadingDialog.closeAsync();
+				this.#loadingDialog.closeAsync();
 				// Show error
 				new ErrorDialog().present(window, _('Error load settings.'));
 			})

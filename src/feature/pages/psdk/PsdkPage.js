@@ -122,7 +122,7 @@ export const PsdkPage = GObject.registerClass({
 		this._IdButtonSudoersDel.visible = isSudoers;
 	}
 
-	#statePage(state) {
+	#statePage(state, message = undefined) {
 		this.childrenHide(
 			'IdPreferencesPage',
 			'IdLoading',
@@ -132,6 +132,7 @@ export const PsdkPage = GObject.registerClass({
 		);
 		if (state == PsdkPageStates.LOADING) {
 			this._IdBoxPage.valign = Gtk.Align.CENTER;
+			this._IdLoading.showLoading(message);
 			return this.childrenShow('IdLoading');
 		}
 		if (state == PsdkPageStates.EMPTY) {
@@ -150,7 +151,7 @@ export const PsdkPage = GObject.registerClass({
 
 	#initData() {
 		this.#clear();
-		this.#statePage(PsdkPageStates.LOADING);
+		this.#statePage(PsdkPageStates.LOADING, _('Getting data...'));
 		this.utils.creator.authPsdkDialog(
 			this.#window,
 			this.#params.version,

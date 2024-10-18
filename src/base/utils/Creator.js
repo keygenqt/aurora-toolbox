@@ -21,6 +21,7 @@ import { AlertDialog } from '../../feature/dialogs/AlertDialog.js';
 import { PasswordDialog } from '../../feature/dialogs/PasswordDialog.js';
 import { TextDialog } from '../../feature/dialogs/TextDialog.js';
 import { LoadingDialog } from '../../feature/dialogs/LoadingDialog.js';
+import { InfoDialog } from '../../feature/dialogs/InfoDialog.js';
 
 export const Creator = {
     /**
@@ -151,6 +152,17 @@ export const Creator = {
 	) {
 		const dialog = new LoadingDialog();
 		dialog.present(window);
+		return dialog;
+	},
+	/**
+	 * Info text dialog
+	 */
+	infoDialog(
+		window,
+		message
+	) {
+		const dialog = new InfoDialog();
+		dialog.present(window, message);
 		return dialog;
 	},
 }
