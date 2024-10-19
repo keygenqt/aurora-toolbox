@@ -36,22 +36,39 @@ export const NavigationWidget = GObject.registerClass({
 	],
 }, class extends Gtk.Box {
 	#data = {}
+	#disposable = {}
 
 	constructor(params) {
 		super(params);
 	}
 
 	params(key) {
-		return this.#data[key];
+		return this.#data[key] ?? {};
 	}
 
-	push(key, params = {}) {
+	disposable(key) {
+		if (this.#disposable[key]) {
+			const value = this.#disposable[key];
+			this.#disposable[key] = undefined;
+			return value;
+		}
+		return undefined;
+	}
+
+	push(key, params = undefined) {
 		this.#data[key] = params;
 		this._IdNavigation.push_by_tag(key);
 	}
 
-	pop() {
-		this.#data[key] = {};
+	pop(
+		key = undefined,
+		disposable = undefined,
+	) {
+		if (key) {
+			if (disposable) {
+				this.#disposable[key] = disposable;
+			}
+		}
 		this._IdNavigation.pop();
 	}
 });

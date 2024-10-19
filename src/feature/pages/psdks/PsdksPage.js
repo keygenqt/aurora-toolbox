@@ -55,6 +55,14 @@ export const PsdksPage = GObject.registerClass({
 		this.#window = this.get_native();
 	}
 
+	vfunc_map() {
+		super.vfunc_map();
+		const disposable = this.#window.navigation().disposable(this.utils.constants.Pages.PsdksPage);
+		if (disposable?.refresh) {
+			this.#refresh();
+		}
+	}
+
 	#refresh() {
 		this.#initData();
 	}
@@ -243,6 +251,8 @@ export const PsdksPage = GObject.registerClass({
 										} else {
 											return true;
 										}
+										// @todo
+										// The tooling installation is successful
 									},
 								);
 								return resultRun;

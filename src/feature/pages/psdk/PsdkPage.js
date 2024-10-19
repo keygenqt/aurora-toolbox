@@ -22,6 +22,7 @@ const PsdkPageStates = Object.freeze({
 	EMPTY:		2,
 	DONE:		3,
 	ERROR:		4,
+	REMOVE:		5,
 });
 
 export const PsdkPage = GObject.registerClass({
@@ -36,6 +37,7 @@ export const PsdkPage = GObject.registerClass({
 		'IdLoading',
 		'IdEmpty',
 		'IdError',
+		'IdRemove',
 		'IdPageRefresh',
 		'IdButtonOpenTerminal',
 		'IdButtonSudoersAdd',
@@ -88,6 +90,11 @@ export const PsdkPage = GObject.registerClass({
 		this._IdError.connect('button-clicked', () => {
 			this.#refresh();
 		});
+		this._IdRemove.connect('button-clicked', () => {
+			this.#window.navigation().pop(this.utils.constants.Pages.PsdksPage, {
+				refresh: true
+			});
+		});
 		this.connectGroup('PsdkTool', {
 			'terminal': () => {
 				this.connectors.exec
@@ -105,15 +112,7 @@ export const PsdkPage = GObject.registerClass({
 				this.connectors.exec.communicateAsync(this.connectors.aurora.psdkSudoersDel(this.#params.version));
 				this.#stateSudoersPage(false);
 			}),
-			'remove': () => this.utils.creator.alertDialog(
-				this.#window,
-				_('Remove'),
-				_(`Do you want remove "${this.#params.version}" PSDK?`),
-				() => {
-					// @todo
-					console.log(`Remove dialog: ${this.#params.version}`);
-				}
-			),
+			'remove': () => this.#removeFlutterSDK(this.#params.version)
 		});
 	}
 
@@ -128,6 +127,7 @@ export const PsdkPage = GObject.registerClass({
 			'IdLoading',
 			'IdEmpty',
 			'IdError',
+			'IdRemove',
 			'IdPageRefresh',
 		);
 		if (state == PsdkPageStates.LOADING) {
@@ -146,6 +146,10 @@ export const PsdkPage = GObject.registerClass({
 		if (state == PsdkPageStates.ERROR) {
 			this._IdBoxPage.valign = Gtk.Align.CENTER;
 			return this.childrenShow('IdError');
+		}
+		if (state == PsdkPageStates.REMOVE) {
+			this._IdBoxPage.valign = Gtk.Align.CENTER;
+			return this.childrenShow('IdRemove');
 		}
 	}
 
@@ -212,5 +216,33 @@ export const PsdkPage = GObject.registerClass({
 			// Save widget
 			this.#targetsWidgets.push(widget);
 		});
+	}
+
+	#removeFlutterSDK(version) {
+		this.utils.creator.alertDialog(
+			this.#window,
+			_('Remove'),
+			_(`Do you want remove "${version}" PSDK?`),
+			() => {
+				this.utils.creator.authRootDialog(this.#window, () => {
+					this.#statePage(PsdkPageStates.LOADING, _('Remove...'));
+					this.utils.helper.getPromisePage(async () => {
+						const resultRun = this.utils.helper.getLastObject(
+							await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkRemove(version))
+						);
+						return {
+							code: resultRun.code,
+							message: resultRun.message,
+						};
+					}).then((response) => {
+						if (response.code === 200) {
+							this.#statePage(PsdkPageStates.REMOVE);
+						} else {
+							this.#statePage(PsdkPageStates.ERROR);
+						}
+					});
+				});
+			}
+		);
 	}
 });

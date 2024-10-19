@@ -65,6 +65,19 @@ export const AuroraAPI = {
         ]
     },
     /**
+     * Remove PSDK
+     *
+     * @returns route
+     */
+    psdkRemove: function(version) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/psdk/remove'.argUri({
+                version: version,
+            })
+        ]
+    },
+    /**
      * Get info about PSDK
      *
      * @returns route
