@@ -129,6 +129,20 @@ export const AuroraAPI = {
             })
         ]
     },
+    /**
+     * Del user sudoers for PSDK
+     *
+     * @returns route
+     */
+    psdkPackageSign: function(path, version) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/psdk/package/sign'.argUri({
+                path: path,
+                version: version,
+            })
+        ]
+    },
     //////////////////////////////////////////
     // Flutter
     /**

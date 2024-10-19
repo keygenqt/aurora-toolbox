@@ -100,10 +100,7 @@ export const PsdkPage = GObject.registerClass({
 				this.connectors.exec
 					.communicateAsync(this.connectors.shell.gnomeTerminalOpen(this.#tool))
 			},
-			'sign': () => {
-				// @todo
-				console.log('sign')
-			},
+			'sign': () => this.#signRPM(),
 			'sudoersAdd': () => this.utils.creator.authRootDialog(this.#window, () => {
 				this.connectors.exec.communicateAsync(this.connectors.aurora.psdkSudoersAdd(this.#params.version));
 				this.#stateSudoersPage(true);
@@ -243,6 +240,36 @@ export const PsdkPage = GObject.registerClass({
 					});
 				});
 			}
+		);
+	}
+
+	#signRPM() {
+		this.utils.creator.selectFileDialog(
+			this.#window,
+			new Gtk.FileFilter({
+				name: _('Sign RPM'),
+				mime_types: ['application/x-rpm'],
+			}),
+			/* success */ (path) => {
+				this.utils.creator.authRootDialog(this.#window, () => {
+					const dialog = this.utils.creator.loadingDialog(this.#window);
+					this.utils.helper.getPromisePage(async () => {
+						const resultRun = this.utils.helper.getLastObject(
+							await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkPackageSign(path, this.#params.version))
+						);
+						return {
+							code: resultRun.code,
+							message: resultRun.message,
+						};
+					}).then((response) => {
+						if (response && response.code === 200) {
+							dialog.success(response.message);
+						} else {
+							dialog.error(_('Error loading file, something went wrong.'));
+						}
+					});
+				});
+			},
 		);
 	}
 });
