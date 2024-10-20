@@ -85,6 +85,24 @@
 						<object class="AtbPageBoxWidget" id="IdSdkEmpty">
 							<property name="icon-name">face-uncertain-symbolic</property>
 							<property name="message" translatable="yes">Not found installed the Aurora Sdk.</property>
+							<property name="button-icon">document-save-symbolic</property>
+							<property name="button-text" translatable="yes">Offline installer</property>
+							<property name="button2-icon">document-save-symbolic</property>
+							<property name="button2-text" translatable="yes">Online installer</property>
+						</object>
+					</child>
+					<child>
+						<object class="AtbPageBoxWidget" id="IdSdkError">
+							<property name="icon-name">face-surprise-symbolic</property>
+							<property name="message" translatable="yes">Something went wrong.</property>
+						</object>
+					</child>
+					<child>
+						<object class="AtbPageBoxWidget" id="IdSdkInstallInfo">
+							<property name="icon-name">dialog-information-symbolic</property>
+							<property name="message" translatable="yes">The setup file (*.run) has been downloaded. Install Aurora SDK it and then reload the page.</property>
+							<property name="button-icon">view-refresh-symbolic</property>
+							<property name="button-text" translatable="yes">Refresh</property>
 						</object>
 					</child>
 				</object>

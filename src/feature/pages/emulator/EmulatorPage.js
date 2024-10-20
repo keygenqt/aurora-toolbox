@@ -107,11 +107,9 @@ export const EmulatorPage = GObject.registerClass({
 					this.#statePage(EmulatorPageStates.START);
 				} else {
 					this.#statePage(EmulatorPageStates.EMPTY);
-					this.utils.log.error(response)
 				}
 			} catch(e) {
 				this.#statePage(EmulatorPageStates.EMPTY);
-				this.utils.log.error(response)
 			}
 		});
 	}

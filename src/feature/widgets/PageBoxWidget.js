@@ -31,6 +31,8 @@ export const PageBoxWidget = GObject.registerClass({
         'message': 'string',
         'button-icon': 'string',
         'button-text': 'string',
+		'button2-icon': 'string',
+        'button2-text': 'string',
     }),
 	InternalChildren: [
 		'IdPageBoxSpinner',
@@ -39,9 +41,12 @@ export const PageBoxWidget = GObject.registerClass({
 		'IdPageBoxMessage',
 		'IdPageBoxButton',
 		'IdPageBoxButtonContent',
+		'IdPageBoxButton2',
+		'IdPageBoxButtonContent2',
 	],
 	Signals: {
 		'button-clicked': {},
+		'button2-clicked': {},
 	},
 }, class extends Gtk.Box {
 	constructor(params) {
@@ -68,6 +73,12 @@ export const PageBoxWidget = GObject.registerClass({
 		this.#statePage(PageBoxStates.STATE);
 	}
 
+	showButton2(button_text, button_icon = undefined) {
+		this['button2-text'] = button_text;
+		this['button2-icon'] = button_icon;
+		this.#statePage(PageBoxStates.STATE);
+	}
+
 	#statePage(state) {
 		this.childrenHide(
 			'IdPageBoxSpinner',
@@ -75,6 +86,8 @@ export const PageBoxWidget = GObject.registerClass({
 			'IdPageBoxMessage',
 			'IdPageBoxButton',
 			'IdPageBoxButtonContent',
+			'IdPageBoxButton2',
+			'IdPageBoxButtonContent2',
 			'IdPageBoxSpinnerMessage',
 		);
 		if (state == PageBoxStates.LOADING) {
@@ -100,6 +113,16 @@ export const PageBoxWidget = GObject.registerClass({
 					this._IdPageBoxButton.label = this['button-text'];
 				}
 			}
+			if (Boolean(this['button2-text'])) {
+				this.childrenShow('IdPageBoxButton2');
+				if (Boolean(this['button2-icon'])) {
+					this.childrenShow('IdPageBoxButtonContent2');
+					this._IdPageBoxButtonContent2.set_icon_name(this['button2-icon']);
+					this._IdPageBoxButtonContent2.label = this['button2-text'];
+				} else {
+					this._IdPageBoxButton2.label = this['button2-text'];
+				}
+			}
 			return
 		}
 	}
@@ -107,6 +130,9 @@ export const PageBoxWidget = GObject.registerClass({
 	#actionsConnect() {
 		this._IdPageBoxButton.connect('clicked', () => {
 			this.emit('button-clicked');
+		});
+		this._IdPageBoxButton2.connect('clicked', () => {
+			this.emit('button2-clicked');
 		});
 	}
 
@@ -125,5 +151,9 @@ export const PageBoxWidget = GObject.registerClass({
 		this.connect('notify::button-icon', () => this.#statePage(PageBoxStates.STATE));
 		// button-icon
 		this.connect('notify::button-text', () => this.#statePage(PageBoxStates.STATE));
+		// button2-text
+		this.connect('notify::button2-icon', () => this.#statePage(PageBoxStates.STATE));
+		// button2-icon
+		this.connect('notify::button2-text', () => this.#statePage(PageBoxStates.STATE));
 	}
 });

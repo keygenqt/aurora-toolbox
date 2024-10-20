@@ -50,5 +50,17 @@
 				</style>
 			</object>
 		</child>
+		<child>
+			<object class="GtkButton" id="IdPageBoxButton2">
+				<property name="halign">center</property>
+				<property name="valign">center</property>
+				<property name="child">
+					<object class="AdwButtonContent" id="IdPageBoxButtonContent2"/>
+				</property>
+				<style>
+					<class name="pill"/>
+				</style>
+			</object>
+		</child>
 	</template>
 </interface>

@@ -22,17 +22,22 @@ export const AlertDialog = GObject.registerClass({
 	InternalChildren: [],
 }, class extends Adw.AlertDialog {
 	#callback
+	#cancel
 
-	present(window, title, text, callback) {
+	present(window, title, text, callback, cancel = undefined) {
 		this.heading = title;
 		this.body = text;
 		this.#callback = callback;
+		this.#cancel = cancel;
 		super.present(window);
 	}
 
 	yes(_, response) {
 		if (this.#callback && response === 'yes') {
 			this.#callback();
+		}
+		if (this.#cancel && response === 'cancel') {
+			this.#cancel();
 		}
 	}
 });

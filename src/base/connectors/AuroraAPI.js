@@ -292,6 +292,30 @@ export const AuroraAPI = {
             ...AppConstants.AuroraCLI, 'api', "--route", '/sdk/installed'
         ]
     },
+    /**
+     * Get available Aurora SDK
+     *
+     * @returns route
+     */
+    sdkAvailable: function() {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route", '/sdk/available'
+        ]
+    },
+    /**
+     * Get install Aurora SDK
+     *
+     * @returns route
+     */
+    sdkInstall: function(version, isOffline) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/sdk/install'.argUri({
+                version: version,
+                offline: isOffline,
+            })
+        ]
+    },
     //////////////////////////////////////////
     // Emulator
     /**
@@ -569,6 +593,16 @@ export const AuroraAPI = {
             '/app/auth/root'.argUri({
                 password: password,
             })
+        ]
+    },
+    /**
+     * App clear cache
+     *
+     * @returns route
+     */
+    appClear: function() {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route", '/app/clear'
         ]
     },
     //////////////////////////////////////////

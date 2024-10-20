@@ -16,11 +16,14 @@
 import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 import Gtk from 'gi://Gtk';
+import Gio from 'gi://Gio';
 
 const SdkPageStates = Object.freeze({
-	LOADING:	1,
-	EMPTY:		2,
-	DONE:		3,
+	LOADING:		1,
+	EMPTY:			2,
+	DONE:			3,
+	ERROR:			4,
+	INSTALL_INFO:	5,
 });
 
 export const SdkPage = GObject.registerClass({
@@ -33,6 +36,8 @@ export const SdkPage = GObject.registerClass({
 		'IdSdkInfo',
 		'IdSdkLoading',
 		'IdSdkEmpty',
+		'IdSdkError',
+		'IdSdkInstallInfo',
 		'IdPageAbout',
 		'IdPageRefresh',
 	],
@@ -62,6 +67,8 @@ export const SdkPage = GObject.registerClass({
 			'IdPreferencesPage',
 			'IdSdkLoading',
 			'IdSdkEmpty',
+			'IdSdkError',
+			'IdSdkInstallInfo',
 			'IdPageRefresh',
 		);
 		if (state == SdkPageStates.LOADING) {
@@ -77,26 +84,51 @@ export const SdkPage = GObject.registerClass({
 			this._IdSdkBoxPage.valign = Gtk.Align.TOP;
 			return this.childrenShow('IdPreferencesPage', 'IdPageRefresh');
 		}
+		if (state == SdkPageStates.ERROR) {
+			this._IdSdkBoxPage.valign = Gtk.Align.CENTER;
+			return this.childrenShow('IdSdkError', 'IdPageRefresh');
+		}
+		if (state == SdkPageStates.INSTALL_INFO) {
+			this._IdSdkBoxPage.valign = Gtk.Align.CENTER;
+			return this.childrenShow('IdSdkInstallInfo', 'IdPageRefresh');
+		}
 	}
 
 	#initData() {
 		this.#statePage(SdkPageStates.LOADING, _('Getting data...'));
 		this.utils.helper.getPromisePage(async () => {
-			return this.utils.helper.getLastObject(
+			// Clear cache
+			await this.connectors.exec.communicateAsync(this.connectors.aurora.appClear());
+			// Get info
+			const result = this.utils.helper.getLastObject(
 				await this.connectors.exec.communicateAsync(this.connectors.aurora.sdkInstalled())
 			);
+			// Check files
+			if (result && result.code === 200 && result.value) {
+				const tool = result.value.tools[0];
+				const run = result.value.runs[0];
+				if (!Boolean(tool) || !Boolean(run)
+					|| !Gio.File.new_for_path(tool).query_exists(null) || !Gio.File.new_for_path(run).query_exists(null)
+				) {
+					return { code: 404 }
+				}
+			}
+			return {
+				code: result.code,
+				value: result.value,
+			}
 		}).then((response) => {
 			try {
 				if (response && response.code === 200) {
 					this.#initPage(response.value);
 					this.#statePage(SdkPageStates.DONE);
-				} else {
-					this.#statePage(DevicesPageStates.EMPTY);
-					this.utils.log.error(response);
+				}
+				else {
+					this.#statePage(SdkPageStates.EMPTY);
 				}
 			} catch(e) {
-				this.#statePage(DevicesPageStates.EMPTY);
-				this.utils.log.error(response);
+				this.#statePage(SdkPageStates.EMPTY);
+				this.utils.log.error(e);
 			}
 		});
 	}
@@ -117,9 +149,82 @@ export const SdkPage = GObject.registerClass({
 			this._IdPageRefresh.visible = false;
 			this.#refresh();
 		});
+		this._IdSdkEmpty.connect('button-clicked', () => {
+			this.#downloadLatestAndRunInstall(true);
+		});
+		this._IdSdkEmpty.connect('button2-clicked', () => {
+			this.#downloadLatestAndRunInstall(false);
+		});
+		this._IdSdkInstallInfo.connect('button-clicked', () => {
+			this._IdPageRefresh.visible = false;
+			this.#refresh();
+		});
 		this.connectGroup('SdkTool', {
-			'run': () => this.connectors.exec.communicateAsync([this.#run]),
-			'maintenance': () => this.connectors.exec.communicateAsync([this.#tool]),
+			'run': () => {
+				this.connectors.exec.communicateAsync([this.#run])
+					.catch((e) => {
+						this.utils.log.error(e);
+					});
+			},
+			'maintenance': () => {
+				this.connectors.exec.communicateAsync([this.#tool])
+					.catch((e) => {
+						this.utils.log.error(e);
+					});
+			},
+		});
+	}
+
+	#downloadLatestAndRunInstall(isOffline) {
+		this.#statePage(SdkPageStates.LOADING, _('Get latest version...'));
+		this.utils.helper.getPromisePage(async () => {
+			const available = this.utils.helper.getLastObject(
+				await this.connectors.exec.communicateAsync(this.connectors.aurora.sdkAvailable())
+			);
+			if (available && available.value) {
+				return available.value[0]
+			} else {
+				return undefined
+			}
+		}).then((latest) => {
+			if (latest) {
+				this.utils.creator.alertDialog(
+					this.#window,
+					_('Download'),
+					_(`Do you want download "${latest}" Aurora SDK and run install?`),
+					() => {
+						this.#statePage(SdkPageStates.LOADING, _('Download...'));
+						// Download
+						this.utils.helper.getPromisePage(async () => {
+							const resultRun = await this.utils.helper.getObjectAsync(
+								/* query */	 this.connectors.aurora.sdkInstall(latest, isOffline),
+								/* valid */	 (object) => {
+									if (object && object.value && !isNaN(parseInt(object.value))) {
+										this.#statePage(SdkPageStates.LOADING, _(`Download... (${object.value}%)`));
+										return false;
+									}
+									if (object && object.value && object.value.includes('http')) {
+										return false;
+									}
+									return object.code !== 100;
+								},
+							);
+							return resultRun.code !== 500;
+						}).then((response) => {
+							if (response) {
+								this.#statePage(SdkPageStates.INSTALL_INFO);
+							} else {
+								this.#statePage(SdkPageStates.ERROR);
+							}
+						});
+					},
+					() => {
+						this.#refresh();
+					}
+				);
+			} else {
+				this.#statePage(SdkPageStates.ERROR);
+			}
 		});
 	}
 });

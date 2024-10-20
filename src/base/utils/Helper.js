@@ -70,7 +70,9 @@ export const Helper = {
      * Check system is Ubuntu
      */
     isUbuntuSystem: function() {
-        return GLib.getenv('DESKTOP_SESSION') === 'ubuntu'
+        return false;
+        // @todo add install aurora-cli for Ubuntu
+        // return GLib.getenv('DESKTOP_SESSION') === 'ubuntu'
     },
     /**
      * Get environment language

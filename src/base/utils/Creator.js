@@ -61,8 +61,9 @@ export const Creator = {
 		title,
 		subtile,
 		callback,
+		cancel = undefined,
 	) {
-		new AlertDialog().present(window, title, subtile, callback);
+		new AlertDialog().present(window, title, subtile, callback, cancel);
 	},
 	/**
 	 * Create auth root dialog
