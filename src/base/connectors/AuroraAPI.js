@@ -130,7 +130,7 @@ export const AuroraAPI = {
         ]
     },
     /**
-     * Del user sudoers for PSDK
+     * RPM package re-sign.
      *
      * @returns route
      */
@@ -139,6 +139,50 @@ export const AuroraAPI = {
             ...AppConstants.AuroraCLI, 'api', "--route",
             '/psdk/package/sign'.argUri({
                 path: path,
+                version: version,
+            })
+        ]
+    },
+    /**
+     * Install package to target
+     *
+     * @returns route
+     */
+    psdkPackageInstall: function(path, target, version) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/psdk/package/install'.argUri({
+                path: path,
+                target: target,
+                version: version,
+            })
+        ]
+    },
+    /**
+     * Remove package to target
+     *
+     * @returns route
+     */
+    psdkPackageRemove: function(package_name, target, version) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/psdk/package/remove'.argUri({
+                package: package_name,
+                target: target,
+                version: version,
+            })
+        ]
+    },
+    /**
+     * Remove target snapshot
+     *
+     * @returns route
+     */
+    psdkClear: function(target, version) {
+        return [
+            ...AppConstants.AuroraCLI, 'api', "--route",
+            '/psdk/clear'.argUri({
+                target: target,
                 version: version,
             })
         ]

@@ -15,6 +15,7 @@
  */
 import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
+import Gtk from 'gi://Gtk';
 
 export const PsdkTargetPage = GObject.registerClass({
 	GTypeName: 'AtbPsdkTargetPage',
@@ -57,18 +58,98 @@ export const PsdkTargetPage = GObject.registerClass({
 
 	#actionsConnect() {
 		this.connectGroup('PsdkTargetTool', {
-			'install': () => {
-				// @todo
-				console.log('install')
-			},
-			'remove': () => {
-				// @todo
-				console.log('remove')
-			},
-			'clearSnapshot': () => {
-				// @todo
-				console.log('clearSnapshot')
-			},
+			'clearSnapshot': () => this.#removeSnapshot(),
+			'install': () => this.#installPackage(),
+			'remove': () => this.#removePackage(),
+		});
+	}
+
+	#removeSnapshot() {
+		const version = this.#params.psdkVersion;
+		const target = this.#params.target;
+		this.utils.creator.authPsdkDialog(this.#window, version, () => {
+			const dialog = this.utils.creator.loadingDialog(this.#window);
+			this.utils.helper.getPromisePage(async () => {
+				const resultRun = this.utils.helper.getLastObject(
+					await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkClear(target, version))
+				);
+				return {
+					code: resultRun.code,
+					message: resultRun.message,
+				};
+			}).then((response) => {
+				if (response && response.code === 200) {
+					dialog.success(response.message);
+				} else {
+					dialog.error(_('Error, something went wrong.'));
+				}
+			});
+		});
+	}
+
+	#installPackage() {
+		const version = this.#params.psdkVersion;
+		const target = this.#params.target;
+		this.utils.creator.authPsdkDialog(this.#window, version, () => {
+			this.utils.creator.selectFileDialog(
+				this.#window,
+				new Gtk.FileFilter({
+					name: _('RPM package'),
+					mime_types: ['application/x-rpm'],
+				}),
+				/* success */ (path) => {
+					const dialog = this.utils.creator.loadingDialog(this.#window);
+					this.utils.helper.getPromisePage(async () => {
+						const resultRun = this.utils.helper.getLastObject(
+							await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkPackageInstall(path, target, version))
+						);
+						return {
+							code: resultRun.code,
+							message: resultRun.message,
+						};
+					}).then((response) => {
+						if (response && response.code === 200) {
+							dialog.success(response.message);
+						} else {
+							dialog.error(_('Error, something went wrong.'));
+						}
+					});
+				},
+			);
+		});
+	}
+
+	#removePackage() {
+		const version = this.#params.psdkVersion;
+		const target = this.#params.target;
+		this.utils.creator.authPsdkDialog(this.#window, version, () => {
+			var dialog = this.utils.creator.textDialog(
+				this.#window,
+				_('Uninstall'),
+				_('Specify the name of the package you want to uninstall.'),
+				'flutter-embedder',
+				/* validate */ () => {
+					return true;
+				},
+				/* success */ (text) => {
+					dialog.loading();
+					this.utils.helper.getPromisePage(async () => {
+						const resultAPM = this.utils.helper.getLastObject(
+							await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkPackageRemove(text, target, version))
+						);
+						if (resultAPM.code == 200) {
+							return {code: 200};
+						}
+						return {code: 500};
+					}).then((response) => {
+						if (response && response.code === 200) {
+							dialog.success(_('The package has been uninstall successfully!'));
+						} else {
+							dialog.error(_(`Failed to uninstall package, please provide a valid package name.`));
+						}
+					});
+				},
+			);
 		});
 	}
 });

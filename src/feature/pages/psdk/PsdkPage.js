@@ -109,7 +109,7 @@ export const PsdkPage = GObject.registerClass({
 				this.connectors.exec.communicateAsync(this.connectors.aurora.psdkSudoersDel(this.#params.version));
 				this.#stateSudoersPage(false);
 			}),
-			'remove': () => this.#removeFlutterSDK(this.#params.version)
+			'remove': () => this.#removePSDK(this.#params.version)
 		});
 	}
 
@@ -215,7 +215,7 @@ export const PsdkPage = GObject.registerClass({
 		});
 	}
 
-	#removeFlutterSDK(version) {
+	#removePSDK(version) {
 		this.utils.creator.alertDialog(
 			this.#window,
 			_('Remove'),
@@ -244,6 +244,7 @@ export const PsdkPage = GObject.registerClass({
 	}
 
 	#signRPM() {
+		const version = this.#params.version;
 		this.utils.creator.selectFileDialog(
 			this.#window,
 			new Gtk.FileFilter({
@@ -251,11 +252,11 @@ export const PsdkPage = GObject.registerClass({
 				mime_types: ['application/x-rpm'],
 			}),
 			/* success */ (path) => {
-				this.utils.creator.authRootDialog(this.#window, () => {
+				this.utils.creator.authPsdkDialog(this.#window, version, () => {
 					const dialog = this.utils.creator.loadingDialog(this.#window);
 					this.utils.helper.getPromisePage(async () => {
 						const resultRun = this.utils.helper.getLastObject(
-							await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkPackageSign(path, this.#params.version))
+							await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkPackageSign(path, version))
 						);
 						return {
 							code: resultRun.code,
