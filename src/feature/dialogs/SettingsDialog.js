@@ -44,7 +44,7 @@ export const SettingsDialog = GObject.registerClass({
 		ShellExec.communicateAsync(AuroraAPI.settingsList())
 			.then((response) => {
 				// Close loading
-				this.#loadingDialog.closeAsync();
+				this.utils.helper.closeAsyncDialog(this.#loadingDialog);
 				// Check error
 				if (response.code === 500) {
 					new ErrorDialog().present(window, response.message);
@@ -63,7 +63,7 @@ export const SettingsDialog = GObject.registerClass({
 			})
 			.catch((e) => {
 				// Close loading
-				this.#loadingDialog.closeAsync();
+				this.utils.helper.closeAsyncDialog(this.#loadingDialog);
 				// Show error
 				new ErrorDialog().present(window, _('Error load settings.'));
 			})

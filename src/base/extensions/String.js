@@ -59,3 +59,16 @@ String.prototype.parseMultipleJson = function () {
             .filter((line) => line.length > 0);
     }
 };
+
+String.prototype.setArguments = function (arg = {}) {
+    var result = this;
+    const keys = Object.keys(arg)
+    if (keys.length !== 0) {
+        for (let i = 0; i < keys.length; i++) {
+            const key = keys[i];
+            const value = arg[key];
+            result = result.replaceAll(`{{${key}}}`, value);
+        }
+    }
+    return result;
+};

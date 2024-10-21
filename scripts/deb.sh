@@ -1,0 +1,66 @@
+#!/bin/bash
+
+#############################
+## Build and creae deb packae
+#############################
+
+NAME='aurora-toolbox'
+PACKAGE='com.keygenqt.aurora-toolbox'
+REVISION='1'
+FOLDER='release'
+ARCH='amd64'
+
+VERSION=$(grep -m 1 version meson.build | xargs | sed 's/[,]//g' | sed 's/version: //g')
+DEB_FOLDER="${NAME}_${VERSION}-${REVISION}_${ARCH}"
+
+rm -rf $FOLDER
+rm -rf $DEB_FOLDER
+
+meson setup \
+    -Dbindir=/usr/.local/bin \
+    -Ddatadir=/usr/.local/share \
+    -Dlibdir=/usr/.local/lib \
+    -Dprefix=/usr/.local \
+    --buildtype=release \
+    $FOLDER
+
+ninja -C $FOLDER
+
+mkdir -p $DEB_FOLDER
+mkdir -p $DEB_FOLDER/DEBIAN
+mkdir -p $DEB_FOLDER/usr/.local
+mkdir -p $DEB_FOLDER/usr/.local/bin
+mkdir -p $DEB_FOLDER/usr/.local/share/$PACKAGE
+mkdir -p $DEB_FOLDER/usr/share/applications
+mkdir -p $DEB_FOLDER/usr/share/icons
+
+chmod +x $FOLDER/src/$PACKAGE
+
+cp $FOLDER/src/$PACKAGE $DEB_FOLDER/usr/.local/bin
+cp $FOLDER/src/*.gresource $DEB_FOLDER/usr/.local/share/$PACKAGE
+cp $FOLDER/data/*.gresource $DEB_FOLDER/usr/.local/share/$PACKAGE
+cp ./files/package/*.desktop $DEB_FOLDER/usr/share/applications
+cp ./files/package/*.svg $DEB_FOLDER/usr/share/icons
+
+rm -rf $FOLDER/{*,.[^.]*}
+
+tee -a $DEB_FOLDER/DEBIAN/control > /dev/null <<EOT
+Package: $PACKAGE
+Version: $VERSION
+Architecture: $ARCH
+Maintainer: Vitaliy Zarubin <keygenqt@gmail.com>
+Description: An application that provides an easy start in the Aurora OS ecosystem.
+Build-Depends: gettext, meson, pkg-config, libgjs-dev, libgtk-4-dev, libadwaita-1-dev
+Depends: gjs, language-pack-gnome-ru, language-pack-ru-base, libadwaita-1-0 (>= 1.5)
+EOT
+
+dpkg-deb --build --root-owner-group $DEB_FOLDER
+mv $DEB_FOLDER.deb $FOLDER
+rm -rf $DEB_FOLDER
+
+dpkg -x $FOLDER/$DEB_FOLDER.deb $FOLDER/$DEB_FOLDER
+
+
+# Install / Remove
+# sudo dpkg -i release/aurora-toolbox_0.0.1-1_amd64.deb
+# sudo dpkg -r com.keygenqt.aurora-toolbox

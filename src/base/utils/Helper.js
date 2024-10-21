@@ -178,5 +178,15 @@ export const Helper = {
 		} catch (e) {
 			return false;
 		}
-	}
+	},
+    /**
+     * Close dialog with timeout
+     */
+    closeAsyncDialog: async function (dialog) {
+        const times = [0, 2, 5, 10, 50, 100];
+        for (const time of times) {
+            await new Promise(r => setTimeout(r, time));
+            dialog.close();
+        }
+    }
 }

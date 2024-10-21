@@ -170,7 +170,7 @@ export const DevicePage = GObject.registerClass({
 					if (response && response.code === 200) {
 						dialog.success(_('The package has been uninstall successfully!'));
 					} else {
-						dialog.error(_(`Failed to uninstall package, please provide a valid package name.`));
+						dialog.error(_('Failed to uninstall package, please provide a valid package name.'));
 					}
 				});
 			},
@@ -202,7 +202,7 @@ export const DevicePage = GObject.registerClass({
 					if (response && response.code === 200) {
 						dialog.close();
 					} else {
-						dialog.error(_(`Failed to run package, please provide a valid package name.`));
+						dialog.error(_('Failed to run package, please provide a valid package name.'));
 					}
 				});
 			},
@@ -225,9 +225,9 @@ export const DevicePage = GObject.registerClass({
 						/* valid */	 (object) => {
 							if (object && object.code === 100) {
 								if (object.value) {
-									dialog.state(_(`Loading... (${object.value}%)`));
+									dialog.state(_('Loading...') + ` (${object.value}%)`);
 								} else {
-									dialog.state(_(`Installing...`));
+									dialog.state(_('Installing...'));
 								}
 								return false;
 							} else {
@@ -263,7 +263,7 @@ export const DevicePage = GObject.registerClass({
 						/* valid */	 (object) => {
 							if (object && object.code === 100) {
 								if (object.value) {
-									dialog.state(_(`Loading... (${object.value}%)`));
+									dialog.state(_('Loading...') + ` (${object.value}%)`);
 								}
 								return false;
 							} else {

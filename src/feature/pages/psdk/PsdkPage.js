@@ -219,7 +219,7 @@ export const PsdkPage = GObject.registerClass({
 		this.utils.creator.alertDialog(
 			this.#window,
 			_('Remove'),
-			_(`Do you want remove "${version}" PSDK?`),
+			_('Do you want remove "{{version}}" PSDK?').setArguments({version: version}),
 			() => {
 				this.utils.creator.authRootDialog(this.#window, () => {
 					this.#statePage(PsdkPageStates.LOADING, _('Remove...'));

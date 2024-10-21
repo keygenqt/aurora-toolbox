@@ -26,8 +26,10 @@ export const AppConstants = Object.freeze({
         vscode: 'https://code.visualstudio.com/docs'
     },
     AuroraCLI: [
-        'python3',
-        '/home/keygenqt/Documents/Home/Projects/aurora-cli/builds/aurora-cli-3.0.5.pyz'
+        'aurora-cli',
+        // @todo path to pyz for debug
+        // 'python3',
+        // '/home/keygenqt/Documents/Home/Projects/aurora-cli/builds/aurora-cli-3.0.5.pyz'
     ],
     Language: {
         'ru': 'ru_RU.utf-8',

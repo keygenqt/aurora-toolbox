@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
 	<template class="AtbPsdksPage" parent="AdwNavigationPage">
-		<property name="title" translatable="yes">Platfom SDK</property>
+		<property name="title" translatable="yes">Platform SDK</property>
 		<property name="can-pop">true</property>
 		<property name="child">
 			<object class="AdwToolbarView">

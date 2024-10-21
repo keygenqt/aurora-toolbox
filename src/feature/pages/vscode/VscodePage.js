@@ -264,7 +264,7 @@ export const VscodePage = GObject.registerClass({
 		this.#statePage(VscodePageStates.LOADING, _('Preparation...'));
 		this.utils.helper.getPromisePage(async () => {
 			for (const extension of extensions) {
-				this.#statePage(VscodePageStates.LOADING, _(`Install ${extension}...`));
+				this.#statePage(VscodePageStates.LOADING, _('Install') + ` ${extension}...`);
 				await this.connectors.exec.communicateAsync(
 					this.connectors.aurora.vscodeExtensionInstall(extension)
 				);

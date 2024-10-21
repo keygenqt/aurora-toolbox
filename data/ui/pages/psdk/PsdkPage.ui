@@ -93,7 +93,7 @@
 										<object class="AdwActionRow" id="IdButtonSudoersDel">
 											<property name="activatable-widget">IdButtonSudoersDel</property>
 											<property name="action-name">PsdkTool.sudoersDel</property>
-											<property name="title" translatable="true">Delete Sudoers</property>
+											<property name="title" translatable="true">Remove Sudoers</property>
 											<child>
 												<object class="GtkImage">
 													<property name="icon-name">changes-prevent-symbolic</property>
@@ -123,13 +123,13 @@
 					<child>
 						<object class="AtbPageBoxWidget" id="IdEmpty">
 							<property name="icon-name">face-uncertain-symbolic</property>
-							<property name="message" translatable="yes">Not found installed the Platfom SDK.</property>
+							<property name="message" translatable="yes">Not found installed the Platform SDK.</property>
 						</object>
 					</child>
 					<child>
 						<object class="AtbPageBoxWidget" id="IdError">
 							<property name="icon-name">face-crying-symbolic</property>
-							<property name="message" translatable="yes">Failed to retrieve data the Platfom SDK.</property>
+							<property name="message" translatable="yes">Failed to retrieve data the Platform SDK.</property>
 							<property name="button-icon">view-refresh-symbolic</property>
 							<property name="button-text" translatable="yes">Retry</property>
 						</object>

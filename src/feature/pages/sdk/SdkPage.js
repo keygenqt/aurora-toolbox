@@ -191,7 +191,7 @@ export const SdkPage = GObject.registerClass({
 				this.utils.creator.alertDialog(
 					this.#window,
 					_('Download'),
-					_(`Do you want download "${latest}" Aurora SDK and run install?`),
+					_('Do you want download "{{version}}" Aurora SDK and run install?').setArguments({version: latest}),
 					() => {
 						this.#statePage(SdkPageStates.LOADING, _('Download...'));
 						// Download
@@ -200,7 +200,7 @@ export const SdkPage = GObject.registerClass({
 								/* query */	 this.connectors.aurora.sdkInstall(latest, isOffline),
 								/* valid */	 (object) => {
 									if (object && object.value && !isNaN(parseInt(object.value))) {
-										this.#statePage(SdkPageStates.LOADING, _(`Download... (${object.value}%)`));
+										this.#statePage(SdkPageStates.LOADING, _('Download...') + ` (${object.value}%)`);
 										return false;
 									}
 									if (object && object.value && object.value.includes('http')) {

@@ -84,7 +84,7 @@
 					<child>
 						<object class="AtbPageBoxWidget" id="IdSdkEmpty">
 							<property name="icon-name">face-uncertain-symbolic</property>
-							<property name="message" translatable="yes">Not found installed the Aurora Sdk.</property>
+							<property name="message" translatable="yes">Not found installed the Aurora SDK.</property>
 							<property name="button-icon">document-save-symbolic</property>
 							<property name="button-text" translatable="yes">Offline installer</property>
 							<property name="button2-icon">document-save-symbolic</property>

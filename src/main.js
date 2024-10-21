@@ -6,7 +6,6 @@ import Gtk from 'gi://Gtk';
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 
-import './base/extensions/AdwDialog.js';
 import './base/extensions/DBusProxy.js';
 import './base/extensions/GioSettings.js';
 import './base/extensions/GtkWidget.js';

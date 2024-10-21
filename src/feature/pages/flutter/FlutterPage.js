@@ -182,7 +182,7 @@ export const FlutterPage = GObject.registerClass({
 		const action = `action-${version.replaceAll('.', '_')}`;
 		// Create widget
 		const actionRow = new Adw.ActionRow({
-			'title': _(`Version: ${version}`),
+			'title': _('Version:') + ` ${version}`,
 			'action-name': `${group}.${action}`,
 		});
 		if (callback !== undefined) {
@@ -204,7 +204,7 @@ export const FlutterPage = GObject.registerClass({
 		this.utils.creator.alertDialog(
 			this.#window,
 			_('Remove'),
-			_(`Do you want remove "${version}" Flutter SDK?`),
+			_('Do you want remove "{{version}}" Flutter SDK?').setArguments({version: version}),
 			() => {
 				this.#statePage(FlutterPageStates.LOADING, _('Remove...'));
 				this.utils.helper.getPromisePage(async () => {
@@ -230,7 +230,7 @@ export const FlutterPage = GObject.registerClass({
 		this.utils.creator.alertDialog(
 			this.#window,
 			_('Install'),
-			_(`Do you want install "${version}" Flutter SDK?`),
+			_('Do you want install "{{version}}" Flutter SDK?').setArguments({version: version}),
 			() => {
 				this.#statePage(FlutterPageStates.LOADING, _('Install...'));
 				this.utils.helper.getPromisePage(async () => {
@@ -240,7 +240,7 @@ export const FlutterPage = GObject.registerClass({
 						/* valid */	 (object) => {
 							if (object && object.code === 100) {
 								if (object.value) {
-									this.#statePage(FlutterPageStates.LOADING, _(`${object.message}... (${object.value}%)`));
+									this.#statePage(FlutterPageStates.LOADING, `${object.message}... (${object.value}%)`);
 								}
 								return false;
 							} else {

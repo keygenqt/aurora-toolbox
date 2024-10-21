@@ -188,7 +188,7 @@ export const PsdksPage = GObject.registerClass({
 		const action = `action-${version.replaceAll('.', '_')}`;
 		// Create widget
 		const actionRow = new Adw.ActionRow({
-			'title': _(`Version: ${version}`),
+			'title': _('Version:') + ` ${version}`,
 			'action-name': `${group}.${action}`,
 		});
 		if (callback !== undefined) {
@@ -210,7 +210,7 @@ export const PsdksPage = GObject.registerClass({
 		this.utils.creator.alertDialog(
 			this.#window,
 			_('Install'),
-			_(`Do you want install "${version}" PSDK?`),
+			_('Do you want install "{{version}}" PSDK?').setArguments({version: version}),
 			() => {
 				this.#statePage(PsdksPageStates.LOADING, _('Download...'));
 				// Download
@@ -220,7 +220,7 @@ export const PsdksPage = GObject.registerClass({
 						/* query */	 this.connectors.aurora.psdkDownload(version),
 						/* valid */	 (object) => {
 							if (object && object.value && !isNaN(parseInt(object.value))) {
-								this.#statePage(PsdksPageStates.LOADING, _(`Download... (${object.value}%)`));
+								this.#statePage(PsdksPageStates.LOADING, _('Download...') + ` (${object.value}%)`);
 								return false;
 							}
 							if (object && object.value && object.value.includes('/home')) {
@@ -245,7 +245,7 @@ export const PsdksPage = GObject.registerClass({
 									/* valid */	 (object) => {
 										if (object && object.code === 100) {
 											if (object.value && !isNaN(parseInt(object.value))) {
-												this.#statePage(PsdksPageStates.LOADING, _(`${object.message}... (${object.value}%)`));
+												this.#statePage(PsdksPageStates.LOADING, `${object.message}... (${object.value}%)`);
 											}
 											return false;
 										} else {

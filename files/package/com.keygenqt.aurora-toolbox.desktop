@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Aurora Toolbox
+Comment=An application that provides an easy start in the Aurora OS ecosystem.
+Icon=com.keygenqt.aurora-toolbox
+Keywords=aurora;os;aurora-cli;
+Exec=/usr/.local/bin/com.keygenqt.aurora-toolbox
+Terminal=false
+Type=Application
+Categories=Development;
+Name[ru_RU]=Аврора Toolbox

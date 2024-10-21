@@ -5,7 +5,7 @@ project(
 	license: ['Apache 2.0'],
 	meson_version: '>= 0.59.0',
 	default_options: ['cpp_std=c++17', 'cpp_rtti=false', 'cpp_eh=none',
-        'c_std=c99', 'warning_level=2', 'b_pch=true' ],
+        'c_std=c99', 'warning_level=2', 'b_pch=true'],
 )
 
 APP_ID = 'com.keygenqt.aurora-toolbox'
@@ -24,5 +24,7 @@ subdir('po')
 
 # Post installation tasks
 gnome.post_install(
-	glib_compile_schemas: true
+    glib_compile_schemas: true,
+    gtk_update_icon_cache: true,
+    update_desktop_database: true,
 )

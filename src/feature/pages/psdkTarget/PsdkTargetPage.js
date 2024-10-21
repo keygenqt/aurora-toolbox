@@ -53,7 +53,7 @@ export const PsdkTargetPage = GObject.registerClass({
 	#initPage() {
 		this._IdPsdkTargetInfo.icon = 'aurora-toolbox-target';
 		this._IdPsdkTargetInfo.title = this.#params.target;
-		this._IdPsdkTargetInfo.subtitle = _(`PSDK ${this.#params.psdkVersion}`);
+		this._IdPsdkTargetInfo.subtitle = _('PSDK') + ` ${this.#params.psdkVersion}`;
 	}
 
 	#actionsConnect() {
@@ -145,7 +145,7 @@ export const PsdkTargetPage = GObject.registerClass({
 						if (response && response.code === 200) {
 							dialog.success(_('The package has been uninstall successfully!'));
 						} else {
-							dialog.error(_(`Failed to uninstall package, please provide a valid package name.`));
+							dialog.error(_('Failed to uninstall package, please provide a valid package name.'));
 						}
 					});
 				},

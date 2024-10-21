@@ -59,7 +59,6 @@
 		<file>base/utils/Creator.js</file>
 
 		<!-- base/extensions -->
-		<file>base/extensions/AdwDialog.js</file>
 		<file>base/extensions/DBusProxy.js</file>
 		<file>base/extensions/GioSettings.js</file>
 		<file>base/extensions/GtkWidget.js</file>
