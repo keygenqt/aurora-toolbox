@@ -117,11 +117,9 @@ export const DevicesPage = GObject.registerClass({
 					this.#getListDevices(response.value);
 				} else {
 					this.#statePage(DevicesPageStates.EMPTY);
-					this.utils.log.error(response)
 				}
 			} catch(e) {
 				this.#statePage(DevicesPageStates.EMPTY);
-				this.utils.log.error(response)
 			}
 		});
 	}

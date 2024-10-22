@@ -17,10 +17,10 @@ rm -rf $FOLDER
 rm -rf $DEB_FOLDER
 
 meson setup \
-    -Dbindir=/usr/.local/bin \
-    -Ddatadir=/usr/.local/share \
-    -Dlibdir=/usr/.local/lib \
-    -Dprefix=/usr/.local \
+    -Dbindir=/usr/local/bin \
+    -Ddatadir=/usr/local/share/$PACKAGE \
+    -Dlibdir=/usr/local/lib \
+    -Dprefix=/usr/local \
     --buildtype=release \
     $FOLDER
 
@@ -28,17 +28,26 @@ ninja -C $FOLDER
 
 mkdir -p $DEB_FOLDER
 mkdir -p $DEB_FOLDER/DEBIAN
-mkdir -p $DEB_FOLDER/usr/.local
-mkdir -p $DEB_FOLDER/usr/.local/bin
-mkdir -p $DEB_FOLDER/usr/.local/share/$PACKAGE
+mkdir -p $DEB_FOLDER/usr/local
+mkdir -p $DEB_FOLDER/usr/local/bin
+mkdir -p $DEB_FOLDER/usr/local/share/$PACKAGE
+mkdir -p $DEB_FOLDER/usr/local/share/locale/ru/LC_MESSAGES
+mkdir -p $DEB_FOLDER/usr/share/glib-2.0/schemas
 mkdir -p $DEB_FOLDER/usr/share/applications
 mkdir -p $DEB_FOLDER/usr/share/icons
 
 chmod +x $FOLDER/src/$PACKAGE
 
-cp $FOLDER/src/$PACKAGE $DEB_FOLDER/usr/.local/bin
-cp $FOLDER/src/*.gresource $DEB_FOLDER/usr/.local/share/$PACKAGE
-cp $FOLDER/data/*.gresource $DEB_FOLDER/usr/.local/share/$PACKAGE
+# Bin
+cp $FOLDER/src/$PACKAGE $DEB_FOLDER/usr/local/bin
+# Source
+cp $FOLDER/src/*.gresource $DEB_FOLDER/usr/local/share/$PACKAGE
+cp $FOLDER/data/*.gresource $DEB_FOLDER/usr/local/share/$PACKAGE
+# Translate
+cp $FOLDER/po/ru/LC_MESSAGES/*.mo $DEB_FOLDER/usr/local/share/locale/ru/LC_MESSAGES
+# Schemas
+cp ./data/com.keygenqt.aurora-toolbox.gschema.xml $DEB_FOLDER/usr/share/glib-2.0/schemas
+# Menu
 cp ./files/package/*.desktop $DEB_FOLDER/usr/share/applications
 cp ./files/package/*.svg $DEB_FOLDER/usr/share/icons
 

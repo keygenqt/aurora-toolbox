@@ -140,11 +140,9 @@ export const PsdksPage = GObject.registerClass({
 					this.#statePage(PsdksPageStates.DONE);
 				} else {
 					this.#statePage(PsdksPageStates.ERROR);
-					this.utils.log.error(response);
 				}
 			} catch(e) {
 				this.#statePage(PsdksPageStates.ERROR);
-				this.utils.log.error(response);
 			}
 		});
 	}

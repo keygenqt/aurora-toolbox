@@ -113,6 +113,9 @@ export const Helper = {
      * Get latest object from array or get just object
      */
     getLastObject: function (response) {
+        if (!Boolean(response)) {
+            return response;
+        }
         return Array.isArray(response) ? response.slice(-1)[0] : response;
     },
     /**
@@ -150,6 +153,9 @@ export const Helper = {
      * Get value is success response or default
      */
     getValueResponse: function (response, key, value = undefined) {
+        if (!Boolean(response)) {
+            return value;
+        }
         if (key == 'value') {
             return response && response.code === 200 ? response.value : value;
         } else {

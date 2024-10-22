@@ -101,11 +101,9 @@ export const DevicePage = GObject.registerClass({
 					this.#statePage(DevicePageStates.DONE);
 				} else {
 					this.#statePage(DevicePageStates.EMPTY);
-					this.utils.log.error(response)
 				}
 			} catch(e) {
 				this.#statePage(DevicePageStates.EMPTY);
-				this.utils.log.error(response)
 			}
 		});
 	}

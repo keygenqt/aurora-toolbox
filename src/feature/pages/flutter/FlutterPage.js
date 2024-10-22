@@ -134,11 +134,9 @@ export const FlutterPage = GObject.registerClass({
 					this.#statePage(FlutterPageStates.DONE);
 				} else {
 					this.#statePage(FlutterPageStates.ERROR);
-					this.utils.log.error(response);
 				}
 			} catch(e) {
 				this.#statePage(FlutterPageStates.ERROR);
-				this.utils.log.error(response);
 			}
 		});
 	}

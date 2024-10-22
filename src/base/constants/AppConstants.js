@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import GLib from 'gi://GLib';
 
 export const AppConstants = Object.freeze({
     App: {
@@ -26,7 +27,7 @@ export const AppConstants = Object.freeze({
         vscode: 'https://code.visualstudio.com/docs'
     },
     AuroraCLI: [
-        'aurora-cli',
+        `${GLib.getenv('HOME')}/.local/bin/aurora-cli`,
         // @todo path to pyz for debug
         // 'python3',
         // '/home/keygenqt/Documents/Home/Projects/aurora-cli/builds/aurora-cli-3.0.5.pyz'

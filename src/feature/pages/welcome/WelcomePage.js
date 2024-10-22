@@ -74,7 +74,6 @@ export const WelcomePage = GObject.registerClass({
 			} catch(e) {
 				this.#statePage(WelcomePageStates.NOT_FOUND);
 				this.utils.log.error(e);
-				this.utils.log.error(response);
 			}
 		});
 	}

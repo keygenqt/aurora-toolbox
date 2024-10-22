@@ -181,11 +181,9 @@ export const PsdkPage = GObject.registerClass({
 						this.#statePage(PsdkPageStates.DONE);
 					} else {
 						this.#statePage(PsdkPageStates.EMPTY);
-						this.utils.log.error(response);
 					}
 				} catch(e) {
 					this.#statePage(PsdkPageStates.ERROR);
-					this.utils.log.error(response);
 				}
 			}),
 			// Cancel

@@ -103,6 +103,9 @@ export const VscodePage = GObject.registerClass({
 			const info = this.utils.helper.getLastObject(
 				await this.connectors.exec.communicateAsync(this.connectors.aurora.vscodeInfo())
 			);
+			if (info && info.code === 500) {
+				return info;
+			}
 			if (info && info.value && info.value.VERSION === 'undefined') {
 				return undefined;
 			}
@@ -110,12 +113,13 @@ export const VscodePage = GObject.registerClass({
 				await this.connectors.exec.communicateAsync(this.connectors.aurora.vscodeExtensionsList())
 			);
 			return {
+				code: 200,
 				info: info.value,
 				extensions: extensions.value,
 			}
 		}).then((response) => {
 			try {
-				if (response) {
+				if (response && response.code === 200) {
 					this.#initPage(response.info);
 					this.#initExtensions(response.extensions);
 					this.#statePage(VscodePageStates.DONE);

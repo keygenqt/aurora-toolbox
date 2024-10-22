@@ -86,13 +86,13 @@ export const ShellExec = {
                 subProcess.communicate_utf8_async(null, null, (proc, res) => {
                     let [success, stdout, stderr] = proc?.communicate_utf8_finish(res);
                     if (!success || stderr) {
-                        reject(new Error(stderr))
+                        resolve({ code: 500, message: `${stderr}` });
                     } else {
                         resolve(stdout.parseMultipleJson());
                     }
                 });
             } catch (e) {
-                reject(e)
+                resolve({ code: 500, message: `${e}` });
             }
         });
     },

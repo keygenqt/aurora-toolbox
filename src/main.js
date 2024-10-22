@@ -34,6 +34,6 @@ export function main(argv) {
 export function appRestart() {
 	if (_app !== undefined) {
 		_app.quit();
-        Gio.Subprocess.new([`${GLib.get_home_dir()}/.local/bin/${pkg.name}`], null);
+        Gio.Subprocess.new([`/usr/local/bin/${pkg.name}`], null);
 	}
 }
