@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#############################
-## Build and creae deb packae
-#############################
+##############################
+## Build and creae deb package
+##############################
 
 NAME='aurora-toolbox'
 PACKAGE='com.keygenqt.aurora-toolbox'
