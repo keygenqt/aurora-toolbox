@@ -1,10 +1,10 @@
 # Aurora Toolbox
 
-### Subscribe and like! <img src="https://github.com/keygenqt/aurora-cli/blob/main/data/star.gif" width="16px"/>
+### Subscribe and like!
 
 ![Preview](https://raw.githubusercontent.com/keygenqt/aurora-toolbox/refs/heads/main/files/images/preview.png)
 
-[![picture](https://github.com/keygenqt/aurora-toolbox/blob/main/data/common/btn_more.png?raw=true)](https://keygenqt.github.io/aurora-toolbox/)
+[![picture](https://github.com/keygenqt/aurora-toolbox/blob/main/files/images/more.png?raw=true)](https://keygenqt.github.io/aurora-toolbox/)
 
 ### License
 
