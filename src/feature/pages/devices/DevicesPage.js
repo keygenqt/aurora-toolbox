@@ -130,8 +130,8 @@ export const DevicesPage = GObject.registerClass({
 				.catch((e) => this.utils.log.error(e))
 				.then(async (response) => {
 					config[index]['active'] = !Array.isArray(response) && response.code === 200;
-					this.#addDeviceGroup(config[index]);
 					this.#devices.push(config[index]);
+					this.#addDeviceGroup(config[index]);
 				});
 		}
 	}
