@@ -36,12 +36,12 @@ export const EmulatorPage = GObject.registerClass({
 		'IdEmulatorEmpty',
 		'IdEmulatorStart',
 		'IdPageRefresh',
-		'IdButtonOpenTerminalUser',
-		'IdButtonOpenTerminalRoot',
+		'IdButtonOpenTerminalGroup',
 	],
 }, class extends Adw.NavigationPage {
 	#window
 	#info
+	#isTerminal
 
 	// Start
 	constructor(params) {
@@ -61,12 +61,14 @@ export const EmulatorPage = GObject.registerClass({
 	}
 
 	#statePage(state, message = undefined) {
+
 		this.childrenHide(
 			'IdPreferencesPage',
 			'IdEmulatorLoading',
 			'IdEmulatorEmpty',
 			'IdEmulatorStart',
 			'IdPageRefresh',
+			'IdButtonOpenTerminalGroup',
 		);
 		if (state == EmulatorPageStates.LOADING) {
 			this._IdEmulatorBoxPage.valign = Gtk.Align.CENTER;
@@ -79,7 +81,11 @@ export const EmulatorPage = GObject.registerClass({
 		}
 		if (state == EmulatorPageStates.DONE) {
 			this._IdEmulatorBoxPage.valign = Gtk.Align.TOP;
-			return this.childrenShow('IdPreferencesPage', 'IdPageRefresh');
+			this.childrenShow('IdPreferencesPage', 'IdPageRefresh');
+			if (this.#isTerminal) {
+				this.childrenShow('IdButtonOpenTerminalGroup');
+			}
+			return
 		}
 		if (state == EmulatorPageStates.START) {
 			this._IdEmulatorBoxPage.valign = Gtk.Align.CENTER;
@@ -93,15 +99,15 @@ export const EmulatorPage = GObject.registerClass({
 			const info = this.utils.helper.getLastObject(
 				await this.connectors.exec.communicateAsync(this.connectors.aurora.emulatorInfo())
 			);
+			this.#isTerminal = await this.utils.helper.isExistGnomeTerminal();
 			return {
 				'code': info.code,
 				'info': this.utils.helper.getValueResponse(info, 'value'),
-				'isTerminal': await this.utils.helper.isExistGnomeTerminal(),
 			}
 		}).then((response) => {
 			try {
 				if (response.info && response.code === 200) {
-					this.#initPage(response.info, response.isTerminal);
+					this.#initPage(response.info);
 					this.#statePage(EmulatorPageStates.DONE);
 				} else if (response && response.code === 100) {
 					this.#statePage(EmulatorPageStates.START);
@@ -114,13 +120,11 @@ export const EmulatorPage = GObject.registerClass({
 		});
 	}
 
-	#initPage(info, isTerminal) {
+	#initPage(info) {
 		this.#info = info;
 		this._IdEmulatorInfo.icon = 'aurora-toolbox-multiple-devices';
 		this._IdEmulatorInfo.title = info.PRETTY_NAME;
 		this._IdEmulatorInfo.subtitle = info.ARCH;
-		this._IdButtonOpenTerminalUser.visible = isTerminal;
-		this._IdButtonOpenTerminalRoot.visible = isTerminal;
 	}
 
 	#actionsConnect() {

@@ -33,7 +33,7 @@
 								</object>
 							</child>
 							<child>
-								<object class="AdwPreferencesGroup">
+								<object class="AdwPreferencesGroup" id="IdButtonOpenTerminalGroup">
 									<property name="margin-start">10</property>
 									<property name="margin-end">10</property>
 									<child>
