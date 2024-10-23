@@ -1,13 +1,20 @@
-## Updated: 10/23/2024 20:40:20 PM
+## Updated: 10/23/2024 22:03:13 PM
 
 ## Info
 
-- Last tag: 0.0.2
-- Released: 2
+- Last tag: 0.0.3
+- Released: 3
 
 ## Versions
+- Version: 0.0.3 (23/10/2024)
 - Version: 0.0.2 (23/10/2024)
 - Version: 0.0.1 (23/10/2024)
+
+### Version: 0.0.3 (23/10/2024)
+
+#### Bug
+
+- Fix show button terminal for emulator. (Vitaliy Zarubin)
 
 ### Version: 0.0.2 (23/10/2024)
 
