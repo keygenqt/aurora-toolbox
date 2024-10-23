@@ -689,7 +689,7 @@ msgstr "Ошибка загрузки файла, что-то пошло не т
 
 #: src/feature/pages/welcome/WelcomePage.js:61
 msgid "latest"
-msgstr "доступен"
+msgstr "доступно"
 
 #: src/feature/pages/psdk/PsdkPage.js:221
 #: src/feature/pages/flutter/FlutterPage.js:206

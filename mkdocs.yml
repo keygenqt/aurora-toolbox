@@ -1,0 +1,78 @@
+site_name: Aurora Toolbox
+repo_name: Aurora Toolbox GitHub
+site_dir: docs-static
+site_url: https://keygenqt.github.io/aurora-toolbox/
+repo_url: https://github.com/keygenqt/aurora-toolbox
+site_description: Makes life easier for developers on Aurora OS.
+
+# Navigation
+nav:
+  - Main: index.md
+  - Tools:
+      - Overview: tools.md
+  - Install:
+      - Install: install.md
+# Assets
+extra_css:
+  - https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0
+  - assets/css/index.css
+  - assets/css/error.css
+  - assets/css/common.css
+
+# Extensions
+markdown_extensions:
+  - tables
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+# Configuration
+theme:
+  name: 'material'
+  language: 'en'
+  custom_dir: docs/assets
+  favicon: images/favicon.ico
+  template: index.html
+  icon:
+    logo: custom/icon
+  features:
+    - toc.integrate
+    - content.action.edit
+    - content.code.annotate
+    - content.code.copy
+    - content.tooltips
+    - navigation.footer
+    - navigation.indexes
+    - navigation.sections
+    - navigation.tabs
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
