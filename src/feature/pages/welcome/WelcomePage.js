@@ -57,16 +57,19 @@ export const WelcomePage = GObject.registerClass({
 		}).then((response) => {
 			try {
 				if (response && response.code === 200) {
-					if (response.value.INSTALLED !== response.value.LATEST) {
+					const hasNewVersion = response.value.INSTALLED !== response.value.LATEST;
+					// Set text info
+					if (hasNewVersion) {
 						const latest = _('latest')
 						this._IdConnect.version = `${response.value.INSTALLED} (${latest}: ${response.value.LATEST})`;
 					} else {
 						this._IdConnect.version = `${response.value.INSTALLED}`;
 					}
-					if (!settings.get_boolean('first-open')) {
-						this.#window.navigation().push(this.utils.constants.Pages.ToolsPage);
-					} else {
+					// Auto open tools
+					if (settings.get_boolean('first-open') || hasNewVersion) {
 						this.#statePage(WelcomePageStates.CONNECT);
+					} else {
+						this.#window.navigation().push(this.utils.constants.Pages.ToolsPage);
 					}
 				} else {
 					this.#statePage(WelcomePageStates.NOT_FOUND);
