@@ -7,7 +7,8 @@ hide:
 Я разрабатывал приложения под Ubuntu, и тестировал его там.
 Приложение доступно в `deb` пакете на странице [релизов](https://github.com/keygenqt/aurora-toolbox/releases) GitHub.
 
-Приложение Aurora CLI, от которого зависит Aurora Toolbox устанавливается стандартным способом для него: [Install](https://keygenqt.github.io/aurora-cli/install/).
+Приложение [Aurora CLI](https://keygenqt.github.io/aurora-cli), от которого зависит Aurora Toolbox устанавливается стандартным способом для него: 
+[Install](https://keygenqt.github.io/aurora-cli/install/).
 
 #### Install
 
