@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<template class="AtbWelcomeUpdate" parent="GtkBox">
+		<property name="visible">false</property>
+		<property name="orientation">vertical</property>
+		<property name="spacing">24</property>
+		<child>
+			<object class="GtkLabel">
+				<property name="label" translatable="yes">Update available!</property>
+				<property name="wrap">true</property>
+				<property name="justify">center</property>
+				<style> <class name="CssInfoText"/></style>
+			</object>
+		</child>
+		<child>
+			<object class="GtkBox">
+				<property name="halign">center</property>
+				<property name="valign">center</property>
+				<property name="orientation">vertical</property>
+				<property name="spacing">24</property>
+				<child>
+					<object class="GtkLabel" id="IdVersion">
+						<property name="wrap">true</property>
+						<property name="justify">center</property>
+					</object>
+				</child>
+				<child>
+					<object class="GtkButton" id="IdButton">
+						<property name="halign">center</property>
+						<property name="valign">center</property>
+						<property name="child">
+							<object class="AdwButtonContent">
+							<property name="icon-name">view-dual-symbolic</property>
+							<property name="label" translatable="yes">Documentation</property>
+							</object>
+						</property>
+						<style>
+							<class name="pill"/>
+						</style>
+					</object>
+				</child>
+			</object>
+		</child>
+	</template>
+</interface>

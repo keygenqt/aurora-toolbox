@@ -79,7 +79,7 @@ export const ShellExec = {
      */
     communicateAsync(query = []) {
         Log.debug(query);
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve, _) => {
             try {
                 const arg = Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_PIPE;
                 const subProcess = Gio.Subprocess.new(query, arg);

@@ -19,11 +19,13 @@ import Adw from 'gi://Adw';
 import './elements/WelcomeConnect.js';
 import './elements/WelcomeLoading.js';
 import './elements/WelcomeNotFound.js';
+import './elements/WelcomeUpdate.js';
 
 const WelcomePageStates = Object.freeze({
 	LOADING:	1,
 	NOT_FOUND:	2,
 	CONNECT:	3,
+	UPDATE:		4,
 });
 
 export const WelcomePage = GObject.registerClass({
@@ -33,6 +35,7 @@ export const WelcomePage = GObject.registerClass({
 		'IdLoading',
 		'IdNotFound',
 		'IdConnect',
+		'IdUpdate',
 	],
 }, class extends Adw.NavigationPage {
 	#window
@@ -57,20 +60,26 @@ export const WelcomePage = GObject.registerClass({
 		}).then((response) => {
 			try {
 				if (response && response.code === 200) {
+					// Failed to retrieve data
+					if (response.value.LATEST === 'undefined') {
+						response.value.LATEST = response.value.INSTALLED;
+					}
+					// Check new version Aurora CLI
 					const hasNewVersion = response.value.INSTALLED !== response.value.LATEST;
-					// Set text info
+					// If has new version
 					if (hasNewVersion) {
-						const latest = _('latest')
-						this._IdConnect.version = `${response.value.INSTALLED} (${latest}: ${response.value.LATEST})`;
-					} else {
+						this.#setStateUpdate(response.value.LATEST, false /*@todo Now only aurora-cli check*/ );
+						this.#statePage(WelcomePageStates.UPDATE);
+						return
+					}
+					// If first app open
+					if (settings.get_boolean('first-open')) {
 						this._IdConnect.version = `${response.value.INSTALLED}`;
-					}
-					// Auto open tools
-					if (settings.get_boolean('first-open') || hasNewVersion) {
 						this.#statePage(WelcomePageStates.CONNECT);
-					} else {
-						this.#window.navigation().push(this.utils.constants.Pages.ToolsPage);
+						return
 					}
+					// Open tools
+					this.#window.navigation().push(this.utils.constants.Pages.ToolsPage);
 				} else {
 					this.#statePage(WelcomePageStates.NOT_FOUND);
 				}
@@ -86,6 +95,7 @@ export const WelcomePage = GObject.registerClass({
 			'IdLoading',
 			'IdNotFound',
 			'IdConnect',
+			'IdUpdate',
 		);
 		if (state == WelcomePageStates.LOADING) {
 			return this.childrenShow('IdLoading');
@@ -95,6 +105,21 @@ export const WelcomePage = GObject.registerClass({
 		}
 		if (state == WelcomePageStates.CONNECT) {
 			return this.childrenShow('IdConnect');
+		}
+		if (state == WelcomePageStates.UPDATE) {
+			return this.childrenShow('IdUpdate');
+		}
+	}
+
+	#setStateUpdate(version, isAPP) {
+		if (isAPP) {
+			this._IdUpdate.app_name = 'Aurora Toolbox';
+			this._IdUpdate.version = version;
+			this._IdUpdate.link = this.utils.constants.App.docInstall;
+		} else {
+			this._IdUpdate.app_name = 'Aurora CLI';
+			this._IdUpdate.version = version;
+			this._IdUpdate.link = this.utils.constants.AppCLI.docInstall;
 		}
 	}
 });

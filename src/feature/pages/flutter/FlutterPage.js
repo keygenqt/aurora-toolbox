@@ -17,9 +17,6 @@ import GObject from 'gi://GObject';
 import Adw from 'gi://Adw';
 import Gtk from 'gi://Gtk';
 
-// @todo
-import { AlertDialog } from '../../dialogs/AlertDialog.js';
-
 const FlutterPageStates = Object.freeze({
 	LOADING:	1,
 	ERROR:		2,
@@ -232,7 +229,6 @@ export const FlutterPage = GObject.registerClass({
 			() => {
 				this.#statePage(FlutterPageStates.LOADING, _('Install...'));
 				this.utils.helper.getPromisePage(async () => {
-					// @todo
 					const resultRun = await this.utils.helper.getObjectAsync(
 						/* query */	 this.connectors.aurora.flutterInstall(version),
 						/* valid */	 (object) => {

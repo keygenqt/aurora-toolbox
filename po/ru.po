@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-21 21:07+0300\n"
+"POT-Creation-Date: 2024-10-25 10:01+0300\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 
 #: data/ui/dialogs/TextDialog.ui:44 data/ui/dialogs/AlertDialog.ui:7
@@ -78,10 +78,10 @@ msgstr ""
 "настройка включает подробный вывод по умолчанию."
 
 #: data/ui/dialogs/LoadingDialog.ui:18
-#: src/feature/pages/emulator/EmulatorPage.js:255
-#: src/feature/pages/emulator/EmulatorPage.js:292
-#: src/feature/pages/device/DevicePage.js:228
-#: src/feature/pages/device/DevicePage.js:266
+#: src/feature/pages/emulator/EmulatorPage.js:259
+#: src/feature/pages/emulator/EmulatorPage.js:296
+#: src/feature/pages/device/DevicePage.js:226
+#: src/feature/pages/device/DevicePage.js:264
 msgid "Loading..."
 msgstr "Ожидаем..."
 
@@ -121,7 +121,7 @@ msgstr "Пароль"
 
 #: data/ui/pages/psdks/PsdksPage.ui:4 data/ui/pages/psdk/PsdkPage.ui:4
 #: data/ui/pages/tools/elements/ToolsGroups.ui:30
-#: src/feature/pages/psdk/PsdkPage.js:198
+#: src/feature/pages/psdk/PsdkPage.js:196
 msgid "Platform SDK"
 msgstr "Platform SDK"
 
@@ -153,11 +153,11 @@ msgstr "Эмулятор"
 
 #: data/ui/pages/emulator/EmulatorPage.ui:43
 msgid "Open in terminal like User"
-msgstr "Открыть в терминале с правами пользователя"
+msgstr "Открыть в терминале (user)"
 
 #: data/ui/pages/emulator/EmulatorPage.ui:55
 msgid "Open in terminal like Root"
-msgstr "Открыть в терминале с правами root пользователя"
+msgstr "Открыть в терминале (root)"
 
 #: data/ui/pages/emulator/EmulatorPage.ui:69
 #: data/ui/pages/welcome/elements/WelcomeConnect.ui:47
@@ -184,8 +184,8 @@ msgstr "Удалить пакет"
 
 #: data/ui/pages/emulator/EmulatorPage.ui:101
 #: data/ui/pages/device/DevicePage.ui:89
-#: src/feature/pages/emulator/EmulatorPage.js:211
-#: src/feature/pages/device/DevicePage.js:183
+#: src/feature/pages/emulator/EmulatorPage.js:215
+#: src/feature/pages/device/DevicePage.js:181
 msgid "Run package"
 msgstr "Запустить пакет"
 
@@ -214,6 +214,16 @@ msgstr "Добро пожаловать в приложение Aurora Toolbox!"
 msgid "Search Aurora CLI..."
 msgstr "Поиск Aurora CLI..."
 
+#: data/ui/pages/welcome/elements/WelcomeUpdate.ui:9
+msgid "Update available!"
+msgstr "Доступно обновление!"
+
+#: data/ui/pages/welcome/elements/WelcomeUpdate.ui:34
+#: data/ui/pages/welcome/elements/WelcomeNotFound.ui:78
+#: data/ui/pages/tools/elements/ToolsMenu.ui:13
+msgid "Documentation"
+msgstr "Документация"
+
 #: data/ui/pages/welcome/elements/WelcomeConnect.ui:11
 msgid "Connection successful."
 msgstr "Подключение успешно установлено."
@@ -227,20 +237,15 @@ msgid "You can install the application."
 msgstr "Вы можете установить приложение."
 
 #: data/ui/pages/welcome/elements/WelcomeNotFound.ui:36
-#: src/feature/pages/psdks/PsdksPage.js:212
-#: src/feature/pages/flutter/FlutterPage.js:232
-#: src/feature/pages/vscode/VscodePage.js:267
+#: src/feature/pages/psdks/PsdksPage.js:210
+#: src/feature/pages/flutter/FlutterPage.js:230
+#: src/feature/pages/vscode/VscodePage.js:271
 msgid "Install"
 msgstr "Установить"
 
 #: data/ui/pages/welcome/elements/WelcomeNotFound.ui:66
 msgid "Application installation is required."
 msgstr "Требуется установка приложения."
-
-#: data/ui/pages/welcome/elements/WelcomeNotFound.ui:78
-#: data/ui/pages/tools/elements/ToolsMenu.ui:13
-msgid "Documentation"
-msgstr "Документация"
 
 #: data/ui/pages/device/DevicePage.ui:4
 #: data/ui/pages/tools/elements/ToolsGroups.ui:80
@@ -329,7 +334,7 @@ msgid "Flutter"
 msgstr "Flutter"
 
 #: data/ui/pages/tools/elements/ToolsGroups.ui:58
-#: src/feature/pages/vscode/VscodePage.js:134
+#: src/feature/pages/vscode/VscodePage.js:138
 msgid "Visual Studio Code"
 msgstr "Visual Studio Code"
 
@@ -579,7 +584,7 @@ msgid "Exit"
 msgstr "Выход"
 
 #: src/feature/pages/psdks/PsdksPage.js:119
-#: src/feature/pages/emulator/EmulatorPage.js:91
+#: src/feature/pages/emulator/EmulatorPage.js:97
 #: src/feature/pages/device/DevicePage.js:88
 #: src/feature/pages/psdk/PsdkPage.js:155
 #: src/feature/pages/devices/DevicesPage.js:107
@@ -589,131 +594,127 @@ msgstr "Выход"
 msgid "Getting data..."
 msgstr "Получение данных..."
 
-#: src/feature/pages/psdks/PsdksPage.js:191
-#: src/feature/pages/flutter/FlutterPage.js:185
+#: src/feature/pages/psdks/PsdksPage.js:189
+#: src/feature/pages/flutter/FlutterPage.js:183
 msgid "Version:"
 msgstr "Версия:"
 
-#: src/feature/pages/psdks/PsdksPage.js:213
+#: src/feature/pages/psdks/PsdksPage.js:211
 msgid "Do you want install \"{{version}}\" PSDK?"
 msgstr "Вы хотите установить \"{{version}}\" PSDK?"
 
-#: src/feature/pages/psdks/PsdksPage.js:215
-#: src/feature/pages/psdks/PsdksPage.js:223
+#: src/feature/pages/psdks/PsdksPage.js:213
+#: src/feature/pages/psdks/PsdksPage.js:221
 #: src/feature/pages/sdk/SdkPage.js:196 src/feature/pages/sdk/SdkPage.js:203
 msgid "Download..."
 msgstr "Скачиваем..."
 
 #. Install
-#: src/feature/pages/psdks/PsdksPage.js:240
-#: src/feature/pages/flutter/FlutterPage.js:235
+#: src/feature/pages/psdks/PsdksPage.js:238
+#: src/feature/pages/flutter/FlutterPage.js:233
 msgid "Install..."
-msgstr "Установка"
+msgstr "Установка..."
 
-#: src/feature/pages/emulator/EmulatorPage.js:143
+#: src/feature/pages/emulator/EmulatorPage.js:147
 msgid "Launching the emulator..."
 msgstr "Запускаем эмулятор..."
 
-#: src/feature/pages/emulator/EmulatorPage.js:172
-#: src/feature/pages/device/DevicePage.js:144
+#: src/feature/pages/emulator/EmulatorPage.js:176
+#: src/feature/pages/device/DevicePage.js:142
 #: src/feature/pages/psdkTarget/PsdkTargetPage.js:128
 msgid "Uninstall"
 msgstr "Удалить"
 
-#: src/feature/pages/emulator/EmulatorPage.js:173
-#: src/feature/pages/device/DevicePage.js:145
+#: src/feature/pages/emulator/EmulatorPage.js:177
+#: src/feature/pages/device/DevicePage.js:143
 #: src/feature/pages/psdkTarget/PsdkTargetPage.js:129
 msgid "Specify the name of the package you want to uninstall."
 msgstr "Укажите имя пакета, который вы хотите удалить."
 
-#: src/feature/pages/emulator/EmulatorPage.js:199
-#: src/feature/pages/device/DevicePage.js:171
+#: src/feature/pages/emulator/EmulatorPage.js:203
+#: src/feature/pages/device/DevicePage.js:169
 #: src/feature/pages/psdkTarget/PsdkTargetPage.js:146
 msgid "The package has been uninstall successfully!"
 msgstr "Пакет успешно удален!"
 
-#: src/feature/pages/emulator/EmulatorPage.js:201
-#: src/feature/pages/device/DevicePage.js:173
+#: src/feature/pages/emulator/EmulatorPage.js:205
+#: src/feature/pages/device/DevicePage.js:171
 #: src/feature/pages/psdkTarget/PsdkTargetPage.js:148
 msgid "Failed to uninstall package, please provide a valid package name."
 msgstr "Не удалось удалить пакет. Укажите допустимое имя пакета."
 
-#: src/feature/pages/emulator/EmulatorPage.js:212
-#: src/feature/pages/device/DevicePage.js:184
+#: src/feature/pages/emulator/EmulatorPage.js:216
+#: src/feature/pages/device/DevicePage.js:182
 msgid "Specify the name of the package you want to run."
 msgstr "Укажите имя пакета, который вы хотите запустить."
 
-#: src/feature/pages/emulator/EmulatorPage.js:232
-#: src/feature/pages/device/DevicePage.js:205
+#: src/feature/pages/emulator/EmulatorPage.js:236
+#: src/feature/pages/device/DevicePage.js:203
 msgid "Failed to run package, please provide a valid package name."
 msgstr "Не удалось запустить пакет. Укажите допустимое имя пакета."
 
-#: src/feature/pages/emulator/EmulatorPage.js:243
-#: src/feature/pages/device/DevicePage.js:216
+#: src/feature/pages/emulator/EmulatorPage.js:247
+#: src/feature/pages/device/DevicePage.js:214
 #: src/feature/pages/psdkTarget/PsdkTargetPage.js:97
 msgid "RPM package"
 msgstr "Пакет RPM"
 
-#: src/feature/pages/emulator/EmulatorPage.js:257
-#: src/feature/pages/device/DevicePage.js:230
+#: src/feature/pages/emulator/EmulatorPage.js:261
+#: src/feature/pages/device/DevicePage.js:228
 msgid "Installing..."
 msgstr "Установка..."
 
-#: src/feature/pages/emulator/EmulatorPage.js:268
-#: src/feature/pages/device/DevicePage.js:242
+#: src/feature/pages/emulator/EmulatorPage.js:272
+#: src/feature/pages/device/DevicePage.js:240
 msgid "The package was installed successfully!"
 msgstr "Пакет успешно установлен!"
 
-#: src/feature/pages/emulator/EmulatorPage.js:270
-#: src/feature/pages/device/DevicePage.js:244
+#: src/feature/pages/emulator/EmulatorPage.js:274
+#: src/feature/pages/device/DevicePage.js:242
 msgid "Failed to install package. Please provide a valid package file."
 msgstr ""
 "Не удалось установить пакет. Пожалуйста, предоставьте действительный файл "
 "пакета."
 
-#: src/feature/pages/emulator/EmulatorPage.js:281
-#: src/feature/pages/device/DevicePage.js:255
+#: src/feature/pages/emulator/EmulatorPage.js:285
+#: src/feature/pages/device/DevicePage.js:253
 msgid "All Files"
 msgstr "Все файлы"
 
-#: src/feature/pages/emulator/EmulatorPage.js:303
-#: src/feature/pages/device/DevicePage.js:277
+#: src/feature/pages/emulator/EmulatorPage.js:307
+#: src/feature/pages/device/DevicePage.js:275
 msgid "The file has been successfully downloaded to the ~/Download directory!"
 msgstr "Файл успешно загружен в каталог ~/Download!"
 
-#: src/feature/pages/emulator/EmulatorPage.js:305
-#: src/feature/pages/device/DevicePage.js:279
-#: src/feature/pages/psdk/PsdkPage.js:269
+#: src/feature/pages/emulator/EmulatorPage.js:309
+#: src/feature/pages/device/DevicePage.js:277
+#: src/feature/pages/psdk/PsdkPage.js:267
 msgid "Error loading file, something went wrong."
 msgstr "Ошибка загрузки файла, что-то пошло не так."
 
-#: src/feature/pages/welcome/WelcomePage.js:61
-msgid "latest"
-msgstr "доступно"
-
-#: src/feature/pages/psdk/PsdkPage.js:221
-#: src/feature/pages/flutter/FlutterPage.js:206
+#: src/feature/pages/psdk/PsdkPage.js:219
+#: src/feature/pages/flutter/FlutterPage.js:204
 msgid "Remove"
 msgstr "Удалить"
 
-#: src/feature/pages/psdk/PsdkPage.js:222
+#: src/feature/pages/psdk/PsdkPage.js:220
 msgid "Do you want remove \"{{version}}\" PSDK?"
 msgstr "Хотите удалить \"{{version}}\" PSDK?"
 
-#: src/feature/pages/psdk/PsdkPage.js:225
-#: src/feature/pages/flutter/FlutterPage.js:209
+#: src/feature/pages/psdk/PsdkPage.js:223
+#: src/feature/pages/flutter/FlutterPage.js:207
 msgid "Remove..."
 msgstr "Удаление..."
 
-#: src/feature/pages/psdk/PsdkPage.js:251
+#: src/feature/pages/psdk/PsdkPage.js:249
 msgid "Sign RPM"
 msgstr "Подпись RPM"
 
-#: src/feature/pages/devices/DevicesPage.js:149
+#: src/feature/pages/devices/DevicesPage.js:147
 msgid "Auth: SSH key"
 msgstr "Авторизация: SSH-ключ"
 
-#: src/feature/pages/devices/DevicesPage.js:149
+#: src/feature/pages/devices/DevicesPage.js:147
 msgid "Auth: Password"
 msgstr "Авторизация: Пароль"
 
@@ -729,19 +730,19 @@ msgstr "Скачать"
 msgid "Do you want download \"{{version}}\" Aurora SDK and run install?"
 msgstr "Хотите загрузить \"{{version}}\" Aurora SDK и запустить установку?"
 
-#: src/feature/pages/flutter/FlutterPage.js:207
+#: src/feature/pages/flutter/FlutterPage.js:205
 msgid "Do you want remove \"{{version}}\" Flutter SDK?"
 msgstr "Хотите удалить \"{{version}}\" Flutter SDK?"
 
-#: src/feature/pages/flutter/FlutterPage.js:233
+#: src/feature/pages/flutter/FlutterPage.js:231
 msgid "Do you want install \"{{version}}\" Flutter SDK?"
 msgstr "Хотите установить \"{{version}}\" Flutter SDK?"
 
-#: src/feature/pages/vscode/VscodePage.js:264
+#: src/feature/pages/vscode/VscodePage.js:268
 msgid "Preparation..."
 msgstr "Подготовка..."
 
-#: src/feature/pages/vscode/VscodePage.js:277
+#: src/feature/pages/vscode/VscodePage.js:281
 msgid "Update settings..."
 msgstr "Обновить настройки..."
 

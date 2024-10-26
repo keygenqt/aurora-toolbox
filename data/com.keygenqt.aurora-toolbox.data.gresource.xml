@@ -41,6 +41,7 @@
 		<file>ui/pages/welcome/elements/WelcomeConnect.ui</file>
 		<file>ui/pages/welcome/elements/WelcomeLoading.ui</file>
 		<file>ui/pages/welcome/elements/WelcomeNotFound.ui</file>
+		<file>ui/pages/welcome/elements/WelcomeUpdate.ui</file>
 
 		<!-- widgets -->
 		<file>ui/widgets/GroupBoxWidget.ui</file>

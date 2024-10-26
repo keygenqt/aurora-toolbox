@@ -15,11 +15,8 @@ import { Application } from './feature/Application.js';
 
 pkg.localeName = _('Aurora Toolbox')
 
-// @todo Set name but shouldn't with locale name
 GLib.set_prgname(pkg.localeName);
-// @todo Not set locale name
 GLib.set_application_name(pkg.localeName);
-// @todo Not show icon
 Gtk.Window.set_default_icon_name(pkg.name);
 
 let _argv;

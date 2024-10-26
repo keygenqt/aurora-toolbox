@@ -20,6 +20,9 @@ import { Log } from '../../base/utils/Log.js';
 import { ShellExec } from '../../base/connectors/ShellExec.js';
 import { AuroraAPI } from '../../base/connectors/AuroraAPI.js';
 
+// Save password
+var _password;
+
 const PasswordDialogStates = Object.freeze({
 	LOADING:	1,
 	INPUT:		2,
@@ -62,7 +65,10 @@ export const PasswordDialog = GObject.registerClass({
 	}
 
 	authRootPsdk(window, version, callbackAuth, callbackCancel) {
-		ShellExec.communicateAsync(AuroraAPI.appAuthCheck(version))
+		if (_password) {
+			callbackAuth(_password);
+		} else {
+			ShellExec.communicateAsync(AuroraAPI.appAuthCheck(version))
 			.catch((e) => Log.error(e))
 			.then((response) => {
 				if (response && response.code === 200 && response.value) {
@@ -71,13 +77,17 @@ export const PasswordDialog = GObject.registerClass({
 					this.present(window, callbackAuth, callbackCancel);
 				}
 			});
+		}
 	}
 
 	/**
      *  Auth to sudo
      */
 	authRoot(window, callbackAuth, callbackCancel = undefined) {
-		ShellExec.communicateAsync(AuroraAPI.appAuthCheck())
+		if (_password) {
+			callbackAuth(_password);
+		} else {
+			ShellExec.communicateAsync(AuroraAPI.appAuthCheck())
 			.catch((e) => Log.error(e))
 			.then((response) => {
 				if (response && response.code === 200 && response.value) {
@@ -86,6 +96,7 @@ export const PasswordDialog = GObject.registerClass({
 					this.present(window, callbackAuth, callbackCancel);
 				}
 			});
+		}
 	}
 
 	#actionsConnect() {
@@ -105,8 +116,9 @@ export const PasswordDialog = GObject.registerClass({
 				})
 				.then((result) => {
 					if (!this.#cancel && result) {
+						_password = password;
 						this.#callbackCancel = undefined;
-						this.#callbackAuth();
+						this.#callbackAuth(_password);
 						this.close();
 					}
 				});

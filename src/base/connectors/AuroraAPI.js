@@ -56,11 +56,12 @@ export const AuroraAPI = {
      *
      * @returns route
      */
-    psdkInstall: function(version) {
+    psdkInstall: function(version, password) {
         return [
             ...AppConstants.AuroraCLI, 'api', "--route",
             '/psdk/install'.argUri({
                 version: version,
+                password: password,
             })
         ]
     },
@@ -69,11 +70,12 @@ export const AuroraAPI = {
      *
      * @returns route
      */
-    psdkRemove: function(version) {
+    psdkRemove: function(version, password) {
         return [
             ...AppConstants.AuroraCLI, 'api', "--route",
             '/psdk/remove'.argUri({
                 version: version,
+                password: password,
             })
         ]
     },
@@ -95,11 +97,12 @@ export const AuroraAPI = {
      *
      * @returns route
      */
-    psdkTargets: function(version) {
+    psdkTargets: function(version, password) {
         return [
             ...AppConstants.AuroraCLI, 'api', "--route",
             '/psdk/targets'.argUri({
                 version: version,
+                password: password,
             })
         ]
     },
@@ -108,11 +111,12 @@ export const AuroraAPI = {
      *
      * @returns route
      */
-    psdkSudoersAdd: function(version) {
+    psdkSudoersAdd: function(version, password) {
         return [
             ...AppConstants.AuroraCLI, 'api', "--route",
             '/psdk/sudoers/add'.argUri({
                 version: version,
+                password: password,
             })
         ]
     },
@@ -121,11 +125,12 @@ export const AuroraAPI = {
      *
      * @returns route
      */
-    psdkSudoersDel: function(version) {
+    psdkSudoersDel: function(version, password) {
         return [
             ...AppConstants.AuroraCLI, 'api', "--route",
             '/psdk/sudoers/remove'.argUri({
                 version: version,
+                password: password,
             })
         ]
     },
@@ -134,12 +139,13 @@ export const AuroraAPI = {
      *
      * @returns route
      */
-    psdkPackageSign: function(path, version) {
+    psdkPackageSign: function(path, version, password) {
         return [
             ...AppConstants.AuroraCLI, 'api', "--route",
             '/psdk/package/sign'.argUri({
                 path: path,
                 version: version,
+                password: password,
             })
         ]
     },
@@ -148,13 +154,14 @@ export const AuroraAPI = {
      *
      * @returns route
      */
-    psdkPackageInstall: function(path, target, version) {
+    psdkPackageInstall: function(path, target, version, password) {
         return [
             ...AppConstants.AuroraCLI, 'api', "--route",
             '/psdk/package/install'.argUri({
                 path: path,
                 target: target,
                 version: version,
+                password: password,
             })
         ]
     },
@@ -163,13 +170,14 @@ export const AuroraAPI = {
      *
      * @returns route
      */
-    psdkPackageRemove: function(package_name, target, version) {
+    psdkPackageRemove: function(package_name, target, version, password) {
         return [
             ...AppConstants.AuroraCLI, 'api', "--route",
             '/psdk/package/remove'.argUri({
                 package: package_name,
                 target: target,
                 version: version,
+                password: password,
             })
         ]
     },
@@ -178,12 +186,13 @@ export const AuroraAPI = {
      *
      * @returns route
      */
-    psdkClear: function(target, version) {
+    psdkClear: function(target, version, password) {
         return [
             ...AppConstants.AuroraCLI, 'api', "--route",
             '/psdk/clear'.argUri({
                 target: target,
                 version: version,
+                password: password,
             })
         ]
     },

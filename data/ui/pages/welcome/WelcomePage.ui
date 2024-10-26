@@ -44,6 +44,9 @@
 						<child>
 							<object class="AtbWelcomeConnect" id="IdConnect"/>
 						</child>
+						<child>
+							<object class="AtbWelcomeUpdate" id="IdUpdate"/>
+						</child>
 					</object>
 				</property>
 			</object>

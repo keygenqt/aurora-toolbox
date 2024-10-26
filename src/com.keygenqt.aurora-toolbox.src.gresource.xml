@@ -32,6 +32,7 @@
 		<file>feature/pages/welcome/elements/WelcomeConnect.js</file>
 		<file>feature/pages/welcome/elements/WelcomeLoading.js</file>
 		<file>feature/pages/welcome/elements/WelcomeNotFound.js</file>
+		<file>feature/pages/welcome/elements/WelcomeUpdate.js</file>
 
 		<!-- dialogs -->
 		<file>feature/dialogs/AboutDialog.js</file>

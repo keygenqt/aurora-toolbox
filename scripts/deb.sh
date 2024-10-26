@@ -4,6 +4,14 @@
 ## Build and creae deb package
 ##############################
 
+read -p "You change '// @todo debug' code? (y/n)? " choice
+case "$choice" in
+  y|Y ) echo "yes";;
+  n|N ) exit 0;;
+  * ) echo "invalid";;
+esac
+
+
 NAME='aurora-toolbox'
 PACKAGE='com.keygenqt.aurora-toolbox'
 REVISION='1'
@@ -69,7 +77,6 @@ rm -rf $DEB_FOLDER
 
 dpkg -x $FOLDER/$DEB_FOLDER.deb $FOLDER/$DEB_FOLDER
 
-
 # Install / Remove
-# sudo dpkg -i release/aurora-toolbox_0.0.3-1_amd64.deb
 # sudo dpkg -r com.keygenqt.aurora-toolbox
+# sudo dpkg -i release/aurora-toolbox_0.0.4-1_amd64.deb

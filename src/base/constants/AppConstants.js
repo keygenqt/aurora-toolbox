@@ -17,8 +17,12 @@ import GLib from 'gi://GLib';
 
 export const AppConstants = Object.freeze({
     App: {
-        documentation: 'https://keygenqt.github.io/aurora-toolbox/',
-        documentationInstall: 'https://keygenqt.github.io/aurora-cli/install/',
+        doc: 'https://keygenqt.github.io/aurora-toolbox/',
+        docInstall: 'https://keygenqt.github.io/aurora-toolbox/install/',
+    },
+    AppCLI: {
+        doc: 'https://keygenqt.github.io/aurora-cli/',
+        docInstall: 'https://keygenqt.github.io/aurora-cli/install/',
     },
     Docs: {
         sdk: 'https://developer.auroraos.ru/doc/sdk',
@@ -28,9 +32,9 @@ export const AppConstants = Object.freeze({
     },
     AuroraCLI: [
         `${GLib.getenv('HOME')}/.local/bin/aurora-cli`,
-        // @todo path to pyz for debug
+        // @todo debug
         // 'python3',
-        // '/home/keygenqt/Documents/Home/Projects/aurora-cli/builds/aurora-cli-3.0.5.pyz'
+        // '/home/keygenqt/Documents/Home/Projects/aurora-cli/builds/aurora-cli-3.0.7.pyz'
     ],
     Language: {
         'ru': 'ru_RU.utf-8',

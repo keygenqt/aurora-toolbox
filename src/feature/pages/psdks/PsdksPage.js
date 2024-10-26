@@ -236,10 +236,10 @@ export const PsdksPage = GObject.registerClass({
 					if (response) {
 						// Install
 						this.#statePage(PsdksPageStates.LOADING, _('Install...'));
-						this.utils.creator.authRootDialog(this.#window, () => {
+						this.utils.creator.authRootDialog(this.#window, (password) => {
 							this.utils.helper.getPromisePage(async () => {
 								const resultRun = await this.utils.helper.getObjectAsync(
-									/* query */	 this.connectors.aurora.psdkInstall(version),
+									/* query */	 this.connectors.aurora.psdkInstall(version, password),
 									/* valid */	 (object) => {
 										if (object && object.code === 100) {
 											if (object.value && !isNaN(parseInt(object.value))) {
@@ -249,8 +249,6 @@ export const PsdksPage = GObject.registerClass({
 										} else {
 											return true;
 										}
-										// @todo
-										// The tooling installation is successful
 									},
 								);
 								return resultRun;

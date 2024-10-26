@@ -101,12 +101,12 @@ export const PsdkPage = GObject.registerClass({
 					.communicateAsync(this.connectors.shell.gnomeTerminalOpen(this.#tool))
 			},
 			'sign': () => this.#signRPM(),
-			'sudoersAdd': () => this.utils.creator.authRootDialog(this.#window, () => {
-				this.connectors.exec.communicateAsync(this.connectors.aurora.psdkSudoersAdd(this.#params.version));
+			'sudoersAdd': () => this.utils.creator.authRootDialog(this.#window, (password) => {
+				this.connectors.exec.communicateAsync(this.connectors.aurora.psdkSudoersAdd(this.#params.version, password));
 				this.#stateSudoersPage(true);
 			}),
-			'sudoersDel': () => this.utils.creator.authRootDialog(this.#window, () => {
-				this.connectors.exec.communicateAsync(this.connectors.aurora.psdkSudoersDel(this.#params.version));
+			'sudoersDel': () => this.utils.creator.authRootDialog(this.#window, (password) => {
+				this.connectors.exec.communicateAsync(this.connectors.aurora.psdkSudoersDel(this.#params.version, password));
 				this.#stateSudoersPage(false);
 			}),
 			'remove': () => this.#removePSDK(this.#params.version)
@@ -157,12 +157,12 @@ export const PsdkPage = GObject.registerClass({
 			this.#window,
 			this.#params.version,
 			// Success
-			() => this.utils.helper.getPromisePage(async () => {
+			(password) => this.utils.helper.getPromisePage(async () => {
 				const info = this.utils.helper.getLastObject(
 					await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkInfo(this.#params.version))
 				);
 				const targets = this.utils.helper.getLastObject(
-					await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkTargets(this.#params.version))
+					await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkTargets(this.#params.version, password))
 				);
 				return {
 					'tool': this.utils.helper.getValueResponse(info, 'TOOL'),
@@ -219,11 +219,11 @@ export const PsdkPage = GObject.registerClass({
 			_('Remove'),
 			_('Do you want remove "{{version}}" PSDK?').setArguments({version: version}),
 			() => {
-				this.utils.creator.authRootDialog(this.#window, () => {
+				this.utils.creator.authRootDialog(this.#window, (password) => {
 					this.#statePage(PsdkPageStates.LOADING, _('Remove...'));
 					this.utils.helper.getPromisePage(async () => {
 						const resultRun = this.utils.helper.getLastObject(
-							await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkRemove(version))
+							await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkRemove(version, password))
 						);
 						return {
 							code: resultRun.code,
@@ -250,11 +250,11 @@ export const PsdkPage = GObject.registerClass({
 				mime_types: ['application/x-rpm'],
 			}),
 			/* success */ (path) => {
-				this.utils.creator.authPsdkDialog(this.#window, version, () => {
+				this.utils.creator.authPsdkDialog(this.#window, version, (password) => {
 					const dialog = this.utils.creator.loadingDialog(this.#window);
 					this.utils.helper.getPromisePage(async () => {
 						const resultRun = this.utils.helper.getLastObject(
-							await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkPackageSign(path, version))
+							await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkPackageSign(path, version, password))
 						);
 						return {
 							code: resultRun.code,

@@ -44,7 +44,7 @@ export const ToolsMenu = GObject.registerClass({
 			},
             'documentation': () => {
 				// Open url with documentation
-				Helper.uriLaunch(this.get_native(), AppConstants.App.documentation);
+				Helper.uriLaunch(this.get_native(), AppConstants.App.doc);
 			},
         });
 	}

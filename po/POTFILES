@@ -14,6 +14,7 @@ data/ui/pages/psdks/PsdksPage.ui
 data/ui/pages/emulator/EmulatorPage.ui
 data/ui/pages/welcome/WelcomePage.ui
 data/ui/pages/welcome/elements/WelcomeLoading.ui
+data/ui/pages/welcome/elements/WelcomeUpdate.ui
 data/ui/pages/welcome/elements/WelcomeConnect.ui
 data/ui/pages/welcome/elements/WelcomeNotFound.ui
 data/ui/pages/device/DevicePage.ui
@@ -41,6 +42,7 @@ src/feature/Window.js
 src/feature/pages/psdks/PsdksPage.js
 src/feature/pages/emulator/EmulatorPage.js
 src/feature/pages/welcome/WelcomePage.js
+src/feature/pages/welcome/elements/WelcomeUpdate.js
 src/feature/pages/welcome/elements/WelcomeLoading.js
 src/feature/pages/welcome/elements/WelcomeConnect.js
 src/feature/pages/welcome/elements/WelcomeNotFound.js

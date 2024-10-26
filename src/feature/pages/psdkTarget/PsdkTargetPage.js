@@ -67,11 +67,11 @@ export const PsdkTargetPage = GObject.registerClass({
 	#removeSnapshot() {
 		const version = this.#params.psdkVersion;
 		const target = this.#params.target;
-		this.utils.creator.authPsdkDialog(this.#window, version, () => {
+		this.utils.creator.authPsdkDialog(this.#window, version, (password) => {
 			const dialog = this.utils.creator.loadingDialog(this.#window);
 			this.utils.helper.getPromisePage(async () => {
 				const resultRun = this.utils.helper.getLastObject(
-					await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkClear(target, version))
+					await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkClear(target, version, password))
 				);
 				return {
 					code: resultRun.code,
@@ -90,7 +90,7 @@ export const PsdkTargetPage = GObject.registerClass({
 	#installPackage() {
 		const version = this.#params.psdkVersion;
 		const target = this.#params.target;
-		this.utils.creator.authPsdkDialog(this.#window, version, () => {
+		this.utils.creator.authPsdkDialog(this.#window, version, (password) => {
 			this.utils.creator.selectFileDialog(
 				this.#window,
 				new Gtk.FileFilter({
@@ -101,7 +101,7 @@ export const PsdkTargetPage = GObject.registerClass({
 					const dialog = this.utils.creator.loadingDialog(this.#window);
 					this.utils.helper.getPromisePage(async () => {
 						const resultRun = this.utils.helper.getLastObject(
-							await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkPackageInstall(path, target, version))
+							await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkPackageInstall(path, target, version, password))
 						);
 						return {
 							code: resultRun.code,
@@ -122,7 +122,7 @@ export const PsdkTargetPage = GObject.registerClass({
 	#removePackage() {
 		const version = this.#params.psdkVersion;
 		const target = this.#params.target;
-		this.utils.creator.authPsdkDialog(this.#window, version, () => {
+		this.utils.creator.authPsdkDialog(this.#window, version, (password) => {
 			var dialog = this.utils.creator.textDialog(
 				this.#window,
 				_('Uninstall'),
@@ -135,7 +135,7 @@ export const PsdkTargetPage = GObject.registerClass({
 					dialog.loading();
 					this.utils.helper.getPromisePage(async () => {
 						const resultAPM = this.utils.helper.getLastObject(
-							await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkPackageRemove(text, target, version))
+							await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkPackageRemove(text, target, version, password))
 						);
 						if (resultAPM.code == 200) {
 							return {code: 200};
