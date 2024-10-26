@@ -1,16 +1,23 @@
-## Updated: 10/26/2024 13:37:05 PM
+## Updated: 10/26/2024 16:56:25 PM
 
 ## Info
 
-- Last tag: 0.0.5
-- Released: 5
+- Last tag: 0.0.6
+- Released: 6
 
 ## Versions
+- Version: 0.0.6 (26/10/2024)
 - Version: 0.0.5 (26/10/2024)
 - Version: 0.0.4 (26/10/2024)
 - Version: 0.0.3 (23/10/2024)
 - Version: 0.0.2 (23/10/2024)
 - Version: 0.0.1 (23/10/2024)
+
+### Version: 0.0.6 (26/10/2024)
+
+#### Change
+
+- All query with pass to env. (Vitaliy Zarubin)
 
 ### Version: 0.0.5 (26/10/2024)
 
