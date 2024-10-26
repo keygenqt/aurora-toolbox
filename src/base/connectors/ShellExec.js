@@ -16,8 +16,6 @@
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 
-import { Log } from '../utils/Log.js';
-
 export const ShellExec = {
     /**
      * Execute command async multiple response
@@ -27,9 +25,9 @@ export const ShellExec = {
      * @param {function} reject - call error
      */
     communicateCallback(query = [], resolve = function(v) {}, reject = function(e) {}) {
-        Log.debug(query);
         try {
             const arg = Gio.SubprocessFlags.STDIN_PIPE | Gio.SubprocessFlags.STDOUT_PIPE;
+            query = ShellExec._setPassword(query);
             const subProcess = Gio.Subprocess.new(query, arg);
             // @todo
             // get_stdout_pipe
@@ -82,18 +80,7 @@ export const ShellExec = {
         return new Promise((resolve, _) => {
             try {
                 const arg = Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_PIPE;
-
-                if (query[query.length-1].includes('password')) {
-                    // Get password
-                    const password = query[query.length-1].split('?')[1].split('&').filter((e) => e.includes('password'))[0].split('=')[1];
-                    // Remove password from query
-                    query[query.length-1] = query[query.length-1]
-                        .replace(`&password=${password}`, '')
-                        .replace(`?password=${password}`, '')
-                    // Set env
-                    GLib.setenv('cli_password', password, true);
-                }
-
+                query = ShellExec._setPassword(query);
                 const subProcess = Gio.Subprocess.new(query, arg);
                 subProcess.communicate_utf8_async(null, null, (proc, res) => {
                     let [success, stdout, stderr] = proc?.communicate_utf8_finish(res);
@@ -115,7 +102,7 @@ export const ShellExec = {
      * @returns Data response from API json
      */
     communicateSync(query = []) {
-        Log.debug(query);
+        query = ShellExec._setPassword(query);
         try {
             const arg = Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_PIPE;
             const subProcess = Gio.Subprocess.new(query, arg);
@@ -128,4 +115,26 @@ export const ShellExec = {
             return null;
         }
     },
+    /**
+     * Set password to env
+     *
+     * @param {*} query
+     * @returns Query without password
+     */
+    _setPassword(query) {
+        if (query[query.length-1].includes('password')) {
+            // Get password
+            const password = query[query.length-1].split('?')[1].split('&').filter((e) => e.includes('password'))[0].split('=')[1];
+            // Remove password from query
+            query[query.length-1] = query[query.length-1]
+                .replace(`&password=${password}`, '')
+                .replace(`?password=${password}`, '')
+            // Set env
+            GLib.setenv('cli_password', password, true);
+            console.log('--------------------')
+            console.log(query)
+            console.log('--------------------')
+        }
+        return query;
+    }
 }

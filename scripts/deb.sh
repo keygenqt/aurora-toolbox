@@ -79,4 +79,4 @@ dpkg -x $FOLDER/$DEB_FOLDER.deb $FOLDER/$DEB_FOLDER
 
 # Install / Remove
 sudo dpkg -r com.keygenqt.aurora-toolbox
-sudo dpkg -i release/aurora-toolbox_0.0.5-1_amd64.deb
+sudo dpkg -i release/aurora-toolbox_0.0.6-1_amd64.deb
