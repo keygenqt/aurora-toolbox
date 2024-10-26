@@ -30,7 +30,7 @@ sudo dpkg -r com.keygenqt.aurora-toolbox
 
 !!! warning
 
-    <div class="Ubuntu-Logo">![picture](../images/ubuntu_logo.png)</div>
+    <div class="Ubuntu-Logo">![picture](images/ubuntu_logo.png)</div>
 
     Aurora Toolbox зависит от `libadwaita-1-0 (>= 1.5)`, такая версия доступна с Ubuntu 24.04.
 

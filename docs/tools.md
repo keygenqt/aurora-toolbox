@@ -1,5 +1,5 @@
 <picture>
-    ![picture](../images/preview.jpg)
+    ![picture](images/preview.jpg)
 </picture>
 
 !!! info

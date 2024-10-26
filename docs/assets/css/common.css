@@ -177,7 +177,6 @@ article.md-content__inner {
     right: 0;
     height: 70px;
     width: 8px;
-    z-index: 99;
 }
 
 .md-content picture::before {
@@ -188,7 +187,6 @@ article.md-content__inner {
     right: 30px;
     height: 8px;
     width: 70px;
-    z-index: 99;
 }
 
 .md-content video {
