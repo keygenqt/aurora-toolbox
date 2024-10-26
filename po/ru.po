@@ -278,7 +278,7 @@ msgstr "Взаимодействие с Platform SDK."
 
 #: data/ui/pages/psdk/PsdkPage.ui:71
 msgid "Re-sign the package"
-msgstr "Пере-подпишите пакет"
+msgstr "Переподписать пакет"
 
 #: data/ui/pages/psdk/PsdkPage.ui:84
 msgid "Add Sudoers"

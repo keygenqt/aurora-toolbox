@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 import Gio from 'gi://Gio';
+import GLib from 'gi://GLib';
 
 import { Log } from '../utils/Log.js';
 
@@ -78,10 +79,21 @@ export const ShellExec = {
      * @returns Promise
      */
     communicateAsync(query = []) {
-        Log.debug(query);
         return new Promise((resolve, _) => {
             try {
                 const arg = Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_PIPE;
+
+                if (query[query.length-1].includes('password')) {
+                    // Get password
+                    const password = query[query.length-1].split('?')[1].split('&').filter((e) => e.includes('password'))[0].split('=')[1];
+                    // Remove password from query
+                    query[query.length-1] = query[query.length-1]
+                        .replace(`&password=${password}`, '')
+                        .replace(`?password=${password}`, '')
+                    // Set env
+                    GLib.setenv('cli_password', password, true);
+                }
+
                 const subProcess = Gio.Subprocess.new(query, arg);
                 subProcess.communicate_utf8_async(null, null, (proc, res) => {
                     let [success, stdout, stderr] = proc?.communicate_utf8_finish(res);
