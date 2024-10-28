@@ -10,8 +10,9 @@ nav:
   - Main: index.md
   - Tools:
       - Overview: tools.md
-  - Install:
-      - Install: install.md
+  - Videos:
+      - Overview: videos.md
+  - Install: install.md
 # Assets
 extra_css:
   - https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0

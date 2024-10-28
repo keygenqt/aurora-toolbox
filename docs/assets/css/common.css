@@ -262,3 +262,37 @@ article.md-content__inner {
     width: 100%;
     max-width: 100px;
 }
+
+/* Rutube */
+.md-content .Rutube {
+    position: relative;
+    font-size: 0;
+    border: 8px solid #1f4037;
+    border-radius: 12px;
+}
+
+.md-content .Rutube::after {
+    content: " ";
+    background-color: #0f9f77;
+    position: absolute;
+    bottom: 30px;
+    right: -8px;
+    height: 70px;
+    width: 8px;
+}
+
+.md-content .Rutube::before {
+    content: " ";
+    background-color: #0f9f77;
+    position: absolute;
+    bottom: -8px;
+    right: 30px;
+    height: 8px;
+    width: 70px;
+}
+
+.md-content .Rutube iframe {
+    width: 100%;
+    height: 415px;
+    border-radius: 4px;
+}
