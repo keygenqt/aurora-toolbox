@@ -296,3 +296,51 @@ article.md-content__inner {
     height: 415px;
     border-radius: 4px;
 }
+
+@media (max-width: 860px) {
+    .md-content .Rutube iframe {
+        height: 360px;
+    }
+}
+
+@media (max-width: 780px) {
+    .md-content .Rutube iframe {
+        height: 320px;
+    }
+}
+
+@media (max-width: 700px) {
+    .md-content .Rutube iframe {
+        height: 280px;
+    }
+}
+
+@media (max-width: 630px) {
+    .md-content .Rutube iframe {
+        height: 244px;
+    }
+}
+
+@media (max-width: 500px) {
+    .md-content .Rutube iframe {
+        height: 210px;
+    }
+}
+
+@media (max-width: 400px) {
+    .md-content .Rutube iframe {
+        height: 180px;
+    }
+}
+
+@media (max-width: 370px) {
+    .md-content .Rutube iframe {
+        height: 140px;
+    }
+}
+
+@media (max-width: 350px) {
+    .md-content .Rutube iframe {
+        height: 133px;
+    }
+}
