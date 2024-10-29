@@ -21,4 +21,8 @@ Target - образ ОС Аврора с зависимостями сборки
 
 Flutter - это фреймворк с открытым исходным кодом от Google для мультиплатформенных приложений, который позволяет собрать приложение для разных платформ, не модифицируя код проекта. В фреймворк была добавлена поддержка операционной системы Аврора, и теперь его можно использовать для написания приложений на Flutter под нее.
 
-*Coming Soon...*
+<div class="Rutube">
+    <iframe src="https://rutube.ru/play/embed/a5125ae9c9cbc6a1d9e865ee21e2d493"
+        frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen>
+    </iframe>
+</div>
