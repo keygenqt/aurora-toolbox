@@ -48,6 +48,8 @@ chmod +x $FOLDER/src/$PACKAGE
 
 # Bin
 cp $FOLDER/src/$PACKAGE $DEB_FOLDER/usr/local/bin
+# Short name
+ln -s /usr/local/bin/$PACKAGE $DEB_FOLDER/usr/local/bin/$NAME
 # Source
 cp $FOLDER/src/*.gresource $DEB_FOLDER/usr/local/share/$PACKAGE
 cp $FOLDER/data/*.gresource $DEB_FOLDER/usr/local/share/$PACKAGE
