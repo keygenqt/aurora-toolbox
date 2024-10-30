@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Предложите доработку, подумаем-с )
+about: Предложите новый функцию
 title: ''
 labels: ''
 assignees: ''
