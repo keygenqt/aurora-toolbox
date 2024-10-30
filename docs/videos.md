@@ -1,6 +1,20 @@
 В этом разделе вы найдете видео на различные кейсы использования приложения Aurora Toolbox.
 
-#### Установка Platform SDK
+#### Установка Аврора SDK
+
+Аврора SDK (MB2) - набор инструментов для сборки, разработки, отладки и тестирования прикладного ПО для ОС Аврора,
+использующий инструмент mb2.
+
+!!! info
+    Аврора SDK содержит эмулятор, который может пригодится для разработки Flutter приложений.
+
+<div class="Rutube">
+    <iframe src="https://rutube.ru/play/embed/331a01bd1c2db7d669daee9ba061d75c"
+        frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen>
+    </iframe>
+</div>
+
+#### Установка Аврора PSDK
 
 Platform SDK - набор инструментов для разработки, отладки и тестирования компонентов ОС Аврора.
 В состав входит:
