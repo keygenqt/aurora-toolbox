@@ -2,9 +2,9 @@
 
 ### Subscribe and like!
 
-[![Version](https://img.shields.io/badge/deb_package-0.0.6-blue)](https://github.com/keygenqt/aurora-toolbox/releases)
+[![Version](https://img.shields.io/badge/deb_package-0.0.7-blue)](https://github.com/keygenqt/aurora-toolbox/releases)
 
-![Preview](https://raw.githubusercontent.com/keygenqt/aurora-toolbox/refs/heads/main/files/images/preview.png)
+![Preview](https://raw.githubusercontent.com/keygenqt/aurora-toolbox/refs/heads/main/files/images/preview_telegram.png)
 
 [![picture](https://github.com/keygenqt/aurora-toolbox/blob/main/files/images/more.png?raw=true)](https://keygenqt.github.io/aurora-toolbox/)
 

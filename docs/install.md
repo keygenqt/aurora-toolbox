@@ -13,12 +13,13 @@ hide:
 #### Install
 
 ```shell
-sudo dpkg -i aurora-toolbox_0.0.6-1_amd64.deb
+sudo dpkg -i aurora-toolbox_0.0.7-1_amd64.deb
 ```
 
-#### Install dependency
+#### Update/Install dependency
 
 ```shell
+sudo apt update
 sudo apt install -f
 ```
 

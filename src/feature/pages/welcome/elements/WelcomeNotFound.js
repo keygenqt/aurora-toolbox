@@ -47,7 +47,7 @@ export const WelcomeNotFound = GObject.registerClass({
 			this._IdUbuntuGroup.visible = false;
 			this._IdLinuxGroup.visible = true;
 			this._IdLinuxBtn.connect('clicked', () => {
-				Helper.uriLaunch(this.get_native(), AppConstants.AppCLI.documentationInstall);
+				Helper.uriLaunch(this.get_native(), AppConstants.AppCLI.docInstall);
 			});
 		}
 	}
