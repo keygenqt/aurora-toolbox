@@ -1,17 +1,31 @@
-## Updated: 10/26/2024 16:56:25 PM
+## Updated: 10/31/2024 18:19:55 PM
 
 ## Info
 
-- Last tag: 0.0.6
-- Released: 6
+- Last tag: 0.0.7
+- Released: 7
 
 ## Versions
+- Version: 0.0.7 (31/10/2024)
 - Version: 0.0.6 (26/10/2024)
 - Version: 0.0.5 (26/10/2024)
 - Version: 0.0.4 (26/10/2024)
 - Version: 0.0.3 (23/10/2024)
 - Version: 0.0.2 (23/10/2024)
 - Version: 0.0.1 (23/10/2024)
+
+### Version: 0.0.7 (31/10/2024)
+
+#### Bug
+
+- Fix button open documentation. (Vitaliy Zarubin)
+
+#### Feature
+
+- Add symbolic link aurora-toolbox. (Vitaliy Zarubin)
+- Video install Aurora SDK. (Vitaliy Zarubin)
+- Video install Flutter SDK. (Vitaliy Zarubin)
+- Tab videos for documentation. (Vitaliy Zarubin)
 
 ### Version: 0.0.6 (26/10/2024)
 
