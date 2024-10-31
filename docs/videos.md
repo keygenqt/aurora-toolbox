@@ -1,5 +1,15 @@
 В этом разделе вы найдете видео на различные кейсы использования приложения Aurora Toolbox.
 
+#### Установка Aurora Toolbox
+
+Aurora Toolbox - продолжение позволяющие упростить адаптацию к экосистеме ОС Аврора.
+
+<div class="Rutube">
+    <iframe src="https://rutube.ru/play/embed/2aed4cfd4b6c6586b8ba22c59bb61465"
+        frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen>
+    </iframe>
+</div>
+
 #### Установка Аврора SDK
 
 Аврора SDK (MB2) - набор инструментов для сборки, разработки, отладки и тестирования прикладного ПО для ОС Аврора,
