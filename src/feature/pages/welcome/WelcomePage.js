@@ -54,32 +54,53 @@ export const WelcomePage = GObject.registerClass({
 	#loadingConnect() {
 		this.#statePage(WelcomePageStates.LOADING);
 		this.utils.helper.getPromisePage(async () => {
-			return this.utils.helper.getLastObject(
+			const auroraCLI = this.utils.helper.getLastObject(
 				await this.connectors.exec.communicateAsync(this.connectors.aurora.appVersions())
 			);
+			const auroraToolbox = (await this.utils.helper.httpRequest(
+				this.utils.constants.App.latestRelease
+			))?.body?.parseMultipleJson();
+			return {
+				code: 200,
+				cliLatest: String(auroraCLI?.value?.LATEST) !== 'undefined' ? auroraCLI?.value?.LATEST : undefined,
+				cliInstalled: String(auroraCLI?.value?.INSTALLED) !== 'undefined' ? auroraCLI?.value?.INSTALLED : undefined,
+				toolboxLatest: auroraToolbox?.tag_name ?? undefined,
+				toolboxInstalled: this.utils.constants.App.version
+			}
 		}).then((response) => {
 			try {
 				if (response && response.code === 200) {
 					// Failed to retrieve data
-					if (response.value.LATEST === 'undefined') {
-						response.value.LATEST = response.value.INSTALLED;
+					if (response.cliLatest === undefined) {
+						response.cliLatest = response.cliInstalled;
 					}
-					// Check new version Aurora CLI
-					const hasNewVersion = response.value.INSTALLED !== response.value.LATEST;
+					if (response.toolboxLatest === undefined) {
+						response.toolboxLatest = response.toolboxInstalled;
+					}
+					// Check new version
+					const hasNewVersionCLI = response.cliInstalled !== response.cliLatest;
+					const hasNewVersionToolbox = response.toolboxInstalled !== response.toolboxLatest;
 					// If has new version
-					if (hasNewVersion) {
-						this.#setStateUpdate(response.value.LATEST, false /*@todo Now only aurora-cli check*/ );
+					if (hasNewVersionToolbox) {
+						this.#setStateUpdate(response.toolboxLatest, true);
 						this.#statePage(WelcomePageStates.UPDATE);
 						return
 					}
-					// If first app open
-					if (settings.get_boolean('first-open')) {
-						this._IdConnect.version = `${response.value.INSTALLED}`;
-						this.#statePage(WelcomePageStates.CONNECT);
+					else if (hasNewVersionCLI) {
+						this.#setStateUpdate(response.cliLatest, false);
+						this.#statePage(WelcomePageStates.UPDATE);
 						return
 					}
-					// Open tools
-					this.#window.navigation().push(this.utils.constants.Pages.ToolsPage);
+					else {
+						// If first app open
+						if (settings.get_boolean('first-open')) {
+							this._IdConnect.version = `${response.cliInstalled}`;
+							this.#statePage(WelcomePageStates.CONNECT);
+							return
+						}
+						// Open tools
+						this.#window.navigation().push(this.utils.constants.Pages.ToolsPage);
+					}
 				} else {
 					this.#statePage(WelcomePageStates.NOT_FOUND);
 				}

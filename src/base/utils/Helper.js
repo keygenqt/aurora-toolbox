@@ -16,6 +16,7 @@
 import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 import GLib from 'gi://GLib';
+import Soup from 'gi://Soup';
 
 import { Log } from './Log.js';
 import { AuroraAPI } from '../connectors/AuroraAPI.js';
@@ -194,5 +195,44 @@ export const Helper = {
             await new Promise(r => setTimeout(r, time));
             dialog.close();
         }
+    },
+    /**
+     * Http query
+     */
+    httpRequest(url) {
+        return new Promise((resolve, reject) => {
+
+            if (Soup.MAJOR_VERSION === 3) {
+                let session = new Soup.Session();
+                session.set_timeout(5);
+                session.set_user_agent('aurora-toolbox');
+                let message = Soup.Message.new('GET', url);
+                    session.send_and_read_async(
+                        message,
+                        GLib.PRIORITY_DEFAULT,
+                        null,
+                        function (session, result) {
+                            try {
+                                if (message.get_status() === Soup.Status.OK) {
+                                    let bytes = session.send_and_read_finish(result);
+                                    let decoder = new TextDecoder('utf-8');
+                                    let response = decoder.decode(bytes.get_data());
+                                    resolve({
+                                        code: result.status_code,
+                                        body: response,
+                                    });
+                                } else {
+                                    resolve({
+                                        code: message.get_status() === 0 ? 500 : message.get_status(),
+                                    })
+                                }
+                            } catch (e) {
+                                resolve({ code: 500 })
+                            }
+                        });
+            } else {
+                resolve({ code: 500 })
+            }
+        });
     }
 }

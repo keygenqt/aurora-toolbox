@@ -7,7 +7,7 @@
 		<property name="spacing">24</property>
 		<child>
 			<object class="GtkLabel">
-				<property name="label" translatable="yes">Search Aurora CLI...</property>
+				<property name="label" translatable="yes">Connection...</property>
 				<property name="wrap">true</property>
 				<property name="justify">center</property>
 				<style> <class name="CssInfoText"/></style>

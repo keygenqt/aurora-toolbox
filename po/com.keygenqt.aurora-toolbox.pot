@@ -212,7 +212,7 @@ msgid "Welcome to application Aurora Toolbox!"
 msgstr ""
 
 #: data/ui/pages/welcome/elements/WelcomeLoading.ui:10
-msgid "Search Aurora CLI..."
+msgid "Connection..."
 msgstr ""
 
 #: data/ui/pages/welcome/elements/WelcomeUpdate.ui:9

@@ -17,8 +17,10 @@ import GLib from 'gi://GLib';
 
 export const AppConstants = Object.freeze({
     App: {
+        version: '0.0.8',
         doc: 'https://keygenqt.github.io/aurora-toolbox/',
         docInstall: 'https://keygenqt.github.io/aurora-toolbox/install/',
+        latestRelease: 'https://api.github.com/repos/keygenqt/aurora-toolbox/releases/latest',
     },
     AppCLI: {
         doc: 'https://keygenqt.github.io/aurora-cli/',
