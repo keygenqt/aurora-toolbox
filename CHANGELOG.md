@@ -1,11 +1,12 @@
-## Updated: 10/31/2024 18:19:55 PM
+## Updated: 11/01/2024 18:50:41 PM
 
 ## Info
 
-- Last tag: 0.0.7
-- Released: 7
+- Last tag: 0.0.8
+- Released: 8
 
 ## Versions
+- Version: 0.0.8 (01/11/2024)
 - Version: 0.0.7 (31/10/2024)
 - Version: 0.0.6 (26/10/2024)
 - Version: 0.0.5 (26/10/2024)
@@ -13,6 +14,13 @@
 - Version: 0.0.3 (23/10/2024)
 - Version: 0.0.2 (23/10/2024)
 - Version: 0.0.1 (23/10/2024)
+
+### Version: 0.0.8 (01/11/2024)
+
+#### Feature
+
+- Add check version Aurora Toolbox. (Vitaliy Zarubin)
+- Add video about install Aurora Toolbox. (Vitaliy Zarubin)
 
 ### Version: 0.0.7 (31/10/2024)
 
