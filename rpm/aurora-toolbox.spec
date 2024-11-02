@@ -1,7 +1,7 @@
 %define fullname com.keygenqt.aurora-toolbox
 
 Name: aurora-toolbox
-Version: 0.0.8
+Version: 0.0.9
 Release: alt1
 Summary: An application that provides an easy start in the Aurora OS ecosystem.
 
@@ -54,6 +54,9 @@ ln -sf %{_bindir}/%{fullname} %{_bindir}/%{name}
 %{_datadir}/locale/ru/LC_MESSAGES/%{fullname}.mo
 
 %changelog
+* Sat Nov 02 2024 Vitaliy Zarubin 0.0.9
+- Update API install psdk. (Vitaliy Zarubin)
+
 * Fri Nov 01 2024 Vitaliy Zarubin 0.0.8
 - Add check version Aurora Toolbox. (Vitaliy Zarubin)
 - Add video about install Aurora Toolbox. (Vitaliy Zarubin)
