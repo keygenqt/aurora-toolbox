@@ -2,7 +2,7 @@
 
 ### Subscribe and like!
 
-[![Version](https://img.shields.io/badge/deb_package-0.0.8-blue)](https://github.com/keygenqt/aurora-toolbox/releases)
+[![Version](https://img.shields.io/badge/deb_package-0.0.9-blue)](https://github.com/keygenqt/aurora-toolbox/releases)
 
 ![Preview](https://raw.githubusercontent.com/keygenqt/aurora-toolbox/refs/heads/main/files/images/preview_telegram.png)
 

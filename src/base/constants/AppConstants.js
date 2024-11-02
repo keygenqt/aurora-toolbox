@@ -36,7 +36,7 @@ export const AppConstants = Object.freeze({
         `${GLib.getenv('HOME')}/.local/bin/aurora-cli`,
         // @todo debug
         // 'python3',
-        // '/home/keygenqt/Documents/Home/Projects/aurora-cli/builds/aurora-cli-3.0.9.pyz'
+        // '/home/keygenqt/Documents/Home/Projects/aurora-cli/builds/aurora-cli-3.0.13.pyz'
     ],
     Language: {
         'ru': 'ru_RU.utf-8',
