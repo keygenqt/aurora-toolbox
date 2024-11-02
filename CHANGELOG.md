@@ -1,11 +1,12 @@
-## Updated: 11/02/2024 17:54:50 PM
+## Updated: 11/02/2024 17:57:08 PM
 
 ## Info
 
-- Last tag: 0.0.8
-- Released: 8
+- Last tag: 0.0.9
+- Released: 9
 
 ## Versions
+- Version: 0.0.9 (02/11/2024)
 - Version: 0.0.8 (01/11/2024)
 - Version: 0.0.7 (31/10/2024)
 - Version: 0.0.6 (26/10/2024)
@@ -15,7 +16,7 @@
 - Version: 0.0.2 (23/10/2024)
 - Version: 0.0.1 (23/10/2024)
 
-### HEAD (02/11/2024)
+### Version: 0.0.9 (02/11/2024)
 
 #### Change
 
