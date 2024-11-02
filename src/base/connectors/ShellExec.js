@@ -131,9 +131,6 @@ export const ShellExec = {
                 .replace(`?password=${password}`, '')
             // Set env
             GLib.setenv('cli_password', password, true);
-            console.log('--------------------')
-            console.log(query)
-            console.log('--------------------')
         }
         return query;
     }

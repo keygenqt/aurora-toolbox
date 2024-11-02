@@ -69,6 +69,11 @@ export const WelcomePage = GObject.registerClass({
 			}
 		}).then((response) => {
 			try {
+				// Debug
+				if (this.utils.constants.AuroraCLI.includes('python3')) {
+					this.#window.navigation().push(this.utils.constants.Pages.ToolsPage);
+					return
+				}
 				if (response && response.code === 200) {
 					// Failed to retrieve data
 					if (response.cliLatest === undefined) {

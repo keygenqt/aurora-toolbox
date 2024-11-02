@@ -125,10 +125,9 @@ export const PsdksPage = GObject.registerClass({
 			const available = this.utils.helper.getValueResponse(this.utils.helper.getLastObject(
 				await this.connectors.exec.communicateAsync(this.connectors.aurora.psdkAvailable())
 			), 'value', []);
-			const majorVersions = installed.map((v) => v.split('.').slice(0, -1).join('.'));
 			return {
 				'installed': installed,
-				'available': available.filter((v) => !majorVersions.includes(v)),
+				'available': available.filter((v) => !installed.includes(v)),
 			}
 		}).then((response) => {
 			try {
