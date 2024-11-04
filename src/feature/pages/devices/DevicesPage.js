@@ -128,10 +128,16 @@ export const DevicesPage = GObject.registerClass({
 		for (const index in config) {
 			this.connectors.exec.communicateAsync(this.connectors.aurora.deviceInfo(config[index]['host']))
 				.catch((e) => this.utils.log.error(e))
-				.then(async (response) => {
-					config[index]['active'] = !Array.isArray(response) && response.code === 200;
-					this.#devices.push(config[index]);
-					this.#addDeviceGroup(config[index]);
+				.then((response) => {
+					if (response) {
+						config[index]['active'] = !Array.isArray(response) && response.code === 200;
+						this.#devices.push(config[index]);
+						this.#addDeviceGroup(config[index]);
+					} else {
+						config[index]['active'] = false;
+						this.#devices.push(config[index]);
+						this.#addDeviceGroup(config[index]);
+					}
 				});
 		}
 	}
