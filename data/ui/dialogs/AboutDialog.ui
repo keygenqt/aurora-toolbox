@@ -4,7 +4,7 @@
 		<property name="presentation-mode">floating</property>
 		<property name="application-icon">com.keygenqt.aurora-toolbox</property>
 		<property name="application-name" translatable="yes">Aurora Toolbox</property>
-		<property name="version">0.0.9</property>
+		<property name="version">0.0.10</property>
 		<property name="copyright">© 2024 KeyGenQt</property>
 		<property name="issue_url">https://github.com/keygenqt/aurora-toolbox/issues</property>
 		<property name="developer-name" translatable="yes">Vitaliy Zarubin</property>

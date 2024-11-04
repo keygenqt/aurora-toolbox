@@ -7,13 +7,21 @@ hide:
 Я разрабатывал приложения под Ubuntu, и тестировал его там.
 Приложение доступно в `deb` пакете на странице [релизов](https://github.com/keygenqt/aurora-toolbox/releases) GitHub.
 
-Приложение [Aurora CLI](https://keygenqt.github.io/aurora-cli), от которого зависит Aurora Toolbox устанавливается стандартным способом для него: 
+Приложение [Aurora CLI](https://keygenqt.github.io/aurora-cli), от которого зависит Aurora Toolbox устанавливается стандартным способом для него:
 [Install](https://keygenqt.github.io/aurora-cli/install/).
+
+!!! info
+
+    Установка на примере дистрибутива Ubuntu, но так же доступен rpm пакет, который можно установит примерно так:
+    ```shell
+    sudo rpm -i aurora-toolbox_0.0.10-1_x86_64.rpm
+    ```
+
 
 #### Install
 
 ```shell
-sudo dpkg -i aurora-toolbox_0.0.9-1_amd64.deb
+sudo dpkg -i aurora-toolbox_0.0.10-1_amd64.deb
 ```
 
 #### Update/Install dependency
