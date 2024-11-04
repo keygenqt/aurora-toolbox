@@ -3,7 +3,7 @@
 Подготовка окружения для сборки:
 
 ```shell
-sudo apt-get install gettext, meson, pkg-config, libgjs-dev, libgtk-4-dev, libadwaita-1-dev
+sudo apt-get install gettext meson pkg-config libgjs-dev libgtk-4-dev libadwaita-1-dev
 ```
 
 Сборка из корня проекта:
@@ -22,7 +22,7 @@ chmod +x ./build/run.sh
 Подготовка окружения для установки:
 
 ```shell
-sudo apt-get install gjs, language-pack-gnome-ru, language-pack-ru-base, libadwaita-1-0
+sudo apt-get install gjs language-pack-gnome-ru language-pack-ru-base libadwaita-1-0
 ```
 
 Установка:
