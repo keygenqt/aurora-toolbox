@@ -74,40 +74,38 @@ export const WelcomePage = GObject.registerClass({
 					this.#window.navigation().push(this.utils.constants.Pages.ToolsPage);
 					return
 				}
-				if (response && response.code === 200) {
-					// Failed to retrieve data
-					if (response.cliLatest === undefined) {
-						response.cliLatest = response.cliInstalled;
-					}
-					if (response.toolboxLatest === undefined) {
-						response.toolboxLatest = response.toolboxInstalled;
-					}
-					// Check new version
-					const hasNewVersionCLI = response.cliInstalled !== response.cliLatest;
-					const hasNewVersionToolbox = response.toolboxInstalled !== response.toolboxLatest;
-					// If has new version
-					if (hasNewVersionToolbox) {
-						this.#setStateUpdate(response.toolboxLatest, true);
-						this.#statePage(WelcomePageStates.UPDATE);
-						return
-					}
-					else if (hasNewVersionCLI) {
-						this.#setStateUpdate(response.cliLatest, false);
-						this.#statePage(WelcomePageStates.UPDATE);
-						return
-					}
-					else {
-						// If first app open
-						if (settings.get_boolean('first-open')) {
-							this._IdConnect.version = `${response.cliInstalled}`;
-							this.#statePage(WelcomePageStates.CONNECT);
-							return
-						}
-						// Open tools
-						this.#window.navigation().push(this.utils.constants.Pages.ToolsPage);
-					}
-				} else {
+				// Failed to retrieve data
+				if (response.cliLatest === undefined && response.toolboxLatest === undefined) {
+					response.cliLatest = response.cliInstalled;
+					response.toolboxLatest = response.toolboxInstalled;
+				}
+				if (response.cliLatest === undefined) {
 					this.#statePage(WelcomePageStates.NOT_FOUND);
+					return;
+				}
+				// Check new version
+				const hasNewVersionCLI = response.cliInstalled !== response.cliLatest;
+				const hasNewVersionToolbox = response.toolboxInstalled !== response.toolboxLatest;
+				// If has new version
+				if (hasNewVersionToolbox) {
+					this.#setStateUpdate(response.toolboxLatest, true);
+					this.#statePage(WelcomePageStates.UPDATE);
+					return
+				}
+				else if (hasNewVersionCLI) {
+					this.#setStateUpdate(response.cliLatest, false);
+					this.#statePage(WelcomePageStates.UPDATE);
+					return
+				}
+				else {
+					// If first app open
+					if (settings.get_boolean('first-open')) {
+						this._IdConnect.version = `${response.cliInstalled}`;
+						this.#statePage(WelcomePageStates.CONNECT);
+						return
+					}
+					// Open tools
+					this.#window.navigation().push(this.utils.constants.Pages.ToolsPage);
 				}
 			} catch(e) {
 				this.#statePage(WelcomePageStates.NOT_FOUND);
