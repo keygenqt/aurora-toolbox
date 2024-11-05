@@ -16,7 +16,7 @@
 import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 import GLib from 'gi://GLib';
-import Soup from 'gi://Soup';
+import Soup from 'gi://Soup?version=3.0';
 
 import { Log } from './Log.js';
 import { AuroraAPI } from '../connectors/AuroraAPI.js';
