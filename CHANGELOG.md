@@ -1,11 +1,12 @@
-## Updated: 11/04/2024 17:29:15 PM
+## Updated: 11/05/2024 20:43:10 PM
 
 ## Info
 
-- Last tag: 0.0.11
-- Released: 11
+- Last tag: 0.0.12
+- Released: 12
 
 ## Versions
+- Version: 0.0.12 (05/11/2024)
 - Version: 0.0.11 (04/11/2024)
 - Version: 0.0.10 (04/11/2024)
 - Version: 0.0.9 (02/11/2024)
@@ -17,6 +18,12 @@
 - Version: 0.0.3 (23/10/2024)
 - Version: 0.0.2 (23/10/2024)
 - Version: 0.0.1 (23/10/2024)
+
+### Version: 0.0.12 (05/11/2024)
+
+#### Bug
+
+- Fix import Soup version. (Vitaliy Zarubin)
 
 ### Version: 0.0.11 (04/11/2024)
 
