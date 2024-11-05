@@ -2,8 +2,8 @@
 
 ### Subscribe and like!
 
-[![Releases DEB](https://img.shields.io/badge/dynamic/json?url=https://api.github.com/repos/keygenqt/aurora-toolbox/releases/latest&query=assets[1][download_count]&label=Releases%20DEB&color=BE8731&logo=github&prefix=0.0.11%20(&suffix=))](https://github.com/keygenqt/aurora-toolbox/releases)
-[![Releases RPM](https://img.shields.io/badge/dynamic/json?url=https://api.github.com/repos/keygenqt/aurora-toolbox/releases/latest&query=assets[0][download_count]&label=Releases%20RPM&color=040404&logo=github&prefix=0.0.11%20(&suffix=))](https://github.com/keygenqt/aurora-toolbox/releases)
+[![Releases DEB](https://img.shields.io/badge/dynamic/json?url=https://api.github.com/repos/keygenqt/aurora-toolbox/releases/latest&query=assets[1][download_count]&label=Releases%20DEB&color=BE8731&logo=github&prefix=0.0.12%20(&suffix=))](https://github.com/keygenqt/aurora-toolbox/releases)
+[![Releases RPM](https://img.shields.io/badge/dynamic/json?url=https://api.github.com/repos/keygenqt/aurora-toolbox/releases/latest&query=assets[0][download_count]&label=Releases%20RPM&color=040404&logo=github&prefix=0.0.12%20(&suffix=))](https://github.com/keygenqt/aurora-toolbox/releases)
 
 ![Preview](https://raw.githubusercontent.com/keygenqt/aurora-toolbox/refs/heads/main/files/images/preview_telegram.png)
 

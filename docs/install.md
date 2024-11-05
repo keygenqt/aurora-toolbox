@@ -14,14 +14,14 @@ hide:
 
     Установка на примере дистрибутива Ubuntu, но так же доступен rpm пакет, который можно установит примерно так:
     ```shell
-    sudo rpm -i aurora-toolbox_0.0.11-1_x86_64.rpm
+    sudo rpm -i aurora-toolbox_0.0.12-1_x86_64.rpm
     ```
 
 
 #### Install
 
 ```shell
-sudo dpkg -i aurora-toolbox_0.0.11-1_amd64.deb
+sudo dpkg -i aurora-toolbox_0.0.12-1_amd64.deb
 ```
 
 #### Update/Install dependency
