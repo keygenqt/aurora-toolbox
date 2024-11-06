@@ -26,6 +26,11 @@
 					<property name="hexpand">true</property>
 					<property name="valign">center</property>
 					<child>
+						<object class="AdwBanner" id="IdBanner">
+							<property name="title" translatable="yes">Update available!</property>
+						</object>
+					</child>
+					<child>
 						<object class="AdwPreferencesPage" id="IdPreferencesPage">
 							<property name="visible">false</property>
 							<child>

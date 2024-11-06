@@ -40,6 +40,7 @@ export const SdkPage = GObject.registerClass({
 		'IdSdkInstallInfo',
 		'IdPageAbout',
 		'IdPageRefresh',
+		'IdBanner',
 	],
 }, class extends Adw.NavigationPage {
 	#window
@@ -70,6 +71,7 @@ export const SdkPage = GObject.registerClass({
 			'IdSdkError',
 			'IdSdkInstallInfo',
 			'IdPageRefresh',
+			'IdBanner'
 		);
 		if (state == SdkPageStates.LOADING) {
 			this._IdSdkBoxPage.valign = Gtk.Align.CENTER;
@@ -82,7 +84,11 @@ export const SdkPage = GObject.registerClass({
 		}
 		if (state == SdkPageStates.DONE) {
 			this._IdSdkBoxPage.valign = Gtk.Align.TOP;
-			return this.childrenShow('IdPreferencesPage', 'IdPageRefresh');
+			if (this._IdBanner.revealed) {
+				return this.childrenShow('IdPreferencesPage', 'IdPageRefresh', 'IdBanner');
+			} else {
+				return this.childrenShow('IdPreferencesPage', 'IdPageRefresh');
+			}
 		}
 		if (state == SdkPageStates.ERROR) {
 			this._IdSdkBoxPage.valign = Gtk.Align.CENTER;
@@ -103,6 +109,9 @@ export const SdkPage = GObject.registerClass({
 			const result = this.utils.helper.getLastObject(
 				await this.connectors.exec.communicateAsync(this.connectors.aurora.sdkInstalled())
 			);
+			const available = this.utils.helper.getValueResponse(this.utils.helper.getLastObject(
+				await this.connectors.exec.communicateAsync(this.connectors.aurora.sdkAvailable())
+			), 'value', []);
 			// Check files
 			if (result && result.code === 200 && result.value) {
 				const tool = result.value.tools[0];
@@ -116,11 +125,12 @@ export const SdkPage = GObject.registerClass({
 			return {
 				code: result.code,
 				value: result.value,
+				latest: available.length > 0 ? available[0] : undefined,
 			}
 		}).then((response) => {
 			try {
 				if (response && response.code === 200) {
-					this.#initPage(response.value);
+					this.#initPage(response.value, response.latest);
 					this.#statePage(SdkPageStates.DONE);
 				}
 				else {
@@ -133,12 +143,13 @@ export const SdkPage = GObject.registerClass({
 		});
 	}
 
-	#initPage(info) {
+	#initPage(info, latestVersion) {
 		this.#tool = info.tools[0];
 		this.#run = info.runs[0];
 		this._IdSdkInfo.icon = 'aurora-toolbox-sdk';
 		this._IdSdkInfo.title = _('Aurora SDK');
 		this._IdSdkInfo.subtitle = info.versions[0];
+		this._IdBanner.revealed = info['versions'][0].split('-')[0] !== latestVersion;
 	}
 
 	#actionsConnect() {
