@@ -2,7 +2,7 @@
 ### Template engine is Mako - https://www.makotemplates.org/
 ### Base template format is Markdown - https://python-markdown.github.io/
 ###
-### Show all values: 
+### Show all values:
 ### ${context.keys()}
 ### ${context.__dict__}
 ###
@@ -12,16 +12,16 @@
 ### ln_list_tags: [TagReference]
 ### ln_count_tags: int
 ### ln_group_commits: [
-###     name: str, 
+###     name: str,
 ###     date: datetime,
 ###     commits: [Commit],
 ###     group: [
 ###             {
-###                 name: str, 
+###                 name: str,
 ###                 commits: [
 ###                     {
-###                         commit: Commit, 
-###                         regex: [], 
+###                         commit: Commit,
+###                         regex: [],
 ###                         clean: str
 ###                     }
 ###                 ]
@@ -59,10 +59,9 @@ ${"##"} Versions
             ${"####"} ${group['name']}
 
             % for commit in group['commits']:
-                - ${commit['clean']} (${commit['commit'].author})
+                - ${commit['clean']}
             % endfor
         % endif
 
     % endfor
 % endfor
-
