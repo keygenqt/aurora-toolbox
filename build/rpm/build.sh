@@ -92,7 +92,7 @@ ln -sf %{_bindir}/%{fullname} %{_bindir}/%{name}
 %{_datadir}/locale/ru/LC_MESSAGES/%{fullname}.mo
 
 %postun
-if [ $1 -eq 0 ]; then
+if [ \$1 -eq 0 ]; then
    unlink %{_bindir}/%{name}
 fi
 EOT
