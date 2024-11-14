@@ -22,7 +22,7 @@ chmod +x ./build/run.sh
 Подготовка окружения для установки:
 
 ```shell
-sudo apt-get install gnome-extensions-app libgjs libgtk4-gir libadwaita-gir libsoup-gir
+sudo apt-get install libgjs libgtk4-gir libadwaita-gir libsoup3.0-gir xdg-desktop-portal-xapp
 ```
 
 Установка:

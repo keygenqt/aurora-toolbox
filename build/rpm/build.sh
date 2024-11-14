@@ -55,11 +55,11 @@ BuildRequires: libgtk4-devel
 BuildRequires: libadwaita-devel >= 1.5
 
 Requires: sudo
-Requires: gnome-extensions-app
+Requires: xdg-desktop-portal-xapp
 Requires: libgjs
 Requires: libgtk4-gir
 Requires: libadwaita-gir
-Requires: libsoup-gir
+Requires: libsoup3.0-gir
 
 %description
 %summary.
