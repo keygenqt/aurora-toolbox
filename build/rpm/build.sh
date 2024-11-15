@@ -55,11 +55,11 @@ BuildRequires: libgtk4-devel
 BuildRequires: libadwaita-devel >= 1.5
 
 Requires: sudo
-Requires: gnome-extensions-app
+Requires: xdg-desktop-portal-xapp
 Requires: libgjs
 Requires: libgtk4-gir
 Requires: libadwaita-gir
-Requires: libsoup-gir
+Requires: libsoup3.0-gir
 
 %description
 %summary.
@@ -90,6 +90,11 @@ ln -sf %{_bindir}/%{fullname} %{_bindir}/%{name}
 %{_datadir}/glib-2.0/schemas/%{fullname}.gschema.xml
 %{_datadir}/icons/%{fullname}.svg
 %{_datadir}/locale/ru/LC_MESSAGES/%{fullname}.mo
+
+%postun
+if [ \$1 -eq 0 ]; then
+   unlink %{_bindir}/%{name}
+fi
 EOT
 
 # Build
