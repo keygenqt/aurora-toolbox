@@ -29,12 +29,12 @@ export const Application = GObject.registerClass({
 	constructor(params) {
         super(params);
 		Helper.setLanguage(Helper.getLanguageAPI());
+		this.#loadSettings();
 	}
 
 	vfunc_startup() {
 		super.vfunc_startup();
 		this.#loadStylesheet();
-		this.#loadSettings();
 	}
 
 	vfunc_activate() {
@@ -53,6 +53,8 @@ export const Application = GObject.registerClass({
 
 	#loadSettings() {
 		globalThis.settings = new Gio.Settings({ schemaId: this.applicationId });
+		const mode = globalThis.settings.get_int('light-on-dark');
+		Helper.setThemeMode(mode);
 		// Clear settings
 		// globalThis.settings.clear();
 	}

@@ -13,7 +13,7 @@
 						<property name="orientation">vertical</property>
 						<child>
 							<object class="AdwBanner" id="IdBannerRestart">
-								<property name="title" translatable="yes">Language changed. Restart required.</property>
+								<property name="title" translatable="yes">Restart for changes required.</property>
 								<property name="button-label" translatable="yes">Restart</property>
 							</object>
 						</child>
@@ -59,6 +59,21 @@
 											<object class="AdwSwitchRow" id="IdSwitchVerbose">
 												<property name="title" translatable="yes">Verbose</property>
 												<property name="subtitle" translatable="yes">The --verbose flag enables verbose output after the command is executed. This setting enables verbose output by default.</property>
+											</object>
+										</child>
+										<child>
+											<object class="AdwComboRow" id="IdSelectMode">
+												<property name="title" translatable="yes">Color scheme</property>
+												<property name="subtitle" translatable="yes">In some environments, automatic theme installation is not available, you can try to install the color scheme manually.</property>
+												<property name="model">
+													<object class="GtkStringList">
+														<items>
+															<item>Auto</item>
+															<item>Light</item>
+															<item>Dark</item>
+														</items>
+													</object>
+												</property>
 											</object>
 										</child>
 									</object>

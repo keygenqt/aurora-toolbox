@@ -30,7 +30,7 @@ export const Window = GObject.registerClass({
 		'IdAtbNavigation'
 	],
 }, class extends Adw.ApplicationWindow {
-	#dbusProxy = new DBusProxy();
+	#dbusProxy;
 
 	constructor(params) {
 		super(params);
@@ -49,9 +49,17 @@ export const Window = GObject.registerClass({
 	}
 
 	#initConnects() {
-		this.#dbusProxy.connectWithEmit('colorScheme', (value) => {
-			this.#changeAppearanceCss(value);
-		});
+		const mode = settings.get_int('light-on-dark');
+		if (mode === 0) {
+			if (this.#dbusProxy === undefined) {
+				this.#dbusProxy = new DBusProxy();
+			}
+			this.#dbusProxy.connectWithEmit('colorScheme', (value) => {
+				this.#changeAppearanceCss(value);
+			});
+		} else {
+			this.#changeAppearanceCss(mode - 1);
+		}
 	}
 
 	#changeAppearanceCss(colorScheme = 0) {

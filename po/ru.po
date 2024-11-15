@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-25 10:01+0300\n"
+"POT-Creation-Date: 2024-11-15 17:44+0300\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 
 #: data/ui/dialogs/TextDialog.ui:44 data/ui/dialogs/AlertDialog.ui:7
@@ -15,8 +15,8 @@ msgid "Settings"
 msgstr "Настройки"
 
 #: data/ui/dialogs/SettingsDialog.ui:16
-msgid "Language changed. Restart required."
-msgstr "Язык изменен. Требуется перезагрузка."
+msgid "Restart for changes required."
+msgstr "Для внесения изменений требуется перезапуск."
 
 #: data/ui/dialogs/SettingsDialog.ui:17
 msgid "Restart"
@@ -76,6 +76,18 @@ msgid ""
 msgstr ""
 "Флаг --verbose включает подробный вывод после выполнения команды. Эта "
 "настройка включает подробный вывод по умолчанию."
+
+#: data/ui/dialogs/SettingsDialog.ui:66
+msgid "Color scheme"
+msgstr "Цветовая схема"
+
+#: data/ui/dialogs/SettingsDialog.ui:67
+msgid ""
+"In some environments, automatic theme installation is not available, you can "
+"try to install the color scheme manually."
+msgstr ""
+"В некоторых окружениях не доступна авто установка темы, вы можете "
+"попробовать установить цветовую схему вручную."
 
 #: data/ui/dialogs/LoadingDialog.ui:18
 #: src/feature/pages/emulator/EmulatorPage.js:259
@@ -141,7 +153,7 @@ msgstr "Доступно"
 msgid "PSDK versions that can be installed."
 msgstr "Версии PSDK, которые можно установить."
 
-#: data/ui/pages/psdks/PsdksPage.ui:55 data/ui/pages/sdk/SdkPage.ui:97
+#: data/ui/pages/psdks/PsdksPage.ui:55 data/ui/pages/sdk/SdkPage.ui:102
 #: data/ui/pages/flutter/FlutterPage.ui:55
 msgid "Something went wrong."
 msgstr "Что-то пошло не так."
@@ -162,7 +174,7 @@ msgstr "Открыть в терминале (root)"
 #: data/ui/pages/emulator/EmulatorPage.ui:69
 #: data/ui/pages/welcome/elements/WelcomeConnect.ui:47
 #: data/ui/pages/device/DevicePage.ui:57 data/ui/pages/psdk/PsdkPage.ui:65
-#: data/ui/pages/sdk/SdkPage.ui:62
+#: data/ui/pages/sdk/SdkPage.ui:67
 #: data/ui/pages/psdkTarget/PsdkTargetPage.ui:30
 msgid "Tools"
 msgstr "Инструменты"
@@ -215,6 +227,7 @@ msgid "Connection..."
 msgstr "Подключение..."
 
 #: data/ui/pages/welcome/elements/WelcomeUpdate.ui:9
+#: data/ui/pages/sdk/SdkPage.ui:30
 msgid "Update available!"
 msgstr "Доступно обновление!"
 
@@ -237,8 +250,8 @@ msgid "You can install the application."
 msgstr "Вы можете установить приложение."
 
 #: data/ui/pages/welcome/elements/WelcomeNotFound.ui:36
-#: src/feature/pages/psdks/PsdksPage.js:210
-#: src/feature/pages/flutter/FlutterPage.js:230
+#: src/feature/pages/psdks/PsdksPage.js:209
+#: src/feature/pages/flutter/FlutterPage.js:227
 #: src/feature/pages/vscode/VscodePage.js:271
 msgid "Install"
 msgstr "Установить"
@@ -324,7 +337,7 @@ msgstr ""
 "ОС Aurora."
 
 #: data/ui/pages/tools/elements/ToolsGroups.ui:16
-#: data/ui/pages/sdk/SdkPage.ui:4 src/feature/pages/sdk/SdkPage.js:140
+#: data/ui/pages/sdk/SdkPage.ui:4 src/feature/pages/sdk/SdkPage.js:150
 msgid "Aurora SDK"
 msgstr "Аврора SDK"
 
@@ -397,31 +410,31 @@ msgstr "Устройства не подключены."
 msgid "No devices found in configuration file."
 msgstr "В файле конфигурации не найдено ни одного устройства."
 
-#: data/ui/pages/sdk/SdkPage.ui:48
+#: data/ui/pages/sdk/SdkPage.ui:53
 msgid "Run Aurora SDK"
 msgstr "Запустить Aurora SDK"
 
-#: data/ui/pages/sdk/SdkPage.ui:63
+#: data/ui/pages/sdk/SdkPage.ui:68
 msgid "Interact with the Aurora SDK."
 msgstr "Взаимодействуйте с Aurora SDK."
 
-#: data/ui/pages/sdk/SdkPage.ui:68
+#: data/ui/pages/sdk/SdkPage.ui:73
 msgid "Maintenance Tool"
 msgstr "Maintenance Tool"
 
-#: data/ui/pages/sdk/SdkPage.ui:87
+#: data/ui/pages/sdk/SdkPage.ui:92
 msgid "Not found installed the Aurora SDK."
 msgstr "Не найден установленный Aurora SDK."
 
-#: data/ui/pages/sdk/SdkPage.ui:89
+#: data/ui/pages/sdk/SdkPage.ui:94
 msgid "Offline installer"
 msgstr "Оффлайн установщик"
 
-#: data/ui/pages/sdk/SdkPage.ui:91
+#: data/ui/pages/sdk/SdkPage.ui:96
 msgid "Online installer"
 msgstr "Онлайн-установщик"
 
-#: data/ui/pages/sdk/SdkPage.ui:103
+#: data/ui/pages/sdk/SdkPage.ui:108
 msgid ""
 "The setup file (*.run) has been downloaded. Install Aurora SDK it and then "
 "reload the page."
@@ -429,7 +442,7 @@ msgstr ""
 "Файл установки (*.run) загружен. Установите Aurora SDK, а затем "
 "перезагрузите страницу."
 
-#: data/ui/pages/sdk/SdkPage.ui:105
+#: data/ui/pages/sdk/SdkPage.ui:110
 msgid "Refresh"
 msgstr "Обновить"
 
@@ -573,8 +586,8 @@ msgid "Clear snapshot"
 msgstr "Очистить snapshot"
 
 #. Show error
-#: src/feature/dialogs/SettingsDialog.js:54
-#: src/feature/dialogs/SettingsDialog.js:68
+#: src/feature/dialogs/SettingsDialog.js:55
+#: src/feature/dialogs/SettingsDialog.js:69
 msgid "Error load settings."
 msgstr "Ошибка загрузки настроек."
 
@@ -588,30 +601,30 @@ msgstr "Выход"
 #: src/feature/pages/device/DevicePage.js:88
 #: src/feature/pages/psdk/PsdkPage.js:155
 #: src/feature/pages/devices/DevicesPage.js:107
-#: src/feature/pages/sdk/SdkPage.js:98
-#: src/feature/pages/flutter/FlutterPage.js:114
+#: src/feature/pages/sdk/SdkPage.js:104
+#: src/feature/pages/flutter/FlutterPage.js:111
 #: src/feature/pages/vscode/VscodePage.js:101
 msgid "Getting data..."
 msgstr "Получение данных..."
 
-#: src/feature/pages/psdks/PsdksPage.js:189
-#: src/feature/pages/flutter/FlutterPage.js:183
+#: src/feature/pages/psdks/PsdksPage.js:188
+#: src/feature/pages/flutter/FlutterPage.js:180
 msgid "Version:"
 msgstr "Версия:"
 
-#: src/feature/pages/psdks/PsdksPage.js:211
+#: src/feature/pages/psdks/PsdksPage.js:210
 msgid "Do you want install \"{{version}}\" PSDK?"
 msgstr "Вы хотите установить \"{{version}}\" PSDK?"
 
-#: src/feature/pages/psdks/PsdksPage.js:213
-#: src/feature/pages/psdks/PsdksPage.js:221
-#: src/feature/pages/sdk/SdkPage.js:196 src/feature/pages/sdk/SdkPage.js:203
+#: src/feature/pages/psdks/PsdksPage.js:212
+#: src/feature/pages/psdks/PsdksPage.js:220
+#: src/feature/pages/sdk/SdkPage.js:207 src/feature/pages/sdk/SdkPage.js:214
 msgid "Download..."
 msgstr "Скачиваем..."
 
 #. Install
-#: src/feature/pages/psdks/PsdksPage.js:238
-#: src/feature/pages/flutter/FlutterPage.js:233
+#: src/feature/pages/psdks/PsdksPage.js:237
+#: src/feature/pages/flutter/FlutterPage.js:230
 msgid "Install..."
 msgstr "Установка..."
 
@@ -693,7 +706,7 @@ msgid "Error loading file, something went wrong."
 msgstr "Ошибка загрузки файла, что-то пошло не так."
 
 #: src/feature/pages/psdk/PsdkPage.js:219
-#: src/feature/pages/flutter/FlutterPage.js:204
+#: src/feature/pages/flutter/FlutterPage.js:201
 msgid "Remove"
 msgstr "Удалить"
 
@@ -702,7 +715,7 @@ msgid "Do you want remove \"{{version}}\" PSDK?"
 msgstr "Хотите удалить \"{{version}}\" PSDK?"
 
 #: src/feature/pages/psdk/PsdkPage.js:223
-#: src/feature/pages/flutter/FlutterPage.js:207
+#: src/feature/pages/flutter/FlutterPage.js:204
 msgid "Remove..."
 msgstr "Удаление..."
 
@@ -710,31 +723,31 @@ msgstr "Удаление..."
 msgid "Sign RPM"
 msgstr "Подпись RPM"
 
-#: src/feature/pages/devices/DevicesPage.js:147
+#: src/feature/pages/devices/DevicesPage.js:153
 msgid "Auth: SSH key"
 msgstr "Авторизация: SSH-ключ"
 
-#: src/feature/pages/devices/DevicesPage.js:147
+#: src/feature/pages/devices/DevicesPage.js:153
 msgid "Auth: Password"
 msgstr "Авторизация: Пароль"
 
-#: src/feature/pages/sdk/SdkPage.js:179
+#: src/feature/pages/sdk/SdkPage.js:190
 msgid "Get latest version..."
 msgstr "Получить последнюю версию..."
 
-#: src/feature/pages/sdk/SdkPage.js:193
+#: src/feature/pages/sdk/SdkPage.js:204
 msgid "Download"
 msgstr "Скачать"
 
-#: src/feature/pages/sdk/SdkPage.js:194
+#: src/feature/pages/sdk/SdkPage.js:205
 msgid "Do you want download \"{{version}}\" Aurora SDK and run install?"
 msgstr "Хотите загрузить \"{{version}}\" Aurora SDK и запустить установку?"
 
-#: src/feature/pages/flutter/FlutterPage.js:205
+#: src/feature/pages/flutter/FlutterPage.js:202
 msgid "Do you want remove \"{{version}}\" Flutter SDK?"
 msgstr "Хотите удалить \"{{version}}\" Flutter SDK?"
 
-#: src/feature/pages/flutter/FlutterPage.js:231
+#: src/feature/pages/flutter/FlutterPage.js:228
 msgid "Do you want install \"{{version}}\" Flutter SDK?"
 msgstr "Хотите установить \"{{version}}\" Flutter SDK?"
 

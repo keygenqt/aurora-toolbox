@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.keygenqt.aurora-toolbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-25 10:01+0300\n"
+"POT-Creation-Date: 2024-11-15 17:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgid "Settings"
 msgstr ""
 
 #: data/ui/dialogs/SettingsDialog.ui:16
-msgid "Language changed. Restart required."
+msgid "Restart for changes required."
 msgstr ""
 
 #: data/ui/dialogs/SettingsDialog.ui:17
@@ -76,6 +76,16 @@ msgstr ""
 msgid ""
 "The --verbose flag enables verbose output after the command is executed. "
 "This setting enables verbose output by default."
+msgstr ""
+
+#: data/ui/dialogs/SettingsDialog.ui:66
+msgid "Color scheme"
+msgstr ""
+
+#: data/ui/dialogs/SettingsDialog.ui:67
+msgid ""
+"In some environments, automatic theme installation is not available, you can "
+"try to install the color scheme manually."
 msgstr ""
 
 #: data/ui/dialogs/LoadingDialog.ui:18
@@ -142,7 +152,7 @@ msgstr ""
 msgid "PSDK versions that can be installed."
 msgstr ""
 
-#: data/ui/pages/psdks/PsdksPage.ui:55 data/ui/pages/sdk/SdkPage.ui:97
+#: data/ui/pages/psdks/PsdksPage.ui:55 data/ui/pages/sdk/SdkPage.ui:102
 #: data/ui/pages/flutter/FlutterPage.ui:55
 msgid "Something went wrong."
 msgstr ""
@@ -163,7 +173,7 @@ msgstr ""
 #: data/ui/pages/emulator/EmulatorPage.ui:69
 #: data/ui/pages/welcome/elements/WelcomeConnect.ui:47
 #: data/ui/pages/device/DevicePage.ui:57 data/ui/pages/psdk/PsdkPage.ui:65
-#: data/ui/pages/sdk/SdkPage.ui:62
+#: data/ui/pages/sdk/SdkPage.ui:67
 #: data/ui/pages/psdkTarget/PsdkTargetPage.ui:30
 msgid "Tools"
 msgstr ""
@@ -216,6 +226,7 @@ msgid "Connection..."
 msgstr ""
 
 #: data/ui/pages/welcome/elements/WelcomeUpdate.ui:9
+#: data/ui/pages/sdk/SdkPage.ui:30
 msgid "Update available!"
 msgstr ""
 
@@ -238,8 +249,8 @@ msgid "You can install the application."
 msgstr ""
 
 #: data/ui/pages/welcome/elements/WelcomeNotFound.ui:36
-#: src/feature/pages/psdks/PsdksPage.js:210
-#: src/feature/pages/flutter/FlutterPage.js:230
+#: src/feature/pages/psdks/PsdksPage.js:209
+#: src/feature/pages/flutter/FlutterPage.js:227
 #: src/feature/pages/vscode/VscodePage.js:271
 msgid "Install"
 msgstr ""
@@ -323,7 +334,7 @@ msgid ""
 msgstr ""
 
 #: data/ui/pages/tools/elements/ToolsGroups.ui:16
-#: data/ui/pages/sdk/SdkPage.ui:4 src/feature/pages/sdk/SdkPage.js:140
+#: data/ui/pages/sdk/SdkPage.ui:4 src/feature/pages/sdk/SdkPage.js:150
 msgid "Aurora SDK"
 msgstr ""
 
@@ -393,37 +404,37 @@ msgstr ""
 msgid "No devices found in configuration file."
 msgstr ""
 
-#: data/ui/pages/sdk/SdkPage.ui:48
+#: data/ui/pages/sdk/SdkPage.ui:53
 msgid "Run Aurora SDK"
 msgstr ""
 
-#: data/ui/pages/sdk/SdkPage.ui:63
+#: data/ui/pages/sdk/SdkPage.ui:68
 msgid "Interact with the Aurora SDK."
 msgstr ""
 
-#: data/ui/pages/sdk/SdkPage.ui:68
+#: data/ui/pages/sdk/SdkPage.ui:73
 msgid "Maintenance Tool"
 msgstr ""
 
-#: data/ui/pages/sdk/SdkPage.ui:87
+#: data/ui/pages/sdk/SdkPage.ui:92
 msgid "Not found installed the Aurora SDK."
 msgstr ""
 
-#: data/ui/pages/sdk/SdkPage.ui:89
+#: data/ui/pages/sdk/SdkPage.ui:94
 msgid "Offline installer"
 msgstr ""
 
-#: data/ui/pages/sdk/SdkPage.ui:91
+#: data/ui/pages/sdk/SdkPage.ui:96
 msgid "Online installer"
 msgstr ""
 
-#: data/ui/pages/sdk/SdkPage.ui:103
+#: data/ui/pages/sdk/SdkPage.ui:108
 msgid ""
 "The setup file (*.run) has been downloaded. Install Aurora SDK it and then "
 "reload the page."
 msgstr ""
 
-#: data/ui/pages/sdk/SdkPage.ui:105
+#: data/ui/pages/sdk/SdkPage.ui:110
 msgid "Refresh"
 msgstr ""
 
@@ -553,8 +564,8 @@ msgid "Clear snapshot"
 msgstr ""
 
 #. Show error
-#: src/feature/dialogs/SettingsDialog.js:54
-#: src/feature/dialogs/SettingsDialog.js:68
+#: src/feature/dialogs/SettingsDialog.js:55
+#: src/feature/dialogs/SettingsDialog.js:69
 msgid "Error load settings."
 msgstr ""
 
@@ -568,30 +579,30 @@ msgstr ""
 #: src/feature/pages/device/DevicePage.js:88
 #: src/feature/pages/psdk/PsdkPage.js:155
 #: src/feature/pages/devices/DevicesPage.js:107
-#: src/feature/pages/sdk/SdkPage.js:98
-#: src/feature/pages/flutter/FlutterPage.js:114
+#: src/feature/pages/sdk/SdkPage.js:104
+#: src/feature/pages/flutter/FlutterPage.js:111
 #: src/feature/pages/vscode/VscodePage.js:101
 msgid "Getting data..."
 msgstr ""
 
-#: src/feature/pages/psdks/PsdksPage.js:189
-#: src/feature/pages/flutter/FlutterPage.js:183
+#: src/feature/pages/psdks/PsdksPage.js:188
+#: src/feature/pages/flutter/FlutterPage.js:180
 msgid "Version:"
 msgstr ""
 
-#: src/feature/pages/psdks/PsdksPage.js:211
+#: src/feature/pages/psdks/PsdksPage.js:210
 msgid "Do you want install \"{{version}}\" PSDK?"
 msgstr ""
 
-#: src/feature/pages/psdks/PsdksPage.js:213
-#: src/feature/pages/psdks/PsdksPage.js:221
-#: src/feature/pages/sdk/SdkPage.js:196 src/feature/pages/sdk/SdkPage.js:203
+#: src/feature/pages/psdks/PsdksPage.js:212
+#: src/feature/pages/psdks/PsdksPage.js:220
+#: src/feature/pages/sdk/SdkPage.js:207 src/feature/pages/sdk/SdkPage.js:214
 msgid "Download..."
 msgstr ""
 
 #. Install
-#: src/feature/pages/psdks/PsdksPage.js:238
-#: src/feature/pages/flutter/FlutterPage.js:233
+#: src/feature/pages/psdks/PsdksPage.js:237
+#: src/feature/pages/flutter/FlutterPage.js:230
 msgid "Install..."
 msgstr ""
 
@@ -671,7 +682,7 @@ msgid "Error loading file, something went wrong."
 msgstr ""
 
 #: src/feature/pages/psdk/PsdkPage.js:219
-#: src/feature/pages/flutter/FlutterPage.js:204
+#: src/feature/pages/flutter/FlutterPage.js:201
 msgid "Remove"
 msgstr ""
 
@@ -680,7 +691,7 @@ msgid "Do you want remove \"{{version}}\" PSDK?"
 msgstr ""
 
 #: src/feature/pages/psdk/PsdkPage.js:223
-#: src/feature/pages/flutter/FlutterPage.js:207
+#: src/feature/pages/flutter/FlutterPage.js:204
 msgid "Remove..."
 msgstr ""
 
@@ -688,31 +699,31 @@ msgstr ""
 msgid "Sign RPM"
 msgstr ""
 
-#: src/feature/pages/devices/DevicesPage.js:147
+#: src/feature/pages/devices/DevicesPage.js:153
 msgid "Auth: SSH key"
 msgstr ""
 
-#: src/feature/pages/devices/DevicesPage.js:147
+#: src/feature/pages/devices/DevicesPage.js:153
 msgid "Auth: Password"
 msgstr ""
 
-#: src/feature/pages/sdk/SdkPage.js:179
+#: src/feature/pages/sdk/SdkPage.js:190
 msgid "Get latest version..."
 msgstr ""
 
-#: src/feature/pages/sdk/SdkPage.js:193
+#: src/feature/pages/sdk/SdkPage.js:204
 msgid "Download"
 msgstr ""
 
-#: src/feature/pages/sdk/SdkPage.js:194
+#: src/feature/pages/sdk/SdkPage.js:205
 msgid "Do you want download \"{{version}}\" Aurora SDK and run install?"
 msgstr ""
 
-#: src/feature/pages/flutter/FlutterPage.js:205
+#: src/feature/pages/flutter/FlutterPage.js:202
 msgid "Do you want remove \"{{version}}\" Flutter SDK?"
 msgstr ""
 
-#: src/feature/pages/flutter/FlutterPage.js:231
+#: src/feature/pages/flutter/FlutterPage.js:228
 msgid "Do you want install \"{{version}}\" Flutter SDK?"
 msgstr ""
 

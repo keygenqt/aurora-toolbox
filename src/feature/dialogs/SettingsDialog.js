@@ -31,6 +31,7 @@ export const SettingsDialog = GObject.registerClass({
 	InternalChildren: [
 		'IdSettingsDialog',
 		'IdSelectLanguage',
+		'IdSelectMode',
 		'IdSwitchVerbose',
 		'IdSwitchSelect',
 		'IdSwitchHint',
@@ -71,6 +72,7 @@ export const SettingsDialog = GObject.registerClass({
 
 	#setParams(value) {
 		this._IdSelectLanguage.selected = value?.language === 'ru' ? 0 : 1;
+		this._IdSelectMode.selected = settings.get_int('light-on-dark');
 		this._IdSwitchVerbose.active = value?.verbose === 'true';
 		this._IdSwitchSelect.active = value?.select === 'true';
 		this._IdSwitchHint.active = value?.hint === 'true' || value?.hint !== 'false' && value?.hint !== 'true';
@@ -92,13 +94,24 @@ export const SettingsDialog = GObject.registerClass({
 			));
 			this.#showInfoRestart();
 		});
+		this._IdSelectMode.connect('notify::selected-item', (e) => {
+			settings.set_int('light-on-dark', e.get_selected());
+			this.#showInfoRestart();
+		});
 		this._IdBannerRestart.connect('button-clicked', () => {
 			appRestart();
 		});
 	}
 
 	#showInfoRestart() {
+		// Check language
 		const index = Helper.getLanguageENV().includes('ru') ? 0 : 1;
 		this._IdBannerRestart.revealed = index != this._IdSelectLanguage.selected;
+		if (this._IdBannerRestart.revealed) {
+			return;
+		}
+		// Check mode
+		const mode = Helper.getThemeMode();
+		this._IdBannerRestart.revealed = mode != this._IdSelectMode.selected;
 	}
 });

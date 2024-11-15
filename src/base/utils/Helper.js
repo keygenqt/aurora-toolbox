@@ -88,6 +88,30 @@ export const Helper = {
         GLib.setenv('LANG', language, true);
     },
     /**
+     * Get environment mode
+     */
+    getThemeMode: function() {
+        const scheme = GLib.getenv('ADW_DEBUG_COLOR_SCHEME') ?? 'auto';
+        if (scheme == 'prefer-light') {
+            return 1;
+        }
+        if (scheme == 'prefer-dark') {
+            return 2;
+        }
+        return 0;
+    },
+    /**
+     * Set mode: light(1) / dark(2)
+     */
+    setThemeMode: function(mode) {
+        if (mode == 1) {
+            GLib.setenv('ADW_DEBUG_COLOR_SCHEME', `prefer-light`, true);
+        }
+        if (mode == 2) {
+            GLib.setenv('ADW_DEBUG_COLOR_SCHEME', `prefer-dark`, true);
+        }
+    },
+    /**
      * Create params widget
      */
     makeParams: function(data) {
