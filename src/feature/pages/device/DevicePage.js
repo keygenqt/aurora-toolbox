@@ -219,7 +219,7 @@ export const DevicePage = GObject.registerClass({
 				this.utils.helper.getPromisePage(async () => {
 					const isAPM = Boolean(this.#info.VERSION_ID.match(/^5.+/g));
 					const resultRun = await this.utils.helper.getObjectAsync(
-						/* query */	 this.connectors.aurora.devicePackageInstall(this.#params.host, path, isAPM),
+						/* query */	 this.connectors.aurora.devicePackageInstall(this.#params.host, path, isAPM, isAPM),
 						/* valid */	 (object) => {
 							if (object && object.code === 100) {
 								if (object.value) {

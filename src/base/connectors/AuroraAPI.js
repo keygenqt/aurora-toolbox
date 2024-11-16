@@ -460,13 +460,14 @@ export const AuroraAPI = {
      *
      * @returns route
      */
-    devicePackageInstall: function(host, path, apm) {
+    devicePackageInstall: function(host, path, apm, reinstall) {
         return [
             ...AppConstants.AuroraCLI, 'api', "--route",
             '/device/package/install'.argUri({
                 host: host,
                 path: path,
                 apm: apm,
+                reinstall: reinstall
             })
         ]
     },
