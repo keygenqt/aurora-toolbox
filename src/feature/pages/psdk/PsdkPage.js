@@ -262,7 +262,7 @@ export const PsdkPage = GObject.registerClass({
 						};
 					}).then((response) => {
 						if (response && response.code === 200) {
-							dialog.success(response.message);
+							dialog.success(_('The package has been successfully signed.'));
 						} else {
 							dialog.error(_('Error loading file, something went wrong.'));
 						}

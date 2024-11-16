@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.keygenqt.aurora-toolbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-15 17:44+0300\n"
+"POT-Creation-Date: 2024-11-16 11:21+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -697,6 +697,10 @@ msgstr ""
 
 #: src/feature/pages/psdk/PsdkPage.js:249
 msgid "Sign RPM"
+msgstr ""
+
+#: src/feature/pages/psdk/PsdkPage.js:265
+msgid "The package has been successfully signed."
 msgstr ""
 
 #: src/feature/pages/devices/DevicesPage.js:153

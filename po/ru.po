@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-15 17:44+0300\n"
+"POT-Creation-Date: 2024-11-16 11:21+0300\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 
 #: data/ui/dialogs/TextDialog.ui:44 data/ui/dialogs/AlertDialog.ui:7
@@ -722,6 +722,10 @@ msgstr "Удаление..."
 #: src/feature/pages/psdk/PsdkPage.js:249
 msgid "Sign RPM"
 msgstr "Подпись RPM"
+
+#: src/feature/pages/psdk/PsdkPage.js:265
+msgid "The package has been successfully signed."
+msgstr "Пакет успешно подписан."
 
 #: src/feature/pages/devices/DevicesPage.js:153
 msgid "Auth: SSH key"
