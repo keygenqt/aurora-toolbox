@@ -1,11 +1,12 @@
-## Updated: 11/06/2024 18:28:12 PM
+## Updated: 11/18/2024 19:12:21 PM
 
 ## Info
 
-- Last tag: 1.0.0
-- Released: 13
+- Last tag: 1.0.1
+- Released: 14
 
 ## Versions
+- Version: 1.0.1 (18/11/2024)
 - Version: 1.0.0 (06/11/2024)
 - Version: 0.0.12 (05/11/2024)
 - Version: 0.0.11 (04/11/2024)
@@ -19,6 +20,22 @@
 - Version: 0.0.3 (23/10/2024)
 - Version: 0.0.2 (23/10/2024)
 - Version: 0.0.1 (23/10/2024)
+
+### Version: 1.0.1 (18/11/2024)
+
+#### Bug
+
+- Fix long sign text message.
+
+#### Change
+
+- Improvements to rpm specification.
+
+#### Feature
+
+- Add hint about features.
+- Add reinstall apm.
+- Add custom color scheme.
 
 ### Version: 1.0.0 (06/11/2024)
 
