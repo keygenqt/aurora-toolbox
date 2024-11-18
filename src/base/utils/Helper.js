@@ -63,9 +63,19 @@ export const Helper = {
     getLanguageAPI: function() {
         const settings = ShellExec.communicateSync(AuroraAPI.settingsList());
         if (settings && settings.value?.language === 'ru') {
-            return AppConstants.Language.ru
+            return AppConstants.Language.ru;
         }
         return AppConstants.Language.en;
+    },
+    /**
+     * Get settings hint
+     */
+    getHintAPI: function() {
+        const settings = ShellExec.communicateSync(AuroraAPI.settingsList());
+        if (settings && settings.value?.hint === 'false') {
+            return false;
+        }
+        return true;
     },
     /**
      * Check system is Ubuntu

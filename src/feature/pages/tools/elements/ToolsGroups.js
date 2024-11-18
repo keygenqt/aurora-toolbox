@@ -19,5 +19,29 @@ import Gtk from 'gi://Gtk';
 export const ToolsGroups = GObject.registerClass({
 	GTypeName: 'AtbToolsGroups',
 	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/pages/tools/elements/ToolsGroups.ui',
-	InternalChildren: [],
-}, class extends Gtk.Box {});
+	InternalChildren: [
+		'IdGroupSDK',
+		'IdGroupPSDK',
+		'IdGroupFlutter',
+		'IdGroupVscode',
+		'IdGroupDevices',
+		'IdGroupEmulator',
+	],
+}, class extends Gtk.Box {
+	constructor(params) {
+		super(params);
+		// State hint
+		this.#setStateHint();
+	}
+
+	#setStateHint() {
+		if (!this.utils.helper.getHintAPI()) {
+			this._IdGroupSDK.subtitle = null;
+			this._IdGroupPSDK.subtitle = null;
+			this._IdGroupFlutter.subtitle = null;
+			this._IdGroupVscode.subtitle = null;
+			this._IdGroupDevices.subtitle = null;
+			this._IdGroupEmulator.subtitle = null;
+		}
+	}
+});

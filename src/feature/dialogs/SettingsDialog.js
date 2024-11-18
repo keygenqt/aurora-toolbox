@@ -25,6 +25,11 @@ import { AuroraAPI } from '../../base/connectors/AuroraAPI.js';
 import { ErrorDialog } from './ErrorDialog.js';
 import { LoadingDialog } from './LoadingDialog.js';
 
+/// Start app states
+var _hint
+var _lang
+var _mode
+
 export const SettingsDialog = GObject.registerClass({
 	GTypeName: 'AtbSettingsDialog',
 	Template: 'resource:///com/keygenqt/aurora-toolbox/ui/dialogs/SettingsDialog.ui',
@@ -71,6 +76,17 @@ export const SettingsDialog = GObject.registerClass({
 	}
 
 	#setParams(value) {
+		// Save start state
+		if (_hint === undefined) {
+			_hint = value?.hint === 'true' || value?.hint !== 'false' && value?.hint !== 'true';
+		}
+		if (_lang === undefined) {
+			_lang = value?.language === 'ru' ? 0 : 1;
+		}
+		if (_mode === undefined) {
+			_mode = Helper.getThemeMode();
+		}
+		// Set state
 		this._IdSelectLanguage.selected = value?.language === 'ru' ? 0 : 1;
 		this._IdSelectMode.selected = settings.get_int('light-on-dark');
 		this._IdSwitchVerbose.active = value?.verbose === 'true';
@@ -87,6 +103,7 @@ export const SettingsDialog = GObject.registerClass({
 		});
 		this._IdSwitchHint.connect('notify::active', (e) => {
 			ShellExec.communicateAsync(AuroraAPI.settingsHint(e.active));
+			this.#showInfoRestart();
 		});
 		this._IdSelectLanguage.connect('notify::selected-item', (e) => {
 			ShellExec.communicateAsync(
@@ -105,13 +122,19 @@ export const SettingsDialog = GObject.registerClass({
 
 	#showInfoRestart() {
 		// Check language
-		const index = Helper.getLanguageENV().includes('ru') ? 0 : 1;
-		this._IdBannerRestart.revealed = index != this._IdSelectLanguage.selected;
+		this._IdBannerRestart.revealed = _lang != this._IdSelectLanguage.selected;
 		if (this._IdBannerRestart.revealed) {
 			return;
 		}
 		// Check mode
-		const mode = Helper.getThemeMode();
-		this._IdBannerRestart.revealed = mode != this._IdSelectMode.selected;
+		this._IdBannerRestart.revealed = _mode != this._IdSelectMode.selected;
+		if (this._IdBannerRestart.revealed) {
+			return;
+		}
+		// Check hint
+		this._IdBannerRestart.revealed = _hint != this._IdSwitchHint.active;
+		if (this._IdBannerRestart.revealed) {
+			return;
+		}
 	}
 });

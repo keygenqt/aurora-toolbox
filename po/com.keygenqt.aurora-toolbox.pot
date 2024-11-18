@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.keygenqt.aurora-toolbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-16 11:21+0300\n"
+"POT-Creation-Date: 2024-11-18 09:41+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -131,7 +131,7 @@ msgid "Password"
 msgstr ""
 
 #: data/ui/pages/psdks/PsdksPage.ui:4 data/ui/pages/psdk/PsdkPage.ui:4
-#: data/ui/pages/tools/elements/ToolsGroups.ui:30
+#: data/ui/pages/tools/elements/ToolsGroups.ui:31
 #: src/feature/pages/psdk/PsdkPage.js:196
 msgid "Platform SDK"
 msgstr ""
@@ -158,7 +158,7 @@ msgid "Something went wrong."
 msgstr ""
 
 #: data/ui/pages/emulator/EmulatorPage.ui:4
-#: data/ui/pages/tools/elements/ToolsGroups.ui:94
+#: data/ui/pages/tools/elements/ToolsGroups.ui:99
 msgid "Emulator"
 msgstr ""
 
@@ -260,7 +260,7 @@ msgid "Application installation is required."
 msgstr ""
 
 #: data/ui/pages/device/DevicePage.ui:4
-#: data/ui/pages/tools/elements/ToolsGroups.ui:80
+#: data/ui/pages/tools/elements/ToolsGroups.ui:84
 msgid "Device"
 msgstr ""
 
@@ -338,37 +338,71 @@ msgstr ""
 msgid "Aurora SDK"
 msgstr ""
 
-#: data/ui/pages/tools/elements/ToolsGroups.ui:44
+#: data/ui/pages/tools/elements/ToolsGroups.ui:17
+msgid ""
+"A set of tools for assembling, developing, debugging and testing application "
+"software for Aurora OS, using the mb2 tool."
+msgstr ""
+
+#: data/ui/pages/tools/elements/ToolsGroups.ui:32
+msgid ""
+"A set of tools for developing, debugging and testing Aurora OS components "
+"intended for CI."
+msgstr ""
+
+#: data/ui/pages/tools/elements/ToolsGroups.ui:46
 #: data/ui/pages/flutter/FlutterPage.ui:4 data/ui/pages/vscode/VscodePage.ui:62
 msgid "Flutter"
 msgstr ""
 
-#: data/ui/pages/tools/elements/ToolsGroups.ui:58
+#: data/ui/pages/tools/elements/ToolsGroups.ui:47
+msgid ""
+"A framework for creating beautiful, natively compiled applications from a "
+"single code base with support for Aurora OS."
+msgstr ""
+
+#: data/ui/pages/tools/elements/ToolsGroups.ui:61
 #: src/feature/pages/vscode/VscodePage.js:138
 msgid "Visual Studio Code"
 msgstr ""
 
-#: data/ui/pages/tools/elements/ToolsGroups.ui:75
+#: data/ui/pages/tools/elements/ToolsGroups.ui:62
+msgid ""
+"A code editor that is optimal for creating Flutter applications for Aurora "
+"OS."
+msgstr ""
+
+#: data/ui/pages/tools/elements/ToolsGroups.ui:79
 msgid "Device Management"
 msgstr ""
 
-#: data/ui/pages/tools/elements/ToolsGroups.ui:76
+#: data/ui/pages/tools/elements/ToolsGroups.ui:80
 msgid ""
 "In this section you can find devices added to your configuration file or "
 "their emulation in VirtualBox."
 msgstr ""
 
-#: data/ui/pages/tools/elements/ToolsGroups.ui:111
+#: data/ui/pages/tools/elements/ToolsGroups.ui:85
+msgid ""
+"Aurora OS devices connected via the SSH interface specified in the "
+"application configuration file."
+msgstr ""
+
+#: data/ui/pages/tools/elements/ToolsGroups.ui:100
+msgid "Working with the Aurora OS emulator installed with the Aurora SDK."
+msgstr ""
+
+#: data/ui/pages/tools/elements/ToolsGroups.ui:117
 msgid "Aurora CLI"
 msgstr ""
 
-#: data/ui/pages/tools/elements/ToolsGroups.ui:112
+#: data/ui/pages/tools/elements/ToolsGroups.ui:118
 msgid ""
 "Connections are managed through the base CLI application configuration file. "
 "Configure it to use devices and other functionality."
 msgstr ""
 
-#: data/ui/pages/tools/elements/ToolsGroups.ui:117
+#: data/ui/pages/tools/elements/ToolsGroups.ui:123
 msgid "Configuration"
 msgstr ""
 
