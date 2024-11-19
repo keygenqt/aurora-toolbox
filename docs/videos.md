@@ -50,3 +50,14 @@ Flutter - это фреймворк с открытым исходным код�
         frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen>
     </iframe>
 </div>
+
+#### Установка RPM/Emulator
+
+Демонстрация подписи пакета RPM через PSDK с последующей установкой его на эмулятор.
+Собранные пакеты из видео находятся в репозитории [aurora-apps](https://github.com/keygenqt/aurora-apps/releases).
+
+<div class="Rutube">
+    <iframe src="https://rutube.ru/play/embed/b040fabcca2fd9f726f1372b8028c3cf"
+        frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen>
+    </iframe>
+</div>
