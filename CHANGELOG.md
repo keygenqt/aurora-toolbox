@@ -1,11 +1,12 @@
-## Updated: 11/18/2024 19:12:21 PM
+## Updated: 01/15/2025 20:56:21 PM
 
 ## Info
 
-- Last tag: 1.0.1
-- Released: 14
+- Last tag: 1.0.2
+- Released: 15
 
 ## Versions
+- Version: 1.0.2 (15/01/2025)
 - Version: 1.0.1 (18/11/2024)
 - Version: 1.0.0 (06/11/2024)
 - Version: 0.0.12 (05/11/2024)
@@ -20,6 +21,17 @@
 - Version: 0.0.3 (23/10/2024)
 - Version: 0.0.2 (23/10/2024)
 - Version: 0.0.1 (23/10/2024)
+
+### Version: 1.0.2 (15/01/2025)
+
+#### Bug
+
+- Fix load empty extension.
+
+#### Feature
+
+- Add video install rpm to device.
+- Add video install rpm to emulator.
 
 ### Version: 1.0.1 (18/11/2024)
 
