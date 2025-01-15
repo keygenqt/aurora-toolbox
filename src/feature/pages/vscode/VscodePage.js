@@ -141,7 +141,7 @@ export const VscodePage = GObject.registerClass({
 
 	#initExtensions(extensions) {
 		// Flutter & Dart
-		if (extensions.includes('dart-code.dart-code') && extensions.includes('dart-code.flutter')) {
+		if (extensions && extensions.includes('dart-code.dart-code') && extensions.includes('dart-code.flutter')) {
 			this._IdButtonExtensionsFlutterIcon.visible = false;
 			this._IdButtonExtensionsFlutterOk.visible = true;
 			this.#actionGroup.remove(this.#actionExtensionsFlutter.name);
@@ -151,7 +151,7 @@ export const VscodePage = GObject.registerClass({
 			this.#actionGroup.insert(this.#actionExtensionsFlutter);
 		}
 		// C++
-		if (extensions.includes('ms-vscode.cpptools')
+		if (extensions && extensions.includes('ms-vscode.cpptools')
 			&& extensions.includes('ms-vscode.cpptools-themes')
 			&& extensions.includes('ms-vscode.cpptools-extension-pack'))
 		{
@@ -164,7 +164,7 @@ export const VscodePage = GObject.registerClass({
 			this.#actionGroup.insert(this.#actionExtensionsCpptools);
 		}
 		// Cmake
-		if (extensions.includes('ms-vscode.cmake-tools') && extensions.includes('twxs.cmake')) {
+		if (extensions && extensions.includes('ms-vscode.cmake-tools') && extensions.includes('twxs.cmake')) {
 			this._IdButtonExtensionsCmakeIcon.visible = false;
 			this._IdButtonExtensionsCmakeOk.visible = true;
 			this.#actionGroup.remove(this.#actionExtensionsCmake.name);
@@ -174,7 +174,7 @@ export const VscodePage = GObject.registerClass({
 			this.#actionGroup.insert(this.#actionExtensionsCmake);
 		}
 		// Meson
-		if (extensions.includes('mesonbuild.mesonbuild')) {
+		if (extensions && extensions.includes('mesonbuild.mesonbuild')) {
 			this._IdButtonExtensionsMesonIcon.visible = false;
 			this._IdButtonExtensionsMesonOk.visible = true;
 			this.#actionGroup.remove(this.#actionExtensionsMeson.name);
@@ -184,7 +184,7 @@ export const VscodePage = GObject.registerClass({
 			this.#actionGroup.insert(this.#actionExtensionsMeson);
 		}
 		// Checker
-		if (extensions.includes('streetsidesoftware.code-spell-checker')
+		if (extensions && extensions.includes('streetsidesoftware.code-spell-checker')
 			&& extensions.includes('streetsidesoftware.code-spell-checker-russian'))
 		{
 			this._IdButtonExtensionsCheckerIcon.visible = false;
@@ -196,7 +196,7 @@ export const VscodePage = GObject.registerClass({
 			this.#actionGroup.insert(this.#actionExtensionsChecker);
 		}
 		// Spaces
-		if (extensions.includes('ybaumes.highlight-trailing-white-spaces')) {
+		if (extensions && extensions.includes('ybaumes.highlight-trailing-white-spaces')) {
 			this._IdButtonExtensionsHighlightIcon.visible = false;
 			this._IdButtonExtensionsHighlightOk.visible = true;
 			this.#actionGroup.remove(this.#actionExtensionsHighlight.name);
