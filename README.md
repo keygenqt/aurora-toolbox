@@ -1,5 +1,9 @@
 # Aurora Toolbox
 
+> The project works via the [Aurora CLI](https://github.com/keygenqt/aurora-cli) API, which is in the archive.
+> An alternative is in development — [Aurora Toolbot](https://github.com/keygenqt/aurora-toolbot).
+> This project works like Aurora CLI, but its replacement is fast and convenient applications based on other technologies. Just FYI.
+
 ### Subscribe and like!
 
 [![Releases DEB](https://img.shields.io/badge/dynamic/json?url=https://api.github.com/repos/keygenqt/aurora-toolbox/releases/latest&query=assets[1][download_count]&label=Releases%20DEB&color=BE8731&logo=github&prefix=1.0.2%20(&suffix=))](https://github.com/keygenqt/aurora-toolbox/releases)
